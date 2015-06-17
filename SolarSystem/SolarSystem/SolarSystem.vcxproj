@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Application\inc\KDApp.h" />
+    <ClInclude Include="..\Application\inc\MonitorThread.h" />
+    <ClInclude Include="..\Foundation\osext\inc\OSDefs.h" />
+    <ClInclude Include="..\Foundation\osext\inc\OSDispatcher.h" />
+    <ClInclude Include="..\Foundation\osext\inc\OSDispatcherEx.h" />
+    <ClInclude Include="..\Foundation\osext\inc\OSMessageBase.h" />
+    <ClInclude Include="..\Foundation\osext\inc\OSThread.h" />
+    <ClInclude Include="..\Foundation\osext\inc\OSThreadEx.h" />
+    <ClInclude Include="..\Foundation\osext\inc\OSThreadPool.h" />
+    <ClInclude Include="..\Foundation\utils\inc\Any.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\CircleBuff.h" />
+    <ClInclude Include="..\Foundation\utils\inc\CommCommand.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\Components.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\CounteBase.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\DynClass.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\Events.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\MemPool.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\Multiton.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\MyString.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\ObjectPool.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\Optional.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\Range.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\SimpleSyncQueue.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\Singleton.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\Structs.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\SyncQueue.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\ThreadPool.hpp" />
+    <ClInclude Include="..\Foundation\utils\inc\Timer.hpp" />
+    <ClInclude Include="..\Intermedium\cil\inc\CILDevice.h" />
+    <ClInclude Include="..\Intermedium\cil\inc\CILDispatcher.h" />
+    <ClInclude Include="..\Intermedium\cil\inc\CILPacket.h" />
+    <ClInclude Include="..\Intermedium\cil\inc\CILRequest.h" />
+    <ClInclude Include="..\Intermedium\cil\inc\CILSchedule.h" />
+    <ClInclude Include="..\Intermedium\cil\inc\CILService.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Application\src\KDApp.cpp" />
+    <ClCompile Include="..\Application\src\Main.cpp" />
+    <ClCompile Include="..\Application\src\MonitorThread.cpp" />
+    <ClCompile Include="..\Foundation\osext\src\OSDispatcher.cpp" />
+    <ClCompile Include="..\Foundation\osext\src\OSDispatcherEx.cpp" />
+    <ClCompile Include="..\Foundation\osext\src\OSMessageBase.cpp" />
+    <ClCompile Include="..\Foundation\osext\src\OSThread.cpp" />
+    <ClCompile Include="..\Foundation\osext\src\OSThreadEx.cpp" />
+    <ClCompile Include="..\Foundation\osext\src\OSThreadPool.cpp" />
+    <ClCompile Include="..\Foundation\utils\inc\Stack.cpp" />
+    <ClCompile Include="..\Foundation\utils\inc\VariadicTemplates.cpp" />
+    <ClCompile Include="..\Foundation\utils\src\Algorithm.cpp" />
+    <ClCompile Include="..\Foundation\utils\src\CircleBuff.cpp" />
+    <ClCompile Include="..\Foundation\utils\src\DynClass.cpp" />
+    <ClCompile Include="..\Foundation\utils\src\MyString.cpp" />
+    <ClCompile Include="..\Foundation\utils\src\RightReference.cpp" />
+    <ClCompile Include="..\Intermedium\cil\src\CILDevice.cpp" />
+    <ClCompile Include="..\Intermedium\cil\src\CILDispatcher.cpp" />
+    <ClCompile Include="..\Intermedium\cil\src\CILPacket.cpp" />
+    <ClCompile Include="..\Intermedium\cil\src\CILRequest.cpp" />
+    <ClCompile Include="..\Intermedium\cil\src\CILSchedule.cpp" />
+    <ClCompile Include="..\Intermedium\cil\src\CILService.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DDEBF3F7-A271-4DE1-B8BE-FBB1CD2B6139}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>SolarSystem</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\GitHub\CppFramework\SolarSystem\Application\inc;D:\GitHub\CppFramework\SolarSystem\Foundation\osext\inc;D:\GitHub\CppFramework\SolarSystem\Foundation\utils\inc;D:\GitHub\CppFramework\SolarSystem\Intermedium\cil\inc;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
