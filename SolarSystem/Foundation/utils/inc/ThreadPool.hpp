@@ -16,11 +16,12 @@
 #include "SyncQueue.hpp"
 
 namespace cplusplus {
+static const int MaxTaskCount = 10;
 class ThreadPool {
 public:
 	using Task = std::function<void()>;
 	ThreadPool(int numThreads = std::thread::hardware_concurrency()) :
-			m_queue(global::MaxTaskCount) {
+			m_queue(MaxTaskCount) {
 		Start(numThreads);
 	}
 
@@ -35,7 +36,7 @@ public:
 	}
 
 	void AddTask(Task&&task) {
-		m_queue.Put(std::forward<Task>(task));
+		m_queue.Put(std::forward < Task > (task));
 	}
 
 	void AddTask(const Task& task) {
@@ -47,7 +48,9 @@ private:
 		m_running = true;
 		//创建线程组
 		for (int i = 0; i < numThreads; ++i) {
-			m_threadgroup.push_back(std::make_shared<std::thread>(&ThreadPool::RunInThread, this));
+			m_threadgroup.push_back(
+					std::make_shared < std::thread
+							> (&ThreadPool::RunInThread, this));
 		}
 	}
 
@@ -84,7 +87,7 @@ private:
 	//同步队列
 	SyncQueue<Task> m_queue;
 	//是否停止的标志
-	atomic_bool m_running;
+	std::atomic_bool m_running;
 	std::once_flag m_flag;
 };
 
@@ -93,16 +96,17 @@ void testThreadPool() {
 	ThreadPool pool;
 	bool runing = true;
 
-	std::thread thd1([&pool, &runing] {
-		while(runing) {
-			std::cout<<"produce "<<this_thread::get_id()<< std::endl;
-			pool.AddTask([] {
-						std::cout <<"consume "<<this_thread::get_id()<< endl;
-					});
-		}
-	});
+	std::thread thd1(
+			[&pool, &runing] {
+				while(runing) {
+					std::cout<<"produce "<<std::this_thread::get_id()<< std::endl;
+					pool.AddTask([] {
+								std::cout << "consume " << std::this_thread::get_id() << std::endl;
+							});
+				}
+			});
 
-	this_thread::sleep_for(std::chrono::seconds(10));
+	std::this_thread::sleep_for(std::chrono::seconds(10));
 	runing = false;
 	pool.Stop();
 

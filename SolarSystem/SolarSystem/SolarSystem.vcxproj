@@ -101,7 +101,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\GitHub\CppFramework\SolarSystem\Application\inc;D:\GitHub\CppFramework\SolarSystem\Foundation\osext\inc;D:\GitHub\CppFramework\SolarSystem\Foundation\utils\inc;D:\GitHub\CppFramework\SolarSystem\Intermedium\cil\inc;$(IncludePath)</IncludePath>
+    <IncludePath>..\Application\inc;..\Foundation\osext\inc;..\Foundation\utils\inc;..\Intermedium\cil\inc;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include "OSThreadPool.h"
+#include "ThreadPool.hpp"
 //#include "CILService.h"
 //#include "CILDispatcher.h"
 //#include "CILSchedule.h"
@@ -69,23 +70,24 @@ int fibonacci5(int n) {        //迭代实现
 	return c;
 }
 
-int fibonacci6(int n) {
+double fibonacci6(int n) {
 	auto gh5 = std::sqrt(5);
 	return (pow((1 + gh5), n) - pow((1 - gh5), n)) / (pow((double) 2, n) * gh5);
 }
 
 int main() {
-//	OSExt::OSThreadPool pool(3);
-//	pool.setMaxQueueSize(100);
-//	pool.start();
-//
-//	for (int i = 0; i < 2; i++) {
-//		pool.run(fun);
-//	}
-//	std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+	//OSExt::OSThreadPool pool(3);
+	//pool.setMaxQueueSize(100);
+	//pool.start();
 
-//	std::cout << fibonacci1(12) << " " << fibonacci2(12) << " " << fibonacci3(12) << " " << fibonacci4(12) << " "
-//			<< fibonacci5(12) << " " << fibonacci6(12);
+	//for (int i = 0; i < 20; i++) {
+	//	pool.run(fun);
+	//}
+	//std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
+	//std::cout << fibonacci1(12) << " " << fibonacci2(12) << " " << fibonacci3(12) << " " << fibonacci4(12) << " "
+	//		<< fibonacci5(12) << " " << fibonacci6(12);
+
+	cplusplus::test::testThreadPool();
 	return 0;
 }
