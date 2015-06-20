@@ -16,13 +16,9 @@
 #include <vector>
 #include <functional>
 #include <future>
+#include "OSVaries.hpp"
 
 namespace OSExt {
-const auto OS_THREAD_PAUSE = 100;
-enum class OSRet {
-	OK, ERROR, THREAD_ERROR
-};
-
 class OSThread {
 public:
 	OSThread();

@@ -1,7 +1,7 @@
 #ifndef RANGE_HPP_
 #define RANGE_HPP_
 
-namespace cplusplus {
+namespace OSUtils {
 
 template<typename value_t>
 class RangeImpl {
@@ -81,8 +81,7 @@ private:
 };
 
 template<typename T, typename V>
-auto Range(T begin, T end,
-		V stepsize) -> RangeImpl<decltype(begin + end + stepsize)> {
+auto Range(T begin, T end, V stepsize) -> RangeImpl<decltype(begin + end + stepsize)> {
 	return RangeImpl<decltype(begin + end + stepsize)>(begin, end, stepsize);
 }
 
@@ -95,6 +94,7 @@ template<typename T>
 RangeImpl<T> Range(T end) {
 	return RangeImpl<T>(T(), end, 1);
 }
+
 namespace test {
 void testRange() {
 	std::cout << "testEvents:" << std::endl;
@@ -138,5 +138,5 @@ void testRange() {
 	std::cout << std::endl;
 }
 } //namespace test
-} //namespace cplusplus
+} //namespace OSUtils
 #endif /* RANGE_HPP_ */

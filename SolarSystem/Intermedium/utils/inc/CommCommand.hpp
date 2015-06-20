@@ -11,7 +11,7 @@
 #include <functional>
 #include <type_traits>
 
-namespace cplusplus {
+namespace OSUtils {
 
 template<typename R = void>
 struct CommCommand {
@@ -40,6 +40,7 @@ public:
 		return m_f();
 	}
 };
+} //namespace OSUtils
 
 namespace test {
 struct STA {
@@ -75,7 +76,7 @@ int add_one(int n) {
 void testWrap() {
 	std::cout << "testWrap:" << std::endl;
 
-	CommCommand<int> cmd;
+	OSUtils::CommCommand<int> cmd;
 	// free function
 	cmd.Wrap(add_one, 0);
 
@@ -96,12 +97,12 @@ void testWrap() {
 
 //	auto r = cmd.Excecute();
 
-	CommCommand<> cmd1;
+	OSUtils::CommCommand<> cmd1;
 	cmd1.Wrap(&STA::triple3, &t);
 	cmd1.Excecute();
 
 	std::cout << std::endl;
 }
 } //namespace test
-} //namespace cplusplus
+
 #endif /* COMMCOMMAND_HPP_ */

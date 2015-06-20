@@ -69,7 +69,7 @@ char *MyString::AllocAndCpy(const char *str) {
 }
 
 void MyString::Display() const {
-	cout << _str << endl;
+	std::cout << _str << std::endl;
 }
 
 int MyString::Length() const {
@@ -107,14 +107,14 @@ MyString &MyString::operator+=(const MyString &other) {
 	return *this;
 }
 
-ostream &operator<<(ostream &os, const MyString &str) {
+std::ostream &operator<<(std::ostream &os, const MyString &str) {
 	os << str._str;
 	return os;
 }
 
-istream &operator>>(istream &is, MyString &str) {
+std::istream &operator>>(std::istream &is, MyString &str) {
 	char tmp[1024];
-	cin >> tmp;
+	std::cin >> tmp;
 	str = tmp;
 	return is;
 }

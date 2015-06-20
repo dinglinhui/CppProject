@@ -9,8 +9,8 @@
 #define OPTIONAL_HPP_
 
 #include <type_traits>
-namespace cplusplus {
 
+namespace OSUtils {
 template<typename T>
 class Optional {
 	using data_t = typename std::aligned_storage<sizeof(T), std::alignment_of<T>::value>::type;
@@ -69,7 +69,6 @@ public:
 
 	explicit operator bool() const {
 		return IsInit();
-
 	}
 
 	T& operator*() {
@@ -85,8 +84,7 @@ public:
 	}
 
 	bool operator ==(const Optional<T>& rhs) const {
-		return (!bool(*this)) != (!rhs) ?
-				false : (!bool(*this) ? true : (*(*this)) == (*rhs));
+		return (!bool(*this)) != (!rhs) ? false : (!bool(*this) ? true : (*(*this)) == (*rhs));
 	}
 
 	bool operator <(const Optional<T>& rhs) const {
@@ -144,6 +142,7 @@ private:
 	bool m_hasInit;
 	data_t m_data;
 };
+
 namespace test {
 void testOptional() {
 	std::cout << "testOptional:" << std::endl;
@@ -168,5 +167,5 @@ void testOptional() {
 	std::cout << std::endl;
 }
 } //namespace test
-} //namespace cplusplus
+} //namespace OSUtils
 #endif /* OPTIONAL_HPP_ */

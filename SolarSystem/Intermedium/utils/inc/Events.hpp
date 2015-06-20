@@ -15,11 +15,10 @@
 
 #include "Structs.hpp"
 
-namespace cplusplus {
+namespace OSUtils {
 
 template<typename Func>
 class Events: NonCopyable {
-
 public:
 	Events() : m_nextKey(0) {
 	}
@@ -91,6 +90,8 @@ private:
 	std::map<int, Func> m_connections;
 };
 
+} //namespace OSUtils
+
 namespace test {
 struct stA {
 	int a;
@@ -110,7 +111,7 @@ void testEvents() {
 	std::cout << "testEvents:" << std::endl;
 
 	using Delegate1 = std::function<void(int, int)>;
-	using Event1 = Events<Delegate1>;
+	using Event1 = OSUtils::Events<Delegate1>;
 	Event1 event1;
 
 	//添加委托
@@ -139,7 +140,6 @@ void testEvents() {
 
 	std::cout << std::endl;
 }
-
 } //namespace test
-} //namespace cplusplus
+
 #endif /* EVENTS_HPP_ */

@@ -11,24 +11,10 @@
 #include <mutex>
 #include "CircleBuff.h"
 #include "OSDefs.h"
+#include "OSVaries.hpp"
 
 namespace OSExt {
-/*
- * Msg
- */
-#define FM_NULL                         0x0000
-#define FM_ACT           				0x0001      // 异步完成消息
-#define FM_GETSERVICE    				0x0002      // 获取系统服务
-#define FM_CREATE                       0x0003
-#define FM_DESTROY                      0x0004
-#define FM_MOVE                         0x0005
-#define FM_SIZE                         0x0006
-#define FM_ACTIVATE                     0x0007
-// 用户自定义消息起始码
-#define FM_USER			 				0X00FF
-
 class OSMessageBase;
-
 class Message {
 public:
 	Message(void);

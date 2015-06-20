@@ -9,8 +9,6 @@
 #define COUNTEBASE_HPP_
 
 #include <iostream>
-using namespace std;
-
 //一个具有对象计数功能的基类
 template<class BeingCounted>
 class Counted {
@@ -25,7 +23,7 @@ protected:
 	Counted();
 	Counted(const Counted& rhs);
 	~Counted() {
-		cout << "销毁第 " << numObjects << " 个实例" << endl;
+		std::cout << "销毁第 " << numObjects << " 个实例" << std::endl;
 		--numObjects;
 	}
 
@@ -57,7 +55,7 @@ void Counted<BeingCounted>::init() {
 	if (numObjects >= maxObjects) {  //产生的实例大于最大值就抛出异常
 		throw TooManyObjects();
 	}
-	cout << "构造第 " << numObjects + 1 << " 个实例" << endl;
+	std::cout << "构造第 " << numObjects + 1 << " 个实例" << std::endl;
 	++numObjects;
 }
 
@@ -108,7 +106,7 @@ int testPrinter() {
 	try {
 		p1 = Printer::makePrinter(); //Printer产生的实例大于5，则抛出异常
 	} catch (Printer::TooManyObjects &) {
-		cout << "TooManyObjects" << endl;
+		std::cout << "TooManyObjects" << std::endl;
 	}
 
 	delete p1;
@@ -116,7 +114,7 @@ int testPrinter() {
 	delete p3;
 	delete p4;
 	delete p5;
-	cout << "剩余实例为：" << Printer::objectCount() << endl;
+	std::cout << "剩余实例为：" << Printer::objectCount() << std::endl;
 
 	return 0;
 }

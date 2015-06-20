@@ -2,7 +2,6 @@
 #define _MyString_H_
 
 #include <iostream>
-using namespace std;
 
 class MyString {
 public:
@@ -20,8 +19,8 @@ public:
 	friend MyString operator+(const MyString &s1, const MyString &s2);
 	MyString &operator+=(const MyString &other);
 
-	friend ostream &operator<<(ostream &os, const MyString &str);
-	friend istream &operator>>(istream &is, MyString &str);
+	friend std::ostream &operator<<(std::ostream &os, const MyString &str);
+	friend std::istream &operator>>(std::istream &is, MyString &str);
 
 	~MyString(void);
 

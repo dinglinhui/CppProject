@@ -7,7 +7,8 @@
 #include <list>
 #include <iostream>
 
-namespace cplusplus {
+namespace OSUtils {
+
 template<typename T>
 class SimpleSyncQueue {
 public:
@@ -29,5 +30,6 @@ private:
 	std::mutex m_mutex;
 	std::condition_variable_any m_notEmpty;
 };
+
 }
 #endif /* SIMPLESYNCQUEUE_HPP_ */

@@ -11,6 +11,8 @@
 #include <string>
 #include <stdexcept>
 
+namespace OSUtils {
+
 template<class T>
 class Stack {
 private:
@@ -49,6 +51,8 @@ T Stack<T>::top() const {
 	return elems.back();
 }
 
+namespace test {
+
 void testStack() {
 	std::cout << "testStack:" << std::endl;
 	Stack<int> intStack;  // stack of ints
@@ -64,4 +68,7 @@ void testStack() {
 	stringStack.pop();
 //		stringStack.pop();
 	std::cout << std::endl;
+}
+
+}
 }

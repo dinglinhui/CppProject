@@ -1,6 +1,6 @@
 #include "DynClass.hpp"
 
-namespace DYN_CLASS {
+namespace OSUtils {
 
 CFactoryList * CFactoryList::_head = nullptr;
 

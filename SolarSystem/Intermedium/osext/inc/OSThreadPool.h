@@ -21,7 +21,8 @@
 #include <queue>
 
 namespace OSExt {
-typedef std::function<void()> Task;
+//typedef std::function<void()> Task;
+using Task = std::function<void()>;
 
 class OSThreadPool {
 public:
@@ -56,7 +57,10 @@ private:
 	size_t m_maxQueueSize;
 	bool m_running;
 };
-
 } /* namespace OSExt */
+
+namespace test {
+void testOSThreadPool();
+}
 
 #endif /* OSTHREADPOOL_H_ */

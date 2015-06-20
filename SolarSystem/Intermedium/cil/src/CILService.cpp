@@ -16,6 +16,7 @@ CILService::~CILService() {
 }
 
 void CILService::Install(CILDevice* pDevice) {
+	m_plstDevice = pDevice;
 }
 
 void CILService::UnInstall(CILDevice* pDevice) {
@@ -57,7 +58,7 @@ int CILService::OnHandleMessage(OSExt::Message* msg) {
 int CILService::Run() {
 	while (true) {
 		std::cout << "service" << std::endl;
-		std::this_thread::sleep_for(std::chrono::milliseconds(OSExt::OS_THREAD_PAUSE));
+		std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
 	}
 	return 0;
 }

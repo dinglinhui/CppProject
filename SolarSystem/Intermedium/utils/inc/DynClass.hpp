@@ -7,14 +7,14 @@
 #include <typeinfo>
 
 #if !defined(DYN_DECLARE)
-#define DYN_DECLARE(class_name) DYN_CLASS::CFactory<class_name> class_name
+#define DYN_DECLARE(class_name) OSUtils::CFactory<class_name> class_name
 #endif
 
 #if !defined(DYN_CREATE)
-#define DYN_CREATE(class_name) DYN_CLASS::Create(class_name)
+#define DYN_CREATE(class_name) OSUtils::Create(class_name)
 #endif
 
-namespace DYN_CLASS {
+namespace OSUtils {
 /* create object by class name */
 void * Create(const char * class_name);
 
@@ -52,7 +52,7 @@ public:
 /* realization of class factory */
 template<typename Type>
 class CFactory: public CAbstractFactory {
-	static Type _object;
+//	static Type _object;
 	CFactoryList m_item;
 
 public:
@@ -72,19 +72,20 @@ public:
 		strClassName = ("class ");
 #else
 		char szSize[4] = {0};
-		sprintf(szSize, "%d", strlen(class_name));
+		sprintf(szSize, "%d", (int)strlen(class_name));
 		strClassName = szSize;
 #endif
 		strClassName += class_name;
 
 		/* RTTI support */
-		return !strcmp(typeid(_object).name(), strClassName.c_str()) ?
-				(void *) (new Type) : nullptr;
+		return (void *) (new Type);
+//		return !strcmp(typeid(_object).name(), strClassName.c_str()) ?
+//				(void *) (new Type) : nullptr;
 	}
 };
 namespace test {
 void testDynclass();
 }
-} // namespace DYN_CLASS
+} // namespace OSUtils
 
 #endif /* __DYNAMIC_H__ */

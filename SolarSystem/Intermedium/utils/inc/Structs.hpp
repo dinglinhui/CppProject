@@ -8,7 +8,7 @@
 #ifndef STRUCTS_HPP_
 #define STRUCTS_HPP_
 
-namespace cplusplus {
+namespace OSUtils {
 
 struct SomeType {
 	SomeType() = default;
@@ -35,5 +35,5 @@ struct OnlyInt {
 	template<class T> void f(T) = delete;
 };
 
-} //namespace cplusplus
+} //namespace OSUtils
 #endif /* STRUCTS_HPP_ */

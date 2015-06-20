@@ -29,11 +29,9 @@ void OSThreadPool::start() {
 }
 
 void OSThreadPool::stop() {
-	{
-		std::unique_lock<std::mutex> ul { m_mutex };
-		m_running = false;
-		m_notEmpty.notify_all();
-	}
+	std::unique_lock<std::mutex> ul { m_mutex };
+	m_running = false;
+	m_notEmpty.notify_all();
 
 	for (auto &iter : m_threads) {
 		iter.join();
@@ -85,3 +83,20 @@ Task OSThreadPool::take() {
 }
 
 } /* namespace OSExt */
+
+namespace test {
+void fun() {
+	std::cout << "[id:" << std::this_thread::get_id() << "] hello, world!" << std::endl;
+}
+
+void testOSThreadPool() {
+	OSExt::OSThreadPool pool(3);
+	pool.setMaxQueueSize(100);
+	pool.start();
+
+	for (int i = 0; i < 20; i++) {
+		pool.run(fun);
+	}
+	std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+}
+}

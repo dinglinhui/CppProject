@@ -11,7 +11,6 @@
 #include "OSDefs.h"
 
 namespace OSUtils {
-
 class CCircleBuff {
 public:
 	CCircleBuff(int MaxCount, int SizeOfByte = 1);
