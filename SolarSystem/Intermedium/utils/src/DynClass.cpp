@@ -28,6 +28,7 @@ CFactoryList::~CFactoryList(void) {
 			break;
 		}
 }
+} //namespace OSUtils
 
 namespace test {
 
@@ -91,11 +92,9 @@ private:
 };
 
 void testDynclass() {
-	DYN_DECLARE(CDerived);
-	CBase * p3 = (CBase *) DYN_CREATE("CDerived");
-	if (p3 != NULL)
-		delete p3;
+	OSUtils::CFactory<CDerived> factory1;
+	CBase * p1 = (CBase *) OSUtils::Create("CDerived");
+	if (p1 != nullptr)
+		delete p1;
 }
 } // namespace test
-
-}

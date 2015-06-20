@@ -10,8 +10,8 @@
 
 int main() {
 
-	test::testEvents();
-	test::testThreadPool();
-//	DYN_CLASS::test::testDynclass();
+//	test::testEvents();
+//	test::testThreadPool();
+	test::testDynclass();
 	return 0;
 }

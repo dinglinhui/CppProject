@@ -6,14 +6,6 @@
 #include <cstring>
 #include <typeinfo>
 
-#if !defined(DYN_DECLARE)
-#define DYN_DECLARE(class_name) OSUtils::CFactory<class_name> class_name
-#endif
-
-#if !defined(DYN_CREATE)
-#define DYN_CREATE(class_name) OSUtils::Create(class_name)
-#endif
-
 namespace OSUtils {
 /* create object by class name */
 void * Create(const char * class_name);
@@ -52,7 +44,7 @@ public:
 /* realization of class factory */
 template<typename Type>
 class CFactory: public CAbstractFactory {
-//	static Type _object;
+	Type _object;
 	CFactoryList m_item;
 
 public:
@@ -78,14 +70,14 @@ public:
 		strClassName += class_name;
 
 		/* RTTI support */
-		return (void *) (new Type);
-//		return !strcmp(typeid(_object).name(), strClassName.c_str()) ?
-//				(void *) (new Type) : nullptr;
+		return !strcmp(typeid(_object).name(), strClassName.c_str()) ?
+				(void *) (new Type) : nullptr;
 	}
 };
+} // namespace OSUtils
+
 namespace test {
 void testDynclass();
 }
-} // namespace OSUtils
 
 #endif /* __DYNAMIC_H__ */

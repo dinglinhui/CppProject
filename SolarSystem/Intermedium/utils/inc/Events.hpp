@@ -20,14 +20,15 @@ namespace OSUtils {
 template<typename Func>
 class Events: NonCopyable {
 public:
-	Events() : m_nextKey(0) {
+	Events() :
+			m_nextKey(0) {
 	}
 
 	~Events() {
 	}
 
 	int operator +=(Func&& f) {
-		return Connect(std::forward < Func > (f));
+		return Connect(std::forward<Func>(f));
 	}
 
 	int operator +=(Func& f) {
@@ -50,7 +51,7 @@ public:
 
 private:
 	int Connect(Func&& f) {
-		return Assgin(std::forward < Func > (f));
+		return Assgin(std::forward<Func>(f));
 	}
 
 	int Connect(Func& f) {
@@ -71,7 +72,7 @@ private:
 	template<typename F>
 	int Assgin(F&& f) {
 		int index = m_nextKey++;
-		Push(index, std::forward < Func > (f));
+		Push(index, std::forward<Func>(f));
 		return index;
 	}
 
@@ -93,50 +94,48 @@ private:
 } //namespace OSUtils
 
 namespace test {
-struct stA {
+struct STA {
 	int a;
 	int b;
 	void fun(int x, int y) {
 		a = x;
 		b = y;
-		std::cout << "a = " << a << " b= " << b << std::endl;
+		std::cout << "key3:" << a << ", " << b << std::endl;
 	}
 };
 
 void print(int a, int b) {
-	std::cout << a << ", " << b << std::endl;
+	std::cout << "key1:" << a << ", " << b << std::endl;
 }
 
 void testEvents() {
 	std::cout << "testEvents:" << std::endl;
 
-	using Delegate1 = std::function<void(int, int)>;
-	using Event1 = OSUtils::Events<Delegate1>;
-	Event1 event1;
+	using Delegate = std::function<void(int, int)>;
+	using Event = OSUtils::Events<Delegate>;
+	Event event;
 
 	//添加委托
-	stA t;
-	auto key1 = event1 += &print;
-	auto key2 = event1 += [&t](int a, int b) {
+	STA t;
+	auto key1 = event += &print;
+	auto key2 = event += [&t](int a, int b) {
 		t.a = a;
 		t.b = b;
-		std::cout << "t.a = " << t.a << " t.b = " << t.b << std::endl;
+		std::cout << "key2:" << t.a << ", " << t.b << std::endl;
 	};
-	auto key3 =
-		event1 += std::bind(&stA::fun, &t, std::placeholders::_1, std::placeholders::_2);
+	auto key3 = event += std::bind(&STA::fun, &t, std::placeholders::_1, std::placeholders::_2);
 
 	//广播
-	event1(2, 3);
+	event(2, 3);
 
 	//移除委托
-	event1 -= key1;
-	event1 -= key2;
-	event1 -= key3;
+	event -= key1;
+	event -= key2;
 
-	event1(4, 5);
+	event(4, 5);
 	//清空事件
-	event1.Clear();
-	event1(1, 2); //清空什么都不会输出
+	event.Clear();
+	event(1, 2); //清空什么都不会输出
 
 	std::cout << std::endl;
 }
