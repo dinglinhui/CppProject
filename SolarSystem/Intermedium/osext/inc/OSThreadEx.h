@@ -7,18 +7,34 @@
 
 #ifndef OSTHREADEX_H_
 #define OSTHREADEX_H_
+#include "OSDispatcherEx.h"
 #include "OSMessageBase.h"
 #include "OSThread.h"
 
 namespace osext {
 
+class OSDispatcherEx;
 class OSThreadEx: public OSThread, public OSMessageBase {
 public:
 	OSThreadEx();
 	virtual ~OSThreadEx();
 
-private:
+	virtual OSRet Start();
+
+	OSDispatcherEx* GetDispatcher() const {
+		return m_pParent;
+	}
+	void SetDispatcher(OSDispatcherEx* pParent);
+
+protected:
 	virtual int Run() override;
+
+	OSThreadEx* m_pNext;
+
+private:
+	OSDispatcherEx* m_pParent;
+
+	friend class OSDispatcherEx;
 };
 
 } /* namespace osext */

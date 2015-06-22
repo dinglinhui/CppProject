@@ -5,7 +5,7 @@
  *      Author: dinglinhui
  */
 
-#include "../../syscil/inc/CILDispatcher.h"
+#include "CILDispatcher.h"
 
 namespace syscil {
 
@@ -16,8 +16,10 @@ CILDispatcher::~CILDispatcher() {
 }
 
 int CILDispatcher::Run() {
+	OSHeartbeat * heartbeat = this->GetHeartbeat();
 	while (true) {
-		std::cout << "dispatcher" << std::endl;
+		(*heartbeat)++;
+
 		std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
 	}
 	return 0;

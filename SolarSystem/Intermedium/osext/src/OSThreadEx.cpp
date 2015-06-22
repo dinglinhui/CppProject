@@ -10,15 +10,40 @@
 namespace osext {
 
 OSThreadEx::OSThreadEx() :
-		OSThread() {
+		OSThread(), m_pNext(nullptr), m_pParent(nullptr) {
 }
 
 OSThreadEx::~OSThreadEx() {
 }
 
+void OSThreadEx::SetDispatcher(OSDispatcherEx* pParent) {
+	m_pParent = pParent;
+	m_pParent->Register(this);
+}
+
+OSRet OSThreadEx::Start() {
+	QueueInitialize();
+
+	return OSThread::Start();
+}
+
 int OSThreadEx::Run() {
-	std::cout << "OSThreadEx::Run" << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
+	if (OSMessageBase::isOK()) {
+		//Notify all thread FM_CREATE message
+		PostMessage((OSMessageBase *) this, MSGType::MSG_CREATE, 0, 0);
+		for (;;) {
+			OSMessage *msg = nullptr;
+			if (Pend(msg) == 0) {
+				if (msg != nullptr) {
+					int nRet = OnHandleMessage(msg);
+					if (msg->m_pACT != nullptr) {
+						PostMessage(msg->m_pSource, MSGType::MSG_ACT, nRet, (DWORD) msg->m_pACT, nullptr);
+					}
+					delete msg;
+				}
+			}
+		}
+	}
 	return 0;
 }
 

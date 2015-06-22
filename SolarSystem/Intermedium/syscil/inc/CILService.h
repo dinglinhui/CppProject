@@ -10,11 +10,14 @@
 
 #include "OSThreadEx.h"
 #include "OSThreadPool.h"
-#include "../../syscil/inc/CILDevice.h"
+#include "OSMessageBase.h"
+#include "CILDevice.h"
 
 namespace syscil {
 using namespace osext;
 
+class CILDevice;
+class OSThreadPool;
 class CILService: public OSThreadEx {
 public:
 	CILService();
@@ -30,9 +33,9 @@ public:
 	OSMessageBase* GetPackEntry(void) const;
 
 protected:
-	virtual int OSInitHook(void);
-	virtual int ReceiveMessage(Message *msg);
-	virtual int OnHandleMessage(Message *msg);
+	virtual OSRet OSInitHook(void);
+	virtual int ReceiveMessage(OSMessage *msg);
+	virtual int OnHandleMessage(OSMessage *msg);
 	virtual int Run() override final;
 
 private:

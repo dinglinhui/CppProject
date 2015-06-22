@@ -167,8 +167,6 @@ void testOptional() {
 
 	auto it = mymap.find(a);
 	std::cout << it->second << std::endl;
-
-	std::cout << std::endl;
 }
 } //namespace test
 #endif /* OPTIONAL_HPP_ */

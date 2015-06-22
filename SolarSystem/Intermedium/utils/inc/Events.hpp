@@ -12,8 +12,7 @@
 #include <iostream>
 #include <functional>
 #include <type_traits>
-
-#include "Structs.hpp"
+#include "Restriction.hpp"
 
 namespace utils {
 
@@ -93,54 +92,57 @@ private:
 
 } //namespace utils
 
+#if 0
 namespace test {
-using namespace utils;
+	using namespace utils;
 
-struct STA {
-	int a;
-	int b;
-	void fun(int x, int y) {
-		a = x;
-		b = y;
-		std::cout << "key3:" << a << ", " << b << std::endl;
-	}
-};
-
-void print(int a, int b) {
-	std::cout << "key1:" << a << ", " << b << std::endl;
-}
-
-void testEvents() {
-	std::cout << "testEvents:" << std::endl;
-
-	using Delegate = std::function<void(int, int)>;
-	using Event = Events<Delegate>;
-	Event event;
-
-	//添加委托
-	STA t;
-	auto key1 = event += &print;
-	auto key2 = event += [&t](int a, int b) {
-		t.a = a;
-		t.b = b;
-		std::cout << "key2:" << t.a << ", " << t.b << std::endl;
+	struct STA {
+		int a;
+		int b;
+		void fun(int x, int y) {
+			a = x;
+			b = y;
+			std::cout << "key3:" << a << ", " << b << std::endl;
+		}
 	};
-	auto key3 = event += std::bind(&STA::fun, &t, std::placeholders::_1, std::placeholders::_2);
 
-	//广播
-	event(2, 3);
+	void print(int a, int b) {
+		std::cout << "key1:" << a << ", " << b << std::endl;
+	}
 
-	//移除委托
-	event -= key1;
-	event -= key2;
+	void testEvents() {
+		std::cout << "testEvents:" << std::endl;
 
-	event(4, 5);
-	//清空事件
-	event.Clear();
-	event(1, 2); //清空什么都不会输出
+		using Delegate = std::function<void(int, int)>;
+		using Event = Events<Delegate>;
+		Event event;
 
-	std::cout << std::endl;
-}
+		//添加委托
+		STA t;
+		auto key1 = event += &print;
+		auto key2 = event += [&t](int a, int b) {
+			t.a = a;
+			t.b = b;
+			std::cout << "key2:" << t.a << ", " << t.b << std::endl;
+		};
+		auto key3 = event += std::bind(&STA::fun, &t, std::placeholders::_1, std::placeholders::_2);
+
+		//广播
+		event(2, 3);
+
+		//移除委托
+		event -= key1;
+		event -= key2;
+
+		event(4, 5);
+		//清空事件
+		event -= key3;
+		event.Clear();
+		event(1, 2);//清空什么都不会输出
+
+		std::cout << std::endl;
+	}
 } //namespace test
+#endif
 
 #endif /* EVENTS_HPP_ */

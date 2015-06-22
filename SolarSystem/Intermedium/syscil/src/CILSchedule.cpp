@@ -5,7 +5,7 @@
  *      Author: dinglinhui
  */
 
-#include "../../syscil/inc/CILSchedule.h"
+#include "CILSchedule.h"
 
 namespace syscil {
 CILSchedule::CILSchedule() {
@@ -15,8 +15,10 @@ CILSchedule::~CILSchedule() {
 }
 
 int CILSchedule::Run() {
+	OSHeartbeat * heartbeat = this->GetHeartbeat();
 	while (true) {
-		std::cout << "schedule" << std::endl;
+		(*heartbeat)++;
+
 		std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
 	}
 	return 0;

@@ -5,7 +5,8 @@
  *      Author: dinglinhui
  */
 
-#include "../../syscil/inc/CILService.h"
+#include <cassert>
+#include "CILService.h"
 
 namespace syscil {
 CILService::CILService() :
@@ -42,22 +43,37 @@ OSMessageBase* CILService::GetPackEntry(void) const {
 	return m_pEntry;
 }
 
-int CILService::OSInitHook(void) {
+OSRet CILService::OSInitHook(void) {
 	assert(m_pShedPool != NULL);
 	return OSThreadEx::OSInitHook();
 }
 
-int CILService::ReceiveMessage(Message* msg) {
+int CILService::ReceiveMessage(OSMessage* msg) {
 	return 0;
 }
 
-int CILService::OnHandleMessage(Message* msg) {
-	return 0;
+int CILService::OnHandleMessage(OSMessage* msg) {
+	assert( msg != NULL );
+	if( msg->m_nCmd == MSGType::CIL_SENDPACKET )
+	{
+		CILDevice *pVxd = FindDevice(msg->m_wParam);
+		if( pVxd != nullptr )
+		{
+			if( pVxd->Usable() )
+			{
+				return pVxd->Send((CILPacket*)msg->m_lParam, msg->m_pSource);
+			}
+		}
+		assert(false );
+	}
+	return -1;
 }
 
 int CILService::Run() {
+	OSHeartbeat * heartbeat = this->GetHeartbeat();
 	while (true) {
-		std::cout << "service" << std::endl;
+		(*heartbeat)++;
+
 		std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
 	}
 	return 0;

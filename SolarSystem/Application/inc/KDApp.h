@@ -9,22 +9,33 @@
 #define KDAPP_H_
 
 #include "OSDispatcherEx.h"
+#include "OSThreadPool.h"
+#include "CILService.h"
+#include "CILSchedule.h"
+#include "CILDispatcher.h"
 
 namespace kding {
 using namespace osext;
+using namespace syscil;
 
 class KDApp: public OSDispatcherEx {
 public:
 	virtual ~KDApp();
-	KDApp * GetAppInstance();
+	KDApp *GetAppInstance();
+
+	CILService m_objCIL;
+	CILSchedule m_objSch;
+	CILDispatcher m_objDsp;
 
 protected:
-	virtual int OSInitHook(void) override final;
-	virtual int OnHandleMessage(Message *msg) override final;
+	virtual OSRet OSInitHook(void) override final;
+	virtual int OnHandleMessage(OSMessage *msg) override final;
 
 private:
 	KDApp();
 	int Initialize(int *ret = nullptr);
+
+	static KDApp *theApp;
 };
 
 } /* namespace KDING */

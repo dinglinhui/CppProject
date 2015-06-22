@@ -17,8 +17,11 @@
 #include <functional>
 #include <future>
 #include "OSDefs.h"
+#include "OSHeartbeat.h"
 
 namespace osext {
+
+class OSHeartbeat;
 class OSThread {
 public:
 	OSThread();
@@ -34,13 +37,36 @@ public:
 	virtual OSRet Pause();
 	virtual OSRet Continue();
 
+	//
+	std::thread::id GetThreadID() {
+		return m_pThread->get_id();
+	}
+	//
+	int GetPrio() const {
+		return m_nPrio;
+	}
+	int SetPrio(int prio);
+	//
+	int GetOption() const {
+		return m_nOption;
+	}
+	void SetOption(int opt) {
+		m_nOption = opt;
+	}
+	//
+	OSHeartbeat * GetHeartbeat() {
+		return m_pHeartbeat;
+	}
 protected:
 	virtual int Run() = 0;
-	virtual int OSInitHook(void);
+	virtual OSRet OSInitHook(void);
 	static int ThreadFunction(void *param);
 
 private:
-	std::thread *m_pThread = nullptr;
+	std::thread *m_pThread;
+	int m_nPrio;
+	int m_nOption;
+	OSHeartbeat *m_pHeartbeat;
 };
 } /* namespace osext */
 

@@ -17,10 +17,19 @@ OSDispatcher::~OSDispatcher() {
 }
 
 int OSDispatcher::Create(int nTskOpt) {
+	//
+	OSInitHook();
+	//
+	SetOption(nTskOpt);
 	return 0;
 }
 
 OSRet OSDispatcher::Start() {
+	OSRet ret = OSThread::Start();
+	if(ret != OSRet::OK)
+		return ret;
+	//
+//	OSStart();
 	return OSRet::OK;
 }
 

@@ -1,6 +1,9 @@
 #ifndef OSDEFS_H_
 #define OSDEFS_H_
 
+using LONGLONG = signed long long;
+using ULONGLONG = unsigned long long;
+
 static const auto OS_THREAD_PAUSE = 100;
 static const auto OS_MAX_TASK_COUNT = 100;
 static const auto OS_MAX_OBJECT_NUM = 10;
@@ -13,7 +16,7 @@ enum class OSRet {
 	OK, ERROR, THREAD_ERROR
 };
 
-enum class OSMessage {
+enum class MSGType {
 	MSG_NULL,		// NULL消息
 	MSG_ACT,		// 异步完成消息
 	MSG_GETSERVICE,	// 获取系统服务
@@ -21,8 +24,28 @@ enum class OSMessage {
 	MSG_DESTROY,
 	MSG_MOVE,
 	MSG_SIZE,
-	MSG_USER
+	MSG_USER,
+	CIL_SENDPACKET,
+	CIL_RECVPACKET,
+	CIL_TIMEOUT
 };
+
+// Protocol type
+typedef enum {
+	PCOL_STREAM = 0,
+	PCOL_DL645 = 1,
+	PCOL_FA = 2,
+	PCOL_FK = 3,
+	PCOL_RTM = 4,
+	PCOL_UPGRADE = 5,
+	PCOL_EAST = 6,
+	PCOL_GB = 7
+} PCOL_TYPE;
+
+// Command type
+typedef enum {
+	PCMD_REQUEST = 1, PCMD_REQUESTANY = 2, PCMD_RESPOND = 3, PCMD_BROADCAST = 4
+} PCMD_TYPE;
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,10 +62,12 @@ extern "C" {
 #undef  INT16
 #undef  INT32
 #undef  LONG
+//#undef  LONGLONG
 #undef  UINT8
 #undef  UINT16
 #undef  UINT32
 #undef  ULONG
+//#undef  ULONGLONG
 #undef  INT
 #undef 	RET
 #undef  UINT
@@ -59,10 +84,12 @@ typedef signed char INT8;
 typedef signed short INT16;
 typedef signed int INT32;
 typedef signed long LONG;
+//typedef signed long long LONGLONG;
 typedef unsigned char UINT8;
 typedef unsigned short UINT16;
 typedef unsigned int UINT32;
 typedef unsigned long ULONG;
+//typedef unsigned long long ULONGLONG;
 typedef signed int INT;
 typedef signed int RET;
 typedef unsigned int UINT;

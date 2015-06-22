@@ -11,8 +11,12 @@
 #include "OSDispatcher.h"
 #include "OSMessageBase.h"
 #include "OSThreadEx.h"
+#include "MemPool.hpp"
+#include "Events.hpp"
 
 namespace osext {
+using Delegate = std::function<void(int, int)>;
+using Event = utils::Events<Delegate>;
 
 class OSThreadEx;
 class OSDispatcherEx: public OSDispatcher, public OSMessageBase {
@@ -26,32 +30,49 @@ public:
 	int Register(OSThreadEx *pService);
 	int UnRegister(OSThreadEx *pService);
 	//
-	void SendMessageToDescendants(Message *Message);
-	void SendMessageToDescendants(DWORD nCmd, DWORD wParam, DWORD lParam);
-	void PostMessageToDescendants(Message *Message);
-	void PostMessageToDescendants(DWORD nCmd, DWORD wParam, DWORD lParam);
+	void SendMessageToDescendants(OSMessage *msg);
+	void SendMessageToDescendants(MSGType nCmd, DWORD wParam, DWORD lParam);
+	void PostMessageToDescendants(OSMessage *msg);
+	void PostMessageToDescendants(MSGType nCmd, DWORD wParam, DWORD lParam);
 
-	OSThreadEx* Find(int nID) const;
+	OSThreadEx* Find(std::thread::id nID) const;
 
 	friend OSDispatcherEx* GetOSDispatcher(void);
 
 public:
+	// for timer scheduler, call in cpu tick process
+	static void TimerScheduler(void);
 	// for message get & put
 	void *GetMessagePtr(void);
 	void PutMessagePtr(void *p);
 
 protected:
 	virtual int Run(void) override;
-	virtual int OSInitHook(void);
+	virtual OSRet OSInitHook(void);
 
-	virtual int OnHandleMessage(Message *Message);
-	virtual int ReceiveMessage(Message *Message);
+	virtual int OnHandleMessage(OSMessage *msg);
+	virtual int ReceiveMessage(OSMessage *msg);
+
+	void InitThreadList(void);
 
 private:
 	OSThreadEx* m_pThreadList;
 
+	static utils::MemPool<OSMessage> mempool;
 	static OSDispatcherEx* m_pDispatcher;
+	Event event;
 };
+
+//global paramter for system
+extern OSDispatcherEx* GetOSDispatcher(void);
+
+//global message
+int OSSendMessage(int nPrio, MSGType nCmd, DWORD wParam, DWORD lParam);
+int OSPostMessage(int nPrio, MSGType nCmd, DWORD wParam, DWORD lParam);
+
+//global message get & put
+void *OSGetMessagePtr(void);
+void OSPutMessagePtr(void *);
 
 } /* namespace osext */
 

@@ -7,25 +7,25 @@
 namespace utils {
 //内存池
 template<typename T>
-class Pool {
+class MemPool {
 public:
-	Pool(size_t element_num) {
+	MemPool(size_t element_num) {
 		if (element_num <= 0) {
 			throw std::out_of_range("index is out of range");
 		}
 		headoffreelist = (T *) new char(sizeof(T) * element_num);
-		if (NULL == headoffreelist) {
+		if (nullptr == headoffreelist) {
 			throw std::logic_error("new error");
 		}
 		int i = 0;
 		for (; i < element_num - 1; i++) { //将内存串起来
 			*(T**) (headoffreelist + i) = headoffreelist + i + 1;
 		}
-		*(T**) (headoffreelist + i) = NULL;
+		*(T**) (headoffreelist + i) = nullptr;
 		pstart = headoffreelist;
 	}
 
-	~Pool(void) {
+	~MemPool(void) {
 		delete (T *) pstart;
 	}
 
@@ -48,13 +48,13 @@ private:
 };
 }
 
+#if 0
 namespace test {
 using namespace utils;
 //使用内存池的对象的大小不能小于一个指针的大小，否则会出错!
 class Airplane {
 public:
-	Airplane(int number = 0) :
-			number(number) {
+	Airplane(int number = 0) {
 	}
 	static void* operator new(size_t size) {
 		return mempool.alloc();
@@ -64,11 +64,10 @@ public:
 	}
 
 private:
-	static Pool<Airplane> mempool;
-	int number;
+	static MemPool<Airplane> mempool;
 };
 
-Pool<Airplane> Airplane::mempool(10); //预先分配10个Airplane的内存空间
+MemPool<Airplane> Airplane::mempool(10); //预先分配10个Airplane的内存空间
 
 int testMempool() {
 	try {
@@ -87,5 +86,6 @@ int testMempool() {
 	return 0;
 }
 }
+#endif
 
 #endif /* MEMPOOL_HPP_ */

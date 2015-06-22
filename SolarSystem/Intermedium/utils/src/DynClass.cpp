@@ -63,6 +63,7 @@ private:
 		std::cout << "CDerived1" << std::endl;
 	}
 };
+
 class CDerived2: virtual public CBase {
 public:
 	CDerived2() {

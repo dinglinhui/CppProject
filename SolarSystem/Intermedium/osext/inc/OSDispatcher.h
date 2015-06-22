@@ -16,7 +16,8 @@ public:
 	OSDispatcher();
 	virtual ~OSDispatcher();
 
-private:
+//Implementation
+public:
 	int Create(int nTskOpt = 0);
 
 	virtual OSRet Start() override;

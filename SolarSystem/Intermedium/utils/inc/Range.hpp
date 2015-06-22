@@ -100,7 +100,6 @@ namespace test {
 using namespace utils;
 
 void testRange() {
-	std::cout << "testEvents:" << std::endl;
 	std::cout << "Range(15):";
 	for (int i : Range(15)) {
 		std::cout << " " << i;

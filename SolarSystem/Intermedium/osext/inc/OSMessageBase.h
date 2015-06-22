@@ -14,16 +14,19 @@
 
 namespace osext {
 class OSMessageBase;
-class Message {
+class OSMessage {
 public:
-	Message(void);
+	OSMessage(void);
 
 	OSMessageBase* m_pSource;   // 发出该消息的对象
-	DWORD m_nCmd;      // 命令
+	MSGType m_nCmd;      // 命令
 	DWORD m_wParam;    // 参数1
 	DWORD m_lParam;    // 参数2
 	bool m_bAsyn;     // 异步标记
 	void* m_pACT;      // 异步完成标识
+
+	static void* operator new(size_t nSize);
+	static void operator delete(void *p, size_t nSize);
 };
 
 class OSMessageBase {
@@ -35,20 +38,22 @@ public:
 		return m_bOk;
 	}
 
-	int PostMessage(OSMessageBase *pTarget, Message *msg);
-	int PostMessage(OSMessageBase *pTarget, DWORD nCmd, DWORD wParam, DWORD lParam, void* act = NULL);
+	int PostMessage(OSMessageBase *pTarget, OSMessage *msg);
+	int PostMessage(OSMessageBase *pTarget, MSGType nCmd, DWORD wParam, DWORD lParam, void* act = NULL);
 
-	int SendMessage(OSMessageBase *pTarget, Message *msg);
-	int SendMessage(OSMessageBase *pTarget, DWORD nCmd, DWORD wParam, DWORD lParam);
+	int SendMessage(OSMessageBase *pTarget, OSMessage *msg);
+	int SendMessage(OSMessageBase *pTarget, MSGType nCmd, DWORD wParam, DWORD lParam);
 
 protected:
-	virtual int OnHandleMessage(Message *msg);
-	virtual int ReceiveMessage(Message *msg);
+	virtual int OnHandleMessage(OSMessage *msg);
+	virtual int ReceiveMessage(OSMessage *msg);
 
 	bool QueueInitialize(void);
+	int Post(OSMessage *msg);
+	int Pend(OSMessage *&msg, DWORD dwWaitTime = 0);
 
-	int Write(Message *msg);
-	int Read(Message *msg);
+	int Write(OSMessage *msg);
+	int Read(OSMessage *msg);
 
 private:
 	bool m_bOk;
