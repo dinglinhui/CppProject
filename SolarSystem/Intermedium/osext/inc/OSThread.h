@@ -16,9 +16,9 @@
 #include <vector>
 #include <functional>
 #include <future>
-#include "OSVaries.hpp"
+#include "OSDefs.h"
 
-namespace OSExt {
+namespace osext {
 class OSThread {
 public:
 	OSThread();
@@ -42,6 +42,6 @@ protected:
 private:
 	std::thread *m_pThread = nullptr;
 };
-} /* namespace OSExt */
+} /* namespace osext */
 
 #endif /* OSThread_H_ */

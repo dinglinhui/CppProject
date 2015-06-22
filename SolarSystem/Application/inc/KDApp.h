@@ -10,15 +10,17 @@
 
 #include "OSDispatcherEx.h"
 
-namespace KD {
-class KDApp: public OSExt::OSDispatcherEx {
+namespace kding {
+using namespace osext;
+
+class KDApp: public OSDispatcherEx {
 public:
 	virtual ~KDApp();
 	KDApp * GetAppInstance();
 
 protected:
 	virtual int OSInitHook(void) override final;
-	virtual int OnHandleMessage(OSExt::Message *msg) override final;
+	virtual int OnHandleMessage(Message *msg) override final;
 
 private:
 	KDApp();

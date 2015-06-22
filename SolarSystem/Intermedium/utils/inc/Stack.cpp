@@ -11,7 +11,7 @@
 #include <string>
 #include <stdexcept>
 
-namespace OSUtils {
+namespace utils {
 
 template<class T>
 class Stack {
@@ -50,8 +50,10 @@ T Stack<T>::top() const {
 	// return copy of last element
 	return elems.back();
 }
+}
 
 namespace test {
+using namespace utils;
 
 void testStack() {
 	std::cout << "testStack:" << std::endl;
@@ -68,7 +70,5 @@ void testStack() {
 	stringStack.pop();
 //		stringStack.pop();
 	std::cout << std::endl;
-}
-
 }
 }

@@ -6,7 +6,7 @@
 #include <cstring>
 #include <typeinfo>
 
-namespace OSUtils {
+namespace utils {
 /* create object by class name */
 void * Create(const char * class_name);
 
@@ -74,7 +74,7 @@ public:
 				(void *) (new Type) : nullptr;
 	}
 };
-} // namespace OSUtils
+} // namespace utils
 
 namespace test {
 void testDynclass();

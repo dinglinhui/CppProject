@@ -5,9 +5,9 @@
  *      Author: dinglinhui
  */
 
-#include "CILService.h"
+#include "../../syscil/inc/CILService.h"
 
-namespace CIL {
+namespace syscil {
 CILService::CILService() :
 		m_plstDevice(nullptr), m_pEntry(nullptr), m_pShedPool(nullptr) {
 }
@@ -22,11 +22,11 @@ void CILService::Install(CILDevice* pDevice) {
 void CILService::UnInstall(CILDevice* pDevice) {
 }
 
-void CILService::SetSchedPool(OSExt::OSThreadPool* pPool) {
+void CILService::SetSchedPool(OSThreadPool* pPool) {
 	m_pShedPool = pPool;
 }
 
-void CILService::SetPackEntry(OSExt::OSMessageBase* ptr) {
+void CILService::SetPackEntry(OSMessageBase* ptr) {
 	m_pEntry = ptr;
 }
 
@@ -34,24 +34,24 @@ CILDevice* CILService::FindDevice(int nIdent) {
 	return nullptr;
 }
 
-OSExt::OSThreadPool* CILService::GetSchedPool(void) const {
+OSThreadPool* CILService::GetSchedPool(void) const {
 	return m_pShedPool;
 }
 
-OSExt::OSMessageBase* CILService::GetPackEntry(void) const {
+OSMessageBase* CILService::GetPackEntry(void) const {
 	return m_pEntry;
 }
 
 int CILService::OSInitHook(void) {
 	assert(m_pShedPool != NULL);
-	return OSExt::OSThreadEx::OSInitHook();
+	return OSThreadEx::OSInitHook();
 }
 
-int CILService::ReceiveMessage(OSExt::Message* msg) {
+int CILService::ReceiveMessage(Message* msg) {
 	return 0;
 }
 
-int CILService::OnHandleMessage(OSExt::Message* msg) {
+int CILService::OnHandleMessage(Message* msg) {
 	return 0;
 }
 
@@ -63,4 +63,4 @@ int CILService::Run() {
 	return 0;
 }
 
-} /* namespace OSExt */
+} /* namespace syscil */

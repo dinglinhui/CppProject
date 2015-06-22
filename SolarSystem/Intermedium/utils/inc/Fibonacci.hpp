@@ -10,7 +10,7 @@
 
 #include <cassert>
 
-namespace OSUtils {
+namespace utils {
 int fibonacci1(int n) {     //递归实现
 	assert(n > 0);
 

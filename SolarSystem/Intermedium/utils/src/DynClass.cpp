@@ -1,6 +1,6 @@
 #include "DynClass.hpp"
 
-namespace OSUtils {
+namespace utils {
 
 CFactoryList * CFactoryList::_head = nullptr;
 
@@ -28,9 +28,10 @@ CFactoryList::~CFactoryList(void) {
 			break;
 		}
 }
-} //namespace OSUtils
+} //namespace utils
 
 namespace test {
+using namespace utils;
 
 class CBase {
 public:
@@ -92,8 +93,8 @@ private:
 };
 
 void testDynclass() {
-	OSUtils::CFactory<CDerived> factory1;
-	CBase * p1 = (CBase *) OSUtils::Create("CDerived");
+	CFactory<CDerived> factory1;
+	CBase * p1 = (CBase *) Create("CDerived");
 	if (p1 != nullptr)
 		delete p1;
 }

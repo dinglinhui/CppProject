@@ -5,9 +5,9 @@
  *      Author: dinglinhui
  */
 
-#include "CILRequest.h"
+#include "../../syscil/inc/CILRequest.h"
 
-namespace CIL {
+namespace syscil {
 CILRequest::CILRequest() {
 
 }
@@ -15,4 +15,4 @@ CILRequest::CILRequest() {
 CILRequest::~CILRequest() {
 }
 
-} /* namespace OSExt */
+} /* namespace syscil */

@@ -14,6 +14,8 @@
 #include <string>
 #include <list>
 
+namespace utils {
+
 class NLComponent { //抽象基类
 public:
 	virtual std::ostream& print(std::ostream& s) const = 0;
@@ -108,6 +110,10 @@ void NewLetter::printAll() {
 //		std::cout << **it;    //直接输出不同子类的信息，即虚拟化非成员函数
 //	}
 }
+}
+
+namespace test {
+using namespace utils;
 
 int testComponent(int argc, char* argv[]) {
 	std::ifstream fin(*++argv);
@@ -116,6 +122,7 @@ int testComponent(int argc, char* argv[]) {
 	delete letter;
 
 	return 0;
+}
 }
 
 #endif /* COMPONENTS_HPP_ */

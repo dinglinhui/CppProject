@@ -1,7 +1,7 @@
 #ifndef RANGE_HPP_
 #define RANGE_HPP_
 
-namespace OSUtils {
+namespace utils {
 
 template<typename value_t>
 class RangeImpl {
@@ -94,8 +94,11 @@ template<typename T>
 RangeImpl<T> Range(T end) {
 	return RangeImpl<T>(T(), end, 1);
 }
+} //namespace utils
 
 namespace test {
+using namespace utils;
+
 void testRange() {
 	std::cout << "testEvents:" << std::endl;
 	std::cout << "Range(15):";
@@ -138,5 +141,4 @@ void testRange() {
 	std::cout << std::endl;
 }
 } //namespace test
-} //namespace OSUtils
 #endif /* RANGE_HPP_ */

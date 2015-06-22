@@ -12,7 +12,7 @@
 #include "OSMessageBase.h"
 #include "OSThreadEx.h"
 
-namespace OSExt {
+namespace osext {
 
 class OSThreadEx;
 class OSDispatcherEx: public OSDispatcher, public OSMessageBase {
@@ -53,6 +53,6 @@ private:
 	static OSDispatcherEx* m_pDispatcher;
 };
 
-} /* namespace OSExt */
+} /* namespace osext */
 
 #endif /* OSDISPATCHEREX_H_ */

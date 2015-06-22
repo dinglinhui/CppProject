@@ -13,10 +13,10 @@
 #include <functional>
 #include <memory>
 #include <atomic>
-#include "OSVaries.hpp"
+#include "OSDefs.h"
 #include "SyncQueue.hpp"
 
-namespace OSExt {
+namespace osext {
 class ThreadPool {
 public:
 	using Task = std::function<void()>;
@@ -83,16 +83,18 @@ private:
 	//处理任务的线程组
 	std::list<std::shared_ptr<std::thread>> m_threadgroup;
 	//同步队列
-	OSUtils::SyncQueue<Task> m_queue;
+	utils::SyncQueue<Task> m_queue;
 	//是否停止的标志
 	std::atomic_bool m_running;
 	std::once_flag m_flag;
 };
-} //namespace OSExt
+} //namespace osext
 
 namespace test {
+using namespace osext;
+
 void testThreadPool() {
-	OSExt::ThreadPool pool;
+	ThreadPool pool;
 	bool runing = true;
 	std::thread thd1([&pool, &runing] {
 		while(runing) {

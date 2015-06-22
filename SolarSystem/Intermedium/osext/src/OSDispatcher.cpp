@@ -7,7 +7,7 @@
 
 #include "OSDispatcher.h"
 
-namespace OSExt {
+namespace osext {
 
 OSDispatcher::OSDispatcher() :
 		OSThread() {
@@ -40,4 +40,4 @@ OSThread* OSDispatcher::GetThread(int nPrio) {
 	return nullptr;
 }
 
-} /* namespace OSExt */
+} /* namespace osext */

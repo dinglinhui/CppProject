@@ -7,7 +7,7 @@
 
 #include "MonitorThread.h"
 
-namespace KD {
+namespace osext {
 MonitorThread::MonitorThread() {
 }
 
@@ -20,4 +20,4 @@ int MonitorThread::Run() {
 	return 0;
 }
 
-} /* namespace OSExt */
+} /* namespace osext */

@@ -10,7 +10,7 @@
 #include "OSMessageBase.h"
 #include "OSThread.h"
 
-namespace OSExt {
+namespace osext {
 
 class OSThreadEx: public OSThread, public OSMessageBase {
 public:
@@ -21,6 +21,6 @@ private:
 	virtual int Run() override;
 };
 
-} /* namespace OSExt */
+} /* namespace osext */
 
 #endif /* OSTHREADEX_H_ */

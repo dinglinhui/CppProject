@@ -8,13 +8,13 @@
 #ifndef CILREQUEST_H_
 #define CILREQUEST_H_
 
-namespace CIL {
+namespace syscil {
 class CILRequest {
 public:
 	CILRequest();
 	virtual ~CILRequest();
 };
 
-} /* namespace OSExt */
+} /* namespace syscil */
 
 #endif /* CILREQUEST_H_ */

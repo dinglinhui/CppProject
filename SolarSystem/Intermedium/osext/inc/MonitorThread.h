@@ -10,8 +10,8 @@
 
 #include "OSThread.h"
 
-namespace KD {
-class MonitorThread: public OSExt::OSThread {
+namespace osext {
+class MonitorThread: public OSThread {
 public:
 	MonitorThread();
 	virtual ~MonitorThread();
@@ -20,6 +20,6 @@ private:
 	virtual int Run() override;
 };
 
-} /* namespace OSExt */
+} /* namespace osext */
 
 #endif /* MONITORTHREAD_HPP_ */

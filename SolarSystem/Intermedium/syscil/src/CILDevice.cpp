@@ -5,13 +5,13 @@
  *      Author: dinglinhui
  */
 
-#include "CILDevice.h"
+#include "../../syscil/inc/CILDevice.h"
 
-namespace CIL {
+namespace syscil {
 CILDevice::CILDevice() {
 }
 
 CILDevice::~CILDevice() {
 }
 
-} /* namespace OSExt */
+} /* namespace syscil */

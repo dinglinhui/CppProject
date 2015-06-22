@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdexcept>
 
+namespace utils {
 //内存池
 template<typename T>
 class Pool {
@@ -45,7 +46,10 @@ private:
 	void *pstart;       //记住分配的首地址，用于内存释放
 	T *headoffreelist;  //未使用内存的首地址
 };
+}
 
+namespace test {
+using namespace utils;
 //使用内存池的对象的大小不能小于一个指针的大小，否则会出错!
 class Airplane {
 public:
@@ -81,6 +85,7 @@ int testMempool() {
 		std::cerr << "Exception: " << ex.what() << std::endl;
 	}
 	return 0;
+}
 }
 
 #endif /* MEMPOOL_HPP_ */

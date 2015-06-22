@@ -9,8 +9,11 @@
 #define CILSCHEDULE_H_
 
 #include "OSThreadEx.h"
-namespace CIL {
-class CILSchedule: public OSExt::OSThreadEx {
+
+namespace syscil {
+using namespace osext;
+
+class CILSchedule: public OSThreadEx {
 public:
 	CILSchedule();
 	virtual ~CILSchedule();
@@ -19,6 +22,6 @@ private:
 	virtual int Run() override final;
 };
 
-} /* namespace OSExt */
+} /* namespace syscil */
 
 #endif /* CILSCHEDULE_H_ */

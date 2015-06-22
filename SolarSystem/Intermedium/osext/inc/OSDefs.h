@@ -1,6 +1,29 @@
 #ifndef OSDEFS_H_
 #define OSDEFS_H_
 
+static const auto OS_THREAD_PAUSE = 100;
+static const auto OS_MAX_TASK_COUNT = 100;
+static const auto OS_MAX_OBJECT_NUM = 10;
+
+enum dimension {
+	one_dimension = 1, two_dimension, three_dimension
+};
+
+enum class OSRet {
+	OK, ERROR, THREAD_ERROR
+};
+
+enum class OSMessage {
+	MSG_NULL,		// NULL消息
+	MSG_ACT,		// 异步完成消息
+	MSG_GETSERVICE,	// 获取系统服务
+	MSG_CREATE,
+	MSG_DESTROY,
+	MSG_MOVE,
+	MSG_SIZE,
+	MSG_USER
+};
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -70,52 +93,6 @@ typedef double DOUBLE;
                                   (((UINT32)(A) & 0x00ff0000) >> 8) | \
                                   (((UINT32)(A) & 0x0000ff00) << 8) | \
                                   (((UINT32)(A) & 0x000000ff) << 24))
-
-#define OSSleep(milliseconds)  shr_sleep(milliseconds)
-
-#ifndef NULL
-#define NULL		0
-#endif
-
-#ifndef TRUE
-#define TRUE		1
-#endif
-
-#ifndef FALSE
-#define FALSE		0
-#endif
-
-#ifndef ENABLE
-#define ENABLE	  	1
-#endif
-
-#ifndef DISABLE
-#define DISABLE	    0
-#endif
-
-#ifndef YES
-#define YES	    	1
-#endif
-
-#ifndef NO
-#define NO	    	0
-#endif
-
-#ifndef SUCCESS
-#define SUCCESS	    1
-#endif
-
-#ifndef FAILURE
-#define FAILURE	    0
-#endif
-
-#ifndef OS_NO_ERR
-#define OS_NO_ERR 	0
-#endif
-
-#ifndef OS_ERR
-#define OS_ERR		-1
-#endif
 
 #ifdef __cplusplus
 }

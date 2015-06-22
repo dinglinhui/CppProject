@@ -8,13 +8,13 @@
 #ifndef CILDEVICE_H_
 #define CILDEVICE_H_
 
-namespace CIL {
+namespace syscil {
 class CILDevice {
 public:
 	CILDevice();
 	virtual ~CILDevice();
 };
 
-} /* namespace OSExt */
+} /* namespace syscil */
 
 #endif /* CILDEVICE_H_ */

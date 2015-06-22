@@ -5,16 +5,16 @@
 #include <functional>
 #include <tuple>
 #include <map>
+#include "OSDefs.h"
 #include "Any.hpp"
 
-namespace cplusplus {
+namespace utils {
 
 class ObjectPool {
 	template<typename T, typename ... Args>
 	using Constructor = std::function<std::shared_ptr<T>(Args...)>;
 
 public:
-
 	ObjectPool() {
 	}
 
@@ -24,22 +24,19 @@ public:
 	//默认创建多少个对象
 	template<typename T, typename ... Args>
 	void Create(int num) {
-		if (num <= 0 || num > global::MaxObjectNum)
+		if (num <= 0 || num > OS_MAX_OBJECT_NUM)
 			throw std::logic_error("object num errer");
 
 		auto constructName = typeid(Constructor<T, Args...> ).name();
 
-		Constructor<T, Args...> f =
-				[constructName, this](Args... args)
-				{
-					return std::shared_ptr<T>(new T(args...),[constructName, this](T* t)
-							{
-								m_object_map.emplace(constructName, std::shared_ptr<T>(t));
-							});
-				};
+		Constructor<T, Args...> f = [constructName, this](Args... args) {
+			return std::shared_ptr<T>(new T(args...),[constructName, this](T* t)
+					{
+						m_object_map.emplace(constructName, std::shared_ptr<T>(t));
+					});
+		};
 
 		m_map.emplace(typeid(T).name(), f);
-
 		m_counter.emplace(constructName, num);
 	}
 
@@ -56,8 +53,7 @@ public:
 				if (ptr != nullptr)
 					return ptr;
 
-				return CreateInstance<T, Args...>(it->second, constructName,
-						args...);
+				return CreateInstance<T, Args...>(it->second, constructName, args...);
 			}
 		}
 
@@ -66,8 +62,7 @@ public:
 
 private:
 	template<typename T, typename ... Args>
-	std::shared_ptr<T> CreateInstance(Any& any, std::string& constructName,
-			Args ... args) {
+	std::shared_ptr<T> CreateInstance(Any& any, std::string& constructName, Args ... args) {
 		using ConstructType = Constructor<T, Args...>;
 		ConstructType f = any.AnyCast<ConstructType>();
 
@@ -106,8 +101,10 @@ private:
 	std::multimap<std::string, Any> m_object_map;
 	std::map<std::string, int> m_counter;
 };
+} //namespace utils
 
 namespace test {
+using namespace utils;
 
 struct AT {
 	AT() {
@@ -168,5 +165,4 @@ void testObjectPool() {
 }
 
 } //namespace test
-} //namespace cplusplus
 #endif /* OBJECTPOOL_HPP_ */

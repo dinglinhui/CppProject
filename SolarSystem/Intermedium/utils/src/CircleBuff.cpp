@@ -7,18 +7,18 @@
 
 #include "CircleBuff.h"
 
-namespace OSUtils {
+namespace utils {
 
 CCircleBuff::CCircleBuff(int MaxCount, int SizeOfByte) :
 		m_pBuff(nullptr), m_pBuffEnd(nullptr), m_pOut(nullptr), m_pIn(nullptr), m_nCount(0), m_nMaxCount(MaxCount), m_nSizeOfByte(
-				SizeOfByte), m_bOk(FALSE) {
+				SizeOfByte), m_bOk(false) {
 	m_pBuff = new BYTE[MaxCount * SizeOfByte];
 	if (m_pBuff != nullptr) {
 		m_nCount = 0;
 		m_pOut = m_pBuff;
 		m_pIn = m_pBuff;
 		m_pBuffEnd = m_pBuff + (MaxCount * SizeOfByte);
-		m_bOk = TRUE;
+		m_bOk = true;
 	}
 }
 

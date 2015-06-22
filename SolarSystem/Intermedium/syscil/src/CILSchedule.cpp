@@ -5,9 +5,9 @@
  *      Author: dinglinhui
  */
 
-#include "CILSchedule.h"
+#include "../../syscil/inc/CILSchedule.h"
 
-namespace CIL {
+namespace syscil {
 CILSchedule::CILSchedule() {
 }
 
@@ -22,4 +22,4 @@ int CILSchedule::Run() {
 	return 0;
 }
 
-} /* namespace OSExt */
+} /* namespace syscil */

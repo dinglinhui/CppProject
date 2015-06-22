@@ -7,7 +7,7 @@
 #include <list>
 #include <iostream>
 
-namespace OSUtils {
+namespace utils {
 
 template<typename T>
 class SimpleSyncQueue {

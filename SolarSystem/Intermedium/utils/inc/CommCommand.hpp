@@ -11,7 +11,7 @@
 #include <functional>
 #include <type_traits>
 
-namespace OSUtils {
+namespace utils {
 
 template<typename R = void>
 struct CommCommand {
@@ -40,9 +40,11 @@ public:
 		return m_f();
 	}
 };
-} //namespace OSUtils
+} //namespace utils
 
 namespace test {
+using namespace utils;
+
 struct STA {
 	int m_a;
 	int operator()() {
@@ -76,7 +78,7 @@ int add_one(int n) {
 void testWrap() {
 	std::cout << "testWrap:" << std::endl;
 
-	OSUtils::CommCommand<int> cmd;
+	CommCommand<int> cmd;
 	// free function
 	cmd.Wrap(add_one, 0);
 
@@ -97,7 +99,7 @@ void testWrap() {
 
 //	auto r = cmd.Excecute();
 
-	OSUtils::CommCommand<> cmd1;
+	CommCommand<> cmd1;
 	cmd1.Wrap(&STA::triple3, &t);
 	cmd1.Excecute();
 

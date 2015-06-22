@@ -20,7 +20,7 @@
 #include <algorithm>
 #include <queue>
 
-namespace OSExt {
+namespace osext {
 //typedef std::function<void()> Task;
 using Task = std::function<void()>;
 
@@ -57,7 +57,7 @@ private:
 	size_t m_maxQueueSize;
 	bool m_running;
 };
-} /* namespace OSExt */
+} /* namespace osext */
 
 namespace test {
 void testOSThreadPool();

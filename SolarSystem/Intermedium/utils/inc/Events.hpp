@@ -15,7 +15,7 @@
 
 #include "Structs.hpp"
 
-namespace OSUtils {
+namespace utils {
 
 template<typename Func>
 class Events: NonCopyable {
@@ -91,9 +91,11 @@ private:
 	std::map<int, Func> m_connections;
 };
 
-} //namespace OSUtils
+} //namespace utils
 
 namespace test {
+using namespace utils;
+
 struct STA {
 	int a;
 	int b;
@@ -112,7 +114,7 @@ void testEvents() {
 	std::cout << "testEvents:" << std::endl;
 
 	using Delegate = std::function<void(int, int)>;
-	using Event = OSUtils::Events<Delegate>;
+	using Event = Events<Delegate>;
 	Event event;
 
 	//添加委托

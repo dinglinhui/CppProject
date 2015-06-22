@@ -9,8 +9,11 @@
 #define CILDISPATCHER_H_
 
 #include "OSThreadEx.h"
-namespace CIL {
-class CILDispatcher: public OSExt::OSThreadEx {
+
+namespace syscil {
+using namespace osext;
+
+class CILDispatcher: public OSThreadEx {
 public:
 	CILDispatcher();
 	virtual ~CILDispatcher();
@@ -19,6 +22,6 @@ private:
 	virtual int Run() override final;
 };
 
-} /* namespace OSExt */
+} /* namespace syscil */
 
 #endif /* CILDISPATCHER_H_ */

@@ -4,7 +4,7 @@
 #include <memory>
 #include <typeindex>
 
-namespace OSUtils {
+namespace utils {
 struct Any {
 	Any(void) :
 			m_tpIndex(std::type_index(typeid(void))) {
@@ -88,5 +88,5 @@ private:
 	std::type_index m_tpIndex;
 };
 
-} //namespace cplusplus
+} //namespace utils
 #endif //ANY_HPP_

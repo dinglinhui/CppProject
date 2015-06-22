@@ -8,7 +8,7 @@
 #ifndef SINGLETON_HPP_
 #define SINGLETON_HPP_
 
-namespace cplusplus {
+namespace utils {
 
 template<typename T>
 class Singleton {
@@ -44,5 +44,5 @@ private:
 
 template<class T> T* Singleton<T>::m_pInstance = nullptr;
 
-} //namespace cplusplus
+} //namespace utils
 #endif /* SINGLETON_HPP_ */

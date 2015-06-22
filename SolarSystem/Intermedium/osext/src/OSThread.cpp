@@ -8,7 +8,7 @@
 #include "OSThread.h"
 #include "OSDefs.h"
 
-namespace OSExt {
+namespace osext {
 
 OSThread::OSThread() {
 }
@@ -41,7 +41,7 @@ OSRet OSThread::Continue(void) {
 }
 
 int OSThread::OSInitHook(void) {
-	return OS_NO_ERR;
+	return 0;
 }
 
 int OSThread::ThreadFunction(void *param) {
@@ -54,4 +54,4 @@ int OSThread::ThreadFunction(void *param) {
 	return 0;
 }
 
-} /* namespace OSExt */
+} /* namespace osext */

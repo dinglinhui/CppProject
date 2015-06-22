@@ -10,7 +10,7 @@
 #include <string>
 #include "OSDefs.h"
 
-namespace OSUtils {
+namespace utils {
 class CCircleBuff {
 public:
 	CCircleBuff(int MaxCount, int SizeOfByte = 1);

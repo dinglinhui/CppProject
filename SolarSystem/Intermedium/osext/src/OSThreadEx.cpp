@@ -7,7 +7,7 @@
 
 #include "OSThreadEx.h"
 
-namespace OSExt {
+namespace osext {
 
 OSThreadEx::OSThreadEx() :
 		OSThread() {
@@ -22,4 +22,4 @@ int OSThreadEx::Run() {
 	return 0;
 }
 
-} /* namespace OSExt */
+} /* namespace osext */

@@ -8,36 +8,39 @@
 #ifndef CILSERVICE_H_
 #define CILSERVICE_H_
 
-#include "CILDevice.h"
 #include "OSThreadEx.h"
 #include "OSThreadPool.h"
-namespace CIL {
-class CILService: public OSExt::OSThreadEx {
+#include "../../syscil/inc/CILDevice.h"
+
+namespace syscil {
+using namespace osext;
+
+class CILService: public OSThreadEx {
 public:
 	CILService();
 	virtual ~CILService();
 
 	void Install(CILDevice *pDevice);
 	void UnInstall(CILDevice *pDevice);
-	void SetSchedPool(OSExt::OSThreadPool *pPool);
-	void SetPackEntry(OSExt::OSMessageBase *ptr);
+	void SetSchedPool(OSThreadPool *pPool);
+	void SetPackEntry(OSMessageBase *ptr);
 
 	CILDevice* FindDevice(int nIdent);
-	OSExt::OSThreadPool* GetSchedPool(void) const;
-	OSExt::OSMessageBase* GetPackEntry(void) const;
+	OSThreadPool* GetSchedPool(void) const;
+	OSMessageBase* GetPackEntry(void) const;
 
 protected:
 	virtual int OSInitHook(void);
-	virtual int ReceiveMessage(OSExt::Message *msg);
-	virtual int OnHandleMessage(OSExt::Message *msg);
+	virtual int ReceiveMessage(Message *msg);
+	virtual int OnHandleMessage(Message *msg);
 	virtual int Run() override final;
 
 private:
 	CILDevice* m_plstDevice;
-	OSExt::OSMessageBase* m_pEntry;
-	OSExt::OSThreadPool* m_pShedPool;
+	OSMessageBase* m_pEntry;
+	OSThreadPool* m_pShedPool;
 };
 
-} /* namespace OSExt */
+} /* namespace syscil */
 
 #endif /* CILSERVICE_H_ */

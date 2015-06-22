@@ -14,7 +14,7 @@
 #include <condition_variable>
 #include <iostream>
 
-namespace OSUtils {
+namespace utils {
 template<typename T>
 class SyncQueue {
 public:

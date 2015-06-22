@@ -9,6 +9,8 @@
 #define COUNTEBASE_HPP_
 
 #include <iostream>
+
+namespace utils {
 //一个具有对象计数功能的基类
 template<class BeingCounted>
 class Counted {
@@ -90,6 +92,10 @@ Printer* Printer::makePrinter() {
 Printer* Printer::makePrinter(const Printer& rhs) {
 	return new Printer(rhs);
 }
+} //namespace utils
+
+namespace test {
+using namespace utils;
 
 int testPrinter() {
 	Printer *p1 = Printer::makePrinter();
@@ -117,6 +123,7 @@ int testPrinter() {
 	std::cout << "剩余实例为：" << Printer::objectCount() << std::endl;
 
 	return 0;
+}
 }
 
 #endif /* COUNTEBASE_HPP_ */

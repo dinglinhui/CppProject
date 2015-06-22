@@ -10,7 +10,7 @@
 
 #include <type_traits>
 
-namespace OSUtils {
+namespace utils {
 template<typename T>
 class Optional {
 	using data_t = typename std::aligned_storage<sizeof(T), std::alignment_of<T>::value>::type;
@@ -143,7 +143,11 @@ private:
 	data_t m_data;
 };
 
+} //namespace Utils
+
 namespace test {
+using namespace utils;
+
 void testOptional() {
 	std::cout << "testOptional:" << std::endl;
 
@@ -167,5 +171,4 @@ void testOptional() {
 	std::cout << std::endl;
 }
 } //namespace test
-} //namespace OSUtils
 #endif /* OPTIONAL_HPP_ */

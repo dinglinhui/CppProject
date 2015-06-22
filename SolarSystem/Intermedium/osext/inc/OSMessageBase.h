@@ -11,9 +11,8 @@
 #include <mutex>
 #include "CircleBuff.h"
 #include "OSDefs.h"
-#include "OSVaries.hpp"
 
-namespace OSExt {
+namespace osext {
 class OSMessageBase;
 class Message {
 public:
@@ -55,9 +54,9 @@ private:
 	bool m_bOk;
 	//
 	std::mutex m_mutex;
-	OSUtils::CCircleBuff m_Queue;
+	utils::CCircleBuff m_Queue;
 };
 
-} /* namespace OSExt */
+} /* namespace osext */
 
 #endif /* OSMESSAGEBASE_H_ */

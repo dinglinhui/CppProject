@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+namespace utils {
+
 class MyString {
 public:
 	MyString(const char *str = "");
@@ -33,5 +35,6 @@ private:
 	char *AllocAndCpy(const char *str);
 	char *_str;
 };
+}
 
 #endif // _MyString_H_

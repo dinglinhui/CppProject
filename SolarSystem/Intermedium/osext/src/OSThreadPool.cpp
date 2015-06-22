@@ -7,7 +7,7 @@
 
 #include "OSThreadPool.h"
 
-namespace OSExt {
+namespace osext {
 OSThreadPool::OSThreadPool(int num) :
 		m_num { num }, m_maxQueueSize(0), m_running { false } {
 }
@@ -82,15 +82,17 @@ Task OSThreadPool::take() {
 	return task;
 }
 
-} /* namespace OSExt */
+} /* namespace osext */
 
 namespace test {
+using namespace osext;
+
 void fun() {
 	std::cout << "[id:" << std::this_thread::get_id() << "] hello, world!" << std::endl;
 }
 
 void testOSThreadPool() {
-	OSExt::OSThreadPool pool(3);
+	OSThreadPool pool(3);
 	pool.setMaxQueueSize(100);
 	pool.start();
 

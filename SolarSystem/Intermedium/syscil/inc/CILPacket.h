@@ -8,13 +8,13 @@
 #ifndef CILPACKET_H_
 #define CILPACKET_H_
 
-namespace CIL {
+namespace syscil {
 class CILPacket {
 public:
 	CILPacket();
 	virtual ~CILPacket();
 };
 
-} /* namespace OSExt */
+} /* namespace syscil */
 
 #endif /* CILPACKET_H_ */

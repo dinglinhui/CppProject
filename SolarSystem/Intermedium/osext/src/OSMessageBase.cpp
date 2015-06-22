@@ -7,7 +7,7 @@
 
 #include "OSMessageBase.h"
 
-namespace OSExt {
+namespace osext {
 
 Message::Message(void) :
 		m_pSource(nullptr), m_nCmd(0), m_wParam(0), m_lParam(0), m_bAsyn(false), m_pACT(nullptr) {
@@ -56,7 +56,7 @@ int OSMessageBase::SendMessage(OSMessageBase *pTarget, DWORD nCmd, DWORD wParam,
 }
 
 int OSMessageBase::Write(Message *msg) {
-	int ret = OS_NO_ERR;
+	int ret = 0;
 	std::unique_lock<std::mutex> ul { m_mutex };
 	ret = m_Queue.Write((void*) msg, 1);
 
@@ -64,7 +64,7 @@ int OSMessageBase::Write(Message *msg) {
 }
 
 int OSMessageBase::Read(Message *msg) {
-	int ret = OS_NO_ERR;
+	int ret = 0;
 	ret = m_Queue.Read((void*&) msg, 1);
 
 	return ret;
@@ -83,4 +83,4 @@ int OSMessageBase::OnHandleMessage(Message *msg) {
 	return -1;
 }
 
-} /* namespace OSExt */
+} /* namespace osext */

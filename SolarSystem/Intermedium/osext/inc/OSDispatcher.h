@@ -10,7 +10,7 @@
 
 #include "OSThread.h"
 
-namespace OSExt {
+namespace osext {
 class OSDispatcher: public OSThread {
 public:
 	OSDispatcher();
@@ -27,6 +27,6 @@ private:
 	OSThread *GetThread(int nPrio);
 };
 
-} /* namespace OSExt */
+} /* namespace osext */
 
 #endif /* OSDISPATCHER_H_ */

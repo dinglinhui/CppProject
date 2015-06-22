@@ -5,9 +5,9 @@
  *      Author: dinglinhui
  */
 
-#include "CILDispatcher.h"
+#include "../../syscil/inc/CILDispatcher.h"
 
-namespace CIL {
+namespace syscil {
 
 CILDispatcher::CILDispatcher() {
 }
@@ -23,4 +23,4 @@ int CILDispatcher::Run() {
 	return 0;
 }
 
-} /* namespace OSExt */
+} /* namespace syscil */

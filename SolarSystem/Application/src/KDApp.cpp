@@ -7,7 +7,7 @@
 
 #include "KDApp.h"
 
-namespace KD {
+namespace kding {
 KDApp::KDApp() {
 	Initialize();
 }
@@ -23,7 +23,7 @@ int KDApp::OSInitHook(void) {
 	return 0;
 }
 
-int KDApp::OnHandleMessage(OSExt::Message* msg) {
+int KDApp::OnHandleMessage(Message* msg) {
 	return 0;
 }
 
@@ -31,4 +31,4 @@ int KDApp::Initialize(int* ret) {
 	return 0;
 }
 
-} /* namespace OSExt */
+} /* namespace kding */

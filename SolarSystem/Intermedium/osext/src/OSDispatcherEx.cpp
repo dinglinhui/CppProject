@@ -7,7 +7,7 @@
 
 #include "OSDispatcherEx.h"
 
-namespace OSExt {
+namespace osext {
 OSDispatcherEx* OSDispatcherEx::m_pDispatcher = nullptr;
 
 OSDispatcherEx::OSDispatcherEx() {

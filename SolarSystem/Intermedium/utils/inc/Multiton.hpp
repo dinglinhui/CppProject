@@ -12,7 +12,7 @@
 #include <string>
 #include <memory>
 
-namespace OSUtils {
+namespace utils {
 
 template<typename T, typename K = std::string>
 class Multiton {
@@ -54,5 +54,5 @@ private:
 template<typename T, typename K>
 std::map<K, std::shared_ptr<T>> Multiton<T, K>::m_map;
 
-} //namespace OSUtils
+} //namespace utils
 #endif /* MULTITON_HPP_ */

@@ -2,6 +2,7 @@
 #include <cstring>
 #include <cassert>
 
+namespace utils {
 MyString::MyString(const char *str) {
 	_str = AllocAndCpy(str);
 }
@@ -117,4 +118,5 @@ std::istream &operator>>(std::istream &is, MyString &str) {
 	std::cin >> tmp;
 	str = tmp;
 	return is;
+}
 }

@@ -5,13 +5,13 @@
  *      Author: dinglinhui
  */
 
-#include "CILPacket.h"
+#include "../../syscil/inc/CILPacket.h"
 
-namespace CIL {
+namespace syscil {
 CILPacket::CILPacket() {
 }
 
 CILPacket::~CILPacket() {
 }
 
-} /* namespace OSExt */
+} /* namespace syscil */
