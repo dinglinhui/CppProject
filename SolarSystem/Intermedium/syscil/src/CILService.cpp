@@ -44,7 +44,7 @@ OSMessageBase* CILService::GetPackEntry(void) const {
 }
 
 OSRet CILService::OSInitHook(void) {
-	assert(m_pShedPool != NULL);
+//	assert(m_pShedPool != NULL);
 	return OSThreadEx::OSInitHook();
 }
 
@@ -53,7 +53,7 @@ int CILService::ReceiveMessage(OSMessage* msg) {
 }
 
 int CILService::OnHandleMessage(OSMessage* msg) {
-	assert( msg != NULL );
+//	assert( msg != NULL );
 	if( msg->m_nCmd == MSGType::CIL_SENDPACKET )
 	{
 		CILDevice *pVxd = FindDevice(msg->m_wParam);
@@ -70,9 +70,10 @@ int CILService::OnHandleMessage(OSMessage* msg) {
 }
 
 int CILService::Run() {
-	OSHeartbeat * heartbeat = this->GetHeartbeat();
+	OSHeartbeat &heartbeat = this->GetHeartbeat();
 	while (true) {
-		(*heartbeat)++;
+		heartbeat++;
+		std::cout << "CILService" << std::endl;
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
 	}

@@ -11,7 +11,7 @@
 namespace osext {
 
 OSThread::OSThread() :
-		m_pThread(nullptr), m_nPrio(0), m_nOption(0), m_pHeartbeat(nullptr) {
+		m_pThread(nullptr), m_nPrio(0), m_nOption(0) {
 }
 
 OSThread::~OSThread() {
@@ -20,7 +20,7 @@ OSThread::~OSThread() {
 
 OSRet OSThread::Start() {
 	m_pThread = new std::thread { std::bind(&OSThread::ThreadFunction, this) };
-	m_pHeartbeat = new OSHeartbeat();
+//	std::cout << m_pThread << std::endl;
 	return OSRet::OK;
 }
 
@@ -48,12 +48,13 @@ OSRet OSThread::OSInitHook(void) {
 
 int OSThread::ThreadFunction(void *param) {
 	OSThread *pThis = (OSThread *) param;
+//	std::cout << pThis << std::endl;
 	if (pThis == nullptr)
 		return 1;
 
-	if (pThis->OSInitHook() == OSRet::OK) {
+//	if (pThis->OSInitHook() == OSRet::OK) {
 		pThis->Run();
-	}
+//	}
 
 	pThis->Stop();
 

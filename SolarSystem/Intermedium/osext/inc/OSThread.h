@@ -37,6 +37,7 @@ public:
 	virtual OSRet Pause();
 	virtual OSRet Continue();
 
+//	static OSRet Notify();
 	//
 	std::thread::id GetThreadID() {
 		return m_pThread->get_id();
@@ -54,8 +55,8 @@ public:
 		m_nOption = opt;
 	}
 	//
-	OSHeartbeat * GetHeartbeat() {
-		return m_pHeartbeat;
+	OSHeartbeat& GetHeartbeat() {
+		return m_tHeartbeat;
 	}
 protected:
 	virtual int Run() = 0;
@@ -64,9 +65,12 @@ protected:
 
 private:
 	std::thread *m_pThread;
+//	static bool m_bFlag;
+//	static std::mutex mutex_;
+//	static std::condition_variable cond_;
 	int m_nPrio;
 	int m_nOption;
-	OSHeartbeat *m_pHeartbeat;
+	OSHeartbeat m_tHeartbeat;
 };
 } /* namespace osext */
 

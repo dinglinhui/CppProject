@@ -265,12 +265,12 @@ void OSDispatcherEx::InitThreadList(void) {
 	OSThreadEx* pTop = m_pThreadList;
 	while (pTop != nullptr) {
 		event += [&pTop](ULONGLONG pre, ULONGLONG cur) {
-			OSHeartbeat * heartbeat = pTop->GetHeartbeat();
-			heartbeat->print();
-			if(heartbeat->isEqual()) {
+			OSHeartbeat &heartbeat = pTop->GetHeartbeat();
+			heartbeat.print();
+			if(heartbeat.isEqual()) {
 				throw std::logic_error("thread heartbeat error");
 			} else {
-				(*heartbeat)--;
+				heartbeat--;
 			}
 		};
 
