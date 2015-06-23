@@ -14,15 +14,15 @@ CILSchedule::CILSchedule() {
 CILSchedule::~CILSchedule() {
 }
 
-int CILSchedule::Run() {
-	OSHeartbeat &heartbeat = this->GetHeartbeat();
+OSRet CILSchedule::Run() {
+//	OSHeartbeat &heartbeat = this->GetHeartbeat();
 	while (true) {
-		heartbeat++;
+//		heartbeat++;
 
-		std::cout << "CILSchedule" << std::endl;
+		std::cout << "3" << std::endl;
 		std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
 	}
-	return 0;
+	return OSRet::OK;
 }
 
 } /* namespace syscil */

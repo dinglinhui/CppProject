@@ -36,8 +36,6 @@ public:
 	virtual OSRet Stop();
 	virtual OSRet Pause();
 	virtual OSRet Continue();
-
-//	static OSRet Notify();
 	//
 	std::thread::id GetThreadID() {
 		return m_pThread->get_id();
@@ -46,7 +44,9 @@ public:
 	int GetPrio() const {
 		return m_nPrio;
 	}
-	int SetPrio(int prio);
+	void SetPrio(int prio) {
+		m_nPrio = prio;
+	}
 	//
 	int GetOption() const {
 		return m_nOption;
@@ -58,10 +58,12 @@ public:
 	OSHeartbeat& GetHeartbeat() {
 		return m_tHeartbeat;
 	}
+
 protected:
-	virtual int Run() = 0;
+	virtual OSRet Run() = 0;
 	virtual OSRet OSInitHook(void);
-	static int ThreadFunction(void *param);
+
+	static OSRet ThreadFunction(void *param);
 
 private:
 	std::thread *m_pThread;

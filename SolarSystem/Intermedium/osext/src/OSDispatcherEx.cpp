@@ -11,7 +11,7 @@
 #include <stdexcept>
 
 namespace osext {
-utils::MemPool<OSMessage> OSDispatcherEx::mempool(10); //预先分配10个OSMessage的内存空间
+utils::MemPool<OSMessage> OSDispatcherEx::mempool(OS_MAX_MESSAGE_NUM); //预先分配10个OSMessage的内存空间
 
 OSDispatcherEx* OSDispatcherEx::m_pDispatcher = nullptr;
 
@@ -34,11 +34,13 @@ int OSSendMessage(int nPrio, MSGType nCmd, DWORD wParam, DWORD lParam) {
 //		return 2;
 
 	if (nCmd == MSGType::MSG_NULL) {
-		return pDispatcher->SendMessage((OSMessageBase*) pDispatcher, nCmd, wParam, lParam);
+		return pDispatcher->SendMessage((OSMessageBase*) pDispatcher, nCmd,
+				wParam, lParam);
 	} else {
 		OSThreadEx *pThread = pDispatcher->Find(std::this_thread::get_id());
 		if (pThread != nullptr) {
-			return pDispatcher->SendMessage((OSMessageBase*) pThread, nCmd, wParam, lParam);
+			return pDispatcher->SendMessage((OSMessageBase*) pThread, nCmd,
+					wParam, lParam);
 		}
 	}
 	return 3;
@@ -143,7 +145,8 @@ void OSDispatcherEx::SendMessageToDescendants(OSMessage* msg) {
 	}
 }
 
-void OSDispatcherEx::SendMessageToDescendants(MSGType nCmd, DWORD wParam, DWORD lParam) {
+void OSDispatcherEx::SendMessageToDescendants(MSGType nCmd, DWORD wParam,
+		DWORD lParam) {
 	OSThreadEx* pTop = m_pThreadList;
 	while (pTop != nullptr) {
 		SendMessage(pTop, nCmd, wParam, lParam);
@@ -158,7 +161,8 @@ void OSDispatcherEx::PostMessageToDescendants(OSMessage* msg) {
 	}
 }
 
-void OSDispatcherEx::PostMessageToDescendants(MSGType nCmd, DWORD wParam, DWORD lParam) {
+void OSDispatcherEx::PostMessageToDescendants(MSGType nCmd, DWORD wParam,
+		DWORD lParam) {
 	OSThreadEx* pTop = m_pThreadList;
 	while (pTop != nullptr) {
 		PostMessage(pTop, nCmd, wParam, lParam);
@@ -174,7 +178,7 @@ void OSDispatcherEx::PutMessagePtr(void* p) {
 	mempool.dealloc((OSMessage*) p);
 }
 
-int OSDispatcherEx::Run(void) {
+OSRet OSDispatcherEx::Run(void) {
 	//Notify all thread FM_CREATE message
 	PostMessage((OSMessageBase *) this, MSGType::MSG_CREATE, 0, 0);
 	//
@@ -194,7 +198,7 @@ int OSDispatcherEx::Run(void) {
 			std::cerr << "Exception: " << ex.what() << std::endl;
 		}
 	}
-	return 0;
+	return OSRet::OK;
 }
 
 OSRet OSDispatcherEx::OSInitHook(void) {
@@ -219,7 +223,8 @@ int OSDispatcherEx::OnHandleMessage(OSMessage* msg) {
 		case MSGType::MSG_GETSERVICE: {
 			OSThreadEx* pService = Find(std::this_thread::get_id());
 			if (msg->m_bAsyn) {
-				PostMessage((OSMessageBase*) msg->m_pSource, msg->m_nCmd, msg->m_wParam, (DWORD) pService, nullptr);
+				PostMessage((OSMessageBase*) msg->m_pSource, msg->m_nCmd,
+						msg->m_wParam, (DWORD) pService, nullptr);
 			} else {
 				msg->m_lParam = (DWORD) pService;
 			}

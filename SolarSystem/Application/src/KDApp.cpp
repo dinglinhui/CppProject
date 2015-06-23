@@ -16,6 +16,7 @@ KDApp *KDApp::GetAppInstance() {
 }
 
 KDApp::KDApp() {
+	Initialize();
 	this->Create(0);
 	this->Start();
 }
@@ -24,7 +25,6 @@ KDApp::~KDApp() {
 }
 
 OSRet KDApp::OSInitHook(void) {
-	Initialize();
 	return OSDispatcherEx::OSInitHook();
 }
 

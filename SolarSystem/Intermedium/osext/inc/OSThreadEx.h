@@ -27,7 +27,7 @@ public:
 	void SetDispatcher(OSDispatcherEx* pParent);
 
 protected:
-	virtual int Run() override;
+	virtual OSRet Run() override;
 
 	OSThreadEx* m_pNext;
 

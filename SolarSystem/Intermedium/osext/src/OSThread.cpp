@@ -20,7 +20,6 @@ OSThread::~OSThread() {
 
 OSRet OSThread::Start() {
 	m_pThread = new std::thread { std::bind(&OSThread::ThreadFunction, this) };
-//	std::cout << m_pThread << std::endl;
 	return OSRet::OK;
 }
 
@@ -46,19 +45,18 @@ OSRet OSThread::OSInitHook(void) {
 	return OSRet::OK;
 }
 
-int OSThread::ThreadFunction(void *param) {
+OSRet OSThread::ThreadFunction(void *param) {
 	OSThread *pThis = (OSThread *) param;
-//	std::cout << pThis << std::endl;
 	if (pThis == nullptr)
-		return 1;
+		return OSRet::NULLPTR;
 
-//	if (pThis->OSInitHook() == OSRet::OK) {
+	if (pThis->OSInitHook() == OSRet::OK) {
 		pThis->Run();
-//	}
+	}
 
 	pThis->Stop();
 
-	return 0;
+	return OSRet::OK;
 }
 
 } /* namespace osext */

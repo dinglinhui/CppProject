@@ -33,10 +33,10 @@ public:
 	OSMessageBase* GetPackEntry(void) const;
 
 protected:
-	virtual OSRet OSInitHook(void);
-	virtual int ReceiveMessage(OSMessage *msg);
-	virtual int OnHandleMessage(OSMessage *msg);
-	virtual int Run() override final;
+	virtual OSRet Run() override final;
+	virtual OSRet OSInitHook(void) override;
+	virtual int ReceiveMessage(OSMessage *msg) override;
+	virtual int OnHandleMessage(OSMessage *msg) override;
 
 private:
 	CILDevice* m_plstDevice;

@@ -19,7 +19,7 @@ public:
 	virtual ~CILSchedule();
 
 private:
-	virtual int Run() override final;
+	virtual OSRet Run() override final;
 };
 
 } /* namespace syscil */

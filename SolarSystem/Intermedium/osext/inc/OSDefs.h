@@ -7,13 +7,14 @@ using ULONGLONG = unsigned long long;
 static const auto OS_THREAD_PAUSE = 100;
 static const auto OS_MAX_TASK_COUNT = 100;
 static const auto OS_MAX_OBJECT_NUM = 10;
+static const auto OS_MAX_MESSAGE_NUM = 10;
 
 enum dimension {
 	one_dimension = 1, two_dimension, three_dimension
 };
 
 enum class OSRet {
-	OK, ERROR, THREAD_ERROR
+	OK, ERROR, NULLPTR, THREAD_OK, THREAD_ERROR
 };
 
 enum class MSGType {

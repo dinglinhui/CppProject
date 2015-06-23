@@ -27,7 +27,7 @@ OSRet OSThreadEx::Start() {
 	return OSThread::Start();
 }
 
-int OSThreadEx::Run() {
+OSRet OSThreadEx::Run() {
 	if (OSMessageBase::isOK()) {
 		//Notify all thread FM_CREATE message
 		PostMessage((OSMessageBase *) this, MSGType::MSG_CREATE, 0, 0);
@@ -44,7 +44,7 @@ int OSThreadEx::Run() {
 			}
 		}
 	}
-	return 0;
+	return OSRet::OK;
 }
 
 } /* namespace osext */

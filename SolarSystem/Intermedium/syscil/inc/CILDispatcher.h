@@ -19,7 +19,7 @@ public:
 	virtual ~CILDispatcher();
 
 private:
-	virtual int Run() override final;
+	virtual OSRet Run() override final;
 };
 
 } /* namespace syscil */

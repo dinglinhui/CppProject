@@ -47,7 +47,7 @@ public:
 	void PutMessagePtr(void *p);
 
 protected:
-	virtual int Run(void) override;
+	virtual OSRet Run(void) override;
 	virtual OSRet OSInitHook(void);
 
 	virtual int OnHandleMessage(OSMessage *msg);

@@ -15,15 +15,15 @@ CILDispatcher::CILDispatcher() {
 CILDispatcher::~CILDispatcher() {
 }
 
-int CILDispatcher::Run() {
-	OSHeartbeat &heartbeat = this->GetHeartbeat();
+OSRet CILDispatcher::Run() {
+//	OSHeartbeat &heartbeat = this->GetHeartbeat();
 	while (true) {
-		heartbeat++;
-		std::cout << "CILDispatcher" << std::endl;
+//		heartbeat++;
+		std::cout << "2" << std::endl;
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
 	}
-	return 0;
+	return OSRet::OK;
 }
 
 } /* namespace syscil */

@@ -9,7 +9,6 @@
 #define KDAPP_H_
 
 #include "OSDispatcherEx.h"
-#include "OSThreadPool.h"
 #include "CILService.h"
 #include "CILSchedule.h"
 #include "CILDispatcher.h"
