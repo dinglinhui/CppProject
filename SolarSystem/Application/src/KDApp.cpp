@@ -33,7 +33,6 @@ int KDApp::OnHandleMessage(OSMessage* msg) {
 }
 
 int KDApp::Initialize(int* ret) {
-	theApp->Start();
 	m_objDsp.SetDispatcher(this);
 	m_objCIL.SetPackEntry(&m_objDsp);
 	m_objCIL.SetDispatcher(this);

@@ -12,63 +12,67 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Application\inc\KDApp.h" />
-    <ClInclude Include="..\Application\inc\MonitorThread.h" />
-    <ClInclude Include="..\Foundation\osext\inc\OSDefs.h" />
-    <ClInclude Include="..\Foundation\osext\inc\OSDispatcher.h" />
-    <ClInclude Include="..\Foundation\osext\inc\OSDispatcherEx.h" />
-    <ClInclude Include="..\Foundation\osext\inc\OSMessageBase.h" />
-    <ClInclude Include="..\Foundation\osext\inc\OSThread.h" />
-    <ClInclude Include="..\Foundation\osext\inc\OSThreadEx.h" />
-    <ClInclude Include="..\Foundation\osext\inc\OSThreadPool.h" />
-    <ClInclude Include="..\Foundation\utils\inc\Any.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\CircleBuff.h" />
-    <ClInclude Include="..\Foundation\utils\inc\CommCommand.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\Components.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\CounteBase.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\DynClass.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\Events.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\MemPool.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\Multiton.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\MyString.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\ObjectPool.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\Optional.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\Range.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\SimpleSyncQueue.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\Singleton.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\Structs.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\SyncQueue.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\ThreadPool.hpp" />
-    <ClInclude Include="..\Foundation\utils\inc\Timer.hpp" />
-    <ClInclude Include="..\Intermedium\cil\inc\CILDevice.h" />
-    <ClInclude Include="..\Intermedium\cil\inc\CILDispatcher.h" />
-    <ClInclude Include="..\Intermedium\cil\inc\CILPacket.h" />
-    <ClInclude Include="..\Intermedium\cil\inc\CILRequest.h" />
-    <ClInclude Include="..\Intermedium\cil\inc\CILSchedule.h" />
-    <ClInclude Include="..\Intermedium\cil\inc\CILService.h" />
+    <ClInclude Include="..\Intermedium\osext\inc\OSDefs.h" />
+    <ClInclude Include="..\Intermedium\osext\inc\OSDispatcher.h" />
+    <ClInclude Include="..\Intermedium\osext\inc\OSDispatcherEx.h" />
+    <ClInclude Include="..\Intermedium\osext\inc\OSHeartbeat.h" />
+    <ClInclude Include="..\Intermedium\osext\inc\OSMessageBase.h" />
+    <ClInclude Include="..\Intermedium\osext\inc\OSThread.h" />
+    <ClInclude Include="..\Intermedium\osext\inc\OSThreadEx.h" />
+    <ClInclude Include="..\Intermedium\osext\inc\OSThreadPool.h" />
+    <ClInclude Include="..\Intermedium\osext\inc\ThreadPool.hpp" />
+    <ClInclude Include="..\Intermedium\syscil\inc\CILDevice.h" />
+    <ClInclude Include="..\Intermedium\syscil\inc\CILDispatcher.h" />
+    <ClInclude Include="..\Intermedium\syscil\inc\CILPacket.h" />
+    <ClInclude Include="..\Intermedium\syscil\inc\CILPacketFactory.h" />
+    <ClInclude Include="..\Intermedium\syscil\inc\CILPacketFactoryImpl.h" />
+    <ClInclude Include="..\Intermedium\syscil\inc\CILRequest.h" />
+    <ClInclude Include="..\Intermedium\syscil\inc\CILSchedule.h" />
+    <ClInclude Include="..\Intermedium\syscil\inc\CILService.h" />
+    <ClInclude Include="..\Intermedium\utils\inc\Any.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\CircleBuff.h" />
+    <ClInclude Include="..\Intermedium\utils\inc\CommCommand.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\Components.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\CounteBase.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\DynClass.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\Events.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\Fibonacci.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\MemPool.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\Multiton.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\MyString.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\ObjectPool.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\Optional.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\Point.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\Range.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\Restriction.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\SimpleSyncQueue.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\Singleton.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\SyncQueue.hpp" />
+    <ClInclude Include="..\Intermedium\utils\inc\Timer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Application\src\KDApp.cpp" />
     <ClCompile Include="..\Application\src\Main.cpp" />
-    <ClCompile Include="..\Application\src\MonitorThread.cpp" />
-    <ClCompile Include="..\Foundation\osext\src\OSDispatcher.cpp" />
-    <ClCompile Include="..\Foundation\osext\src\OSDispatcherEx.cpp" />
-    <ClCompile Include="..\Foundation\osext\src\OSMessageBase.cpp" />
-    <ClCompile Include="..\Foundation\osext\src\OSThread.cpp" />
-    <ClCompile Include="..\Foundation\osext\src\OSThreadEx.cpp" />
-    <ClCompile Include="..\Foundation\osext\src\OSThreadPool.cpp" />
-    <ClCompile Include="..\Foundation\utils\inc\Stack.cpp" />
-    <ClCompile Include="..\Foundation\utils\inc\VariadicTemplates.cpp" />
-    <ClCompile Include="..\Foundation\utils\src\Algorithm.cpp" />
-    <ClCompile Include="..\Foundation\utils\src\CircleBuff.cpp" />
-    <ClCompile Include="..\Foundation\utils\src\DynClass.cpp" />
-    <ClCompile Include="..\Foundation\utils\src\MyString.cpp" />
-    <ClCompile Include="..\Foundation\utils\src\RightReference.cpp" />
-    <ClCompile Include="..\Intermedium\cil\src\CILDevice.cpp" />
-    <ClCompile Include="..\Intermedium\cil\src\CILDispatcher.cpp" />
-    <ClCompile Include="..\Intermedium\cil\src\CILPacket.cpp" />
-    <ClCompile Include="..\Intermedium\cil\src\CILRequest.cpp" />
-    <ClCompile Include="..\Intermedium\cil\src\CILSchedule.cpp" />
-    <ClCompile Include="..\Intermedium\cil\src\CILService.cpp" />
+    <ClCompile Include="..\Intermedium\osext\src\OSDispatcher.cpp" />
+    <ClCompile Include="..\Intermedium\osext\src\OSDispatcherEx.cpp" />
+    <ClCompile Include="..\Intermedium\osext\src\OSHeartbeat.cpp" />
+    <ClCompile Include="..\Intermedium\osext\src\OSMessageBase.cpp" />
+    <ClCompile Include="..\Intermedium\osext\src\OSThread.cpp" />
+    <ClCompile Include="..\Intermedium\osext\src\OSThreadEx.cpp" />
+    <ClCompile Include="..\Intermedium\osext\src\OSThreadPool.cpp" />
+    <ClCompile Include="..\Intermedium\syscil\src\CILDevice.cpp" />
+    <ClCompile Include="..\Intermedium\syscil\src\CILDispatcher.cpp" />
+    <ClCompile Include="..\Intermedium\syscil\src\CILPacket.cpp" />
+    <ClCompile Include="..\Intermedium\syscil\src\CILPacketFactory.cpp" />
+    <ClCompile Include="..\Intermedium\syscil\src\CILRequest.cpp" />
+    <ClCompile Include="..\Intermedium\syscil\src\CILSchedule.cpp" />
+    <ClCompile Include="..\Intermedium\syscil\src\CILService.cpp" />
+    <ClCompile Include="..\Intermedium\utils\inc\Stack.cpp" />
+    <ClCompile Include="..\Intermedium\utils\src\Algorithm.cpp" />
+    <ClCompile Include="..\Intermedium\utils\src\CircleBuff.cpp" />
+    <ClCompile Include="..\Intermedium\utils\src\DynClass.cpp" />
+    <ClCompile Include="..\Intermedium\utils\src\MyString.cpp" />
+    <ClCompile Include="..\Intermedium\utils\src\RightReference.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DDEBF3F7-A271-4DE1-B8BE-FBB1CD2B6139}</ProjectGuid>
@@ -101,7 +105,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Application\inc;..\Foundation\osext\inc;..\Foundation\utils\inc;..\Intermedium\cil\inc;$(IncludePath)</IncludePath>
+    <IncludePath>..\Application\inc;..\Intermedium\osext\inc;..\Intermedium\utils\inc;..\Intermedium\syscil\inc;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
