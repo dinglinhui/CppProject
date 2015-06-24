@@ -15,9 +15,9 @@ CILSchedule::~CILSchedule() {
 }
 
 OSRet CILSchedule::Run() {
-//	OSHeartbeat &heartbeat = this->GetHeartbeat();
+	OSHeartbeat &heartbeat = this->GetHeartbeat();
 	while (true) {
-//		heartbeat++;
+		heartbeat++;
 
 		std::cout << "3" << std::endl;
 		std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));

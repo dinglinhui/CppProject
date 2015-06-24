@@ -58,7 +58,7 @@ protected:
 private:
 	OSThreadEx* m_pThreadList;
 
-	static utils::MemPool<OSMessage> mempool;
+	//static utils::MemPool<OSMessage> mempool;
 	static OSDispatcherEx* m_pDispatcher;
 	Event event;
 };

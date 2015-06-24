@@ -11,7 +11,7 @@
 #include <stdexcept>
 
 namespace osext {
-utils::MemPool<OSMessage> OSDispatcherEx::mempool(OS_MAX_MESSAGE_NUM); //预先分配10个OSMessage的内存空间
+//utils::MemPool<OSMessage> OSDispatcherEx::mempool(OS_MAX_MESSAGE_NUM); //预先分配10个OSMessage的内存空间
 
 OSDispatcherEx* OSDispatcherEx::m_pDispatcher = nullptr;
 
@@ -171,11 +171,11 @@ void OSDispatcherEx::PostMessageToDescendants(MSGType nCmd, DWORD wParam,
 }
 
 void* OSDispatcherEx::GetMessagePtr(void) {
-	return mempool.alloc();
+	return nullptr;//mempool.alloc();
 }
 
 void OSDispatcherEx::PutMessagePtr(void* p) {
-	mempool.dealloc((OSMessage*) p);
+	//mempool.dealloc((OSMessage*) p);
 }
 
 OSRet OSDispatcherEx::Run(void) {
@@ -193,10 +193,13 @@ OSRet OSDispatcherEx::Run(void) {
 					delete msg;
 				}
 			}
-			event(1, 1);
+			//event(1, 1);
+
 		} catch (std::exception const& ex) {
 			std::cerr << "Exception: " << ex.what() << std::endl;
 		}
+		std::cout << "0" << std::endl;
+		std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
 	}
 	return OSRet::OK;
 }
@@ -205,7 +208,7 @@ OSRet OSDispatcherEx::OSInitHook(void) {
 	OSRet nRet = OSRet::OK;
 
 	OSThreadEx* pTop = m_pThreadList;
-	while (pTop != NULL) {
+	while (pTop != nullptr) {
 		nRet = (pTop)->Start();
 		if (nRet != OSRet::OK)
 			return nRet;

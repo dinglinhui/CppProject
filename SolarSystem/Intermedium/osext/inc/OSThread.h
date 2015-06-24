@@ -38,7 +38,7 @@ public:
 	virtual OSRet Continue();
 	//
 	std::thread::id GetThreadID() {
-		return m_pThread->get_id();
+		return thread_.get_id();
 	}
 	//
 	int GetPrio() const {
@@ -66,7 +66,7 @@ protected:
 	static OSRet ThreadFunction(void *param);
 
 private:
-	std::thread *m_pThread;
+	std::thread thread_;
 //	static bool m_bFlag;
 //	static std::mutex mutex_;
 //	static std::condition_variable cond_;
