@@ -11,7 +11,7 @@
 #include <stdexcept>
 
 namespace osext {
-//utils::MemPool<OSMessage> OSDispatcherEx::mempool(OS_MAX_MESSAGE_NUM); //预先分配10个OSMessage的内存空间
+utils::MemPool<OSMessage> OSDispatcherEx::mempool(OS_MAX_MESSAGE_NUM); //预先分配10个OSMessage的内存空间
 
 OSDispatcherEx* OSDispatcherEx::m_pDispatcher = nullptr;
 
@@ -171,11 +171,11 @@ void OSDispatcherEx::PostMessageToDescendants(MSGType nCmd, DWORD wParam,
 }
 
 void* OSDispatcherEx::GetMessagePtr(void) {
-	return nullptr;//mempool.alloc();
+	return mempool.alloc();
 }
 
 void OSDispatcherEx::PutMessagePtr(void* p) {
-	//mempool.dealloc((OSMessage*) p);
+	mempool.dealloc((OSMessage*) p);
 }
 
 OSRet OSDispatcherEx::Run(void) {

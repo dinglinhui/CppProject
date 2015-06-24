@@ -17,7 +17,7 @@ public:
 		if (nullptr == headoffreelist) {
 			throw std::logic_error("new error");
 		}
-		int i = 0;
+		size_t i = 0;
 		for (; i < element_num - 1; i++) { //将内存串起来
 			*(T**) (headoffreelist + i) = headoffreelist + i + 1;
 		}

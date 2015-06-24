@@ -29,7 +29,7 @@ public:
 	}
 
 	void print() {
-		std::cout << "previous:" << pre_value << " current:" << cur_value << std::endl;
+		std::cout << "previous:" << this->pre_value << " current:" << this->cur_value << std::endl;
 	}
 
 private:

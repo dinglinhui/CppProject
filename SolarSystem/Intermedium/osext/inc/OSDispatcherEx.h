@@ -48,19 +48,19 @@ public:
 
 protected:
 	virtual OSRet Run(void) override;
-	virtual OSRet OSInitHook(void);
+	virtual OSRet OSInitHook(void) override;
 
-	virtual int OnHandleMessage(OSMessage *msg);
-	virtual int ReceiveMessage(OSMessage *msg);
+	virtual int OnHandleMessage(OSMessage *msg) override;
+	virtual int ReceiveMessage(OSMessage *msg) override;
 
 	void InitThreadList(void);
 
 private:
 	OSThreadEx* m_pThreadList;
 
-	//static utils::MemPool<OSMessage> mempool;
-	static OSDispatcherEx* m_pDispatcher;
 	Event event;
+	static utils::MemPool<OSMessage> mempool;
+	static OSDispatcherEx* m_pDispatcher;
 };
 
 //global paramter for system

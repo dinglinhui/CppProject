@@ -38,25 +38,25 @@ public:
 	virtual OSRet Continue();
 	//
 	std::thread::id GetThreadID() {
-		return thread_.get_id();
+		return thread_->get_id();
 	}
 	//
 	int GetPrio() const {
-		return m_nPrio;
+		return prio_;
 	}
 	void SetPrio(int prio) {
-		m_nPrio = prio;
+		prio_ = prio;
 	}
 	//
 	int GetOption() const {
-		return m_nOption;
+		return option_;
 	}
 	void SetOption(int opt) {
-		m_nOption = opt;
+		option_ = opt;
 	}
 	//
 	OSHeartbeat& GetHeartbeat() {
-		return m_tHeartbeat;
+		return heartbeat_;
 	}
 
 protected:
@@ -66,13 +66,13 @@ protected:
 	static OSRet ThreadFunction(void *param);
 
 private:
-	std::thread thread_;
-//	static bool m_bFlag;
+	std::thread *thread_;
+//	static bool flag_;
 //	static std::mutex mutex_;
 //	static std::condition_variable cond_;
-	int m_nPrio;
-	int m_nOption;
-	OSHeartbeat m_tHeartbeat;
+	int prio_;
+	int option_;
+	OSHeartbeat heartbeat_;
 };
 } /* namespace osext */
 

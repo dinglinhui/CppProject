@@ -10,7 +10,7 @@
 
 namespace osext {
 
-OSThread::OSThread() : m_nPrio(0), m_nOption(0) {
+	OSThread::OSThread() : thread_(nullptr), prio_(0), option_(0) {
 }
 
 OSThread::~OSThread() {
@@ -18,14 +18,16 @@ OSThread::~OSThread() {
 }
 
 OSRet OSThread::Start() {
-	thread_ = std::thread { std::bind(&OSThread::ThreadFunction, this) };
+	thread_ = new std::thread { std::bind(&OSThread::ThreadFunction, this) };
 	return OSRet::OK;
 }
 
 OSRet OSThread::Stop() {
-	if (thread_.joinable())
-		thread_.join();
-
+	if (thread_ != nullptr){
+		if (thread_->joinable())
+			thread_->join();
+		delete thread_, thread_ = nullptr;
+	}
 	return OSRet::OK;
 }
 
