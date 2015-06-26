@@ -11,7 +11,7 @@
 #include <stdexcept>
 
 namespace osext {
-utils::MemPool<OSMessage> OSDispatcherEx::mempool(OS_MAX_MESSAGE_NUM); //预先分配10个OSMessage的内存空间
+utils::MemPool<OSMessage> OSDispatcherEx::mempool_(OS_MAX_MESSAGE_NUM); //预先分配10个OSMessage的内存空间
 
 OSDispatcherEx* OSDispatcherEx::m_pDispatcher = nullptr;
 
@@ -34,13 +34,11 @@ int OSSendMessage(int nPrio, MSGType nCmd, DWORD wParam, DWORD lParam) {
 //		return 2;
 
 	if (nCmd == MSGType::MSG_NULL) {
-		return pDispatcher->SendMessage((OSMessageBase*) pDispatcher, nCmd,
-				wParam, lParam);
+		return pDispatcher->SendMessage((OSMessageBase*) pDispatcher, nCmd, wParam, lParam);
 	} else {
 		OSThreadEx *pThread = pDispatcher->Find(std::this_thread::get_id());
 		if (pThread != nullptr) {
-			return pDispatcher->SendMessage((OSMessageBase*) pThread, nCmd,
-					wParam, lParam);
+			return pDispatcher->SendMessage((OSMessageBase*) pThread, nCmd, wParam, lParam);
 		}
 	}
 	return 3;
@@ -102,40 +100,46 @@ OSRet OSDispatcherEx::Stop(void) {
 	return OSRet::OK;
 }
 
-int OSDispatcherEx::Register(OSThreadEx* pService) {
+int OSDispatcherEx::Register(OSThreadEx* pThreadEx) {
 	OSThreadEx **ppPrev = &m_pThreadList;
 	while (*ppPrev != nullptr) {
 		ppPrev = &(*ppPrev)->m_pNext;
 	}
 
-	pService->m_pNext = *ppPrev;
-	*ppPrev = pService;
+	pThreadEx->m_pNext = *ppPrev;
+	*ppPrev = pThreadEx;
 
+	threads_.push_back(pThreadEx);
 	return 0;
 }
 
-int OSDispatcherEx::UnRegister(OSThreadEx* pService) {
+int OSDispatcherEx::UnRegister(OSThreadEx* pThreadEx) {
 	OSThreadEx **ppPrev = &m_pThreadList;
-
-	while (*ppPrev != nullptr && *ppPrev != pService) {
+	while (*ppPrev != nullptr && *ppPrev != pThreadEx) {
 		ppPrev = &(*ppPrev)->m_pNext;
 	}
 
 	if (*ppPrev != nullptr) {
-		*ppPrev = pService->m_pNext;
+		*ppPrev = pThreadEx->m_pNext;
 	}
 	return 0;
 }
 
 OSThreadEx* OSDispatcherEx::Find(std::thread::id nID) const {
-	OSThreadEx* pTop = m_pThreadList;
+//	OSThreadEx* pTop = m_pThreadList;
+//	while (pTop != nullptr) {
+//		if (nID == (pTop)->GetThreadID())
+//			return (pTop);
+//		pTop = (pTop)->m_pNext;
+//	}
 
-	while (pTop != nullptr) {
-		if (nID == (pTop)->GetThreadID())
-			return (pTop);
-		pTop = (pTop)->m_pNext;
-	}
-	return nullptr;
+	OSThreadEx * result = nullptr;
+	std::for_each(std::begin(threads_), std::end(threads_), [nID, &result](OSThreadEx *pThreadEx) {
+		if (nID == pThreadEx->GetThreadID())
+		result = pThreadEx;
+	});
+
+	return result;
 }
 
 void OSDispatcherEx::SendMessageToDescendants(OSMessage* msg) {
@@ -145,8 +149,7 @@ void OSDispatcherEx::SendMessageToDescendants(OSMessage* msg) {
 	}
 }
 
-void OSDispatcherEx::SendMessageToDescendants(MSGType nCmd, DWORD wParam,
-		DWORD lParam) {
+void OSDispatcherEx::SendMessageToDescendants(MSGType nCmd, DWORD wParam, DWORD lParam) {
 	OSThreadEx* pTop = m_pThreadList;
 	while (pTop != nullptr) {
 		SendMessage(pTop, nCmd, wParam, lParam);
@@ -161,8 +164,7 @@ void OSDispatcherEx::PostMessageToDescendants(OSMessage* msg) {
 	}
 }
 
-void OSDispatcherEx::PostMessageToDescendants(MSGType nCmd, DWORD wParam,
-		DWORD lParam) {
+void OSDispatcherEx::PostMessageToDescendants(MSGType nCmd, DWORD wParam, DWORD lParam) {
 	OSThreadEx* pTop = m_pThreadList;
 	while (pTop != nullptr) {
 		PostMessage(pTop, nCmd, wParam, lParam);
@@ -171,21 +173,45 @@ void OSDispatcherEx::PostMessageToDescendants(MSGType nCmd, DWORD wParam,
 }
 
 void* OSDispatcherEx::GetMessagePtr(void) {
-	return mempool.alloc();
+	return mempool_.alloc();
 }
 
 void OSDispatcherEx::PutMessagePtr(void* p) {
-	mempool.dealloc((OSMessage*) p);
+	mempool_.dealloc((OSMessage*) p);
+}
+
+void OSDispatcherEx::ScanThreadList(void) {
+	std::for_each(std::begin(threads_), std::end(threads_), [](OSThreadEx *pThreadEx) {
+		OSHeartbeat &heartbeat = pThreadEx->GetHeartbeat();
+		if (heartbeat.isEqual()) {
+			throw std::logic_error("thread heartbeat error");
+		} else {
+			heartbeat--;
+		}
+	});
+
+//	OSThreadEx* pTop = m_pThreadList;
+//	while (pTop != nullptr) {
+//		OSHeartbeat &heartbeat = pTop->GetHeartbeat();
+//		if (heartbeat.isEqual()) {
+//			throw std::logic_error("thread heartbeat error");
+//		} else {
+//			heartbeat--;
+//		}
+//
+//		pTop = (pTop)->m_pNext;
+//	}
 }
 
 OSRet OSDispatcherEx::Run(void) {
 	//Notify all thread FM_CREATE message
 	PostMessage((OSMessageBase *) this, MSGType::MSG_CREATE, 0, 0);
 	//
-	InitThreadList();
-
 	while (true) {
 		try {
+			//
+			ScanThreadList();
+			//
 			OSMessage *msg = nullptr;
 			if (Pend(msg) == 0) {
 				if (msg != nullptr) {
@@ -193,13 +219,11 @@ OSRet OSDispatcherEx::Run(void) {
 					delete msg;
 				}
 			}
-			//event(1, 1);
 
+			std::this_thread::sleep_for(std::chrono::milliseconds(OS_MONITOR_THREAD_PAUSE));
 		} catch (std::exception const& ex) {
 			std::cerr << "Exception: " << ex.what() << std::endl;
 		}
-		std::cout << "0" << std::endl;
-		std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
 	}
 	return OSRet::OK;
 }
@@ -226,8 +250,7 @@ int OSDispatcherEx::OnHandleMessage(OSMessage* msg) {
 		case MSGType::MSG_GETSERVICE: {
 			OSThreadEx* pService = Find(std::this_thread::get_id());
 			if (msg->m_bAsyn) {
-				PostMessage((OSMessageBase*) msg->m_pSource, msg->m_nCmd,
-						msg->m_wParam, (DWORD) pService, nullptr);
+				PostMessage((OSMessageBase*) msg->m_pSource, msg->m_nCmd, msg->m_wParam, (DWORD) pService, nullptr);
 			} else {
 				msg->m_lParam = (DWORD) pService;
 			}
@@ -267,23 +290,5 @@ int OSDispatcherEx::ReceiveMessage(OSMessage* msg) {
 	}
 
 	return nRet;
-}
-
-void OSDispatcherEx::InitThreadList(void) {
-	OSThreadEx* pTop = m_pThreadList;
-	while (pTop != nullptr) {
-		event += [&pTop](ULONGLONG pre, ULONGLONG cur) {
-			OSHeartbeat &heartbeat = pTop->GetHeartbeat();
-			heartbeat.print();
-			if(heartbeat.isEqual()) {
-				throw std::logic_error("thread heartbeat error");
-			} else {
-				heartbeat--;
-			}
-		};
-
-		pTop = (pTop)->m_pNext;
-	}
-
 }
 }

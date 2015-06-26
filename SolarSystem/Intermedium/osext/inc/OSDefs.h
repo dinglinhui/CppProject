@@ -4,7 +4,8 @@
 using LONGLONG = signed long long;
 using ULONGLONG = unsigned long long;
 
-static const auto OS_THREAD_PAUSE = 100;
+static const auto OS_THREAD_PAUSE = 1000;
+static const auto OS_MONITOR_THREAD_PAUSE = OS_THREAD_PAUSE * 2;
 static const auto OS_MAX_TASK_COUNT = 100;
 static const auto OS_MAX_OBJECT_NUM = 10;
 static const auto OS_MAX_MESSAGE_NUM = 10;
@@ -15,6 +16,10 @@ enum dimension {
 
 enum class OSRet {
 	OK, ERROR, NULLPTR, THREAD_OK, THREAD_ERROR
+};
+
+enum class TStat {
+	NoStart, Starting, Started, Running, Stopping, Stopped
 };
 
 enum class MSGType {
@@ -33,14 +38,7 @@ enum class MSGType {
 
 // Protocol type
 typedef enum {
-	PCOL_STREAM = 0,
-	PCOL_DL645 = 1,
-	PCOL_FA = 2,
-	PCOL_FK = 3,
-	PCOL_RTM = 4,
-	PCOL_UPGRADE = 5,
-	PCOL_EAST = 6,
-	PCOL_GB = 7
+	PCOL_STREAM = 0, PCOL_DL645 = 1, PCOL_FA = 2, PCOL_FK = 3, PCOL_RTM = 4, PCOL_UPGRADE = 5, PCOL_EAST = 6, PCOL_GB = 7
 } PCOL_TYPE;
 
 // Command type

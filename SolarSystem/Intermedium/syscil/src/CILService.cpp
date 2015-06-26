@@ -54,17 +54,18 @@ int CILService::ReceiveMessage(OSMessage* msg) {
 
 int CILService::OnHandleMessage(OSMessage* msg) {
 //	assert(msg != nullptr);
-	if( msg->m_nCmd == MSGType::CIL_SENDPACKET )
-	{
+	switch (msg->m_nCmd) {
+	case MSGType::CIL_SENDPACKET: {
 		CILDevice *pVxd = FindDevice(msg->m_wParam);
-		if( pVxd != nullptr )
-		{
-			if( pVxd->Usable() )
-			{
-				return pVxd->Send((CILPacket*)msg->m_lParam, msg->m_pSource);
+		if (pVxd != nullptr) {
+			if (pVxd->Usable()) {
+				return pVxd->Send((CILPacket*) msg->m_lParam, msg->m_pSource);
 			}
 		}
-		assert(false );
+		break;
+	}
+	default:
+		break;
 	}
 	return -1;
 }
@@ -72,10 +73,16 @@ int CILService::OnHandleMessage(OSMessage* msg) {
 OSRet CILService::Run() {
 	OSHeartbeat &heartbeat = this->GetHeartbeat();
 	while (true) {
-		heartbeat++;
-		std::cout << "1" << std::endl;
+		try {
+			heartbeat++;
+			std::cout << "[CILService]" << heartbeat << std::endl << std::flush;
+			this->SetThreadStatus(TStat::Running);
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
+			std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
+
+		} catch (std::exception const& ex) {
+			std::cerr << "Exception: " << ex.what() << std::endl;
+		}
 	}
 	return OSRet::OK;
 }

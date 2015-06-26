@@ -8,6 +8,7 @@
 #ifndef OSDISPATCHEREX_H_
 #define OSDISPATCHEREX_H_
 
+#include <list>
 #include "OSDispatcher.h"
 #include "OSMessageBase.h"
 #include "OSThreadEx.h"
@@ -27,8 +28,8 @@ public:
 	virtual OSRet Start(void) override;
 	virtual OSRet Stop(void) override;
 	//
-	int Register(OSThreadEx *pService);
-	int UnRegister(OSThreadEx *pService);
+	int Register(OSThreadEx *pThreadEx);
+	int UnRegister(OSThreadEx *pThreadEx);
 	//
 	void SendMessageToDescendants(OSMessage *msg);
 	void SendMessageToDescendants(MSGType nCmd, DWORD wParam, DWORD lParam);
@@ -53,13 +54,15 @@ protected:
 	virtual int OnHandleMessage(OSMessage *msg) override;
 	virtual int ReceiveMessage(OSMessage *msg) override;
 
-	void InitThreadList(void);
+	void ScanThreadList(void);
 
 private:
 	OSThreadEx* m_pThreadList;
+	std::list<OSThreadEx *> threads_;
+//	std::map<std::thread::id, OSThreadEx *> threads_;
 
 	Event event;
-	static utils::MemPool<OSMessage> mempool;
+	static utils::MemPool<OSMessage> mempool_;
 	static OSDispatcherEx* m_pDispatcher;
 };
 

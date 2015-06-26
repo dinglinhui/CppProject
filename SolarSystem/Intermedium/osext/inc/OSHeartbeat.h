@@ -24,12 +24,15 @@ public:
 	OSHeartbeat& operator--(); // prefix
 	const OSHeartbeat operator--(int); // suffix
 
+	friend std::ostream &operator<<(std::ostream &os, const OSHeartbeat &heartbeat);
+	friend std::istream &operator>>(std::istream &is, OSHeartbeat &heartbeat);
+
 	bool isEqual() {
 		return pre_value == cur_value ? true : false;
 	}
 
 	void print() {
-		std::cout << "previous:" << this->pre_value << " current:" << this->cur_value << std::endl;
+		std::cout << *this;
 	}
 
 private:

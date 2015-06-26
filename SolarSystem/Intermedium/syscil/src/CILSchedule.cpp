@@ -17,10 +17,16 @@ CILSchedule::~CILSchedule() {
 OSRet CILSchedule::Run() {
 	OSHeartbeat &heartbeat = this->GetHeartbeat();
 	while (true) {
-		heartbeat++;
+		try {
+			heartbeat++;
+			std::cout << "[CILSchedule]" << heartbeat << std::endl << std::flush;
+			this->SetThreadStatus(TStat::Running);
 
-		std::cout << "3" << std::endl;
-		std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
+			std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
+
+		} catch (std::exception const& ex) {
+			std::cerr << "Exception: " << ex.what() << std::endl;
+		}
 	}
 	return OSRet::OK;
 }

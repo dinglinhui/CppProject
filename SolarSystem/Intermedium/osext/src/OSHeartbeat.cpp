@@ -38,4 +38,17 @@ const OSHeartbeat OSHeartbeat::operator--(int) {
 	return oldValue;
 }
 
+std::ostream &operator<<(std::ostream &os, const OSHeartbeat &heartbeat) {
+	os << "previous:" << heartbeat.pre_value << " current:"
+			<< heartbeat.cur_value << std::endl;
+	return os;
+}
+
+std::istream &operator>>(std::istream &is, OSHeartbeat &heartbeat) {
+	ULONGLONG tmp;
+	std::cin >> tmp;
+	heartbeat.cur_value = tmp;
+	return is;
+}
+
 } /* namespace OSExt */

@@ -12,6 +12,7 @@
 #include <thread>             // std::thread
 #include <mutex>              // std::mutex, std::unique_lock
 #include <condition_variable> // std::condition_variable
+#include <future>
 #include <string>
 #include <vector>
 #include <functional>
@@ -25,6 +26,7 @@ class OSHeartbeat;
 class OSThread {
 public:
 	OSThread();
+	OSThread(std::string name, int prio);
 	virtual ~OSThread();
 
 	OSThread(OSThread &&) = delete;
@@ -39,6 +41,17 @@ public:
 	//
 	std::thread::id GetThreadID() {
 		return thread_->get_id();
+	}
+	//
+	std::string GetThreadName() {
+		return name_;
+	}
+	//
+	TStat GetThreadStatus() {
+		return status_;
+	}
+	void SetThreadStatus(TStat status) {
+		status_ = status;
 	}
 	//
 	int GetPrio() const {
@@ -63,10 +76,13 @@ protected:
 	virtual OSRet Run() = 0;
 	virtual OSRet OSInitHook(void);
 
-	static OSRet ThreadFunction(void *param);
+	OSRet ThreadFunction(void);
+//	static OSRet ThreadFunction(void *param);
 
 private:
 	std::thread *thread_;
+	std::string name_;
+	TStat status_;
 //	static bool flag_;
 //	static std::mutex mutex_;
 //	static std::condition_variable cond_;
