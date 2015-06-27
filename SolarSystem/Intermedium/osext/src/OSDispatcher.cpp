@@ -9,8 +9,8 @@
 
 namespace osext {
 
-OSDispatcher::OSDispatcher() :
-		OSThread() {
+OSDispatcher::OSDispatcher(int nStackSize) :
+		OSThread(0, nStackSize, 0) {
 }
 
 OSDispatcher::~OSDispatcher() {

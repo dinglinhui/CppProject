@@ -15,7 +15,7 @@ using namespace osext;
 
 class CILDispatcher: public OSThreadEx {
 public:
-	CILDispatcher();
+	CILDispatcher(int nPrio, int nStackSize, int nQueueSize);
 	virtual ~CILDispatcher();
 
 private:

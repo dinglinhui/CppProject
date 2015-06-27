@@ -9,8 +9,9 @@
 #include "CILService.h"
 
 namespace syscil {
-CILService::CILService() :
-		m_plstDevice(nullptr), m_pEntry(nullptr), m_pShedPool(nullptr) {
+CILService::CILService(int nPrio, int nStackSize, int nQueueSize) :
+		OSThreadEx(nPrio, nStackSize, nQueueSize), m_plstDevice(nullptr), m_pEntry(
+				nullptr), m_pShedPool(nullptr) {
 }
 
 CILService::~CILService() {
@@ -78,7 +79,8 @@ OSRet CILService::Run() {
 			std::cout << "[CILService]" << heartbeat << std::endl << std::flush;
 			this->SetThreadStatus(TStat::Running);
 
-			std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
+			std::this_thread::sleep_for(
+					std::chrono::milliseconds(OS_THREAD_PAUSE));
 
 		} catch (std::exception const& ex) {
 			std::cerr << "Exception: " << ex.what() << std::endl;

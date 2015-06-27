@@ -22,7 +22,7 @@ class CILService;
 class CILRequest;
 class CILDevice {
 public:
-	CILDevice();
+	CILDevice(BYTE nIdent, int nCacheSize);
 	virtual ~CILDevice();
 
 	void SetService(CILService *pService) {

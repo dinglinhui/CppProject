@@ -10,8 +10,8 @@
 
 namespace osext {
 
-OSThread::OSThread() :
-		thread_(nullptr), name_(""), status_(TStat::NoStart), prio_(0), option_(0) {
+OSThread::OSThread(int nPrio, int nStackSize, INT16U nTskOpt) :
+		thread_(nullptr), name_(""), status_(TStat::NoStart), prio_(nPrio), option_(nTskOpt) {
 }
 
 OSThread::OSThread(std::string name, int prio) :

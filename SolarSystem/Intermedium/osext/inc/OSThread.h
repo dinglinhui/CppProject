@@ -25,7 +25,7 @@ namespace osext {
 class OSHeartbeat;
 class OSThread {
 public:
-	OSThread();
+	OSThread(int nPrio, int nStackSize = 512, WORD nTskOpt = 0);
 	OSThread(std::string name, int prio);
 	virtual ~OSThread();
 

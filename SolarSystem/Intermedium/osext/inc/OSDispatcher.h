@@ -13,7 +13,7 @@
 namespace osext {
 class OSDispatcher: public OSThread {
 public:
-	OSDispatcher();
+	OSDispatcher(int nStackSize = 512);
 	virtual ~OSDispatcher();
 
 //Implementation

@@ -15,7 +15,7 @@ using namespace osext;
 
 class CILSchedule: public OSThreadEx {
 public:
-	CILSchedule();
+	CILSchedule(int nPrio, int nStackSize, int nQueueSize);
 	virtual ~CILSchedule();
 
 private:

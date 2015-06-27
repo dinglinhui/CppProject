@@ -9,12 +9,14 @@
 #include "CILPacketFactory.h"
 
 namespace syscil {
-CILDevice::CILDevice() :
-		m_pNext(nullptr), m_nIdent(0), m_nProtocol(PCOL_STREAM), m_bUsable(true), m_nCacheSize(0), m_nCacheLen(0), m_lpCache(
-				nullptr), m_isOk(false), m_plstSend(nullptr), m_pService(nullptr) {
+CILDevice::CILDevice(BYTE nIdent, int nCacheSize) :
+		m_pNext(nullptr), m_nIdent(nIdent), m_nProtocol(PCOL_STREAM), m_bUsable(true), m_nCacheSize(nCacheSize), m_nCacheLen(0), m_lpCache(new BYTE[nCacheSize]), m_isOk(false), m_plstSend(nullptr), m_pService(
+				nullptr) {
 }
 
 CILDevice::~CILDevice() {
+	if (m_lpCache != nullptr)
+		delete[] m_lpCache;
 }
 
 int CILDevice::Send(CILPacket *pk, OSMessageBase *phdr) {

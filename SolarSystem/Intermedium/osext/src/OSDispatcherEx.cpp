@@ -30,11 +30,13 @@ int OSSendMessage(int nPrio, MSGType nCmd, DWORD wParam, DWORD lParam) {
 		return 1;
 
 	if (nCmd == MSGType::MSG_NULL) {
-		return pDispatcher->SendMessage((OSMessageBase*) pDispatcher, nCmd, wParam, lParam);
+		return pDispatcher->SendMessage((OSMessageBase*) pDispatcher, nCmd,
+				wParam, lParam);
 	} else {
 		OSThreadEx *pThread = pDispatcher->Find(std::this_thread::get_id());
 		if (pThread != nullptr) {
-			return pDispatcher->SendMessage((OSMessageBase*) pThread, nCmd, wParam, lParam);
+			return pDispatcher->SendMessage((OSMessageBase*) pThread, nCmd,
+					wParam, lParam);
 		}
 	}
 	return 3;
@@ -67,7 +69,9 @@ void OSPutMessagePtr(void *p) {
 // class OSDispatcherEx
 //
 ////////////////////////////////////////////////////////////////////////////////
-OSDispatcherEx::OSDispatcherEx() {
+OSDispatcherEx::OSDispatcherEx(int nStackSize, int nQueueBuffSize,
+		int nMaxMSGCount) :
+		OSDispatcher(nStackSize), OSMessageBase(nQueueBuffSize) {
 }
 
 OSDispatcherEx::~OSDispatcherEx() {
@@ -100,9 +104,10 @@ int OSDispatcherEx::UnRegister(OSThreadEx* pThreadEx) {
 
 OSThreadEx* OSDispatcherEx::Find(std::thread::id nID) const {
 	OSThreadEx * thread = nullptr;
-	std::for_each(std::begin(threads_), std::end(threads_), [nID, &thread](OSThreadEx *pThreadEx) {
-		if (nID == pThreadEx->GetThreadID()) thread = pThreadEx;
-	});
+	std::for_each(std::begin(threads_), std::end(threads_),
+			[nID, &thread](OSThreadEx *pThreadEx) {
+				if (nID == pThreadEx->GetThreadID()) thread = pThreadEx;
+			});
 
 	return thread;
 }
@@ -114,10 +119,12 @@ void OSDispatcherEx::SendMessageToDescendants(OSMessage* msg) {
 	}
 }
 
-void OSDispatcherEx::SendMessageToDescendants(MSGType nCmd, DWORD wParam, DWORD lParam) {
-	std::for_each(std::begin(threads_), std::end(threads_), [this, nCmd, wParam, lParam](OSThreadEx *pThreadEx) {
-		SendMessage(pThreadEx, nCmd, wParam, lParam);
-	});
+void OSDispatcherEx::SendMessageToDescendants(MSGType nCmd, DWORD wParam,
+		DWORD lParam) {
+	std::for_each(std::begin(threads_), std::end(threads_),
+			[this, nCmd, wParam, lParam](OSThreadEx *pThreadEx) {
+				SendMessage(pThreadEx, nCmd, wParam, lParam);
+			});
 }
 
 void OSDispatcherEx::PostMessageToDescendants(OSMessage* msg) {
@@ -127,10 +134,12 @@ void OSDispatcherEx::PostMessageToDescendants(OSMessage* msg) {
 	}
 }
 
-void OSDispatcherEx::PostMessageToDescendants(MSGType nCmd, DWORD wParam, DWORD lParam) {
-	std::for_each(std::begin(threads_), std::end(threads_), [this, nCmd, wParam, lParam](OSThreadEx *pThreadEx) {
-		PostMessage(pThreadEx, nCmd, wParam, lParam);
-	});
+void OSDispatcherEx::PostMessageToDescendants(MSGType nCmd, DWORD wParam,
+		DWORD lParam) {
+	std::for_each(std::begin(threads_), std::end(threads_),
+			[this, nCmd, wParam, lParam](OSThreadEx *pThreadEx) {
+				PostMessage(pThreadEx, nCmd, wParam, lParam);
+			});
 }
 
 void* OSDispatcherEx::GetMessagePtr(void) {
@@ -142,11 +151,12 @@ void OSDispatcherEx::PutMessagePtr(void* p) {
 }
 
 void OSDispatcherEx::ScanThreads(void) {
-	std::for_each(std::begin(threads_), std::end(threads_), [](OSThreadEx *pThreadEx) {
-		OSHeartbeat &heartbeat = pThreadEx->GetHeartbeat();
-		if (heartbeat.isEqual()) throw std::logic_error("thread heartbeat error");
-		else heartbeat--;
-	});
+	std::for_each(std::begin(threads_), std::end(threads_),
+			[](OSThreadEx *pThreadEx) {
+				OSHeartbeat &heartbeat = pThreadEx->GetHeartbeat();
+				if (heartbeat.isEqual()) throw std::logic_error("thread heartbeat error");
+				else heartbeat--;
+			});
 }
 
 OSRet OSDispatcherEx::Run(void) {
@@ -155,7 +165,8 @@ OSRet OSDispatcherEx::Run(void) {
 	//
 	while (true) {
 		try {
-			std::this_thread::sleep_for(std::chrono::milliseconds(OS_MONITOR_THREAD_PAUSE));
+			std::this_thread::sleep_for(
+					std::chrono::milliseconds(OS_MONITOR_THREAD_PAUSE));
 			//
 			OSMessage *msg = nullptr;
 			if (Pend(msg) == 0) {
@@ -174,9 +185,10 @@ OSRet OSDispatcherEx::Run(void) {
 }
 
 OSRet OSDispatcherEx::OSInitHook(void) {
-	std::for_each(std::begin(threads_), std::end(threads_), [this](OSThreadEx *pThreadEx) {
-		if (pThreadEx->Start() != OSRet::OK) throw std::logic_error(pThreadEx->GetThreadName() + "start error");
-	});
+	std::for_each(std::begin(threads_), std::end(threads_),
+			[this](OSThreadEx *pThreadEx) {
+				if (pThreadEx->Start() != OSRet::OK) throw std::logic_error(pThreadEx->GetThreadName() + "start error");
+			});
 	return OSDispatcher::OSInitHook();
 }
 
@@ -188,7 +200,8 @@ int OSDispatcherEx::OnHandleMessage(OSMessage* msg) {
 		case MSGType::MSG_GETSERVICE: {
 			OSThreadEx* pService = Find(std::this_thread::get_id());
 			if (msg->m_bAsyn) {
-				PostMessage((OSMessageBase*) msg->m_pSource, msg->m_nCmd, msg->m_wParam, (DWORD) pService, nullptr);
+				PostMessage((OSMessageBase*) msg->m_pSource, msg->m_nCmd,
+						msg->m_wParam, (DWORD) pService, nullptr);
 			} else {
 				msg->m_lParam = (DWORD) pService;
 			}

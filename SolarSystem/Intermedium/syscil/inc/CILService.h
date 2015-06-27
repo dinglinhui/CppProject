@@ -20,7 +20,7 @@ class CILDevice;
 class OSThreadPool;
 class CILService: public OSThreadEx {
 public:
-	CILService();
+	CILService(int nPrio, int nStackSize, int nQueueSize);
 	virtual ~CILService();
 
 	void Install(CILDevice *pDevice);

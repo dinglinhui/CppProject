@@ -15,7 +15,9 @@ SysApp *SysApp::GetAppInstance() {
 	return SysApp::theApp;
 }
 
-SysApp::SysApp() {
+SysApp::SysApp() :
+		OSDispatcherEx(2048, 50, 500), m_objCIL(PRIO_CILSERVICE, 2048, 32), m_objSch(
+				PRIO_SCHEDULE, 2048, 32), m_objDsp(PRIO_CILDSP, 5120, 32) {
 	Initialize();
 	this->Create(0);
 	this->Start();

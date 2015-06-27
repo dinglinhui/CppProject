@@ -22,7 +22,8 @@ using Event = utils::Events<Delegate>;
 class OSThreadEx;
 class OSDispatcherEx: public OSDispatcher, public OSMessageBase {
 public:
-	OSDispatcherEx();
+	OSDispatcherEx(int nStackSize = 512, int nQueueBuffSize = 50,
+			int nMaxMSGCount = 80);
 	virtual ~OSDispatcherEx();
 
 	virtual OSRet Start(void) override;
