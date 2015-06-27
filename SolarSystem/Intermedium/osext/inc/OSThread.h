@@ -76,8 +76,7 @@ protected:
 	virtual OSRet Run() = 0;
 	virtual OSRet OSInitHook(void);
 
-	OSRet ThreadFunction(void);
-//	static OSRet ThreadFunction(void *param);
+	static OSRet ThreadFunction(void *param);
 
 private:
 	std::thread *thread_;

@@ -1,5 +1,5 @@
 /*
- * KDApp.h
+ * SysApp.h
  *
  *  Created on: Jun 13, 2015
  *      Author: dinglinhui
@@ -17,10 +17,10 @@ namespace kding {
 using namespace osext;
 using namespace syscil;
 
-class KDApp: public OSDispatcherEx {
+class SysApp: public OSDispatcherEx {
 public:
-	virtual ~KDApp();
-	KDApp *GetAppInstance();
+	virtual ~SysApp();
+	SysApp *GetAppInstance();
 
 	CILService m_objCIL;
 	CILSchedule m_objSch;
@@ -31,10 +31,10 @@ protected:
 	virtual int OnHandleMessage(OSMessage *msg) override final;
 
 private:
-	KDApp();
+	SysApp();
 	int Initialize(int *ret = nullptr);
 
-	static KDApp *theApp;
+	static SysApp *theApp;
 };
 
 } /* namespace KDING */

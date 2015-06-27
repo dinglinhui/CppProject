@@ -10,7 +10,7 @@
 namespace osext {
 
 OSThreadEx::OSThreadEx() :
-		OSThread(), m_pNext(nullptr), m_pParent(nullptr) {
+		OSThread(), m_pParent(nullptr) {
 }
 
 OSThreadEx::~OSThreadEx() {
@@ -22,7 +22,8 @@ void OSThreadEx::SetDispatcher(OSDispatcherEx* pParent) {
 }
 
 OSRet OSThreadEx::Start() {
-	QueueInitialize();
+	if (!QueueInitialize())
+		return OSRet::ERROR;
 
 	return OSThread::Start();
 }

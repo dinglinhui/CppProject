@@ -54,10 +54,9 @@ protected:
 	virtual int OnHandleMessage(OSMessage *msg) override;
 	virtual int ReceiveMessage(OSMessage *msg) override;
 
-	void ScanThreadList(void);
+	void ScanThreads(void);
 
 private:
-	OSThreadEx* m_pThreadList;
 	std::list<OSThreadEx *> threads_;
 //	std::map<std::thread::id, OSThreadEx *> threads_;
 

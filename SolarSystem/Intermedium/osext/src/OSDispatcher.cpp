@@ -17,33 +17,26 @@ OSDispatcher::~OSDispatcher() {
 }
 
 int OSDispatcher::Create(int nTskOpt) {
-	// 
-//	OSInitHook();
 	//
 	SetOption(nTskOpt);
 	return 0;
 }
 
-OSRet OSDispatcher::Start() {
-	OSRet ret = OSThread::Start();
-	if(ret != OSRet::OK)
-		return ret;
-	//
-//	OSStart();
-	return OSRet::OK;
-}
-
-OSRet OSDispatcher::Stop() {
-	return OSRet::OK;
-}
-
-OSRet OSDispatcher::Pause() {
-	return OSRet::OK;
-}
-
-OSRet OSDispatcher::Continue() {
-	return OSRet::OK;
-}
+//OSRet OSDispatcher::Start() {
+//	return OSThread::Start();
+//}
+//
+//OSRet OSDispatcher::Stop() {
+//	return OSThread::Stop();
+//}
+//
+//OSRet OSDispatcher::Pause() {
+//	return OSThread::Pause();
+//}
+//
+//OSRet OSDispatcher::Continue() {
+//	return OSThread::Continue();
+//}
 
 OSThread* OSDispatcher::GetThread(int nPrio) {
 	return nullptr;

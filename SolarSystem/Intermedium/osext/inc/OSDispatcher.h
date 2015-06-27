@@ -20,10 +20,10 @@ public:
 public:
 	int Create(int nTskOpt = 0);
 
-	virtual OSRet Start() override;
-	virtual OSRet Stop() override;
-	virtual OSRet Pause() override;
-	virtual OSRet Continue() override;
+//	virtual OSRet Start() override;
+//	virtual OSRet Stop() override;
+//	virtual OSRet Pause() override;
+//	virtual OSRet Continue() override;
 
 	OSThread *GetThread(int nPrio);
 };

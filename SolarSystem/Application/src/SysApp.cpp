@@ -1,38 +1,38 @@
 /*
- * KDApp.cpp
+ * SysApp.cpp
  *
  *  Created on: Jun 13, 2015
  *      Author: dinglinhui
  */
 
-#include "KDApp.h"
+#include <SysApp.h>
 
 namespace kding {
 
-KDApp *KDApp::theApp = new KDApp();
+SysApp *SysApp::theApp = new SysApp();
 
-KDApp *KDApp::GetAppInstance() {
-	return theApp;
+SysApp *SysApp::GetAppInstance() {
+	return SysApp::theApp;
 }
 
-KDApp::KDApp() {
+SysApp::SysApp() {
 	Initialize();
 	this->Create(0);
 	this->Start();
 }
 
-KDApp::~KDApp() {
+SysApp::~SysApp() {
 }
 
-OSRet KDApp::OSInitHook(void) {
+OSRet SysApp::OSInitHook(void) {
 	return OSDispatcherEx::OSInitHook();
 }
 
-int KDApp::OnHandleMessage(OSMessage* msg) {
+int SysApp::OnHandleMessage(OSMessage* msg) {
 	return 0;
 }
 
-int KDApp::Initialize(int* ret) {
+int SysApp::Initialize(int* ret) {
 	m_objDsp.SetDispatcher(this);
 	m_objCIL.SetPackEntry(&m_objDsp);
 	m_objCIL.SetDispatcher(this);

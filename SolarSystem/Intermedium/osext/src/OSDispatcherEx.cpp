@@ -29,10 +29,6 @@ int OSSendMessage(int nPrio, MSGType nCmd, DWORD wParam, DWORD lParam) {
 	if (pDispatcher == nullptr)
 		return 1;
 
-//	BYTE prio = (BYTE) ((nCmd & 0xFF000000) >> 24);
-//	if (prio != 0)
-//		return 2;
-
 	if (nCmd == MSGType::MSG_NULL) {
 		return pDispatcher->SendMessage((OSMessageBase*) pDispatcher, nCmd, wParam, lParam);
 	} else {
@@ -47,7 +43,6 @@ int OSSendMessage(int nPrio, MSGType nCmd, DWORD wParam, DWORD lParam) {
 int OSPostMessage(int nPrio, MSGType nCmd, DWORD wParam, DWORD lParam) {
 	OSDispatcherEx *pDispatcher = GetOSDispatcher();
 	if (pDispatcher != nullptr) {
-//		DWORD nNewCmd = (nPrio << 24) | nCmd;
 		MSGType nNewCmd = MSGType::MSG_ACT;
 		return pDispatcher->PostMessage(pDispatcher, nNewCmd, wParam, lParam);
 	}
@@ -73,7 +68,6 @@ void OSPutMessagePtr(void *p) {
 //
 ////////////////////////////////////////////////////////////////////////////////
 OSDispatcherEx::OSDispatcherEx() {
-	m_pThreadList = nullptr;
 }
 
 OSDispatcherEx::~OSDispatcherEx() {
@@ -83,63 +77,34 @@ OSRet OSDispatcherEx::Start(void) {
 	if (!QueueInitialize())
 		return OSRet::ERROR;
 
-	m_pDispatcher = this;
+	OSDispatcherEx::m_pDispatcher = this;
 	return OSDispatcher::Start();
 }
 
 OSRet OSDispatcherEx::Stop(void) {
-	OSThreadEx *temp, *task = m_pThreadList;
-
-	while (task != nullptr) {
-		temp = task->m_pNext;
-		UnRegister(task);
-		task = temp;
-	}
-
-	m_pDispatcher = nullptr;
+	threads_.clear();
+	OSDispatcherEx::m_pDispatcher = nullptr;
 	return OSRet::OK;
 }
 
 int OSDispatcherEx::Register(OSThreadEx* pThreadEx) {
-	OSThreadEx **ppPrev = &m_pThreadList;
-	while (*ppPrev != nullptr) {
-		ppPrev = &(*ppPrev)->m_pNext;
-	}
-
-	pThreadEx->m_pNext = *ppPrev;
-	*ppPrev = pThreadEx;
-
 	threads_.push_back(pThreadEx);
 	return 0;
 }
 
 int OSDispatcherEx::UnRegister(OSThreadEx* pThreadEx) {
-	OSThreadEx **ppPrev = &m_pThreadList;
-	while (*ppPrev != nullptr && *ppPrev != pThreadEx) {
-		ppPrev = &(*ppPrev)->m_pNext;
-	}
-
-	if (*ppPrev != nullptr) {
-		*ppPrev = pThreadEx->m_pNext;
-	}
+	OSThreadEx * thread = Find(pThreadEx->GetThreadID());
+	threads_.remove(thread);
 	return 0;
 }
 
 OSThreadEx* OSDispatcherEx::Find(std::thread::id nID) const {
-//	OSThreadEx* pTop = m_pThreadList;
-//	while (pTop != nullptr) {
-//		if (nID == (pTop)->GetThreadID())
-//			return (pTop);
-//		pTop = (pTop)->m_pNext;
-//	}
-
-	OSThreadEx * result = nullptr;
-	std::for_each(std::begin(threads_), std::end(threads_), [nID, &result](OSThreadEx *pThreadEx) {
-		if (nID == pThreadEx->GetThreadID())
-		result = pThreadEx;
+	OSThreadEx * thread = nullptr;
+	std::for_each(std::begin(threads_), std::end(threads_), [nID, &thread](OSThreadEx *pThreadEx) {
+		if (nID == pThreadEx->GetThreadID()) thread = pThreadEx;
 	});
 
-	return result;
+	return thread;
 }
 
 void OSDispatcherEx::SendMessageToDescendants(OSMessage* msg) {
@@ -150,11 +115,9 @@ void OSDispatcherEx::SendMessageToDescendants(OSMessage* msg) {
 }
 
 void OSDispatcherEx::SendMessageToDescendants(MSGType nCmd, DWORD wParam, DWORD lParam) {
-	OSThreadEx* pTop = m_pThreadList;
-	while (pTop != nullptr) {
-		SendMessage(pTop, nCmd, wParam, lParam);
-		pTop = pTop->m_pNext;
-	}
+	std::for_each(std::begin(threads_), std::end(threads_), [this, nCmd, wParam, lParam](OSThreadEx *pThreadEx) {
+		SendMessage(pThreadEx, nCmd, wParam, lParam);
+	});
 }
 
 void OSDispatcherEx::PostMessageToDescendants(OSMessage* msg) {
@@ -165,11 +128,9 @@ void OSDispatcherEx::PostMessageToDescendants(OSMessage* msg) {
 }
 
 void OSDispatcherEx::PostMessageToDescendants(MSGType nCmd, DWORD wParam, DWORD lParam) {
-	OSThreadEx* pTop = m_pThreadList;
-	while (pTop != nullptr) {
-		PostMessage(pTop, nCmd, wParam, lParam);
-		pTop = pTop->m_pNext;
-	}
+	std::for_each(std::begin(threads_), std::end(threads_), [this, nCmd, wParam, lParam](OSThreadEx *pThreadEx) {
+		PostMessage(pThreadEx, nCmd, wParam, lParam);
+	});
 }
 
 void* OSDispatcherEx::GetMessagePtr(void) {
@@ -180,27 +141,12 @@ void OSDispatcherEx::PutMessagePtr(void* p) {
 	mempool_.dealloc((OSMessage*) p);
 }
 
-void OSDispatcherEx::ScanThreadList(void) {
+void OSDispatcherEx::ScanThreads(void) {
 	std::for_each(std::begin(threads_), std::end(threads_), [](OSThreadEx *pThreadEx) {
 		OSHeartbeat &heartbeat = pThreadEx->GetHeartbeat();
-		if (heartbeat.isEqual()) {
-			throw std::logic_error("thread heartbeat error");
-		} else {
-			heartbeat--;
-		}
+		if (heartbeat.isEqual()) throw std::logic_error("thread heartbeat error");
+		else heartbeat--;
 	});
-
-//	OSThreadEx* pTop = m_pThreadList;
-//	while (pTop != nullptr) {
-//		OSHeartbeat &heartbeat = pTop->GetHeartbeat();
-//		if (heartbeat.isEqual()) {
-//			throw std::logic_error("thread heartbeat error");
-//		} else {
-//			heartbeat--;
-//		}
-//
-//		pTop = (pTop)->m_pNext;
-//	}
 }
 
 OSRet OSDispatcherEx::Run(void) {
@@ -209,8 +155,7 @@ OSRet OSDispatcherEx::Run(void) {
 	//
 	while (true) {
 		try {
-			//
-			ScanThreadList();
+			std::this_thread::sleep_for(std::chrono::milliseconds(OS_MONITOR_THREAD_PAUSE));
 			//
 			OSMessage *msg = nullptr;
 			if (Pend(msg) == 0) {
@@ -219,8 +164,8 @@ OSRet OSDispatcherEx::Run(void) {
 					delete msg;
 				}
 			}
-
-			std::this_thread::sleep_for(std::chrono::milliseconds(OS_MONITOR_THREAD_PAUSE));
+			//
+			ScanThreads();
 		} catch (std::exception const& ex) {
 			std::cerr << "Exception: " << ex.what() << std::endl;
 		}
@@ -229,16 +174,9 @@ OSRet OSDispatcherEx::Run(void) {
 }
 
 OSRet OSDispatcherEx::OSInitHook(void) {
-	OSRet nRet = OSRet::OK;
-
-	OSThreadEx* pTop = m_pThreadList;
-	while (pTop != nullptr) {
-		nRet = (pTop)->Start();
-		if (nRet != OSRet::OK)
-			return nRet;
-		pTop = pTop->m_pNext;
-	}
-
+	std::for_each(std::begin(threads_), std::end(threads_), [this](OSThreadEx *pThreadEx) {
+		if (pThreadEx->Start() != OSRet::OK) throw std::logic_error(pThreadEx->GetThreadName() + "start error");
+	});
 	return OSDispatcher::OSInitHook();
 }
 

@@ -29,8 +29,6 @@ public:
 protected:
 	virtual OSRet Run() override;
 
-	OSThreadEx* m_pNext;
-
 private:
 	OSDispatcherEx* m_pParent;
 
