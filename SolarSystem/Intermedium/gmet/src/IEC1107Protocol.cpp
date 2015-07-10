@@ -200,8 +200,8 @@ int CIEC1107Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int n
 			int nIndx = indexOf(data, span);
 			int nDIS = 0;
 
-			time_t htm = time(nullptr);
-			tm tm_sys = *localtime(&htm);
+//			time_t htm = time(nullptr);
+//			tm tm_sys = *localtime(&htm);
 
 			while (nIndx > 0) {
 				memset(buff, 0, 64);
@@ -218,13 +218,13 @@ int CIEC1107Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int n
 
 					memset(value, 0, 64);
 					memcpy(value, &buff[nPos], nDIS);
-					m_pfSave(pObj, (void*) ptr->gtt, di, (void*) value);
+					m_pfSave(pObj, (void*) &ptr->gtt, di, (void*) value);
 					/*-Q+存到Q1，Q-存到Q4-*/
 					if (((di >= 0x9110) && (di <= 0x9114)) || ((di >= 0x9510) && (di <= 0x9514))) {
-						m_pfSave(pObj, (void*) ptr->gtt, (di + 0x20), (void*) value);
+						m_pfSave(pObj, (void*) &ptr->gtt, (di + 0x20), (void*) value);
 					}
 					if (((di >= 0x9120) && (di <= 0x9124)) || ((di >= 0x9520) && (di <= 0x9524))) {
-						m_pfSave(pObj, (void*) ptr->gtt, (di + 0x20), (void*) value);
+						m_pfSave(pObj, (void*) &ptr->gtt, (di + 0x20), (void*) value);
 					}
 
 					nPos += nDIS;

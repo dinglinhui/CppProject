@@ -99,8 +99,8 @@ int OSComPort::ConfigComBaud(ComBaud nBaud) {
 }
 
 ComEvent OSComPort::WaitCommEvent(DWORD dwMilliseconds) {
-	void *msg = nullptr;
-	int err;
+//	void *msg = nullptr;
+//	int err;
 
 	if (!m_bOpened)
 		return COM_NOOPEN;
@@ -160,7 +160,7 @@ int OSComPort::GetTxDataLen(void) {
 }
 
 void OSComPort::Flush() {
-	void *msg = nullptr;
+//	void *msg = nullptr;
 
 	if (!m_bOpened)
 		return;

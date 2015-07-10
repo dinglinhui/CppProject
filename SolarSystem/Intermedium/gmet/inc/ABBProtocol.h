@@ -32,7 +32,7 @@ public:
 private:
 	PF_ABB_SAVE m_pfSave;
 	char m_farpwd[9];
-	char m_keypwd[8];
+//	char m_keypwd[8];
 	bool bHaveNextFrame; //有没有后续帧
 	bool bFirstReadClass; //是否第一次读
 	void DisposeDL(int *pValue, BYTE nType, BYTE *lpBuf, BYTE dotPos); //处理电量

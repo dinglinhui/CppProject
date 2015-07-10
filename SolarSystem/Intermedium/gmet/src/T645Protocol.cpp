@@ -387,15 +387,15 @@ int CT645Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBuf
 							if ((i + 1) * 4 > nDataLen) {
 								break;
 								//	memset( value, 0xEE, sizeof(value) );
-								//	m_pfSave(pObj, (void*)ptr->gtt, chlDI, FindDIChlLen(di, (void*)value, i));
+								//	m_pfSave(pObj, (void*)&ptr->gtt, chlDI, FindDIChlLen(di, (void*)value, i));
 								//	continue;
 							}
 
-							m_pfSave(pObj, (void*) ptr->gtt, chlDI, FindDIChlLen(di, (void*) value, i));
+							m_pfSave(pObj, (void*) &ptr->gtt, chlDI, FindDIChlLen(di, (void*) value, i));
 						}
 					} else {
 						if (di == 0xC010) {
-							EM_DIC010 *pC010 = (EM_DIC010 *) value;
+//							EM_DIC010 *pC010 = (EM_DIC010 *) value;
 //							OSDateTime time = OSDateTime::GetCurrentTime();
 //							if ((pC010->year != time.GetYear())
 //									|| (pC010->month != time.GetMonth())
@@ -405,7 +405,7 @@ int CT645Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBuf
 //								pObj->m_nMPTimeEnable |= 0x01;
 //							}
 						} else if (di == 0xC011) {
-							EM_DIC011 *pC011 = (EM_DIC011 *) value;
+//							EM_DIC011 *pC011 = (EM_DIC011 *) value;
 //							OSDateTime time = OSDateTime::GetCurrentTime();
 //							if ((pC011->hour != time.GetHour())
 //							//	|| (pC011->minute != time.GetMinute())
@@ -415,7 +415,7 @@ int CT645Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBuf
 //								pObj->m_nMPTimeEnable |= 0x02;
 //							}
 						}
-						m_pfSave(pObj, (void*) ptr->gtt, di, (void*) value);
+						m_pfSave(pObj, (void*) &ptr->gtt, di, (void*) value);
 					}
 				}
 			}
@@ -428,7 +428,7 @@ int CT645Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBuf
 	 {
 	 int value[128/sizeof(int)]={0xEE};
 	 memset(value,0xEE,128/sizeof(int));
-	 m_pfSave(pObj,(void*)ptr->gtt,ptr->di,(void*)value);
+	 m_pfSave(pObj,(void*)&ptr->gtt,ptr->di,(void*)value);
 	 //return 0;
 	 }*/
 	return -1;

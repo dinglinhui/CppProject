@@ -331,7 +331,7 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int
 							if (HIBYTE(LOWORD(ptr->ddi)) != 0xFF)
 								break;
 						}
-						m_pfSave(pObj, (void*) ptr->gtt, ptr->di, (void*) value);
+						m_pfSave(pObj, (void*) &ptr->gtt, ptr->di, (void*) value);
 					}
 						break;
 
@@ -353,7 +353,7 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int
 							if (HIBYTE(LOWORD(ptr->ddi)) != 0xFF)
 								break;
 						}
-						m_pfSave(pObj, (void*) ptr->gtt, ptr->di, (void*) value);
+						m_pfSave(pObj, (void*) &ptr->gtt, ptr->di, (void*) value);
 					}
 						break;
 						/*
@@ -373,10 +373,10 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int
 						 m_iMinutes[0]+=m_iMinutes[i+1];
 						 }
 						 memcpy(value,m_iTimes,sizeof(WORD)*4);
-						 m_pfSave(pObj,(void*)ptr->gtt,0xb31f,(void*)value);
+						 m_pfSave(pObj,(void*)&ptr->gtt,0xb31f,(void*)value);
 						 memset(value,0,32);
 						 memcpy(value,m_iMinutes,sizeof(int)*4);
-						 m_pfSave(pObj,(void*)ptr->gtt,0xb32f,(void*)value);
+						 m_pfSave(pObj,(void*)&ptr->gtt,0xb32f,(void*)value);
 						 }
 						 break;
 
@@ -429,9 +429,9 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int
 						 }
 						 }
 						 memcpy(value,dateBegin,16);
-						 m_pfSave(pObj,(void*)ptr->gtt,0xb33f,(void*)value);
+						 m_pfSave(pObj,(void*)&ptr->gtt,0xb33f,(void*)value);
 						 memcpy(value,dateEnd,16);
-						 m_pfSave(pObj,(void*)ptr->gtt,0xb34f,(void*)value);
+						 m_pfSave(pObj,(void*)&ptr->gtt,0xb34f,(void*)value);
 						 }
 						 break;
 						 */
@@ -444,7 +444,7 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int
 						DL645_07_Decode(ptr->di, value, &frm.data[4]);
 						if (ddi == 0x04000101) // 日期
 								{
-							EM_DIC010 *pC010 = (EM_DIC010 *) value;
+//							EM_DIC010 *pC010 = (EM_DIC010 *) value;
 //							OSDateTime time = OSDateTime::GetCurrentTime();
 //							if ((pC010->year != time.GetYear())
 //									|| (pC010->month != time.GetMonth())
@@ -455,7 +455,7 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int
 //							}
 						} else if (ddi == 0x04000102) // 时间
 								{
-							EM_DIC011 *pC011 = (EM_DIC011 *) value;
+//							EM_DIC011 *pC011 = (EM_DIC011 *) value;
 //							OSDateTime time = OSDateTime::GetCurrentTime();
 //							if ((pC011->hour != time.GetHour())
 //							//	|| (pC011->minute != time.GetMinute())
@@ -466,7 +466,7 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int
 //							}
 						}
 
-						m_pfSave(pObj, (void*) ptr->gtt, ptr->di, (void*) value);
+						m_pfSave(pObj, (void*) &ptr->gtt, ptr->di, (void*) value);
 					}
 						break;
 					}
@@ -486,7 +486,7 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int
 	 TRACE0("ptr->di = %x save ee\r\n",ptr->di);
 	 if ((ptr->ddi) && (ptr->di))
 	 {
-	 m_pfSave(pObj, (void*)ptr->gtt, ptr->di, (void*)value);
+	 m_pfSave(pObj, (void*)&ptr->gtt, ptr->di, (void*)value);
 	 }
 
 	 }

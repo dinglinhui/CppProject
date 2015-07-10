@@ -43,7 +43,8 @@ CGMTask::~CGMTask(void) {
 
 void* CGMTask::operator new(size_t nSize) {
 	if (nSize != sizeof(CGMTask)) {
-		return nullptr;
+//		return nullptr;
+		throw std::logic_error("size error");
 	}
 
 //	void *ptr = mempool_alloc(nSize);

@@ -411,65 +411,65 @@ void CABBProtocol::ParseClass1(CGMPoint* pObj, Command* pCMD, BYTE* lpBuf, int n
 	case 5:		//Current
 	{
 		if (ptr->phase == 0)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB621, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB621, (void*) value);
 		else if (ptr->phase == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB622, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB622, (void*) value);
 		else if (ptr->phase == 4)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB623, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB623, (void*) value);
 		break;
 	}
 	case 6:		//Voltage
 	{
 		if (ptr->phase == 0)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB611, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB611, (void*) value);
 		else if (ptr->phase == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB612, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB612, (void*) value);
 		else if (ptr->phase == 4)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB613, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB613, (void*) value);
 		break;
 	}
 	case 7:		//KVar
 	{
 		if (ptr->phase == 0)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB641, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB641, (void*) value);
 		else if (ptr->phase == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB642, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB642, (void*) value);
 		else if (ptr->phase == 4)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB643, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB643, (void*) value);
 		else if (ptr->phase == 7)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB640, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB640, (void*) value);
 		break;
 	}
 	case 9:		//KW
 	{
 		if (ptr->phase == 0)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB631, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB631, (void*) value);
 		else if (ptr->phase == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB632, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB632, (void*) value);
 		else if (ptr->phase == 4)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB633, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB633, (void*) value);
 		else if (ptr->phase == 7)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB630, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB630, (void*) value);
 		break;
 	}
 	case 17:		//Power factor
 	{
 		if (ptr->phase == 0)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB651, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB651, (void*) value);
 		else if (ptr->phase == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB652, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB652, (void*) value);
 		else if (ptr->phase == 4)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB653, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB653, (void*) value);
 		else if (ptr->phase == 7)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xB650, (void*) value);
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xB650, (void*) value);
 		break;
 	}
 		/////////Add 2009.03.07 zjz
 	case 15:		// Sum kW
-		m_pfSave(pObj, (void*) ptr->gtt, 0xB630, (void*) value);
+		m_pfSave(pObj, (void*) &ptr->gtt, 0xB630, (void*) value);
 		break;
 	case 22:		// Sum kVar
-		m_pfSave(pObj, (void*) ptr->gtt, 0xB640, (void*) value);
+		m_pfSave(pObj, (void*) &ptr->gtt, 0xB640, (void*) value);
 		break;
 		//////////
 	}
@@ -495,188 +495,188 @@ void CABBProtocol::ParseClass11(BYTE frmIndex, CGMPoint* pObj, Command* pCMD, BY
 		memset(value, 0, 64);
 		DisposeDL(value, 1, lpBuf, dl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9412, (void*) value);	//峰电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9412, (void*) value);	//峰电量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9012, (void*) value);	//峰电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9012, (void*) value);	//峰电量
 		zxyg_dl = dl;
 
 		memset(value, 0, 64);
 		DisposeDL(value, 2, lpBuf, dl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9413, (void*) value);	//平电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9413, (void*) value);	//平电量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9013, (void*) value);	//平电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9013, (void*) value);	//平电量
 		zxyg_dl += dl;
 
 		memset(value, 0, 64);
 		DisposeXL(value, 1, lpBuf, xl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xa412, (void*) value); //峰需量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xa412, (void*) value); //峰需量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0xa012, (void*) value); //峰需量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xa012, (void*) value); //峰需量
 
 		memset(value, 0, 64);
 		DisposeXL(value, 2, lpBuf, xl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xa413, (void*) value); //平需量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xa413, (void*) value); //平需量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0xa013, (void*) value); //平需量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xa013, (void*) value); //平需量
 
 		memset(value, 0, 64);
 		DisposeXLSJ(value, 1, lpBuf);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xb412, (void*) value); //峰需量时间
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xb412, (void*) value); //峰需量时间
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0xb012, (void*) value); //峰需量时间
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xb012, (void*) value); //峰需量时间
 
 		memset(value, 0, 64);
 		DisposeXLSJ(value, 2, lpBuf);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xb413, (void*) value); //平需量时间
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xb413, (void*) value); //平需量时间
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0xb013, (void*) value); //平需量时间
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xb013, (void*) value); //平需量时间
 	} else if (frmIndex == 2) //正向有功
 			{
 		memset(value, 0, 64);
 		DisposeDL(value, 1, lpBuf, dl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9414, (void*) value);	//谷电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9414, (void*) value);	//谷电量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9014, (void*) value);	//谷电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9014, (void*) value);	//谷电量
 		zxyg_dl += dl;
 
 		memcpy(value, &zxyg_dl, sizeof(double));
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9410, (void*) value);	//正向有功总电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9410, (void*) value);	//正向有功总电量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9010, (void*) value);	//正向有功总电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9010, (void*) value);	//正向有功总电量
 
 		memset(value, 0, 64);
 		DisposeXL(value, 1, lpBuf, xl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xa414, (void*) value); //谷需量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xa414, (void*) value); //谷需量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0xa014, (void*) value); //谷需量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xa014, (void*) value); //谷需量
 
 		memset(value, 0, 64);
 		DisposeXLSJ(value, 1, lpBuf);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xb414, (void*) value); //谷需量时间
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xb414, (void*) value); //谷需量时间
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0xb014, (void*) value); //峰需量时间
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xb014, (void*) value); //峰需量时间
 	} else if (frmIndex == 3) //正向无功
 			{
 		memset(value, 0, 64);
 		DisposeDL(value, 1, lpBuf, dl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9512, (void*) value);	//峰电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9512, (void*) value);	//峰电量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9112, (void*) value);	//峰电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9112, (void*) value);	//峰电量
 		zxwg_dl = dl;
 
 		memset(value, 0, 64);
 		DisposeDL(value, 2, lpBuf, dl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9513, (void*) value);	//平电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9513, (void*) value);	//平电量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9113, (void*) value);	//平电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9113, (void*) value);	//平电量
 		zxwg_dl += dl;
 
 		memset(value, 0, 64);
 		DisposeXL(value, 1, lpBuf, xl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xa512, (void*) value); //峰需量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xa512, (void*) value); //峰需量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0xa112, (void*) value); //峰需量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xa112, (void*) value); //峰需量
 
 		memset(value, 0, 64);
 		DisposeXL(value, 2, lpBuf, xl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xa513, (void*) value); //平需量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xa513, (void*) value); //平需量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0xa113, (void*) value); //平需量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xa113, (void*) value); //平需量
 
 		memset(value, 0, 64);
 		DisposeXLSJ(value, 1, lpBuf);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xb512, (void*) value); //峰需量时间
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xb512, (void*) value); //峰需量时间
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0xb112, (void*) value); //峰需量时间
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xb112, (void*) value); //峰需量时间
 
 		memset(value, 0, 64);
 		DisposeXLSJ(value, 2, lpBuf);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xb513, (void*) value); //平需量时间
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xb513, (void*) value); //平需量时间
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0xb113, (void*) value); //平需量时间
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xb113, (void*) value); //平需量时间
 	} else if (frmIndex == 4) //正向无功
 			{
 		memset(value, 0, 64);
 		DisposeDL(value, 1, lpBuf, dl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9514, (void*) value);	//谷电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9514, (void*) value);	//谷电量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9114, (void*) value);	//谷电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9114, (void*) value);	//谷电量
 
 		zxwg_dl += dl;
 		memcpy(value, &zxwg_dl, sizeof(double));
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9510, (void*) value);	//正向无功总电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9510, (void*) value);	//正向无功总电量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9110, (void*) value);	//正向无功总电量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9110, (void*) value);	//正向无功总电量
 
 		memset(value, 0, 64);
 		DisposeXL(value, 1, lpBuf, xl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xa514, (void*) value); //谷需量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xa514, (void*) value); //谷需量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0xa114, (void*) value); //谷需量
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xa114, (void*) value); //谷需量
 
 		memset(value, 0, 64);
 		DisposeXLSJ(value, 1, lpBuf);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0xb514, (void*) value); //峰需量时间
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xb514, (void*) value); //峰需量时间
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0xb114, (void*) value); //峰需量时间
+			m_pfSave(pObj, (void*) &ptr->gtt, 0xb114, (void*) value); //峰需量时间
 	} else if (frmIndex == 9)   //四象限
 			{
 		memset(value, 0, 64);
 		DisposeDL(value, 1, lpBuf, dl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9540, (void*) value);	//Q4象限
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9540, (void*) value);	//Q4象限
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9140, (void*) value);	//Q4象限
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9140, (void*) value);	//Q4象限
 		//zwg_dl=dl;
 
 		memset(value, 0, 64);
 		DisposeDL(value, 3, lpBuf, dl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9560, (void*) value);	//Q3象限
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9560, (void*) value);	//Q3象限
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9160, (void*) value); //Q3
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9160, (void*) value); //Q3
 		//zwg_dl+=dl;
 
 		memset(value, 0, 64);
 		DisposeDL(value, 4, lpBuf, dl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9550, (void*) value);	//Q2象限
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9550, (void*) value);	//Q2象限
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9150, (void*) value); //Q2
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9150, (void*) value); //Q2
 		//zwg_dl+=dl;
 
 		memset(value, 0, 64);
 		DisposeDL(value, 5, lpBuf, dl_DotPos);
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9530, (void*) value);	//Q1象限
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9530, (void*) value);	//Q1象限
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9130, (void*) value); //Q1
+			m_pfSave(pObj, (void*) &ptr->gtt, 0x9130, (void*) value); //Q1
 		//zwg_dl+=dl;
 
 		//memcpy(value,&zwg_dl,sizeof(double));
 		//if (ptr->gtt==2)
-		//	m_pfSave(pObj,(void*)ptr->gtt,0x95D0,(void*)value);	//总无功电量
+		//	m_pfSave(pObj,(void*)&ptr->gtt,0x95D0,(void*)value);	//总无功电量
 		//else
-		//	m_pfSave(pObj,(void*)ptr->gtt,0x91D0,(void*)value);	//总无功电量
+		//	m_pfSave(pObj,(void*)&ptr->gtt,0x91D0,(void*)value);	//总无功电量
 	}
 }
 

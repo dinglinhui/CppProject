@@ -372,7 +372,7 @@ int CEDMIProtocol::HandleRx(CGMPoint *pMP, Command *pCMD, BYTE *lpBuf, int nBufS
 					memcpy(&di, frm.data, sizeof(WORD));
 					int value[64 / sizeof(int)] = { 0 };
 					memcpy(value, &frm.data[sizeof(WORD)], frm.hdr.length - sizeof(WORD));
-					m_pfSave(pMP, (void*) ptr->gtt, di, (void*) value);
+					m_pfSave(pMP, (void*) &ptr->gtt, di, (void*) value);
 				}
 			}
 			nRet = 0;
