@@ -24,10 +24,8 @@ public:
 	CT645_2007Protocol(BYTE nMPT, PF_DL645_2007_SAVE pf); /////构造函数参数：nMPT测量点类型，函数指针变量
 	virtual ~CT645_2007Protocol(void);
 
-	virtual int HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-			int nBufSize);
-	virtual int HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-			int nBufSize);
+	virtual int HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize);
+	virtual int HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize);
 
 	virtual int GetDefaultComDcb(ComDcb *pDcb);
 	virtual int GetCommands(void *parms, Command *&pCMDs, PointType type);

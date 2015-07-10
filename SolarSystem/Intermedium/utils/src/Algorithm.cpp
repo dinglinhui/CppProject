@@ -43,8 +43,7 @@ void test3() {
 	std::vector<int> v = { 1, 3, 5, 7, 9, 4 };
 	std::vector<int> v1(v.size());
 	//根据条件拷贝
-	auto it = std::copy_if(v.begin(), v.end(), v1.begin(),
-			[](int i) {return i%2!=0;});
+	auto it = std::copy_if(v.begin(), v.end(), v1.begin(), [](int i) {return i%2!=0;});
 	//缩减vector到合适大小
 	v1.resize(std::distance(v1.begin(), it));
 	for (int i : v1) {

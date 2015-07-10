@@ -18,7 +18,7 @@ void processValue(int&& a) {
 template<typename T>
 void forwardValue(T&& val) {
 //	processValue(val);
-	processValue(std::forward<T>(val)); //照参数本来的类型进行转发。
+	processValue(std::forward < T > (val)); //照参数本来的类型进行转发。
 }
 
 template<typename T, typename ... Args>

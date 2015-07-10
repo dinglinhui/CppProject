@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_GMET_INC_GMDEVICE_H_
-#define INTERMEDIUM_GMET_INC_GMDEVICE_H_
+#ifndef GMDEVICE_H_
+#define GMDEVICE_H_
 
 #include "GMPoint.h"
 #include "OSComPort.h"
@@ -53,4 +53,4 @@ private:
 
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_GMET_INC_GMDEVICE_H_ */
+#endif /* GMDEVICE_H_ */

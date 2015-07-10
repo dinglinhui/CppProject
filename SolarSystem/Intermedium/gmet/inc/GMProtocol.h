@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_GMET_INC_GMPROTOCOL_H_
-#define INTERMEDIUM_GMET_INC_GMPROTOCOL_H_
+#ifndef GMPROTOCOL_H_
+#define GMPROTOCOL_H_
 
 #include "GMPoint.h"
 
@@ -23,28 +23,31 @@ namespace pcols {
 // CGMProtocol
 ///////////////////////////////////////////////////////////////////////////////
 
-class CGMProtocol
-{
+class CGMProtocol {
 public:
-	CGMProtocol( BYTE nType, BYTE nChannel = 0 );
-	virtual ~CGMProtocol( void );
+	CGMProtocol(BYTE nType, BYTE nChannel = 0);
+	virtual ~CGMProtocol(void);
 
-	BYTE GetType( void )    const { return m_nType;    }
-	BYTE GetChannel( void ) const { return m_nChannel; }
+	BYTE GetType(void) const {
+		return m_nType;
+	}
+	BYTE GetChannel(void) const {
+		return m_nChannel;
+	}
 
-	virtual int HandleTx( CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize );
-	virtual int HandleRx( CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize );
+	virtual int HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize);
+	virtual int HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize);
 
-	virtual int GetCommands( void *parms, Command *&pCMDs, PointType type);
+	virtual int GetCommands(void *parms, Command *&pCMDs, PointType type);
 
-	virtual int GetTranTimeOut( Command *pCMD = NULL );
-	virtual int GetRecvTimeOut( Command *pCMD = NULL );
+	virtual int GetTranTimeOut(Command *pCMD = NULL);
+	virtual int GetRecvTimeOut(Command *pCMD = NULL);
 
-	virtual int GetDefaultComDcb( ComDcb *pDcb );
-	virtual int GetSendComDcb( Command *pCMD, ComDcb *pDcb );
-	virtual int GetRecvComDcb( Command *pCMD, ComDcb *pDcb );
+	virtual int GetDefaultComDcb(ComDcb *pDcb);
+	virtual int GetSendComDcb(Command *pCMD, ComDcb *pDcb);
+	virtual int GetRecvComDcb(Command *pCMD, ComDcb *pDcb);
 
-	virtual int GetRetryCount( void );
+	virtual int GetRetryCount(void);
 
 	CGMProtocol *m_pNext;
 
@@ -55,4 +58,4 @@ protected:
 
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_GMET_INC_GMPROTOCOL_H_ */
+#endif /* GMPROTOCOL_H_ */

@@ -19,7 +19,8 @@ template<typename T>
 class SyncQueue {
 public:
 	SyncQueue(int maxSize) :
-			m_maxSize(maxSize), m_needStop(false) {
+			m_maxSize(maxSize),
+			m_needStop(false) {
 	}
 
 	void Put(const T&x) {
@@ -27,11 +28,11 @@ public:
 	}
 
 	void Put(T&&x) {
-		Add(std::forward<T>(x));
+		Add(std::forward < T > (x));
 	}
 
 	void Take(std::list<T>& list) {
-		std::unique_lock<std::mutex> locker(m_mutex);
+		std::unique_lock < std::mutex > locker(m_mutex);
 		m_notEmpty.wait(locker, [this] {return m_needStop || NotEmpty();});
 
 		if (m_needStop)
@@ -41,7 +42,7 @@ public:
 	}
 
 	void Take(T& t) {
-		std::unique_lock<std::mutex> locker(m_mutex);
+		std::unique_lock < std::mutex > locker(m_mutex);
 		m_notEmpty.wait(locker, [this] {return m_needStop || NotEmpty();});
 
 		if (m_needStop)
@@ -53,7 +54,7 @@ public:
 
 	void Stop() {
 		{
-			std::lock_guard<std::mutex> locker(m_mutex);
+			std::lock_guard < std::mutex > locker(m_mutex);
 			m_needStop = true;
 		}
 		m_notFull.notify_all();
@@ -61,17 +62,17 @@ public:
 	}
 
 	bool Empty() {
-		std::lock_guard<std::mutex> locker(m_mutex);
+		std::lock_guard < std::mutex > locker(m_mutex);
 		return m_queue.empty();
 	}
 
 	bool Full() {
-		std::lock_guard<std::mutex> locker(m_mutex);
+		std::lock_guard < std::mutex > locker(m_mutex);
 		return m_queue.size() == m_maxSize;
 	}
 
 	size_t Size() {
-		std::lock_guard<std::mutex> locker(m_mutex);
+		std::lock_guard < std::mutex > locker(m_mutex);
 		return m_queue.size();
 	}
 
@@ -82,27 +83,25 @@ private:
 	bool NotFull() const {
 		bool full = m_queue.size() >= m_maxSize;
 		if (full)
-			std::cout << "full, waiting，thread id: " << std::this_thread::get_id()
-					<< std::endl;
+			std::cout << "full, waiting，thread id: " << std::this_thread::get_id() << std::endl;
 		return !full;
 	}
 
 	bool NotEmpty() const {
 		bool empty = m_queue.empty();
 		if (empty)
-			std::cout << "empty,waiting，thread id: " << std::this_thread::get_id()
-					<< std::endl;
+			std::cout << "empty,waiting，thread id: " << std::this_thread::get_id() << std::endl;
 		return !empty;
 	}
 
 	template<typename F>
 	void Add(F&&x) {
-		std::unique_lock<std::mutex> locker(m_mutex);
+		std::unique_lock < std::mutex > locker(m_mutex);
 		m_notFull.wait(locker, [this] {return m_needStop || NotFull();});
 		if (m_needStop)
 			return;
 
-		m_queue.push_back(std::forward<F>(x));
+		m_queue.push_back(std::forward < F > (x));
 		m_notEmpty.notify_one();
 	}
 

@@ -36,7 +36,7 @@ public:
 	}
 
 	void AddTask(Task&&task) {
-		m_queue.Put(std::forward<Task>(task));
+		m_queue.Put(std::forward < Task > (task));
 	}
 
 	void AddTask(const Task& task) {
@@ -48,7 +48,7 @@ private:
 		m_running = true;
 		//创建线程组
 		for (int i = 0; i < numThreads; ++i) {
-			m_threadgroup.push_back(std::make_shared<std::thread>(&ThreadPool::RunInThread, this));
+			m_threadgroup.push_back(std::make_shared < std::thread > (&ThreadPool::RunInThread, this));
 		}
 	}
 

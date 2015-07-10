@@ -10,7 +10,8 @@
 namespace osext {
 
 OSHeartbeat::OSHeartbeat() :
-		pre_value(0), cur_value(0) {
+		pre_value(0),
+		cur_value(0) {
 }
 
 OSHeartbeat::~OSHeartbeat() {
@@ -39,8 +40,7 @@ const OSHeartbeat OSHeartbeat::operator--(int) {
 }
 
 std::ostream &operator<<(std::ostream &os, const OSHeartbeat &heartbeat) {
-	os << "previous:" << heartbeat.pre_value << " current:"
-			<< heartbeat.cur_value << std::endl;
+	os << "previous:" << heartbeat.pre_value << " current:" << heartbeat.cur_value << std::endl;
 	return os;
 }
 

@@ -12,7 +12,10 @@
 namespace syscil {
 
 CILRequest::CILRequest(CILDevice *pDevice, CILPacket *pPacket, OSMessageBase *pSender) :
-		m_pNext(nullptr), m_pDevice(pDevice), m_pPacket(pPacket), m_pSender(pSender) {
+		m_pNext(nullptr),
+		m_pDevice(pDevice),
+		m_pPacket(pPacket),
+		m_pSender(pSender) {
 }
 
 bool CILRequest::IsAskOf(CILPacket *pk) {

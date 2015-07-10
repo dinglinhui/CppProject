@@ -70,8 +70,7 @@ public:
 		strClassName += class_name;
 
 		/* RTTI support */
-		return !strcmp(typeid(_object).name(), strClassName.c_str()) ?
-				(void *) (new Type) : nullptr;
+		return !strcmp(typeid(_object).name(), strClassName.c_str()) ? (void *) (new Type) : nullptr;
 	}
 };
 } // namespace utils

@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_PCOLS_INC_PCOL_IEC1107_H_
-#define INTERMEDIUM_PCOLS_INC_PCOL_IEC1107_H_
+#ifndef PCOL_IEC1107_H_
+#define PCOL_IEC1107_H_
 
 #include "OSDefs.h"
 
@@ -48,4 +48,4 @@ int IEC_Decode(BYTE type, BYTE *lpBuf, char* data, int nSize, int *nLastMonth);
 
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_PCOLS_INC_PCOL_IEC1107_H_ */
+#endif /* PCOL_IEC1107_H_ */

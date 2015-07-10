@@ -8,7 +8,9 @@ class RangeImpl {
 	class Iterator;
 public:
 	RangeImpl(value_t begin, value_t end, value_t step = 1) :
-			m_begin(begin), m_end(end), m_step(step) {
+			m_begin(begin),
+			m_end(end),
+			m_step(step) {
 		if (step > 0 && m_begin >= m_end)
 			throw std::logic_error("end must greater than begin.");
 		else if (step < 0 && m_begin <= m_end)
@@ -45,7 +47,8 @@ private:
 	class Iterator {
 	public:
 		Iterator(int start, RangeImpl& range) :
-				m_current_step(start), m_range(range) {
+				m_current_step(start),
+				m_range(range) {
 			m_current_value = m_range.m_begin + m_current_step * m_range.m_step;
 		}
 

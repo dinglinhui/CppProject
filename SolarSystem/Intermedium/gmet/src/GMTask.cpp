@@ -24,9 +24,17 @@ namespace pcols {
 ///////////////////////////////////////////////////////////////////////////////
 
 CGMTask::CGMTask(void) :
-		m_pNext( nullptr), m_nTN(0), m_pBody( nullptr), m_pSrce( nullptr), m_nNums(0), m_nSend(
-				0), m_nRecv(0), m_nErrs(0), m_nTotalRecv(0), m_pCommand( nullptr), m_pGMPoint(
-		nullptr) {
+		m_pNext(nullptr),
+		m_nTN(0),
+		m_pBody(nullptr),
+		m_pSrce(nullptr),
+		m_nNums(0),
+		m_nSend(0),
+		m_nRecv(0),
+		m_nErrs(0),
+		m_nTotalRecv(0),
+		m_pCommand(nullptr),
+		m_pGMPoint(nullptr) {
 }
 
 CGMTask::~CGMTask(void) {

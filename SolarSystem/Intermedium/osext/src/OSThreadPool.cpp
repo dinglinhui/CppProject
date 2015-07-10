@@ -9,7 +9,9 @@
 
 namespace osext {
 OSThreadPool::OSThreadPool(int num) :
-		m_num { num }, m_maxQueueSize(0), m_running { false } {
+		m_num { num },
+		m_maxQueueSize(0),
+		m_running { false } {
 }
 
 OSThreadPool::~OSThreadPool() {
@@ -29,7 +31,7 @@ void OSThreadPool::start() {
 }
 
 void OSThreadPool::stop() {
-	std::unique_lock<std::mutex> ul { m_mutex };
+	std::unique_lock < std::mutex > ul { m_mutex };
 	m_running = false;
 	m_notEmpty.notify_all();
 
@@ -42,7 +44,7 @@ void OSThreadPool::run(const Task &t) {
 	if (m_threads.empty()) {
 		t();
 	} else {
-		std::unique_lock<std::mutex> ul { m_mutex };
+		std::unique_lock < std::mutex > ul { m_mutex };
 		while (isFull()) {
 			m_notFull.wait(ul);
 		}
@@ -66,7 +68,7 @@ void OSThreadPool::threadFunc() {
 }
 
 Task OSThreadPool::take() {
-	std::unique_lock<std::mutex> ul { m_mutex };
+	std::unique_lock < std::mutex > ul { m_mutex };
 	while (m_taskQueue.empty() && m_running) {
 		m_notEmpty.wait(ul);
 	}

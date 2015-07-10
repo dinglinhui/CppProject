@@ -13,8 +13,11 @@
 namespace pcols {
 
 CGMScheduler::CGMScheduler(int nPrio, int nStackSize, int nQueueSize) :
-		OSThreadEx(nPrio, nStackSize, nQueueSize), m_nPort(0), m_plstGMP(
-				nullptr), m_pGMDevice(nullptr), m_plstTask(nullptr)/*, m_hLock(1, false)*/{
+		OSThreadEx(nPrio, nStackSize, nQueueSize),
+		m_nPort(0),
+		m_plstGMP(nullptr),
+		m_pGMDevice(nullptr),
+		m_plstTask(nullptr)/*, m_hLock(1, false)*/{
 }
 
 CGMScheduler::~CGMScheduler(void) {
@@ -189,8 +192,7 @@ void CGMScheduler::OnSuccess(CGMTask *pTask, WORD TN, GMRET ret) {
 	assert(pTask != nullptr);
 	if (nullptr != pTask) {
 		if (nullptr != (OSMessageBase*) pTask->m_pSrce) {
-			PostMessage((OSMessageBase*) pTask->m_pSrce, MSGType::GM_SUCCESS,
-					MAKELONG(TN, ret), (DWORD) pTask->m_pBody);
+			PostMessage((OSMessageBase*) pTask->m_pSrce, MSGType::GM_SUCCESS, MAKELONG(TN, ret), (DWORD) pTask->m_pBody);
 			return;
 		}
 	}
@@ -200,8 +202,7 @@ void CGMScheduler::OnFinish(CGMTask *pTask, WORD TN, GMRET ret) {
 	assert(pTask != nullptr);
 	if (nullptr != pTask) {
 		if (nullptr != (OSMessageBase*) pTask->m_pSrce) {
-			PostMessage((OSMessageBase*) pTask->m_pSrce, MSGType::GM_FINISH,
-					MAKELONG(TN, ret), (DWORD) pTask->m_pBody);
+			PostMessage((OSMessageBase*) pTask->m_pSrce, MSGType::GM_FINISH, MAKELONG(TN, ret), (DWORD) pTask->m_pBody);
 			return;
 		}
 	}
@@ -293,8 +294,7 @@ int CGMScheduler::OnHandleMessage(OSMessage *msg) {
 							nRet = 0;
 						}
 					}
-				} while ((ret != GM_EXCEPTION)
-						&& ((ret & GM_COMPLETE) != GM_COMPLETE));
+				} while ((ret != GM_EXCEPTION) && ((ret & GM_COMPLETE) != GM_COMPLETE));
 
 				delete pTask;
 			}

@@ -9,7 +9,6 @@
 #include "Any.hpp"
 
 namespace utils {
-
 class ObjectPool {
 	template<typename T, typename ... Args>
 	using Constructor = std::function<std::shared_ptr<T>(Args...)>;
@@ -111,7 +110,8 @@ struct AT {
 	}
 
 	AT(int a, int b) :
-			m_a(a), m_b(b) {
+			m_a(a),
+			m_b(b) {
 	}
 
 	void Fun() {

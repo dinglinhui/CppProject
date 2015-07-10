@@ -164,23 +164,18 @@ static int __to_datetime(WORD di, BYTE *lpBuf, char *value, int nSize) {
 	nInx += sizeof(WORD);
 
 	while (nPos < n2) {
-		if (value[nPos] == ' ' || value[nPos] == '-' || value[nPos] == ':'
-				|| value[nPos] == ',') {
+		if (value[nPos] == ' ' || value[nPos] == '-' || value[nPos] == ':' || value[nPos] == ',') {
 			nPos++;
 			continue;
 		}
-		if (value[nPos + 2] == ' ' || value[nPos + 2] == '-'
-				|| value[nPos + 2] == ':' || value[nPos + 2] == ','
-				|| value[nPos + 2] == ')') {
+		if (value[nPos + 2] == ' ' || value[nPos + 2] == '-' || value[nPos + 2] == ':' || value[nPos + 2] == ',' || value[nPos + 2] == ')') {
 			memcpy(&buf[nBos], (char*) &value[nPos], 2);
 			nPos += 2;
 			nBos += 2;
 			continue;
 		}
-		if (value[nPos + 4] == ' '
-				|| //年有时候是4位
-				value[nPos + 4] == '-' || value[nPos + 4] == ':'
-				|| value[nPos + 4] == ',' || value[nPos + 4] == ')') {
+		if (value[nPos + 4] == ' ' || //年有时候是4位
+				value[nPos + 4] == '-' || value[nPos + 4] == ':' || value[nPos + 4] == ',' || value[nPos + 4] == ')') {
 			memcpy(&buf[nBos], (char*) &value[nPos + 2], 2);
 			nPos += 4;
 			nBos += 2;
@@ -224,23 +219,18 @@ static int __to_datetimepram(WORD di, BYTE *lpBuf, char *value, int nSize) {
 	nInx += sizeof(WORD);
 
 	while (nPos < n2) {
-		if (value[nPos] == ' ' || value[nPos] == '-' || value[nPos] == ':'
-				|| value[nPos] == ',') {
+		if (value[nPos] == ' ' || value[nPos] == '-' || value[nPos] == ':' || value[nPos] == ',') {
 			nPos++;
 			continue;
 		}
-		if (value[nPos + 2] == ' ' || value[nPos + 2] == '-'
-				|| value[nPos + 2] == ':' || value[nPos + 2] == ','
-				|| value[nPos + 2] == ')') {
+		if (value[nPos + 2] == ' ' || value[nPos + 2] == '-' || value[nPos + 2] == ':' || value[nPos + 2] == ',' || value[nPos + 2] == ')') {
 			memcpy(&buf[nBos], (char*) &value[nPos], 2);
 			nPos += 2;
 			nBos += 2;
 			continue;
 		}
-		if (value[nPos + 4] == ' '
-				|| //年有时候是4位
-				value[nPos + 4] == '-' || value[nPos + 4] == ':'
-				|| value[nPos + 4] == ',' || value[nPos + 4] == ')') {
+		if (value[nPos + 4] == ' ' || //年有时候是4位
+				value[nPos + 4] == '-' || value[nPos + 4] == ':' || value[nPos + 4] == ',' || value[nPos + 4] == ')') {
 			memcpy(&buf[nBos], (char*) &value[nPos + 2], 2);
 			nPos += 4;
 			nBos += 2;
@@ -282,8 +272,7 @@ static int __to_demand_datetime(WORD di, BYTE *lpBuf, char *value, int nSize) {
 	nInx += sizeof(WORD);
 
 	while (nPos < n2) {
-		if (value[nPos] == ' ' || value[nPos] == '-' || value[nPos] == ':'
-				|| value[nPos] == ',') {
+		if (value[nPos] == ' ' || value[nPos] == '-' || value[nPos] == ':' || value[nPos] == ',') {
 			nPos++;
 			continue;
 		}
@@ -404,8 +393,7 @@ static int __to_demand(WORD di, BYTE *lpBuf, char *value, int nSize) {
 
 	int nLen1 = __to_float(di, lpBuf, value, n + 1);
 	if (nLen1 > 0) {
-		int nLen2 = __to_demand_datetime(di + 0x1000, &lpBuf[nLen1],
-				&value[n + 1], nSize - n - 1);
+		int nLen2 = __to_demand_datetime(di + 0x1000, &lpBuf[nLen1], &value[n + 1], nSize - n - 1);
 		if (nLen2 > 0) {
 			return (nLen1 + nLen2);
 		}
@@ -1005,8 +993,8 @@ static const IEC_PARSE IEC1107_V03[] = /*-泉州-*/
 		{ "10*?", 0xA410, __to_demand },	// (上月)正向有功总最大需量
 		};
 
-static const IEC_PARSE IEC1107_V04[] = /*-福建-*/
-{ { "2", 0xC011, __to_datetime },	// 时间
+static const IEC_PARSE IEC1107_V04[] = {/*-福建-*/
+{ "2", 0xC011, __to_datetime },	// 时间
 		{ "1", 0xC010, __to_datetime },  // 日期
 
 		{ "3", 0x9010, __to_float },	// 正向有功总电量

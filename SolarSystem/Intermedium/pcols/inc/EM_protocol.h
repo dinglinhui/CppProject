@@ -1,5 +1,5 @@
-#ifndef __EM_PROTOCOL_H__
-#define __EM_PROTOCOL_H__
+#ifndef EM_PROTOCOL_H__
+#define EM_PROTOCOL_H__
 
 #include <time.h>
 #include "OSDefs.h"
@@ -96,10 +96,8 @@ typedef struct tag_EM_UNIT {
 
 static const EM_UINT EM_UNIT_DEFINE[] = {
 		//nItem,	Nmae
-		{ 0, nullptr }, { 1, "V" }, { 2, "A" }, { 3, "kV" }, { 4, "kA" }, { 5,
-				"kW" }, { 6, "kvar" }, { 7, "kWh" }, { 8, "kvarh" }, { 9, "%" },
-		{ 10, "分" }, { 11, "秒" }, { 12, "BIT/S" }, { 13, "kVA" }, { 14, "度" }, {
-				15, "MDHM" }, };
+		{ 0, nullptr }, { 1, "V" }, { 2, "A" }, { 3, "kV" }, { 4, "kA" }, { 5, "kW" }, { 6, "kvar" }, { 7, "kWh" }, { 8, "kvarh" }, { 9, "%" }, { 10, "分" }, { 11, "秒" }, { 12, "BIT/S" },
+		{ 13, "kVA" }, { 14, "度" }, { 15, "MDHM" }, };
 
 typedef struct tag_EM_DATA_DEFINE {
 	DWORD DI;							//标识编码
@@ -1727,4 +1725,4 @@ typedef struct tag_EM_GUI_DISP {
 }
 #endif
 
-#endif //__EM_PROTOCOL_H__
+#endif //EM_PROTOCOL_H__

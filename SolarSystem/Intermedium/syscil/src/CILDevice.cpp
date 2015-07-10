@@ -10,8 +10,16 @@
 
 namespace syscil {
 CILDevice::CILDevice(BYTE nIdent, int nCacheSize) :
-		m_pNext(nullptr), m_nIdent(nIdent), m_nProtocol(PCOL_STREAM), m_bUsable(true), m_nCacheSize(nCacheSize), m_nCacheLen(0), m_lpCache(new BYTE[nCacheSize]), m_isOk(false), m_plstSend(nullptr), m_pService(
-				nullptr) {
+		m_pNext(nullptr),
+		m_nIdent(nIdent),
+		m_nProtocol(PCOL_STREAM),
+		m_bUsable(true),
+		m_nCacheSize(nCacheSize),
+		m_nCacheLen(0),
+		m_lpCache(new BYTE[nCacheSize]),
+		m_isOk(false),
+		m_plstSend(nullptr),
+		m_pService(nullptr) {
 }
 
 CILDevice::~CILDevice() {

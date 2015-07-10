@@ -16,10 +16,19 @@ namespace pcols {
 ///////////////////////////////////////////////////////////////////////////////
 
 CGMPoint::CGMPoint(CGMScheduler *parent) :
-		m_TN(-1), m_nActive(0), m_FailTimes(0), m_nPointType(Mul_Point), m_nPort(
-				-1), m_nBaud(-1), m_nDatabits(-1), m_nStopbits(-1), m_nParity(
-				-1), m_pNext( nullptr), m_pProtocol( nullptr), m_pScheduler(parent), m_nMPTimeEnable(
-				3) // 默认时间有效
+		m_TN(-1),
+		m_nActive(0),
+		m_FailTimes(0),
+		m_nPointType(Mul_Point),
+		m_nPort(-1),
+		m_nBaud(-1),
+		m_nDatabits(-1),
+		m_nStopbits(-1),
+		m_nParity(-1),
+		m_pNext(nullptr),
+		m_pProtocol(nullptr),
+		m_pScheduler(parent),
+		m_nMPTimeEnable(3) // 默认时间有效
 {
 	memset(m_host, 0, 6);
 	memset(m_user, 0, 6);
@@ -93,7 +102,7 @@ int CGMPoint::GetRecvTimeOut(Command *pCMD) {
 int CGMPoint::MakeCommands(void *parm, Command *&pCMDs) {
 	if (m_pProtocol != nullptr) {
 		// 预抄表命令
-		if (((int) *(int *)parm) == 4) {
+		if (((int) *(int *) parm) == 4) {
 			parm = (void*) 1;
 		}
 		// end

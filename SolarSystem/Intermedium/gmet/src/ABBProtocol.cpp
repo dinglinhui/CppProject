@@ -21,11 +21,12 @@ typedef struct tag_CMD_ABB {
 	BYTE phase;
 } CMD_ABB;
 
-static const CMD_ABB l_commands[] = { { 0x01, 0x18, 06 }, { 0x01, 0x18, 01 }, {
-		0x01, 5, 0 }, { 0x01, 5, 11 },
+static const CMD_ABB l_commands[] = { { 0x01, 0x18, 06 }, //
+		{ 0x01, 0x18, 01 }, //
+		{ 0x01, 5, 0 }, //
+		{ 0x01, 5, 11 },
 		//*********************************************************
 		//以下是抄电压电流功率功率因数 会影响表的精度
-		//Add 2009.1.6 Zhangjinzhi
 		{ 0x01, 0x1c, 6, 0 },    //A相  Voltage
 		{ 0x01, 0x1c, 6, 2 },    //B    Voltage
 		{ 0x01, 0x1c, 6, 4 },    //C    Voltage
@@ -52,20 +53,40 @@ static const CMD_ABB l_commands[] = { { 0x01, 0x18, 06 }, { 0x01, 0x18, 01 }, {
 		{ 0x01, 0x1c, 17, 4 },	//C   Total Power factor
 		{ 0x01, 0x1c, 17, 7 },
 		//***********************************************************
-		{ 0x01, 0x80, 0 },
+		{ 0x01, 0x80, 0 },	//
 
-		{ 0x02, 0x18, 06 }, { 0x02, 0x18, 01 }, { 0x02, 5, 12 },
-		{ 0x02, 5, 12 }, { 0x02, 5, 12 }, { 0x02, 5, 12 }, { 0x02, 5, 12 }, {
-				0x02, 5, 12 }, { 0x02, 5, 12 }, { 0x02, 5, 12 },
-		{ 0x02, 5, 12 }, { 0x02, 0x80, 0 },
+		{ 0x02, 0x18, 06 }, //
+		{ 0x02, 0x18, 01 }, //
+		{ 0x02, 5, 12 }, //
+		{ 0x02, 5, 12 }, //
+		{ 0x02, 5, 12 }, //
+		{ 0x02, 5, 12 }, //
+		{ 0x02, 5, 12 }, //
+		{ 0x02, 5, 12 }, //
+		{ 0x02, 5, 12 }, //
+		{ 0x02, 5, 12 }, //
+		{ 0x02, 5, 12 }, //
+		{ 0x02, 0x80, 0 }, //
 
-		{ 0x03, 0x18, 06 }, { 0x03, 0x18, 01 }, { 0x03, 5, 0 }, { 0x03, 5, 11 },
+		{ 0x03, 0x18, 06 }, //
+		{ 0x03, 0x18, 01 }, //
+		{ 0x03, 5, 0 }, //
+		{ 0x03, 5, 11 }, //
 		{ 0x03, 0x80, 0 }, };
 
 CABBProtocol::CABBProtocol(BYTE nMPT, PF_ABB_SAVE pSave) :
-		CGMProtocol(nMPT), m_pfSave(pSave), bHaveNextFrame(false), bFirstReadClass(
-				true), dl_DotPos(0), xl_DotPos(0), zxyg_dl(0.0), zxwg_dl(0.0), dy(
-				0), realdata(0.0), dl(0.0), xl(0.0)
+		CGMProtocol(nMPT),
+		m_pfSave(pSave),
+		bHaveNextFrame(false),
+		bFirstReadClass(true),
+		dl_DotPos(0),
+		xl_DotPos(0),
+		zxyg_dl(0.0),
+		zxwg_dl(0.0),
+		dy(0),
+		realdata(0.0),
+		dl(0.0),
+		xl(0.0)
 
 {
 
@@ -74,8 +95,7 @@ CABBProtocol::~CABBProtocol(void) {
 
 }
 
-int CABBProtocol::HandleTx(CGMPoint *pObj, Command *pCmd, BYTE *lpBuf,
-		int nBufSize) {
+int CABBProtocol::HandleTx(CGMPoint *pObj, Command *pCmd, BYTE *lpBuf, int nBufSize) {
 	assert(pObj != nullptr);
 	assert(pCmd != nullptr);
 	static BYTE nfrmIndex = 0;	//帧序号
@@ -105,8 +125,7 @@ int CABBProtocol::HandleTx(CGMPoint *pObj, Command *pCmd, BYTE *lpBuf,
 		}
 		if (ptr->gtt == 2) {
 
-			nSize = Abb_ReadHistoryData(Abb_GetCurrentMonth(), lpBuf,
-					nfrmIndex);
+			nSize = Abb_ReadHistoryData(Abb_GetCurrentMonth(), lpBuf, nfrmIndex);
 			if (nfrmIndex++ == 8)
 				nfrmIndex = 0;
 
@@ -134,8 +153,7 @@ int CABBProtocol::HandleTx(CGMPoint *pObj, Command *pCmd, BYTE *lpBuf,
 
 	return nSize;
 }
-int CABBProtocol::HandleRx(CGMPoint *pObj, Command *pCmd, BYTE *lpBuf,
-		int nBufSize) {
+int CABBProtocol::HandleRx(CGMPoint *pObj, Command *pCmd, BYTE *lpBuf, int nBufSize) {
 	assert(pObj != nullptr);
 	assert(pCmd != nullptr);
 	assert(lpBuf != nullptr);
@@ -302,37 +320,30 @@ int CABBProtocol::GetDotVal(int idotPos) {
 	}
 	return val;
 }
-void CABBProtocol::DisposeDL(int* pValue, BYTE nType, BYTE *lpBuf,
-		BYTE dotPos) {
+void CABBProtocol::DisposeDL(int* pValue, BYTE nType, BYTE *lpBuf, BYTE dotPos) {
 	char p[32];
 	memset(p, 0, 32);
 	if (nType == 1) /////Q4象限
 			{
-		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 5), *(lpBuf + 6), *(lpBuf + 7),
-				*(lpBuf + 8));
+		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 5), *(lpBuf + 6), *(lpBuf + 7), *(lpBuf + 8));
 	} else if (nType == 2) {
-		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 26), *(lpBuf + 27),
-				*(lpBuf + 28), *(lpBuf + 29));
+		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 26), *(lpBuf + 27), *(lpBuf + 28), *(lpBuf + 29));
 	} else if (nType == 3) ///Q3象限
 			{
-		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 12), *(lpBuf + 13),
-				*(lpBuf + 14), *(lpBuf + 15));
+		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 12), *(lpBuf + 13), *(lpBuf + 14), *(lpBuf + 15));
 	} else if (nType == 4) ///Q2象限
 			{
-		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 19), *(lpBuf + 20),
-				*(lpBuf + 21), *(lpBuf + 22));
+		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 19), *(lpBuf + 20), *(lpBuf + 21), *(lpBuf + 22));
 	} else if (nType == 5) ///Q1象限
 			{
-		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 26), *(lpBuf + 27),
-				*(lpBuf + 28), *(lpBuf + 29));
+		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 26), *(lpBuf + 27), *(lpBuf + 28), *(lpBuf + 29));
 	}
 
 	int val = GetDotVal(dotPos);
 	dl = atof(p) / val;
 	memcpy(pValue, &dl, sizeof(double));
 }
-void CABBProtocol::DisposeXL(int *pValue, BYTE nType, BYTE *lpBuf,
-		BYTE dotPos) {
+void CABBProtocol::DisposeXL(int *pValue, BYTE nType, BYTE *lpBuf, BYTE dotPos) {
 	char p[32];
 	memset(p, 0, 32);
 	if (nType == 1) {
@@ -348,16 +359,14 @@ void CABBProtocol::DisposeDY(BYTE nDY, int *pValue, BYTE *lpBuf) {
 	char p[32];
 	memset(p, 0, 32);
 	if (nDY == 6) {
-		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 5), *(lpBuf + 6), *(lpBuf + 7),
-				*(lpBuf + 8)); //4位整数
+		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 5), *(lpBuf + 6), *(lpBuf + 7), *(lpBuf + 8)); //4位整数
 		dy = StringToHex(p);
 		memcpy(pValue, &dy, sizeof(WORD));
 	} else {
 		sprintf(p, "%02x%02x", *(lpBuf + 9), *(lpBuf + 10)); //2位小数
 		realdata = StringToHex(p);
 		realdata /= 65535;
-		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 5), *(lpBuf + 6), *(lpBuf + 7),
-				*(lpBuf + 8)); //4位整数
+		sprintf(p, "%02x%02x%02x%02x", *(lpBuf + 5), *(lpBuf + 6), *(lpBuf + 7), *(lpBuf + 8)); //4位整数
 		realdata += StringToHex(p);
 
 		//realdata+=StringToHex(p)/65535;
@@ -393,8 +402,7 @@ void CABBProtocol::ParseClass0(BYTE *lpBuf, int nBufSize) {
 	xl_DotPos = atoi(tmp);
 
 }
-void CABBProtocol::ParseClass1(CGMPoint* pObj, Command* pCMD, BYTE* lpBuf,
-		int nBufSize) {
+void CABBProtocol::ParseClass1(CGMPoint* pObj, Command* pCMD, BYTE* lpBuf, int nBufSize) {
 	int value[64 / sizeof(int)] = { 0 };
 	CMD_ABB *ptr = (CMD_ABB*) pCMD->m_body;
 	//memset(value,0,64);
@@ -476,8 +484,7 @@ void CABBProtocol::ParseClass1(CGMPoint* pObj, Command* pCMD, BYTE* lpBuf,
  sRec.Mid(66,6);      //33,3  //需量
  sRec.Mid(72,10);     //36,5  //需量时间
  */
-void CABBProtocol::ParseClass11(BYTE frmIndex, CGMPoint* pObj, Command* pCMD,
-		BYTE *lpBuf, int nBufSize) {
+void CABBProtocol::ParseClass11(BYTE frmIndex, CGMPoint* pObj, Command* pCMD, BYTE *lpBuf, int nBufSize) {
 	int value[64 / sizeof(int)];
 	//if(nBufSize<30)
 	//	return ;
@@ -540,9 +547,9 @@ void CABBProtocol::ParseClass11(BYTE frmIndex, CGMPoint* pObj, Command* pCMD,
 
 		memcpy(value, &zxyg_dl, sizeof(double));
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9410, (void*) value);//正向有功总电量
+			m_pfSave(pObj, (void*) ptr->gtt, 0x9410, (void*) value);	//正向有功总电量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9010, (void*) value);//正向有功总电量
+			m_pfSave(pObj, (void*) ptr->gtt, 0x9010, (void*) value);	//正向有功总电量
 
 		memset(value, 0, 64);
 		DisposeXL(value, 1, lpBuf, xl_DotPos);
@@ -614,9 +621,9 @@ void CABBProtocol::ParseClass11(BYTE frmIndex, CGMPoint* pObj, Command* pCMD,
 		zxwg_dl += dl;
 		memcpy(value, &zxwg_dl, sizeof(double));
 		if (ptr->gtt == 2)
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9510, (void*) value);//正向无功总电量
+			m_pfSave(pObj, (void*) ptr->gtt, 0x9510, (void*) value);	//正向无功总电量
 		else
-			m_pfSave(pObj, (void*) ptr->gtt, 0x9110, (void*) value);//正向无功总电量
+			m_pfSave(pObj, (void*) ptr->gtt, 0x9110, (void*) value);	//正向无功总电量
 
 		memset(value, 0, 64);
 		DisposeXL(value, 1, lpBuf, xl_DotPos);
@@ -706,10 +713,8 @@ int CABBProtocol::GetCommands(void *parms, Command *&pCMDs, PointType) {
 						(*ppCMD)->m_nAck = 1;
 						((CMD_ABB*) (*ppCMD)->m_body)->gtt = l_commands[i].gtt;
 						((CMD_ABB*) (*ppCMD)->m_body)->cmd = l_commands[i].cmd;
-						((CMD_ABB*) (*ppCMD)->m_body)->classVal =
-								l_commands[i].classVal;
-						((CMD_ABB*) (*ppCMD)->m_body)->phase =
-								l_commands[i].phase;
+						((CMD_ABB*) (*ppCMD)->m_body)->classVal = l_commands[i].classVal;
+						((CMD_ABB*) (*ppCMD)->m_body)->phase = l_commands[i].phase;
 						(*ppCMD)->m_pNext = nullptr;
 						(*ppCMD)->m_pAck = nullptr;
 						ppCMD = &(*ppCMD)->m_pNext;

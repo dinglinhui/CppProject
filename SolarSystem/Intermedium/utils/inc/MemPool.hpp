@@ -50,41 +50,41 @@ private:
 
 #if 0
 namespace test {
-using namespace utils;
+	using namespace utils;
 //使用内存池的对象的大小不能小于一个指针的大小，否则会出错!
-class Airplane {
-public:
-	Airplane(int number = 0) {
-	}
-	static void* operator new(size_t size) {
-		return mempool.alloc();
-	}
-	static void operator delete(void *p) {
-		mempool.dealloc((Airplane*) p);
-	}
+	class Airplane {
+	public:
+		Airplane(int number = 0) {
+		}
+		static void* operator new(size_t size) {
+			return mempool.alloc();
+		}
+		static void operator delete(void *p) {
+			mempool.dealloc((Airplane*) p);
+		}
 
-private:
-	static MemPool<Airplane> mempool;
-};
+	private:
+		static MemPool<Airplane> mempool;
+	};
 
-MemPool<Airplane> Airplane::mempool(10); //预先分配10个Airplane的内存空间
+	MemPool<Airplane> Airplane::mempool(10); //预先分配10个Airplane的内存空间
 
-int testMempool() {
-	try {
-		Airplane *p1 = new Airplane();
-		Airplane *p2 = new Airplane();
-		Airplane *p3 = new Airplane();
-		delete p3;
-		Airplane *p4 = new Airplane();
-		delete p1;
-		delete p2;
-		delete p4;
+	int testMempool() {
+		try {
+			Airplane *p1 = new Airplane();
+			Airplane *p2 = new Airplane();
+			Airplane *p3 = new Airplane();
+			delete p3;
+			Airplane *p4 = new Airplane();
+			delete p1;
+			delete p2;
+			delete p4;
 
-	} catch (std::exception const& ex) {
-		std::cerr << "Exception: " << ex.what() << std::endl;
+		} catch (std::exception const& ex) {
+			std::cerr << "Exception: " << ex.what() << std::endl;
+		}
+		return 0;
 	}
-	return 0;
-}
 }
 #endif
 

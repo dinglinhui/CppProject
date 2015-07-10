@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_PCOLS_INC_PCOL_FK_H_
-#define INTERMEDIUM_PCOLS_INC_PCOL_FK_H_
+#ifndef PCOL_FK_H_
+#define PCOL_FK_H_
 
 #include "OSDefs.h"
 #include <FK_protocol.h>
@@ -66,4 +66,4 @@ extern int plms_fmt_fn(BYTE afn, BYTE fn, BYTE* pTran, void* pAppl);
 
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_PCOLS_INC_PCOL_FK_H_ */
+#endif /* PCOL_FK_H_ */

@@ -47,8 +47,7 @@ WORD plms_cvt_dt(BYTE fn) {
 }
 
 BYTE plms_cvt_fn(WORD dt) {
-	static const BYTE s_dt[] = { 0, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40,
-			0x80 };
+	static const BYTE s_dt[] = { 0, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 };
 
 	if (dt == 0x0000)
 		return 0;
@@ -67,8 +66,7 @@ BYTE plms_cvt_fn(WORD dt) {
 }
 
 WORD plms_cvt_pn(WORD da) {
-	static const BYTE s_da[] = { 0, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40,
-			0x80 };
+	static const BYTE s_da[] = { 0, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 };
 
 	if (da == 0x0000)
 		return 0;
@@ -118,7 +116,6 @@ static BYTE FK_GetRespondAFN(BYTE afn) {
 	case FK_CMD_CONTROL:
 		rep = FK_CMD_ACK;
 		break;
-
 	default:
 		break;
 	}
@@ -391,8 +388,7 @@ int FK_GetFrame(FK_UDATA *udt, BYTE *lpBuf, int nSize) {
 					flen -= 6;
 				int nPos = nUdp + flen;
 				udt->lnkData.aux.Tp.PFC = lpBuf[nPos++];
-				nPos += plms_fmt_appl(16, &lpBuf[nPos],
-						&udt->lnkData.aux.Tp.time);
+				nPos += plms_fmt_appl(16, &lpBuf[nPos], &udt->lnkData.aux.Tp.time);
 				udt->lnkData.aux.Tp.delay = lpBuf[nPos++];
 			}
 
@@ -426,8 +422,7 @@ int FK_GetFrame(FK_UDATA *udt, BYTE *lpBuf, int nSize) {
 				udt->lnkData.aux.EC.EC1 = lpBuf[nUdp++];
 				udt->lnkData.aux.EC.EC1 = lpBuf[nUdp++];
 				udt->lnkData.aux.Tp.PFC = lpBuf[nUdp++];
-				nUdp += plms_fmt_appl(16, &lpBuf[nUdp],
-						&udt->lnkData.aux.Tp.time);
+				nUdp += plms_fmt_appl(16, &lpBuf[nUdp], &udt->lnkData.aux.Tp.time);
 				udt->lnkData.aux.Tp.delay = lpBuf[nUdp++];
 			}
 		}
@@ -454,8 +449,7 @@ typedef struct tag_FMT1 {
 
 static int plms_valid(void *ptr, int nSize) {
 	for (int i = 0; i < nSize; ++i) {
-		if ((((BYTE*) ptr)[i] != 0xEE) && (((BYTE*) ptr)[i] != 0xFF)
-				&& (((BYTE*) ptr)[i] != 0xEF)) {
+		if ((((BYTE*) ptr)[i] != 0xEE) && (((BYTE*) ptr)[i] != 0xFF) && (((BYTE*) ptr)[i] != 0xEF)) {
 			return 0;
 		}
 	}
@@ -681,9 +675,7 @@ static int plms_fmt_appl_05(BYTE *pTran, void *pAppl) {
 	if (plms_valid(pTran, 2) == 0) {
 		WORD wVal = 0;
 		bcd2word(pTran[0], pTran[1] & 0x7F, &wVal);
-		ptr->sVal =
-				(((pTran[1] & 0x80) >> 7) == 0) ?
-						(short) wVal : -1 * (short) wVal;
+		ptr->sVal = (((pTran[1] & 0x80) >> 7) == 0) ? (short) wVal : -1 * (short) wVal;
 	} else {
 		memcpy(ptr, pTran, sizeof(FK_DATAMASK05));
 	}
@@ -710,9 +702,7 @@ static int plms_fmt_appl_06(BYTE *pTran, void *pAppl) {
 	if (plms_valid(pTran, 2) == 0) {
 		WORD wVal = 0;
 		bcd2word(pTran[0], pTran[1] & 0x7F, &wVal);
-		ptr->sVal =
-				(((pTran[1] & 0x80) >> 7) == 0) ?
-						(short) wVal : -1 * (short) wVal;
+		ptr->sVal = (((pTran[1] & 0x80) >> 7) == 0) ? (short) wVal : -1 * (short) wVal;
 	} else {
 		memcpy(ptr, pTran, sizeof(FK_DATAMASK06));
 	}
@@ -785,9 +775,7 @@ static int plms_fmt_appl_09(BYTE *pTran, void *pAppl) {
 	if (plms_valid(pTran, 3) == 0) {
 		DWORD dwVal = 0;
 		bcd2long(pTran[0], pTran[1], pTran[2] & 0x7F, 0, &dwVal);
-		ptr->nVal =
-				(((pTran[2] & 0x80) >> 7) == 0) ?
-						(int) dwVal : -1 * (int) dwVal;
+		ptr->nVal = (((pTran[2] & 0x80) >> 7) == 0) ? (int) dwVal : -1 * (int) dwVal;
 	} else {
 		memcpy(ptr, pTran, sizeof(FK_DATAMASK09));
 	}
@@ -1209,9 +1197,7 @@ static int plms_fmt_appl_25(BYTE *pTran, void *pAppl) {
 	if (plms_valid(pTran, 3) == 0) {
 		DWORD dwVal = 0;
 		bcd2long(pTran[0], pTran[1], pTran[2] & 0x7F, 0, &dwVal);
-		ptr->dbVal =
-				(((pTran[2] & 0x80) >> 7) == 0) ?
-						(int) dwVal : -1 * (int) dwVal;
+		ptr->dbVal = (((pTran[2] & 0x80) >> 7) == 0) ? (int) dwVal : -1 * (int) dwVal;
 	} else {
 		memcpy(ptr, pTran, sizeof(FK_DATAMASK25));
 	}
@@ -1281,25 +1267,13 @@ static int plms_fmt_tran_27(BYTE *pTran, void *pAppl) {
 	return 4;
 }
 //
-static const FMT1 fmt1[] = { { 1, plms_fmt_appl_01, plms_fmt_tran_01 }, { 2,
-		plms_fmt_appl_02, plms_fmt_tran_02 }, { 3, plms_fmt_appl_03,
-		plms_fmt_tran_03 }, { 4, plms_fmt_appl_04, plms_fmt_tran_04 }, { 5,
-		plms_fmt_appl_05, plms_fmt_tran_05 }, { 6, plms_fmt_appl_06,
-		plms_fmt_tran_06 }, { 7, plms_fmt_appl_07, plms_fmt_tran_07 }, { 8,
-		plms_fmt_appl_08, plms_fmt_tran_08 }, { 9, plms_fmt_appl_09,
-		plms_fmt_tran_09 }, { 10, plms_fmt_appl_10, plms_fmt_tran_10 }, { 11,
-		plms_fmt_appl_11, plms_fmt_tran_11 }, { 12, plms_fmt_appl_12,
-		plms_fmt_tran_12 }, { 13, plms_fmt_appl_13, plms_fmt_tran_13 }, { 14,
-		plms_fmt_appl_14, plms_fmt_tran_14 }, { 15, plms_fmt_appl_15,
-		plms_fmt_tran_15 }, { 16, plms_fmt_appl_16, plms_fmt_tran_16 }, { 17,
-		plms_fmt_appl_17, plms_fmt_tran_17 }, { 18, plms_fmt_appl_18,
-		plms_fmt_tran_18 }, { 19, plms_fmt_appl_19, plms_fmt_tran_19 }, { 20,
-		plms_fmt_appl_20, plms_fmt_tran_20 }, { 21, plms_fmt_appl_21,
-		plms_fmt_tran_21 }, { 22, plms_fmt_appl_22, plms_fmt_tran_22 }, { 23,
-		plms_fmt_appl_23, plms_fmt_tran_23 }, { 24, plms_fmt_appl_24,
-		plms_fmt_tran_24 }, { 25, plms_fmt_appl_25, plms_fmt_tran_25 }, { 26,
-		plms_fmt_appl_26, plms_fmt_tran_26 }, { 27, plms_fmt_appl_27,
-		plms_fmt_tran_27 }, };
+static const FMT1 fmt1[] = { { 1, plms_fmt_appl_01, plms_fmt_tran_01 }, { 2, plms_fmt_appl_02, plms_fmt_tran_02 }, { 3, plms_fmt_appl_03, plms_fmt_tran_03 }, { 4, plms_fmt_appl_04, plms_fmt_tran_04 },
+		{ 5, plms_fmt_appl_05, plms_fmt_tran_05 }, { 6, plms_fmt_appl_06, plms_fmt_tran_06 }, { 7, plms_fmt_appl_07, plms_fmt_tran_07 }, { 8, plms_fmt_appl_08, plms_fmt_tran_08 }, { 9,
+				plms_fmt_appl_09, plms_fmt_tran_09 }, { 10, plms_fmt_appl_10, plms_fmt_tran_10 }, { 11, plms_fmt_appl_11, plms_fmt_tran_11 }, { 12, plms_fmt_appl_12, plms_fmt_tran_12 }, { 13,
+				plms_fmt_appl_13, plms_fmt_tran_13 }, { 14, plms_fmt_appl_14, plms_fmt_tran_14 }, { 15, plms_fmt_appl_15, plms_fmt_tran_15 }, { 16, plms_fmt_appl_16, plms_fmt_tran_16 }, { 17,
+				plms_fmt_appl_17, plms_fmt_tran_17 }, { 18, plms_fmt_appl_18, plms_fmt_tran_18 }, { 19, plms_fmt_appl_19, plms_fmt_tran_19 }, { 20, plms_fmt_appl_20, plms_fmt_tran_20 }, { 21,
+				plms_fmt_appl_21, plms_fmt_tran_21 }, { 22, plms_fmt_appl_22, plms_fmt_tran_22 }, { 23, plms_fmt_appl_23, plms_fmt_tran_23 }, { 24, plms_fmt_appl_24, plms_fmt_tran_24 }, { 25,
+				plms_fmt_appl_25, plms_fmt_tran_25 }, { 26, plms_fmt_appl_26, plms_fmt_tran_26 }, { 27, plms_fmt_appl_27, plms_fmt_tran_27 }, };
 
 static const FMT1* Find(int nClass) {
 	int nCount = sizeof(fmt1) / sizeof(FMT1);
@@ -1800,48 +1774,39 @@ static int plms_04F26(BYTE *pTran, void *pAppl) {
 
 	nPos += plms_fmt_appl_07(&pTran[nPos], &ptr->uulVolt);
 	ptr->uulVoltLimitValue.OverLimitTime = pTran[nPos++];
-	nPos += plms_fmt_appl_05(&pTran[nPos],
-			&ptr->uulVoltLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_appl_05(&pTran[nPos], &ptr->uulVoltLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_appl_07(&pTran[nPos], &ptr->lllVolt);
 	ptr->lllVoltLimitValue.OverLimitTime = pTran[nPos++];
-	nPos += plms_fmt_appl_05(&pTran[nPos],
-			&ptr->lllVoltLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_appl_05(&pTran[nPos], &ptr->lllVoltLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_appl_25(&pTran[nPos], &ptr->uulICurr);
 	ptr->uulICurrLimitValue.OverLimitTime = pTran[nPos++];
-	nPos += plms_fmt_appl_05(&pTran[nPos],
-			&ptr->uulICurrLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_appl_05(&pTran[nPos], &ptr->uulICurrLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_appl_25(&pTran[nPos], &ptr->ulICurr);
 	ptr->ulICurrLimitValue.OverLimitTime = pTran[nPos++];
-	nPos += plms_fmt_appl_05(&pTran[nPos],
-			&ptr->ulICurrLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_appl_05(&pTran[nPos], &ptr->ulICurrLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_appl_25(&pTran[nPos], &ptr->ul0Curr);
 	ptr->ul0CurrLimitValue.OverLimitTime = pTran[nPos++];
-	nPos += plms_fmt_appl_05(&pTran[nPos],
-			&ptr->ul0CurrLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_appl_05(&pTran[nPos], &ptr->ul0CurrLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_appl_23(&pTran[nPos], &ptr->uulPower);
 	ptr->uulPowerLimitValue.OverLimitTime = pTran[nPos++];
-	nPos += plms_fmt_appl_05(&pTran[nPos],
-			&ptr->uulPowerLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_appl_05(&pTran[nPos], &ptr->uulPowerLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_appl_23(&pTran[nPos], &ptr->ulPower);
 	ptr->ulPowerLimitValue.OverLimitTime = pTran[nPos++];
-	nPos += plms_fmt_appl_05(&pTran[nPos],
-			&ptr->ulPowerLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_appl_05(&pTran[nPos], &ptr->ulPowerLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_appl_05(&pTran[nPos], &ptr->lVoltImb);
 	ptr->lVoltImbLimitValue.OverLimitTime = pTran[nPos++];
-	nPos += plms_fmt_appl_05(&pTran[nPos],
-			&ptr->lVoltImbLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_appl_05(&pTran[nPos], &ptr->lVoltImbLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_appl_05(&pTran[nPos], &ptr->lCurrImb);
 	ptr->lCurrImbLimitValue.OverLimitTime = pTran[nPos++];
-	nPos += plms_fmt_appl_05(&pTran[nPos],
-			&ptr->lCurrImbLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_appl_05(&pTran[nPos], &ptr->lCurrImbLimitValue.OverLimitComeBackCoefficient);
 
 	ptr->nTimes = pTran[nPos++];
 	return nPos;
@@ -1939,10 +1904,8 @@ static int plms_04F33(BYTE *pTran, void *pAppl) {
 		nPos++;
 
 		for (int j = 0; j < nNum; j++) {
-			nPos += plms_fmt_appl_19(&pTran[nPos],
-					&ptr->hPortMode[i].GMPeriod[j][0]);
-			nPos += plms_fmt_appl_19(&pTran[nPos],
-					&ptr->hPortMode[i].GMPeriod[j][1]);
+			nPos += plms_fmt_appl_19(&pTran[nPos], &ptr->hPortMode[i].GMPeriod[j][0]);
+			nPos += plms_fmt_appl_19(&pTran[nPos], &ptr->hPortMode[i].GMPeriod[j][1]);
 		}
 	}
 	return nPos;
@@ -2037,8 +2000,7 @@ static int plms_04F38(BYTE *pTran, void *pAppl) {
 			ptr->hItemMeta[nUserSmallKind].nUserSmallKind = nUserSmallKind;
 			ptr->hItemMeta[nUserSmallKind].nDTCount = nCount;
 			if (nUserSmallKind < NL_FK_MAX_SMALL_KIND) {
-				memcpy(ptr->hItemMeta[nUserSmallKind].DTFlag, &pTran[wPos],
-						nCount);
+				memcpy(ptr->hItemMeta[nUserSmallKind].DTFlag, &pTran[wPos], nCount);
 			}
 			wPos += nCount;
 		}
@@ -2060,8 +2022,7 @@ static int plms_04F41(BYTE *pTran, void *pAppl) {
 			ptr->scheme[i].nIndex = pTran[nPos++];
 			for (int j = 0; j < 8; ++j) {
 				if (((ptr->scheme[i].nIndex >> j) & 0x01) != 0) {
-					nPos += plms_fmt_appl_02(&pTran[nPos],
-							&ptr->scheme[i].param[j]);
+					nPos += plms_fmt_appl_02(&pTran[nPos], &ptr->scheme[i].param[j]);
 				}
 			}
 		}
@@ -2831,9 +2792,7 @@ static int plms_0AF10(BYTE *pTran, void *pAppl) {
 	nCnt = min(ptr->nCount, NL_JZ_MAX_04F10LSBUF_POINT);
 
 	for (int i = 0; i < nCnt; ++i) {
-		if ((ptr->hMeter[i].nIndex == 0)
-				|| (ptr->hMeter[i].nIndex > NL_JZ_MAX_MEASURED_POINT)
-				|| (ptr->hMeter[i].nTN > NL_JZ_MAX_MEASURED_POINT)) {
+		if ((ptr->hMeter[i].nIndex == 0) || (ptr->hMeter[i].nIndex > NL_JZ_MAX_MEASURED_POINT) || (ptr->hMeter[i].nTN > NL_JZ_MAX_MEASURED_POINT)) {
 			continue;
 		}
 		nRdCnt++;
@@ -2841,20 +2800,17 @@ static int plms_0AF10(BYTE *pTran, void *pAppl) {
 		pTran[nPos++] = HIBYTE(ptr->hMeter[i].nIndex);
 		pTran[nPos++] = LOBYTE(ptr->hMeter[i].nTN);
 		pTran[nPos++] = HIBYTE(ptr->hMeter[i].nTN);
-		pTran[nPos++] = (ptr->hMeter[i].nBaud << 5)
-				| (ptr->hMeter[i].nPort & 0x1F);
+		pTran[nPos++] = (ptr->hMeter[i].nBaud << 5) | (ptr->hMeter[i].nPort & 0x1F);
 		pTran[nPos++] = ptr->hMeter[i].nProtocol;
 		memcpy(&pTran[nPos], ptr->hMeter[i].addr, 6);
 		nPos += 6;
 		memcpy(&pTran[nPos], ptr->hMeter[i].pwd, 6);
 		nPos += 6;
 		pTran[nPos++] = ptr->hMeter[i].nTariffs;
-		pTran[nPos++] = (ptr->hMeter[i].nDecimal - 1)
-				| ((ptr->hMeter[i].nInter - 4) << 2);
+		pTran[nPos++] = (ptr->hMeter[i].nDecimal - 1) | ((ptr->hMeter[i].nInter - 4) << 2);
 		memcpy(&pTran[nPos], ptr->hMeter[i].collAddr, 6);
 		nPos += 6;
-		pTran[nPos++] = (ptr->hMeter[i].nUserBigKind << 4)
-				| (ptr->hMeter[i].nUserSmallKind);
+		pTran[nPos++] = (ptr->hMeter[i].nUserBigKind << 4) | (ptr->hMeter[i].nUserSmallKind);
 	}
 
 	pTran[0] = LOBYTE(nRdCnt);
@@ -2874,8 +2830,7 @@ static int plms_0AF11(BYTE *pTran, void *pAppl) {
 	nCnt = min(ptr->nCount, NL_FK_MAX_MC);
 
 	for (int i = 0; i < nCnt; ++i) {
-		if ((ptr->hPulse[i].nPort == 0) || (ptr->hPulse[i].nPort > NL_FK_MAX_MC)
-				|| (ptr->hPulse[i].nTN > NL_JZ_MAX_MEASURED_POINT)) {
+		if ((ptr->hPulse[i].nPort == 0) || (ptr->hPulse[i].nPort > NL_FK_MAX_MC) || (ptr->hPulse[i].nTN > NL_JZ_MAX_MEASURED_POINT)) {
 			continue;
 		}
 		nRdCnt++;
@@ -2912,8 +2867,7 @@ static int plms_0AF13(BYTE *pTran, void *pAppl) {
 	nCnt = min(ptr->nCount, NL_FK_MAX_ML);
 
 	for (int i = 0; i < nCnt; ++i) {
-		if ((ptr->hDMS[i].nPort == 0) || (ptr->hDMS[i].nPort > NL_FK_MAX_MC)
-				|| (ptr->hDMS[i].nTN > NL_JZ_MAX_MEASURED_POINT)) {
+		if ((ptr->hDMS[i].nPort == 0) || (ptr->hDMS[i].nPort > NL_FK_MAX_MC) || (ptr->hDMS[i].nTN > NL_JZ_MAX_MEASURED_POINT)) {
 			continue;
 		}
 		nRdCnt++;
@@ -2937,8 +2891,7 @@ static int plms_0AF14(BYTE *pTran, void *pAppl) {
 	nCnt = min(ptr->nCount, NL_FK_MAX_SUIT);
 
 	for (int i = 0; i < nCnt; ++i) {
-		if ((ptr->hSuit[i].nIndex == 0)
-				|| (ptr->hSuit[i].nIndex > NL_FK_MAX_SUIT)) {
+		if ((ptr->hSuit[i].nIndex == 0) || (ptr->hSuit[i].nIndex > NL_FK_MAX_SUIT)) {
 			continue;
 		}
 		nRdCnt++;
@@ -2947,8 +2900,7 @@ static int plms_0AF14(BYTE *pTran, void *pAppl) {
 		pTran[nPos++] = nSize;
 		for (int j = 0; j < nSize; ++j) {
 			BYTE body = 0;
-			body = (ptr->hSuit[i].flag[j].body & 0xC0)
-					| ((ptr->hSuit[i].flag[j].body & 0x3F) - 1);
+			body = (ptr->hSuit[i].flag[j].body & 0xC0) | ((ptr->hSuit[i].flag[j].body & 0x3F) - 1);
 			pTran[nPos++] = body;
 		}
 	}
@@ -2967,8 +2919,7 @@ static int plms_0AF15(BYTE *pTran, void *pAppl) {
 	nCnt = min(ptr->nCount, NL_FK_MAX_DIFFER);
 
 	for (int i = 0; i < nCnt; ++i) {
-		if ((ptr->hDiffer[i].nIndex == 0)
-				|| (ptr->hDiffer[i].nIndex > NL_FK_MAX_DIFFER)) {
+		if ((ptr->hDiffer[i].nIndex == 0) || (ptr->hDiffer[i].nIndex > NL_FK_MAX_DIFFER)) {
 			continue;
 		}
 		nRdCnt++;
@@ -3084,48 +3035,39 @@ static int plms_0AF26(BYTE *pTran, void *pAppl) {
 
 	nPos += plms_fmt_tran_07(&pTran[nPos], &ptr->uulVolt);
 	pTran[nPos++] = ptr->uulVoltLimitValue.OverLimitTime;
-	nPos += plms_fmt_tran_05(&pTran[nPos],
-			&ptr->uulVoltLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_tran_05(&pTran[nPos], &ptr->uulVoltLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_tran_07(&pTran[nPos], &ptr->lllVolt);
 	pTran[nPos++] = ptr->lllVoltLimitValue.OverLimitTime;
-	nPos += plms_fmt_tran_05(&pTran[nPos],
-			&ptr->lllVoltLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_tran_05(&pTran[nPos], &ptr->lllVoltLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_tran_25(&pTran[nPos], &ptr->uulICurr);
 	pTran[nPos++] = ptr->uulICurrLimitValue.OverLimitTime;
-	nPos += plms_fmt_tran_05(&pTran[nPos],
-			&ptr->uulICurrLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_tran_05(&pTran[nPos], &ptr->uulICurrLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_tran_25(&pTran[nPos], &ptr->ulICurr);
 	pTran[nPos++] = ptr->ulICurrLimitValue.OverLimitTime;
-	nPos += plms_fmt_tran_05(&pTran[nPos],
-			&ptr->ulICurrLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_tran_05(&pTran[nPos], &ptr->ulICurrLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_tran_25(&pTran[nPos], &ptr->ul0Curr);
 	pTran[nPos++] = ptr->ul0CurrLimitValue.OverLimitTime;
-	nPos += plms_fmt_tran_05(&pTran[nPos],
-			&ptr->ul0CurrLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_tran_05(&pTran[nPos], &ptr->ul0CurrLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_tran_23(&pTran[nPos], &ptr->uulPower);
 	pTran[nPos++] = ptr->uulPowerLimitValue.OverLimitTime;
-	nPos += plms_fmt_tran_05(&pTran[nPos],
-			&ptr->uulPowerLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_tran_05(&pTran[nPos], &ptr->uulPowerLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_tran_23(&pTran[nPos], &ptr->ulPower);
 	pTran[nPos++] = ptr->ulPowerLimitValue.OverLimitTime;
-	nPos += plms_fmt_tran_05(&pTran[nPos],
-			&ptr->ulPowerLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_tran_05(&pTran[nPos], &ptr->ulPowerLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_tran_05(&pTran[nPos], &ptr->lVoltImb);
 	pTran[nPos++] = ptr->lVoltImbLimitValue.OverLimitTime;
-	nPos += plms_fmt_tran_05(&pTran[nPos],
-			&ptr->lVoltImbLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_tran_05(&pTran[nPos], &ptr->lVoltImbLimitValue.OverLimitComeBackCoefficient);
 
 	nPos += plms_fmt_tran_05(&pTran[nPos], &ptr->lCurrImb);
 	pTran[nPos++] = ptr->lCurrImbLimitValue.OverLimitTime;
-	nPos += plms_fmt_tran_05(&pTran[nPos],
-			&ptr->lCurrImbLimitValue.OverLimitComeBackCoefficient);
+	nPos += plms_fmt_tran_05(&pTran[nPos], &ptr->lCurrImbLimitValue.OverLimitComeBackCoefficient);
 
 	pTran[nPos++] = ptr->nTimes;
 	return nPos;
@@ -3205,8 +3147,7 @@ static int plms_0AF33(BYTE *pTran, void *pAppl) {
 	memset(nSeq, 0, sizeof(nSeq));
 
 	for (int i = 0; i < nCnt; ++i) {
-		if ((ptr->hPortMode[i].nComPort == 0)
-				|| (ptr->hPortMode[i].nComPort > NL_FK_PARA_MAX_COM)) {
+		if ((ptr->hPortMode[i].nComPort == 0) || (ptr->hPortMode[i].nComPort > NL_FK_PARA_MAX_COM)) {
 			continue;
 		}
 
@@ -3230,10 +3171,8 @@ static int plms_0AF33(BYTE *pTran, void *pAppl) {
 		pTran[nPos++] = nNum;
 
 		for (int j = 0; j < nNum; j++) {
-			nPos += plms_fmt_tran_19(&pTran[nPos],
-					&ptr->hPortMode[i].GMPeriod[j][0]);
-			nPos += plms_fmt_tran_19(&pTran[nPos],
-					&ptr->hPortMode[i].GMPeriod[j][1]);
+			nPos += plms_fmt_tran_19(&pTran[nPos], &ptr->hPortMode[i].GMPeriod[j][0]);
+			nPos += plms_fmt_tran_19(&pTran[nPos], &ptr->hPortMode[i].GMPeriod[j][1]);
 		}
 
 	}
@@ -3254,8 +3193,7 @@ static int plms_0AF34(BYTE *pTran, void *pAppl) {
 	nCnt = min(ptr->nCount, NL_FK_PARA_MAX_COM);
 
 	for (int i = 0; i < nCnt; i++) {
-		if ((ptr->hDevicePara[i].Port == 0)
-				|| (ptr->hDevicePara[i].Port > NL_FK_PARA_MAX_COM)) {
+		if ((ptr->hDevicePara[i].Port == 0) || (ptr->hDevicePara[i].Port > NL_FK_PARA_MAX_COM)) {
 			continue;
 		}
 		nRdCnt++;
@@ -3349,8 +3287,7 @@ static int plms_0AF41(BYTE *pTran, void *pAppl) {
 			pTran[nPos++] = ptr->scheme[i].nIndex;
 			for (int j = 0; j < 8; ++j) {
 				if (((ptr->scheme[i].nIndex >> j) & 0x01) != 0) {
-					nPos += plms_fmt_tran_02(&pTran[nPos],
-							&ptr->scheme[i].param[j]);
+					nPos += plms_fmt_tran_02(&pTran[nPos], &ptr->scheme[i].param[j]);
 				}
 			}
 		}
@@ -4987,8 +4924,7 @@ static int plms_0CF169(BYTE *pTran, void *pAppl) {
 				size2 = 0;
 			pTran[nPos++] = size2;
 			for (int j = 0; j < size2; j++) {
-				nPos += plms_fmt_tran_12(&pTran[nPos],
-						&ptr->Router[i].RelayAddr[j]);
+				nPos += plms_fmt_tran_12(&pTran[nPos], &ptr->Router[i].RelayAddr[j]);
 			}
 		}
 	}
@@ -7263,8 +7199,7 @@ static int plms_ERC35(BYTE *pTran, void *pAppl) {
 	for (BYTE i = 0; i < ptr->nNum; i++) {
 		nPos += plms_fmt_tran_12(&pTran[nPos], &ptr->dMeter[i].dmAddr);
 
-		pTran[nPos] = ((ptr->dMeter[i].nPhase << 5) & 0xe0)
-				| (ptr->dMeter[i].nQuality & 0x0f);
+		pTran[nPos] = ((ptr->dMeter[i].nPhase << 5) & 0xe0) | (ptr->dMeter[i].nQuality & 0x0f);
 		nPos += 1;
 
 		pTran[nPos++] = ptr->dMeter[i].nProtocol;
@@ -7323,67 +7258,25 @@ static int plms_ERC36(BYTE *pTran, void *pAppl) {
 	return nPos;
 }
 
-static const FMT2 fmt2[] = { { FK_CMD_SETPARAM, 1, plms_04F01 }, {
-		FK_CMD_SETPARAM, 2, plms_04F02 }, { FK_CMD_SETPARAM, 3, plms_04F03 }, {
-		FK_CMD_SETPARAM, 4, plms_04F04 }, { FK_CMD_SETPARAM, 5, plms_04F05 }, {
-		FK_CMD_SETPARAM, 6, plms_04F06 }, { FK_CMD_SETPARAM, 7, plms_04F07 }, {
-		FK_CMD_SETPARAM, 8, plms_04F08 }, { FK_CMD_SETPARAM, 9, plms_04F09 }, {
-		FK_CMD_SETPARAM, 10, plms_04F10 }, { FK_CMD_SETPARAM, 11, plms_04F11 },
-		{ FK_CMD_SETPARAM, 12, plms_04F12 },
-		{ FK_CMD_SETPARAM, 13, plms_04F13 },
-		{ FK_CMD_SETPARAM, 14, plms_04F14 },
-		{ FK_CMD_SETPARAM, 15, plms_04F15 },
-		{ FK_CMD_SETPARAM, 16, plms_04F16 },
-		{ FK_CMD_SETPARAM, 17, plms_04F17 },
-		{ FK_CMD_SETPARAM, 18, plms_04F18 },
-		{ FK_CMD_SETPARAM, 19, plms_04F19 },
-		{ FK_CMD_SETPARAM, 20, plms_04F20 },
-		{ FK_CMD_SETPARAM, 21, plms_04F21 },
-		{ FK_CMD_SETPARAM, 22, plms_04F22 },
-		{ FK_CMD_SETPARAM, 23, plms_04F23 },
+static const FMT2 fmt2[] = { { FK_CMD_SETPARAM, 1, plms_04F01 }, { FK_CMD_SETPARAM, 2, plms_04F02 }, { FK_CMD_SETPARAM, 3, plms_04F03 }, { FK_CMD_SETPARAM, 4, plms_04F04 }, { FK_CMD_SETPARAM, 5,
+		plms_04F05 }, { FK_CMD_SETPARAM, 6, plms_04F06 }, { FK_CMD_SETPARAM, 7, plms_04F07 }, { FK_CMD_SETPARAM, 8, plms_04F08 }, { FK_CMD_SETPARAM, 9, plms_04F09 },
+		{ FK_CMD_SETPARAM, 10, plms_04F10 }, { FK_CMD_SETPARAM, 11, plms_04F11 }, { FK_CMD_SETPARAM, 12, plms_04F12 }, { FK_CMD_SETPARAM, 13, plms_04F13 }, { FK_CMD_SETPARAM, 14, plms_04F14 }, {
+				FK_CMD_SETPARAM, 15, plms_04F15 }, { FK_CMD_SETPARAM, 16, plms_04F16 }, { FK_CMD_SETPARAM, 17, plms_04F17 }, { FK_CMD_SETPARAM, 18, plms_04F18 }, { FK_CMD_SETPARAM, 19, plms_04F19 }, {
+				FK_CMD_SETPARAM, 20, plms_04F20 }, { FK_CMD_SETPARAM, 21, plms_04F21 }, { FK_CMD_SETPARAM, 22, plms_04F22 }, { FK_CMD_SETPARAM, 23, plms_04F23 },
 //	{ FK_CMD_SETPARAM,	24,	plms_04F24  },
-		{ FK_CMD_SETPARAM, 25, plms_04F25 },
-		{ FK_CMD_SETPARAM, 26, plms_04F26 },
-		{ FK_CMD_SETPARAM, 27, plms_04F27 },
-		{ FK_CMD_SETPARAM, 28, plms_04F28 },
-		{ FK_CMD_SETPARAM, 29, plms_04F29 },
-		{ FK_CMD_SETPARAM, 30, plms_04F30 },
-		{ FK_CMD_SETPARAM, 31, plms_04F31 },
+		{ FK_CMD_SETPARAM, 25, plms_04F25 }, { FK_CMD_SETPARAM, 26, plms_04F26 }, { FK_CMD_SETPARAM, 27, plms_04F27 }, { FK_CMD_SETPARAM, 28, plms_04F28 }, { FK_CMD_SETPARAM, 29, plms_04F29 }, {
+				FK_CMD_SETPARAM, 30, plms_04F30 }, { FK_CMD_SETPARAM, 31, plms_04F31 },
 //	{ FK_CMD_SETPARAM,	32,	plms_04F32  },
-		{ FK_CMD_SETPARAM, 33, plms_04F33 },
-		{ FK_CMD_SETPARAM, 34, plms_04F34 },
-		{ FK_CMD_SETPARAM, 35, plms_04F35 },
-		{ FK_CMD_SETPARAM, 36, plms_04F36 },
-		{ FK_CMD_SETPARAM, 37, plms_04F37 },
-		{ FK_CMD_SETPARAM, 38, plms_04F38 },
-		{ FK_CMD_SETPARAM, 39, plms_04F39 },
-		{ FK_CMD_SETPARAM, 41, plms_04F41 },
-		{ FK_CMD_SETPARAM, 42, plms_04F42 },
-		{ FK_CMD_SETPARAM, 43, plms_04F43 },
-		{ FK_CMD_SETPARAM, 44, plms_04F44 },
-		{ FK_CMD_SETPARAM, 45, plms_04F45 },
-		{ FK_CMD_SETPARAM, 46, plms_04F46 },
-		{ FK_CMD_SETPARAM, 47, plms_04F47 },
-		{ FK_CMD_SETPARAM, 48, plms_04F48 },
-		{ FK_CMD_SETPARAM, 49, plms_04F49 },
-		{ FK_CMD_SETPARAM, 57, plms_04F57 },
-		{ FK_CMD_SETPARAM, 58, plms_04F58 },
-		{ FK_CMD_SETPARAM, 59, plms_04F59 },
-		{ FK_CMD_SETPARAM, 60, plms_04F60 },
-		{ FK_CMD_SETPARAM, 61, plms_04F61 },
+		{ FK_CMD_SETPARAM, 33, plms_04F33 }, { FK_CMD_SETPARAM, 34, plms_04F34 }, { FK_CMD_SETPARAM, 35, plms_04F35 }, { FK_CMD_SETPARAM, 36, plms_04F36 }, { FK_CMD_SETPARAM, 37, plms_04F37 }, {
+				FK_CMD_SETPARAM, 38, plms_04F38 }, { FK_CMD_SETPARAM, 39, plms_04F39 }, { FK_CMD_SETPARAM, 41, plms_04F41 }, { FK_CMD_SETPARAM, 42, plms_04F42 }, { FK_CMD_SETPARAM, 43, plms_04F43 }, {
+				FK_CMD_SETPARAM, 44, plms_04F44 }, { FK_CMD_SETPARAM, 45, plms_04F45 }, { FK_CMD_SETPARAM, 46, plms_04F46 }, { FK_CMD_SETPARAM, 47, plms_04F47 }, { FK_CMD_SETPARAM, 48, plms_04F48 }, {
+				FK_CMD_SETPARAM, 49, plms_04F49 }, { FK_CMD_SETPARAM, 57, plms_04F57 }, { FK_CMD_SETPARAM, 58, plms_04F58 }, { FK_CMD_SETPARAM, 59, plms_04F59 }, { FK_CMD_SETPARAM, 60, plms_04F60 }, {
+				FK_CMD_SETPARAM, 61, plms_04F61 },
 //	{ FK_CMD_SETPARAM,	62,	plms_04F62  },
 //	{ FK_CMD_SETPARAM,  63, plms_04F63  },	// 江苏增补
-		{ FK_CMD_SETPARAM, 65, plms_04F65 },
-		{ FK_CMD_SETPARAM, 66, plms_04F66 },
-		{ FK_CMD_SETPARAM, 67, plms_04F67 },
-		{ FK_CMD_SETPARAM, 68, plms_04F68 },
-		{ FK_CMD_SETPARAM, 73, plms_04F73 },
-		{ FK_CMD_SETPARAM, 74, plms_04F74 },
-		{ FK_CMD_SETPARAM, 75, plms_04F75 },
-		{ FK_CMD_SETPARAM, 76, plms_04F76 },
-		{ FK_CMD_SETPARAM, 81, plms_04F81 },
-		{ FK_CMD_SETPARAM, 82, plms_04F82 },
-		{ FK_CMD_SETPARAM, 83, plms_04F83 },
+		{ FK_CMD_SETPARAM, 65, plms_04F65 }, { FK_CMD_SETPARAM, 66, plms_04F66 }, { FK_CMD_SETPARAM, 67, plms_04F67 }, { FK_CMD_SETPARAM, 68, plms_04F68 }, { FK_CMD_SETPARAM, 73, plms_04F73 }, {
+				FK_CMD_SETPARAM, 74, plms_04F74 }, { FK_CMD_SETPARAM, 75, plms_04F75 }, { FK_CMD_SETPARAM, 76, plms_04F76 }, { FK_CMD_SETPARAM, 81, plms_04F81 }, { FK_CMD_SETPARAM, 82, plms_04F82 }, {
+				FK_CMD_SETPARAM, 83, plms_04F83 },
 		{ FK_CMD_SETPARAM, 85, plms_04F85 },	// 江苏增补
 //	{ FK_CMD_SETPARAM,  91, plms_04F91  },	// 江苏增补
 		{ FK_CMD_SETPARAM, 92, plms_04F92 },	// 江苏增补
@@ -7395,78 +7288,29 @@ static const FMT2 fmt2[] = { { FK_CMD_SETPARAM, 1, plms_04F01 }, {
 //	{ FK_CMD_SETPARAM,  179, plms_04F179  },  // 自定义 自动搜表时间
 		{ FK_CMD_SETPARAM, 111, plms_04F111 },  // 规约增补 集中器自维护定时任务参数
 		//
-		{ FK_CMD_CONTROL, 1, plms_05F01 }, { FK_CMD_CONTROL, 9, plms_05F09 }, {
-				FK_CMD_CONTROL, 12, plms_05F12 }, { FK_CMD_CONTROL, 25,
-				plms_05F25 }, { FK_CMD_CONTROL, 31, plms_05F31 }, {
-				FK_CMD_CONTROL, 32, plms_05F32 }, { FK_CMD_CONTROL, 41,
-				plms_05F41 }, { FK_CMD_CONTROL, 42, plms_05F42 }, {
-				FK_CMD_CONTROL, 49, plms_05F49 }, { FK_CMD_CONTROL, 50,
-				plms_05F50 }, { FK_CMD_CONTROL, 51, plms_05F51 }, {
-				FK_CMD_CONTROL, 52, plms_05F52 }, { FK_CMD_CONTROL, 53,
-				plms_05F53 },
+		{ FK_CMD_CONTROL, 1, plms_05F01 }, { FK_CMD_CONTROL, 9, plms_05F09 }, { FK_CMD_CONTROL, 12, plms_05F12 }, { FK_CMD_CONTROL, 25, plms_05F25 }, { FK_CMD_CONTROL, 31, plms_05F31 }, {
+				FK_CMD_CONTROL, 32, plms_05F32 }, { FK_CMD_CONTROL, 41, plms_05F41 }, { FK_CMD_CONTROL, 42, plms_05F42 }, { FK_CMD_CONTROL, 49, plms_05F49 }, { FK_CMD_CONTROL, 50, plms_05F50 }, {
+				FK_CMD_CONTROL, 51, plms_05F51 }, { FK_CMD_CONTROL, 52, plms_05F52 }, { FK_CMD_CONTROL, 53, plms_05F53 },
 //	{ FK_CMD_CONTROL,	149,plms_05F149 },
 		{ FK_CMD_CONTROL, 63, plms_05F63 },  //规约增补 立即启动集中器自维护
 		//
-		{ FK_CMD_ASKPARAM, 1, plms_0AF01 }, { FK_CMD_ASKPARAM, 2, plms_0AF02 },
-		{ FK_CMD_ASKPARAM, 3, plms_0AF03 }, { FK_CMD_ASKPARAM, 4, plms_0AF04 },
-		{ FK_CMD_ASKPARAM, 5, plms_0AF05 }, { FK_CMD_ASKPARAM, 6, plms_0AF06 },
-		{ FK_CMD_ASKPARAM, 7, plms_0AF07 }, { FK_CMD_ASKPARAM, 8, plms_0AF08 },
-		{ FK_CMD_ASKPARAM, 9, plms_0AF09 }, { FK_CMD_ASKPARAM, 10, plms_0AF10 },
-		{ FK_CMD_ASKPARAM, 11, plms_0AF11 },
-		{ FK_CMD_ASKPARAM, 12, plms_0AF12 },
-		{ FK_CMD_ASKPARAM, 13, plms_0AF13 },
-		{ FK_CMD_ASKPARAM, 14, plms_0AF14 },
-		{ FK_CMD_ASKPARAM, 15, plms_0AF15 },
-		{ FK_CMD_ASKPARAM, 16, plms_0AF16 },
-		{ FK_CMD_ASKPARAM, 17, plms_0AF17 },
-		{ FK_CMD_ASKPARAM, 18, plms_0AF18 },
-		{ FK_CMD_ASKPARAM, 19, plms_0AF19 },
-		{ FK_CMD_ASKPARAM, 20, plms_0AF20 },
-		{ FK_CMD_ASKPARAM, 21, plms_0AF21 },
-		{ FK_CMD_ASKPARAM, 22, plms_0AF22 },
-		{ FK_CMD_ASKPARAM, 23, plms_0AF23 },
+		{ FK_CMD_ASKPARAM, 1, plms_0AF01 }, { FK_CMD_ASKPARAM, 2, plms_0AF02 }, { FK_CMD_ASKPARAM, 3, plms_0AF03 }, { FK_CMD_ASKPARAM, 4, plms_0AF04 }, { FK_CMD_ASKPARAM, 5, plms_0AF05 }, {
+				FK_CMD_ASKPARAM, 6, plms_0AF06 }, { FK_CMD_ASKPARAM, 7, plms_0AF07 }, { FK_CMD_ASKPARAM, 8, plms_0AF08 }, { FK_CMD_ASKPARAM, 9, plms_0AF09 }, { FK_CMD_ASKPARAM, 10, plms_0AF10 }, {
+				FK_CMD_ASKPARAM, 11, plms_0AF11 }, { FK_CMD_ASKPARAM, 12, plms_0AF12 }, { FK_CMD_ASKPARAM, 13, plms_0AF13 }, { FK_CMD_ASKPARAM, 14, plms_0AF14 }, { FK_CMD_ASKPARAM, 15, plms_0AF15 }, {
+				FK_CMD_ASKPARAM, 16, plms_0AF16 }, { FK_CMD_ASKPARAM, 17, plms_0AF17 }, { FK_CMD_ASKPARAM, 18, plms_0AF18 }, { FK_CMD_ASKPARAM, 19, plms_0AF19 }, { FK_CMD_ASKPARAM, 20, plms_0AF20 }, {
+				FK_CMD_ASKPARAM, 21, plms_0AF21 }, { FK_CMD_ASKPARAM, 22, plms_0AF22 }, { FK_CMD_ASKPARAM, 23, plms_0AF23 },
 //	{ FK_CMD_ASKPARAM,	24,	plms_0AF24  },
-		{ FK_CMD_ASKPARAM, 25, plms_0AF25 },
-		{ FK_CMD_ASKPARAM, 26, plms_0AF26 },
-		{ FK_CMD_ASKPARAM, 27, plms_0AF27 },
-		{ FK_CMD_ASKPARAM, 28, plms_0AF28 },
-		{ FK_CMD_ASKPARAM, 29, plms_0AF29 },
-		{ FK_CMD_ASKPARAM, 30, plms_0AF30 },
-		{ FK_CMD_ASKPARAM, 31, plms_0AF31 },
-		{ FK_CMD_ASKPARAM, 33, plms_0AF33 },
-		{ FK_CMD_ASKPARAM, 34, plms_0AF34 },
-		{ FK_CMD_ASKPARAM, 35, plms_0AF35 },
-		{ FK_CMD_ASKPARAM, 36, plms_0AF36 },
-		{ FK_CMD_ASKPARAM, 37, plms_0AF37 },
-		{ FK_CMD_ASKPARAM, 38, plms_0AF38 },
-		{ FK_CMD_ASKPARAM, 39, plms_0AF39 },
-		{ FK_CMD_ASKPARAM, 41, plms_0AF41 },
-		{ FK_CMD_ASKPARAM, 42, plms_0AF42 },
-		{ FK_CMD_ASKPARAM, 43, plms_0AF43 },
-		{ FK_CMD_ASKPARAM, 44, plms_0AF44 },
-		{ FK_CMD_ASKPARAM, 45, plms_0AF45 },
-		{ FK_CMD_ASKPARAM, 46, plms_0AF46 },
-		{ FK_CMD_ASKPARAM, 47, plms_0AF47 },
-		{ FK_CMD_ASKPARAM, 48, plms_0AF48 },
-		{ FK_CMD_ASKPARAM, 49, plms_0AF49 },
-		{ FK_CMD_ASKPARAM, 57, plms_0AF57 },
-		{ FK_CMD_ASKPARAM, 58, plms_0AF58 },
-		{ FK_CMD_ASKPARAM, 59, plms_0AF59 },
-		{ FK_CMD_ASKPARAM, 60, plms_0AF60 },
-		{ FK_CMD_ASKPARAM, 61, plms_0AF61 },
+		{ FK_CMD_ASKPARAM, 25, plms_0AF25 }, { FK_CMD_ASKPARAM, 26, plms_0AF26 }, { FK_CMD_ASKPARAM, 27, plms_0AF27 }, { FK_CMD_ASKPARAM, 28, plms_0AF28 }, { FK_CMD_ASKPARAM, 29, plms_0AF29 }, {
+				FK_CMD_ASKPARAM, 30, plms_0AF30 }, { FK_CMD_ASKPARAM, 31, plms_0AF31 }, { FK_CMD_ASKPARAM, 33, plms_0AF33 }, { FK_CMD_ASKPARAM, 34, plms_0AF34 }, { FK_CMD_ASKPARAM, 35, plms_0AF35 }, {
+				FK_CMD_ASKPARAM, 36, plms_0AF36 }, { FK_CMD_ASKPARAM, 37, plms_0AF37 }, { FK_CMD_ASKPARAM, 38, plms_0AF38 }, { FK_CMD_ASKPARAM, 39, plms_0AF39 }, { FK_CMD_ASKPARAM, 41, plms_0AF41 }, {
+				FK_CMD_ASKPARAM, 42, plms_0AF42 }, { FK_CMD_ASKPARAM, 43, plms_0AF43 }, { FK_CMD_ASKPARAM, 44, plms_0AF44 }, { FK_CMD_ASKPARAM, 45, plms_0AF45 }, { FK_CMD_ASKPARAM, 46, plms_0AF46 }, {
+				FK_CMD_ASKPARAM, 47, plms_0AF47 }, { FK_CMD_ASKPARAM, 48, plms_0AF48 }, { FK_CMD_ASKPARAM, 49, plms_0AF49 }, { FK_CMD_ASKPARAM, 57, plms_0AF57 }, { FK_CMD_ASKPARAM, 58, plms_0AF58 }, {
+				FK_CMD_ASKPARAM, 59, plms_0AF59 }, { FK_CMD_ASKPARAM, 60, plms_0AF60 }, { FK_CMD_ASKPARAM, 61, plms_0AF61 },
 //	{ FK_CMD_ASKPARAM,	62,	plms_0AF62  },
 //	{ FK_CMD_ASKPARAM,  63, plms_0AF63  },	// 江苏增补
-		{ FK_CMD_ASKPARAM, 65, plms_0AF65 },
-		{ FK_CMD_ASKPARAM, 66, plms_0AF66 },
-		{ FK_CMD_ASKPARAM, 67, plms_0AF67 },
-		{ FK_CMD_ASKPARAM, 68, plms_0AF68 },
-		{ FK_CMD_ASKPARAM, 73, plms_0AF73 },
-		{ FK_CMD_ASKPARAM, 74, plms_0AF74 },
-		{ FK_CMD_ASKPARAM, 75, plms_0AF75 },
-		{ FK_CMD_ASKPARAM, 76, plms_0AF76 },
-		{ FK_CMD_ASKPARAM, 81, plms_0AF81 },
-		{ FK_CMD_ASKPARAM, 82, plms_0AF82 },
-		{ FK_CMD_ASKPARAM, 83, plms_0AF83 },
+		{ FK_CMD_ASKPARAM, 65, plms_0AF65 }, { FK_CMD_ASKPARAM, 66, plms_0AF66 }, { FK_CMD_ASKPARAM, 67, plms_0AF67 }, { FK_CMD_ASKPARAM, 68, plms_0AF68 }, { FK_CMD_ASKPARAM, 73, plms_0AF73 }, {
+				FK_CMD_ASKPARAM, 74, plms_0AF74 }, { FK_CMD_ASKPARAM, 75, plms_0AF75 }, { FK_CMD_ASKPARAM, 76, plms_0AF76 }, { FK_CMD_ASKPARAM, 81, plms_0AF81 }, { FK_CMD_ASKPARAM, 82, plms_0AF82 }, {
+				FK_CMD_ASKPARAM, 83, plms_0AF83 },
 		{ FK_CMD_ASKPARAM, 85, plms_0AF85 },	// 江苏增补
 //	{ FK_CMD_ASKPARAM,  91, plms_0AF91  },	// 江苏增补
 		{ FK_CMD_ASKPARAM, 92, plms_0AF92 },	// 江苏增补
@@ -7478,111 +7322,41 @@ static const FMT2 fmt2[] = { { FK_CMD_SETPARAM, 1, plms_04F01 }, {
 		{ FK_CMD_ASKPARAM, 112, plms_0AF112 }, // 规约增补 集器与电能表参数对应关系
 
 //	{ FK_CMD_CLASS1,	 1,	plms_0CF01  },
-		{ FK_CMD_CLASS1, 2, plms_0CF02 }, { FK_CMD_CLASS1, 3, plms_0CF03 }, {
-				FK_CMD_CLASS1, 4, plms_0CF04 },
-		{ FK_CMD_CLASS1, 5, plms_0CF05 }, { FK_CMD_CLASS1, 6, plms_0CF06 }, {
-				FK_CMD_CLASS1, 7, plms_0CF07 },
-		{ FK_CMD_CLASS1, 8, plms_0CF08 }, { FK_CMD_CLASS1, 9, plms_0CF09 },
+		{ FK_CMD_CLASS1, 2, plms_0CF02 }, { FK_CMD_CLASS1, 3, plms_0CF03 }, { FK_CMD_CLASS1, 4, plms_0CF04 }, { FK_CMD_CLASS1, 5, plms_0CF05 }, { FK_CMD_CLASS1, 6, plms_0CF06 }, { FK_CMD_CLASS1, 7,
+				plms_0CF07 }, { FK_CMD_CLASS1, 8, plms_0CF08 }, { FK_CMD_CLASS1, 9, plms_0CF09 },
 		{ FK_CMD_CLASS1, 10, plms_0CF10 },	// 江苏增补（查询网络流量）
 		{ FK_CMD_CLASS1, 11, plms_0CF11 },	// 江苏增补（查询网络流量）
 		{ FK_CMD_CLASS1, 12, plms_0CF12 },	// 江苏增补（查询网络信号品质）
 		{ FK_CMD_CLASS1, 16, plms_0CF16 },  // 江苏增补（查询中文信息）
-		{ FK_CMD_CLASS1, 17, plms_0CF17 }, { FK_CMD_CLASS1, 18, plms_0CF18 }, {
-				FK_CMD_CLASS1, 19, plms_0CF19 },
-		{ FK_CMD_CLASS1, 20, plms_0CF20 }, { FK_CMD_CLASS1, 21, plms_0CF21 }, {
-				FK_CMD_CLASS1, 22, plms_0CF22 },
-		{ FK_CMD_CLASS1, 23, plms_0CF23 }, { FK_CMD_CLASS1, 24, plms_0CF24 }, {
-				FK_CMD_CLASS1, 25, plms_0CF25 },
-		{ FK_CMD_CLASS1, 26, plms_0CF26 }, { FK_CMD_CLASS1, 27, plms_0CF27 }, {
-				FK_CMD_CLASS1, 28, plms_0CF28 },
-		{ FK_CMD_CLASS1, 31, plms_0CF31 }, { FK_CMD_CLASS1, 32, plms_0CF32 }, {
-				FK_CMD_CLASS1, 33, plms_0CF33 },
-		{ FK_CMD_CLASS1, 34, plms_0CF34 }, { FK_CMD_CLASS1, 35, plms_0CF35 }, {
-				FK_CMD_CLASS1, 36, plms_0CF36 },
-		{ FK_CMD_CLASS1, 37, plms_0CF37 }, { FK_CMD_CLASS1, 38, plms_0CF38 }, {
-				FK_CMD_CLASS1, 39, plms_0CF39 },
-		{ FK_CMD_CLASS1, 40, plms_0CF40 }, { FK_CMD_CLASS1, 41, plms_0CF41 }, {
-				FK_CMD_CLASS1, 42, plms_0CF42 },
-		{ FK_CMD_CLASS1, 43, plms_0CF43 }, { FK_CMD_CLASS1, 44, plms_0CF44 }, {
-				FK_CMD_CLASS1, 45, plms_0CF45 },
-		{ FK_CMD_CLASS1, 46, plms_0CF46 }, { FK_CMD_CLASS1, 47, plms_0CF47 }, {
-				FK_CMD_CLASS1, 48, plms_0CF48 },
-		{ FK_CMD_CLASS1, 49, plms_0CF49 }, { FK_CMD_CLASS1, 57, plms_0CF57 }, {
-				FK_CMD_CLASS1, 58, plms_0CF58 },
-		{ FK_CMD_CLASS1, 65, plms_0CF65 }, { FK_CMD_CLASS1, 66, plms_0CF66 }, {
-				FK_CMD_CLASS1, 67, plms_0CF67 },
-		{ FK_CMD_CLASS1, 73, plms_0CF73 }, { FK_CMD_CLASS1, 81, plms_0CF81 }, {
-				FK_CMD_CLASS1, 82, plms_0CF82 },
-		{ FK_CMD_CLASS1, 83, plms_0CF83 }, { FK_CMD_CLASS1, 84, plms_0CF84 }, {
-				FK_CMD_CLASS1, 89, plms_0CF89 },
-		{ FK_CMD_CLASS1, 90, plms_0CF90 }, { FK_CMD_CLASS1, 91, plms_0CF91 }, {
-				FK_CMD_CLASS1, 92, plms_0CF92 },
-		{ FK_CMD_CLASS1, 93, plms_0CF93 }, { FK_CMD_CLASS1, 94, plms_0CF94 }, {
-				FK_CMD_CLASS1, 95, plms_0CF95 },
-		{ FK_CMD_CLASS1, 96, plms_0CF96 }, { FK_CMD_CLASS1, 97, plms_0CF97 }, {
-				FK_CMD_CLASS1, 98, plms_0CF98 },
-		{ FK_CMD_CLASS1, 99, plms_0CF99 }, { FK_CMD_CLASS1, 100, plms_0CF100 },
-		{ FK_CMD_CLASS1, 101, plms_0CF101 },
-		{ FK_CMD_CLASS1, 102, plms_0CF102 },
-		{ FK_CMD_CLASS1, 103, plms_0CF103 },
-		{ FK_CMD_CLASS1, 105, plms_0CF105 },
-		{ FK_CMD_CLASS1, 106, plms_0CF106 },
-		{ FK_CMD_CLASS1, 107, plms_0CF107 },
-		{ FK_CMD_CLASS1, 108, plms_0CF108 },
-		{ FK_CMD_CLASS1, 109, plms_0CF109 },
-		{ FK_CMD_CLASS1, 110, plms_0CF110 },
-		{ FK_CMD_CLASS1, 111, plms_0CF111 },
-		{ FK_CMD_CLASS1, 112, plms_0CF112 },
-		{ FK_CMD_CLASS1, 113, plms_0CF113 },
-		{ FK_CMD_CLASS1, 114, plms_0CF114 },
-		{ FK_CMD_CLASS1, 115, plms_0CF115 },
-		{ FK_CMD_CLASS1, 116, plms_0CF116 },
-		{ FK_CMD_CLASS1, 121, plms_0CF121 },
+		{ FK_CMD_CLASS1, 17, plms_0CF17 }, { FK_CMD_CLASS1, 18, plms_0CF18 }, { FK_CMD_CLASS1, 19, plms_0CF19 }, { FK_CMD_CLASS1, 20, plms_0CF20 }, { FK_CMD_CLASS1, 21, plms_0CF21 }, { FK_CMD_CLASS1,
+				22, plms_0CF22 }, { FK_CMD_CLASS1, 23, plms_0CF23 }, { FK_CMD_CLASS1, 24, plms_0CF24 }, { FK_CMD_CLASS1, 25, plms_0CF25 }, { FK_CMD_CLASS1, 26, plms_0CF26 }, { FK_CMD_CLASS1, 27,
+				plms_0CF27 }, { FK_CMD_CLASS1, 28, plms_0CF28 }, { FK_CMD_CLASS1, 31, plms_0CF31 }, { FK_CMD_CLASS1, 32, plms_0CF32 }, { FK_CMD_CLASS1, 33, plms_0CF33 }, { FK_CMD_CLASS1, 34,
+				plms_0CF34 }, { FK_CMD_CLASS1, 35, plms_0CF35 }, { FK_CMD_CLASS1, 36, plms_0CF36 }, { FK_CMD_CLASS1, 37, plms_0CF37 }, { FK_CMD_CLASS1, 38, plms_0CF38 }, { FK_CMD_CLASS1, 39,
+				plms_0CF39 }, { FK_CMD_CLASS1, 40, plms_0CF40 }, { FK_CMD_CLASS1, 41, plms_0CF41 }, { FK_CMD_CLASS1, 42, plms_0CF42 }, { FK_CMD_CLASS1, 43, plms_0CF43 }, { FK_CMD_CLASS1, 44,
+				plms_0CF44 }, { FK_CMD_CLASS1, 45, plms_0CF45 }, { FK_CMD_CLASS1, 46, plms_0CF46 }, { FK_CMD_CLASS1, 47, plms_0CF47 }, { FK_CMD_CLASS1, 48, plms_0CF48 }, { FK_CMD_CLASS1, 49,
+				plms_0CF49 }, { FK_CMD_CLASS1, 57, plms_0CF57 }, { FK_CMD_CLASS1, 58, plms_0CF58 }, { FK_CMD_CLASS1, 65, plms_0CF65 }, { FK_CMD_CLASS1, 66, plms_0CF66 }, { FK_CMD_CLASS1, 67,
+				plms_0CF67 }, { FK_CMD_CLASS1, 73, plms_0CF73 }, { FK_CMD_CLASS1, 81, plms_0CF81 }, { FK_CMD_CLASS1, 82, plms_0CF82 }, { FK_CMD_CLASS1, 83, plms_0CF83 }, { FK_CMD_CLASS1, 84,
+				plms_0CF84 }, { FK_CMD_CLASS1, 89, plms_0CF89 }, { FK_CMD_CLASS1, 90, plms_0CF90 }, { FK_CMD_CLASS1, 91, plms_0CF91 }, { FK_CMD_CLASS1, 92, plms_0CF92 }, { FK_CMD_CLASS1, 93,
+				plms_0CF93 }, { FK_CMD_CLASS1, 94, plms_0CF94 }, { FK_CMD_CLASS1, 95, plms_0CF95 }, { FK_CMD_CLASS1, 96, plms_0CF96 }, { FK_CMD_CLASS1, 97, plms_0CF97 }, { FK_CMD_CLASS1, 98,
+				plms_0CF98 }, { FK_CMD_CLASS1, 99, plms_0CF99 }, { FK_CMD_CLASS1, 100, plms_0CF100 }, { FK_CMD_CLASS1, 101, plms_0CF101 }, { FK_CMD_CLASS1, 102, plms_0CF102 }, { FK_CMD_CLASS1, 103,
+				plms_0CF103 }, { FK_CMD_CLASS1, 105, plms_0CF105 }, { FK_CMD_CLASS1, 106, plms_0CF106 }, { FK_CMD_CLASS1, 107, plms_0CF107 }, { FK_CMD_CLASS1, 108, plms_0CF108 }, { FK_CMD_CLASS1, 109,
+				plms_0CF109 }, { FK_CMD_CLASS1, 110, plms_0CF110 }, { FK_CMD_CLASS1, 111, plms_0CF111 }, { FK_CMD_CLASS1, 112, plms_0CF112 }, { FK_CMD_CLASS1, 113, plms_0CF113 }, { FK_CMD_CLASS1, 114,
+				plms_0CF114 }, { FK_CMD_CLASS1, 115, plms_0CF115 }, { FK_CMD_CLASS1, 116, plms_0CF116 }, { FK_CMD_CLASS1, 121, plms_0CF121 },
 
 		/*zzd*/
-		{ FK_CMD_CLASS1, 129, plms_0CF129 },
-		{ FK_CMD_CLASS1, 130, plms_0CF130 },
-		{ FK_CMD_CLASS1, 131, plms_0CF131 },
-		{ FK_CMD_CLASS1, 132, plms_0CF132 },
-		{ FK_CMD_CLASS1, 133, plms_0CF133 },
-		{ FK_CMD_CLASS1, 134, plms_0CF134 },
-		{ FK_CMD_CLASS1, 135, plms_0CF135 },
-		{ FK_CMD_CLASS1, 136, plms_0CF136 },
-		{ FK_CMD_CLASS1, 137, plms_0CF137 },
-		{ FK_CMD_CLASS1, 138, plms_0CF138 },
-		{ FK_CMD_CLASS1, 139, plms_0CF139 },
-		{ FK_CMD_CLASS1, 140, plms_0CF140 },
-		{ FK_CMD_CLASS1, 141, plms_0CF141 },
-		{ FK_CMD_CLASS1, 142, plms_0CF142 },
-		{ FK_CMD_CLASS1, 143, plms_0CF143 },
-		{ FK_CMD_CLASS1, 144, plms_0CF144 },
-		{ FK_CMD_CLASS1, 145, plms_0CF145 },
-		{ FK_CMD_CLASS1, 146, plms_0CF146 },
-		{ FK_CMD_CLASS1, 147, plms_0CF147 },
-		{ FK_CMD_CLASS1, 148, plms_0CF148 },
-		{ FK_CMD_CLASS1, 149, plms_0CF149 },
-		{ FK_CMD_CLASS1, 150, plms_0CF150 },
-		{ FK_CMD_CLASS1, 151, plms_0CF151 },
-		{ FK_CMD_CLASS1, 152, plms_0CF152 },
+		{ FK_CMD_CLASS1, 129, plms_0CF129 }, { FK_CMD_CLASS1, 130, plms_0CF130 }, { FK_CMD_CLASS1, 131, plms_0CF131 }, { FK_CMD_CLASS1, 132, plms_0CF132 }, { FK_CMD_CLASS1, 133, plms_0CF133 }, {
+				FK_CMD_CLASS1, 134, plms_0CF134 }, { FK_CMD_CLASS1, 135, plms_0CF135 }, { FK_CMD_CLASS1, 136, plms_0CF136 }, { FK_CMD_CLASS1, 137, plms_0CF137 }, { FK_CMD_CLASS1, 138, plms_0CF138 }, {
+				FK_CMD_CLASS1, 139, plms_0CF139 }, { FK_CMD_CLASS1, 140, plms_0CF140 }, { FK_CMD_CLASS1, 141, plms_0CF141 }, { FK_CMD_CLASS1, 142, plms_0CF142 }, { FK_CMD_CLASS1, 143, plms_0CF143 }, {
+				FK_CMD_CLASS1, 144, plms_0CF144 }, { FK_CMD_CLASS1, 145, plms_0CF145 }, { FK_CMD_CLASS1, 146, plms_0CF146 }, { FK_CMD_CLASS1, 147, plms_0CF147 }, { FK_CMD_CLASS1, 148, plms_0CF148 }, {
+				FK_CMD_CLASS1, 149, plms_0CF149 }, { FK_CMD_CLASS1, 150, plms_0CF150 }, { FK_CMD_CLASS1, 151, plms_0CF151 }, { FK_CMD_CLASS1, 152, plms_0CF152 },
 
-		{ FK_CMD_CLASS1, 153, plms_0CF153 },
-		{ FK_CMD_CLASS1, 154, plms_0CF154 },
-		{ FK_CMD_CLASS1, 155, plms_0CF155 },
-		{ FK_CMD_CLASS1, 156, plms_0CF156 },
-		{ FK_CMD_CLASS1, 157, plms_0CF157 },
-		{ FK_CMD_CLASS1, 158, plms_0CF158 },
-		{ FK_CMD_CLASS1, 159, plms_0CF159 },
-		{ FK_CMD_CLASS1, 160, plms_0CF160 },
+		{ FK_CMD_CLASS1, 153, plms_0CF153 }, { FK_CMD_CLASS1, 154, plms_0CF154 }, { FK_CMD_CLASS1, 155, plms_0CF155 }, { FK_CMD_CLASS1, 156, plms_0CF156 }, { FK_CMD_CLASS1, 157, plms_0CF157 }, {
+				FK_CMD_CLASS1, 158, plms_0CF158 }, { FK_CMD_CLASS1, 159, plms_0CF159 }, { FK_CMD_CLASS1, 160, plms_0CF160 },
 
 		{ FK_CMD_CLASS1, 161, plms_0CF161 },
 
-		{ FK_CMD_CLASS1, 165, plms_0CF165 },
-		{ FK_CMD_CLASS1, 166, plms_0CF166 },
-		{ FK_CMD_CLASS1, 167, plms_0CF167 },
-		{ FK_CMD_CLASS1, 168, plms_0CF168 },
-		{ FK_CMD_CLASS1, 169, plms_0CF169 },
-		{ FK_CMD_CLASS1, 170, plms_0CF170 },
-		{ FK_CMD_CLASS1, 180, plms_0CF180 },
+		{ FK_CMD_CLASS1, 165, plms_0CF165 }, { FK_CMD_CLASS1, 166, plms_0CF166 }, { FK_CMD_CLASS1, 167, plms_0CF167 }, { FK_CMD_CLASS1, 168, plms_0CF168 }, { FK_CMD_CLASS1, 169, plms_0CF169 }, {
+				FK_CMD_CLASS1, 170, plms_0CF170 }, { FK_CMD_CLASS1, 180, plms_0CF180 },
 //	{ FK_CMD_CLASS1,   181,	plms_0CF181 },
 //    { FK_CMD_CLASS1,   182,	plms_0CF182 },
 		{ FK_CMD_CLASS1, 186, plms_0CF186 }, ////规约增补 载波模块程序版本号
@@ -7590,169 +7364,63 @@ static const FMT2 fmt2[] = { { FK_CMD_SETPARAM, 1, plms_04F01 }, {
 		{ FK_CMD_CLASS1, 241, plms_0CF241 }, // 终端抄表成功标识
 		{ FK_CMD_CLASS1, 242, plms_0CF241 }, // 终端冻结成功标识
 		//
-		{ FK_CMD_CLASS2, 1, plms_0DF01 }, { FK_CMD_CLASS2, 2, plms_0DF02 }, {
-				FK_CMD_CLASS2, 3, plms_0DF03 },
-		{ FK_CMD_CLASS2, 4, plms_0DF04 }, { FK_CMD_CLASS2, 5, plms_0DF05 }, {
-				FK_CMD_CLASS2, 6, plms_0DF06 },
-		{ FK_CMD_CLASS2, 7, plms_0DF07 }, { FK_CMD_CLASS2, 8, plms_0DF08 }, {
-				FK_CMD_CLASS2, 9, plms_0DF09 },
-		{ FK_CMD_CLASS2, 10, plms_0DF10 }, { FK_CMD_CLASS2, 11, plms_0DF11 }, {
-				FK_CMD_CLASS2, 12, plms_0DF12 },
-		{ FK_CMD_CLASS2, 17, plms_0DF17 }, { FK_CMD_CLASS2, 18, plms_0DF18 }, {
-				FK_CMD_CLASS2, 19, plms_0DF19 },
-		{ FK_CMD_CLASS2, 20, plms_0DF20 }, { FK_CMD_CLASS2, 21, plms_0DF21 }, {
-				FK_CMD_CLASS2, 22, plms_0DF22 },
-		{ FK_CMD_CLASS2, 23, plms_0DF23 }, { FK_CMD_CLASS2, 24, plms_0DF24 }, {
-				FK_CMD_CLASS2, 25, plms_0DF25 },
-		{ FK_CMD_CLASS2, 26, plms_0DF26 }, { FK_CMD_CLASS2, 27, plms_0DF27 }, {
-				FK_CMD_CLASS2, 28, plms_0DF28 },
-		{ FK_CMD_CLASS2, 29, plms_0DF29 }, { FK_CMD_CLASS2, 30, plms_0DF30 }, {
-				FK_CMD_CLASS2, 31, plms_0DF31 },
-		{ FK_CMD_CLASS2, 32, plms_0DF32 }, { FK_CMD_CLASS2, 33, plms_0DF33 }, {
-				FK_CMD_CLASS2, 34, plms_0DF34 },
-		{ FK_CMD_CLASS2, 35, plms_0DF35 }, { FK_CMD_CLASS2, 36, plms_0DF36 }, {
-				FK_CMD_CLASS2, 37, plms_0DF37 },
-		{ FK_CMD_CLASS2, 38, plms_0DF38 }, { FK_CMD_CLASS2, 39, plms_0DF39 }, {
-				FK_CMD_CLASS2, 41, plms_0DF41 },
-		{ FK_CMD_CLASS2, 42, plms_0DF42 }, { FK_CMD_CLASS2, 43, plms_0DF43 }, {
-				FK_CMD_CLASS2, 44, plms_0DF44 },
-		{ FK_CMD_CLASS2, 49, plms_0DF49 }, { FK_CMD_CLASS2, 50, plms_0DF50 }, {
-				FK_CMD_CLASS2, 51, plms_0DF51 },
-		{ FK_CMD_CLASS2, 52, plms_0DF52 }, { FK_CMD_CLASS2, 53, plms_0DF53 }, {
-				FK_CMD_CLASS2, 54, plms_0DF54 },
-		{ FK_CMD_CLASS2, 57, plms_0DF57 }, { FK_CMD_CLASS2, 58, plms_0DF58 }, {
-				FK_CMD_CLASS2, 59, plms_0DF59 },
-		{ FK_CMD_CLASS2, 60, plms_0DF60 }, { FK_CMD_CLASS2, 61, plms_0DF61 }, {
-				FK_CMD_CLASS2, 62, plms_0DF62 },
-		{ FK_CMD_CLASS2, 65, plms_0DF65 }, { FK_CMD_CLASS2, 66, plms_0DF66 }, {
-				FK_CMD_CLASS2, 73, plms_0DF73 },
-		{ FK_CMD_CLASS2, 74, plms_0DF74 }, { FK_CMD_CLASS2, 75, plms_0DF75 }, {
-				FK_CMD_CLASS2, 76, plms_0DF76 },
-		{ FK_CMD_CLASS2, 81, plms_0DF81 }, { FK_CMD_CLASS2, 82, plms_0DF82 }, {
-				FK_CMD_CLASS2, 83, plms_0DF83 },
-		{ FK_CMD_CLASS2, 84, plms_0DF84 }, { FK_CMD_CLASS2, 85, plms_0DF85 }, {
-				FK_CMD_CLASS2, 86, plms_0DF86 },
-		{ FK_CMD_CLASS2, 87, plms_0DF87 }, { FK_CMD_CLASS2, 88, plms_0DF88 }, {
-				FK_CMD_CLASS2, 89, plms_0DF89 },
-		{ FK_CMD_CLASS2, 90, plms_0DF90 }, { FK_CMD_CLASS2, 91, plms_0DF91 }, {
-				FK_CMD_CLASS2, 92, plms_0DF92 },
-		{ FK_CMD_CLASS2, 93, plms_0DF93 }, { FK_CMD_CLASS2, 94, plms_0DF94 }, {
-				FK_CMD_CLASS2, 95, plms_0DF95 },
-		{ FK_CMD_CLASS2, 97, plms_0DF97 }, { FK_CMD_CLASS2, 98, plms_0DF98 }, {
-				FK_CMD_CLASS2, 99, plms_0DF99 }, { FK_CMD_CLASS2, 100,
-				plms_0DF100 }, { FK_CMD_CLASS2, 101, plms_0DF101 }, {
-				FK_CMD_CLASS2, 102, plms_0DF102 }, { FK_CMD_CLASS2, 103,
-				plms_0DF103 }, { FK_CMD_CLASS2, 104, plms_0DF104 }, {
-				FK_CMD_CLASS2, 105, plms_0DF105 }, { FK_CMD_CLASS2, 106,
-				plms_0DF106 }, { FK_CMD_CLASS2, 107, plms_0DF107 }, {
-				FK_CMD_CLASS2, 108, plms_0DF108 }, { FK_CMD_CLASS2, 109,
-				plms_0DF109 }, { FK_CMD_CLASS2, 110, plms_0DF110 }, {
-				FK_CMD_CLASS2, 113, plms_0DF113 }, { FK_CMD_CLASS2, 114,
-				plms_0DF114 }, { FK_CMD_CLASS2, 115, plms_0DF115 }, {
-				FK_CMD_CLASS2, 116, plms_0DF116 }, { FK_CMD_CLASS2, 117,
-				plms_0DF117 }, { FK_CMD_CLASS2, 118, plms_0DF118 }, {
-				FK_CMD_CLASS2, 121, plms_0DF121 }, { FK_CMD_CLASS2, 122,
-				plms_0DF122 }, { FK_CMD_CLASS2, 123, plms_0DF123 }, {
-				FK_CMD_CLASS2, 129, plms_0DF129 }, { FK_CMD_CLASS2, 130,
-				plms_0DF130 }, { FK_CMD_CLASS2, 138, plms_0DF138 },
+		{ FK_CMD_CLASS2, 1, plms_0DF01 }, { FK_CMD_CLASS2, 2, plms_0DF02 }, { FK_CMD_CLASS2, 3, plms_0DF03 }, { FK_CMD_CLASS2, 4, plms_0DF04 }, { FK_CMD_CLASS2, 5, plms_0DF05 }, { FK_CMD_CLASS2, 6,
+				plms_0DF06 }, { FK_CMD_CLASS2, 7, plms_0DF07 }, { FK_CMD_CLASS2, 8, plms_0DF08 }, { FK_CMD_CLASS2, 9, plms_0DF09 }, { FK_CMD_CLASS2, 10, plms_0DF10 },
+		{ FK_CMD_CLASS2, 11, plms_0DF11 }, { FK_CMD_CLASS2, 12, plms_0DF12 }, { FK_CMD_CLASS2, 17, plms_0DF17 }, { FK_CMD_CLASS2, 18, plms_0DF18 }, { FK_CMD_CLASS2, 19, plms_0DF19 }, { FK_CMD_CLASS2,
+				20, plms_0DF20 }, { FK_CMD_CLASS2, 21, plms_0DF21 }, { FK_CMD_CLASS2, 22, plms_0DF22 }, { FK_CMD_CLASS2, 23, plms_0DF23 }, { FK_CMD_CLASS2, 24, plms_0DF24 }, { FK_CMD_CLASS2, 25,
+				plms_0DF25 }, { FK_CMD_CLASS2, 26, plms_0DF26 }, { FK_CMD_CLASS2, 27, plms_0DF27 }, { FK_CMD_CLASS2, 28, plms_0DF28 }, { FK_CMD_CLASS2, 29, plms_0DF29 }, { FK_CMD_CLASS2, 30,
+				plms_0DF30 }, { FK_CMD_CLASS2, 31, plms_0DF31 }, { FK_CMD_CLASS2, 32, plms_0DF32 }, { FK_CMD_CLASS2, 33, plms_0DF33 }, { FK_CMD_CLASS2, 34, plms_0DF34 }, { FK_CMD_CLASS2, 35,
+				plms_0DF35 }, { FK_CMD_CLASS2, 36, plms_0DF36 }, { FK_CMD_CLASS2, 37, plms_0DF37 }, { FK_CMD_CLASS2, 38, plms_0DF38 }, { FK_CMD_CLASS2, 39, plms_0DF39 }, { FK_CMD_CLASS2, 41,
+				plms_0DF41 }, { FK_CMD_CLASS2, 42, plms_0DF42 }, { FK_CMD_CLASS2, 43, plms_0DF43 }, { FK_CMD_CLASS2, 44, plms_0DF44 }, { FK_CMD_CLASS2, 49, plms_0DF49 }, { FK_CMD_CLASS2, 50,
+				plms_0DF50 }, { FK_CMD_CLASS2, 51, plms_0DF51 }, { FK_CMD_CLASS2, 52, plms_0DF52 }, { FK_CMD_CLASS2, 53, plms_0DF53 }, { FK_CMD_CLASS2, 54, plms_0DF54 }, { FK_CMD_CLASS2, 57,
+				plms_0DF57 }, { FK_CMD_CLASS2, 58, plms_0DF58 }, { FK_CMD_CLASS2, 59, plms_0DF59 }, { FK_CMD_CLASS2, 60, plms_0DF60 }, { FK_CMD_CLASS2, 61, plms_0DF61 }, { FK_CMD_CLASS2, 62,
+				plms_0DF62 }, { FK_CMD_CLASS2, 65, plms_0DF65 }, { FK_CMD_CLASS2, 66, plms_0DF66 }, { FK_CMD_CLASS2, 73, plms_0DF73 }, { FK_CMD_CLASS2, 74, plms_0DF74 }, { FK_CMD_CLASS2, 75,
+				plms_0DF75 }, { FK_CMD_CLASS2, 76, plms_0DF76 }, { FK_CMD_CLASS2, 81, plms_0DF81 }, { FK_CMD_CLASS2, 82, plms_0DF82 }, { FK_CMD_CLASS2, 83, plms_0DF83 }, { FK_CMD_CLASS2, 84,
+				plms_0DF84 }, { FK_CMD_CLASS2, 85, plms_0DF85 }, { FK_CMD_CLASS2, 86, plms_0DF86 }, { FK_CMD_CLASS2, 87, plms_0DF87 }, { FK_CMD_CLASS2, 88, plms_0DF88 }, { FK_CMD_CLASS2, 89,
+				plms_0DF89 }, { FK_CMD_CLASS2, 90, plms_0DF90 }, { FK_CMD_CLASS2, 91, plms_0DF91 }, { FK_CMD_CLASS2, 92, plms_0DF92 }, { FK_CMD_CLASS2, 93, plms_0DF93 }, { FK_CMD_CLASS2, 94,
+				plms_0DF94 }, { FK_CMD_CLASS2, 95, plms_0DF95 }, { FK_CMD_CLASS2, 97, plms_0DF97 }, { FK_CMD_CLASS2, 98, plms_0DF98 }, { FK_CMD_CLASS2, 99, plms_0DF99 }, { FK_CMD_CLASS2, 100,
+				plms_0DF100 }, { FK_CMD_CLASS2, 101, plms_0DF101 }, { FK_CMD_CLASS2, 102, plms_0DF102 }, { FK_CMD_CLASS2, 103, plms_0DF103 }, { FK_CMD_CLASS2, 104, plms_0DF104 }, { FK_CMD_CLASS2, 105,
+				plms_0DF105 }, { FK_CMD_CLASS2, 106, plms_0DF106 }, { FK_CMD_CLASS2, 107, plms_0DF107 }, { FK_CMD_CLASS2, 108, plms_0DF108 }, { FK_CMD_CLASS2, 109, plms_0DF109 }, { FK_CMD_CLASS2, 110,
+				plms_0DF110 }, { FK_CMD_CLASS2, 113, plms_0DF113 }, { FK_CMD_CLASS2, 114, plms_0DF114 }, { FK_CMD_CLASS2, 115, plms_0DF115 }, { FK_CMD_CLASS2, 116, plms_0DF116 }, { FK_CMD_CLASS2, 117,
+				plms_0DF117 }, { FK_CMD_CLASS2, 118, plms_0DF118 }, { FK_CMD_CLASS2, 121, plms_0DF121 }, { FK_CMD_CLASS2, 122, plms_0DF122 }, { FK_CMD_CLASS2, 123, plms_0DF123 }, { FK_CMD_CLASS2, 129,
+				plms_0DF129 }, { FK_CMD_CLASS2, 130, plms_0DF130 }, { FK_CMD_CLASS2, 138, plms_0DF138 },
 
 		/*-zzd-*/
-		{ FK_CMD_CLASS2, 145, plms_0DF145 },
-		{ FK_CMD_CLASS2, 146, plms_0DF146 },
-		{ FK_CMD_CLASS2, 147, plms_0DF147 },
-		{ FK_CMD_CLASS2, 148, plms_0DF148 },
+		{ FK_CMD_CLASS2, 145, plms_0DF145 }, { FK_CMD_CLASS2, 146, plms_0DF146 }, { FK_CMD_CLASS2, 147, plms_0DF147 }, { FK_CMD_CLASS2, 148, plms_0DF148 },
 
-		{ FK_CMD_CLASS2, 153, plms_0DF153 },
-		{ FK_CMD_CLASS2, 154, plms_0DF154 },
-		{ FK_CMD_CLASS2, 155, plms_0DF155 },
-		{ FK_CMD_CLASS2, 156, plms_0DF156 },
-		{ FK_CMD_CLASS2, 157, plms_0DF157 },
-		{ FK_CMD_CLASS2, 158, plms_0DF158 },
-		{ FK_CMD_CLASS2, 159, plms_0DF159 },
-		{ FK_CMD_CLASS2, 160, plms_0DF160 },
+		{ FK_CMD_CLASS2, 153, plms_0DF153 }, { FK_CMD_CLASS2, 154, plms_0DF154 }, { FK_CMD_CLASS2, 155, plms_0DF155 }, { FK_CMD_CLASS2, 156, plms_0DF156 }, { FK_CMD_CLASS2, 157, plms_0DF157 }, {
+				FK_CMD_CLASS2, 158, plms_0DF158 }, { FK_CMD_CLASS2, 159, plms_0DF159 }, { FK_CMD_CLASS2, 160, plms_0DF160 },
 
-		{ FK_CMD_CLASS2, 161, plms_0DF161 },
-		{ FK_CMD_CLASS2, 162, plms_0DF162 },
-		{ FK_CMD_CLASS2, 163, plms_0DF163 },
-		{ FK_CMD_CLASS2, 164, plms_0DF164 },
-		{ FK_CMD_CLASS2, 165, plms_0DF165 },
-		{ FK_CMD_CLASS2, 166, plms_0DF166 },
-		{ FK_CMD_CLASS2, 167, plms_0DF167 },
-		{ FK_CMD_CLASS2, 168, plms_0DF168 },
+		{ FK_CMD_CLASS2, 161, plms_0DF161 }, { FK_CMD_CLASS2, 162, plms_0DF162 }, { FK_CMD_CLASS2, 163, plms_0DF163 }, { FK_CMD_CLASS2, 164, plms_0DF164 }, { FK_CMD_CLASS2, 165, plms_0DF165 }, {
+				FK_CMD_CLASS2, 166, plms_0DF166 }, { FK_CMD_CLASS2, 167, plms_0DF167 }, { FK_CMD_CLASS2, 168, plms_0DF168 },
 
-		{ FK_CMD_CLASS2, 169, plms_0DF169 },
-		{ FK_CMD_CLASS2, 170, plms_0DF170 },
-		{ FK_CMD_CLASS2, 171, plms_0DF171 },
-		{ FK_CMD_CLASS2, 172, plms_0DF172 },
-		{ FK_CMD_CLASS2, 173, plms_0DF173 },
-		{ FK_CMD_CLASS2, 174, plms_0DF174 },
-		{ FK_CMD_CLASS2, 175, plms_0DF175 },
-		{ FK_CMD_CLASS2, 176, plms_0DF176 },
+		{ FK_CMD_CLASS2, 169, plms_0DF169 }, { FK_CMD_CLASS2, 170, plms_0DF170 }, { FK_CMD_CLASS2, 171, plms_0DF171 }, { FK_CMD_CLASS2, 172, plms_0DF172 }, { FK_CMD_CLASS2, 173, plms_0DF173 }, {
+				FK_CMD_CLASS2, 174, plms_0DF174 }, { FK_CMD_CLASS2, 175, plms_0DF175 }, { FK_CMD_CLASS2, 176, plms_0DF176 },
 
-		{ FK_CMD_CLASS2, 177, plms_0DF177 },
-		{ FK_CMD_CLASS2, 178, plms_0DF178 },
-		{ FK_CMD_CLASS2, 179, plms_0DF179 },
-		{ FK_CMD_CLASS2, 180, plms_0DF180 },
-		{ FK_CMD_CLASS2, 181, plms_0DF181 },
-		{ FK_CMD_CLASS2, 182, plms_0DF182 },
-		{ FK_CMD_CLASS2, 183, plms_0DF183 },
-		{ FK_CMD_CLASS2, 184, plms_0DF184 },
+		{ FK_CMD_CLASS2, 177, plms_0DF177 }, { FK_CMD_CLASS2, 178, plms_0DF178 }, { FK_CMD_CLASS2, 179, plms_0DF179 }, { FK_CMD_CLASS2, 180, plms_0DF180 }, { FK_CMD_CLASS2, 181, plms_0DF181 }, {
+				FK_CMD_CLASS2, 182, plms_0DF182 }, { FK_CMD_CLASS2, 183, plms_0DF183 }, { FK_CMD_CLASS2, 184, plms_0DF184 },
 
-		{ FK_CMD_CLASS2, 185, plms_0DF185 },
-		{ FK_CMD_CLASS2, 186, plms_0DF186 },
-		{ FK_CMD_CLASS2, 187, plms_0DF187 },
-		{ FK_CMD_CLASS2, 188, plms_0DF188 },
-		{ FK_CMD_CLASS2, 189, plms_0DF189 },
-		{ FK_CMD_CLASS2, 190, plms_0DF190 },
-		{ FK_CMD_CLASS2, 191, plms_0DF191 },
-		{ FK_CMD_CLASS2, 192, plms_0DF192 },
+		{ FK_CMD_CLASS2, 185, plms_0DF185 }, { FK_CMD_CLASS2, 186, plms_0DF186 }, { FK_CMD_CLASS2, 187, plms_0DF187 }, { FK_CMD_CLASS2, 188, plms_0DF188 }, { FK_CMD_CLASS2, 189, plms_0DF189 }, {
+				FK_CMD_CLASS2, 190, plms_0DF190 }, { FK_CMD_CLASS2, 191, plms_0DF191 }, { FK_CMD_CLASS2, 192, plms_0DF192 },
 
-		{ FK_CMD_CLASS2, 193, plms_0DF193 },
-		{ FK_CMD_CLASS2, 194, plms_0DF194 },
-		{ FK_CMD_CLASS2, 195, plms_0DF195 },
-		{ FK_CMD_CLASS2, 196, plms_0DF196 },
+		{ FK_CMD_CLASS2, 193, plms_0DF193 }, { FK_CMD_CLASS2, 194, plms_0DF194 }, { FK_CMD_CLASS2, 195, plms_0DF195 }, { FK_CMD_CLASS2, 196, plms_0DF196 },
 
-		{ FK_CMD_CLASS2, 201, plms_0DF201 },
-		{ FK_CMD_CLASS2, 202, plms_0DF202 },
-		{ FK_CMD_CLASS2, 203, plms_0DF203 },
-		{ FK_CMD_CLASS2, 204, plms_0DF204 },
-		{ FK_CMD_CLASS2, 205, plms_0DF205 },
-		{ FK_CMD_CLASS2, 206, plms_0DF206 },
-		{ FK_CMD_CLASS2, 207, plms_0DF207 },
-		{ FK_CMD_CLASS2, 208, plms_0DF208 },
+		{ FK_CMD_CLASS2, 201, plms_0DF201 }, { FK_CMD_CLASS2, 202, plms_0DF202 }, { FK_CMD_CLASS2, 203, plms_0DF203 }, { FK_CMD_CLASS2, 204, plms_0DF204 }, { FK_CMD_CLASS2, 205, plms_0DF205 }, {
+				FK_CMD_CLASS2, 206, plms_0DF206 }, { FK_CMD_CLASS2, 207, plms_0DF207 }, { FK_CMD_CLASS2, 208, plms_0DF208 },
 
 		{ FK_CMD_CLASS2, 209, plms_0DF209 },
 
-		{ FK_CMD_CLASS2, 213, plms_0DF213 },
-		{ FK_CMD_CLASS2, 214, plms_0DF214 },
-		{ FK_CMD_CLASS2, 215, plms_0DF215 },
-		{ FK_CMD_CLASS2, 216, plms_0DF216 },
+		{ FK_CMD_CLASS2, 213, plms_0DF213 }, { FK_CMD_CLASS2, 214, plms_0DF214 }, { FK_CMD_CLASS2, 215, plms_0DF215 }, { FK_CMD_CLASS2, 216, plms_0DF216 },
 //	{ FK_CMD_CLASS2,   217,	plms_0DF217 },
 //	{ FK_CMD_CLASS2,   218,	plms_0DF218 },
 		//
-		{ FK_CMD_CLASS3, 1, plms_ERC1 }, { FK_CMD_CLASS3, 2, plms_ERC2 }, {
-				FK_CMD_CLASS3, 3, plms_ERC3 }, { FK_CMD_CLASS3, 4, plms_ERC4 },
-		{ FK_CMD_CLASS3, 5, plms_ERC5 }, { FK_CMD_CLASS3, 6, plms_ERC6 }, {
-				FK_CMD_CLASS3, 7, plms_ERC7 }, { FK_CMD_CLASS3, 8, plms_ERC8 },
-		{ FK_CMD_CLASS3, 9, plms_ERC9 }, { FK_CMD_CLASS3, 10, plms_ERC10 }, {
-				FK_CMD_CLASS3, 11, plms_ERC11 },
-		{ FK_CMD_CLASS3, 12, plms_ERC12 }, { FK_CMD_CLASS3, 13, plms_ERC13 }, {
-				FK_CMD_CLASS3, 14, plms_ERC14 },
-		{ FK_CMD_CLASS3, 15, plms_ERC15 }, { FK_CMD_CLASS3, 16, plms_ERC16 }, {
-				FK_CMD_CLASS3, 17, plms_ERC17 },
-		{ FK_CMD_CLASS3, 18, plms_ERC18 }, { FK_CMD_CLASS3, 19, plms_ERC19 }, {
-				FK_CMD_CLASS3, 20, plms_ERC20 },
-		{ FK_CMD_CLASS3, 21, plms_ERC21 }, { FK_CMD_CLASS3, 22, plms_ERC22 }, {
-				FK_CMD_CLASS3, 23, plms_ERC23 },
-		{ FK_CMD_CLASS3, 24, plms_ERC24 }, { FK_CMD_CLASS3, 25, plms_ERC25 }, {
-				FK_CMD_CLASS3, 26, plms_ERC26 },
-		{ FK_CMD_CLASS3, 27, plms_ERC27 }, { FK_CMD_CLASS3, 28, plms_ERC28 }, {
-				FK_CMD_CLASS3, 29, plms_ERC29 },
-		{ FK_CMD_CLASS3, 30, plms_ERC30 }, { FK_CMD_CLASS3, 31, plms_ERC31 }, {
-				FK_CMD_CLASS3, 32, plms_ERC32 },
-		{ FK_CMD_CLASS3, 33, plms_ERC33 }, { FK_CMD_CLASS3, 34, plms_ERC34 }, {
-				FK_CMD_CLASS3, 35, plms_ERC35 },
-		{ FK_CMD_CLASS3, 36, plms_ERC36 }, };
+		{ FK_CMD_CLASS3, 1, plms_ERC1 }, { FK_CMD_CLASS3, 2, plms_ERC2 }, { FK_CMD_CLASS3, 3, plms_ERC3 }, { FK_CMD_CLASS3, 4, plms_ERC4 }, { FK_CMD_CLASS3, 5, plms_ERC5 }, { FK_CMD_CLASS3, 6,
+				plms_ERC6 }, { FK_CMD_CLASS3, 7, plms_ERC7 }, { FK_CMD_CLASS3, 8, plms_ERC8 }, { FK_CMD_CLASS3, 9, plms_ERC9 }, { FK_CMD_CLASS3, 10, plms_ERC10 }, { FK_CMD_CLASS3, 11, plms_ERC11 }, {
+				FK_CMD_CLASS3, 12, plms_ERC12 }, { FK_CMD_CLASS3, 13, plms_ERC13 }, { FK_CMD_CLASS3, 14, plms_ERC14 }, { FK_CMD_CLASS3, 15, plms_ERC15 }, { FK_CMD_CLASS3, 16, plms_ERC16 }, {
+				FK_CMD_CLASS3, 17, plms_ERC17 }, { FK_CMD_CLASS3, 18, plms_ERC18 }, { FK_CMD_CLASS3, 19, plms_ERC19 }, { FK_CMD_CLASS3, 20, plms_ERC20 }, { FK_CMD_CLASS3, 21, plms_ERC21 }, {
+				FK_CMD_CLASS3, 22, plms_ERC22 }, { FK_CMD_CLASS3, 23, plms_ERC23 }, { FK_CMD_CLASS3, 24, plms_ERC24 }, { FK_CMD_CLASS3, 25, plms_ERC25 }, { FK_CMD_CLASS3, 26, plms_ERC26 }, {
+				FK_CMD_CLASS3, 27, plms_ERC27 }, { FK_CMD_CLASS3, 28, plms_ERC28 }, { FK_CMD_CLASS3, 29, plms_ERC29 }, { FK_CMD_CLASS3, 30, plms_ERC30 }, { FK_CMD_CLASS3, 31, plms_ERC31 }, {
+				FK_CMD_CLASS3, 32, plms_ERC32 }, { FK_CMD_CLASS3, 33, plms_ERC33 }, { FK_CMD_CLASS3, 34, plms_ERC34 }, { FK_CMD_CLASS3, 35, plms_ERC35 }, { FK_CMD_CLASS3, 36, plms_ERC36 }, };
 
 static const FMT2* FindEx(BYTE afn, BYTE fn) {
 	int nCount = sizeof(fmt2) / sizeof(FMT2);

@@ -13,7 +13,12 @@ namespace osext {
 // class OSComPort
 //
 OSComPort::OSComPort(ComPort nPort, ComDcb *dcb, DWORD dwRxQueueLen, DWORD dwTxQueueLen) :
-		m_bOpened(false), m_nPort(nPort), m_dwRxQueueLen(dwRxQueueLen), m_hRxQueue(nullptr), m_dwTxQueueLen(dwTxQueueLen), m_hTxQueue(nullptr) {
+		m_bOpened(false),
+		m_nPort(nPort),
+		m_dwRxQueueLen(dwRxQueueLen),
+		m_hRxQueue(nullptr),
+		m_dwTxQueueLen(dwTxQueueLen),
+		m_hTxQueue(nullptr) {
 	memcpy(&m_hComDcb, dcb, sizeof(tagCOMDCB));
 }
 

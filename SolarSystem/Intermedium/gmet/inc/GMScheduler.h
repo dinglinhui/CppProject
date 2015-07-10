@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_GMET_INC_GMSCHEDULER_H_
-#define INTERMEDIUM_GMET_INC_GMSCHEDULER_H_
+#ifndef GMSCHEDULER_H_
+#define GMSCHEDULER_H_
 
 #include "OSThreadEx.h"
 //#include <OSSemaphore.h>
@@ -68,4 +68,4 @@ private:
 
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_GMET_INC_GMSCHEDULER_H_ */
+#endif /* GMSCHEDULER_H_ */

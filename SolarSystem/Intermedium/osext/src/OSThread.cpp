@@ -11,11 +11,19 @@
 namespace osext {
 
 OSThread::OSThread(int nPrio, int nStackSize, INT16U nTskOpt) :
-		thread_(nullptr), name_(""), status_(TStat::NoStart), prio_(nPrio), option_(nTskOpt) {
+		thread_(nullptr),
+		name_(""),
+		status_(TStat::NoStart),
+		prio_(nPrio),
+		option_(nTskOpt) {
 }
 
 OSThread::OSThread(std::string name, int prio) :
-		thread_(nullptr), name_(name), status_(TStat::NoStart), prio_(prio), option_(0) {
+		thread_(nullptr),
+		name_(name),
+		status_(TStat::NoStart),
+		prio_(prio),
+		option_(0) {
 }
 
 OSThread::~OSThread() {

@@ -11,7 +11,10 @@
 namespace syscil {
 
 CILUartDevice::CILUartDevice(BYTE nIdent, int nCacheSize, DWORD tmTran, DWORD tmRecv) :
-		CILDevice(nIdent, nCacheSize), m_pPort( NULL), m_tmTran(tmTran), m_tmRecv(tmRecv) {
+		CILDevice(nIdent, nCacheSize),
+		m_pPort( NULL),
+		m_tmTran(tmTran),
+		m_tmRecv(tmRecv) {
 }
 
 CILUartDevice::~CILUartDevice(void) {

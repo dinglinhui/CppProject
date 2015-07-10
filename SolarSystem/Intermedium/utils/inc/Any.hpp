@@ -10,17 +10,19 @@ struct Any {
 			m_tpIndex(std::type_index(typeid(void))) {
 	}
 	Any(const Any& that) :
-			m_ptr(that.Clone()), m_tpIndex(that.m_tpIndex) {
+			m_ptr(that.Clone()),
+			m_tpIndex(that.m_tpIndex) {
 	}
 	Any(Any && that) :
-			m_ptr(std::move(that.m_ptr)), m_tpIndex(that.m_tpIndex) {
+			m_ptr(std::move(that.m_ptr)),
+			m_tpIndex(that.m_tpIndex) {
 	}
 
 	//创建智能指针时，对于一般的类型，通过std::decay来移除引用和cv符，从而获取原始类型
 	template<typename U>
 	Any(U && value) :
-			m_ptr(new Derived<typename std::decay<U>::type>(std::forward<U>(value))), m_tpIndex(
-					std::type_index(typeid(typename std::decay<U>::type))) {
+			m_ptr(new Derived<typename std::decay<U>::type>(std::forward < U > (value))),
+			m_tpIndex(std::type_index(typeid(typename std::decay<U>::type))) {
 	}
 
 	bool IsNull() const {
@@ -67,7 +69,7 @@ private:
 	struct Derived: Base {
 		template<typename U>
 		Derived(U && value) :
-				m_value(std::forward<U>(value)) {
+				m_value(std::forward < U > (value)) {
 		}
 
 		BasePtr Clone() const {

@@ -16,8 +16,7 @@ namespace osext {
 class OSDispatcherEx;
 class OSThreadEx: public OSThread, public OSMessageBase {
 public:
-	OSThreadEx(int nPrio, int nStackSize = 512, int nQueueBuffSize = 20,
-			INT16U nTskOpt = 0);
+	OSThreadEx(int nPrio, int nStackSize = 512, int nQueueBuffSize = 20, INT16U nTskOpt = 0);
 	virtual ~OSThreadEx();
 
 	virtual OSRet Start();

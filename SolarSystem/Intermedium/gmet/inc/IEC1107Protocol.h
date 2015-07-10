@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_GMET_INC_IEC1107PROTOCOL_H_
-#define INTERMEDIUM_GMET_INC_IEC1107PROTOCOL_H_
+#ifndef IEC1107PROTOCOL_H_
+#define IEC1107PROTOCOL_H_
 
 #include "pcol_iec1107.h"
 #include "GMProtocol.h"
@@ -23,10 +23,8 @@ public:
 	CIEC1107Protocol(BYTE nMPT, PF_IEC_SAVE pSave);
 	virtual ~CIEC1107Protocol(void);
 
-	virtual int HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-			int nBufSize);
-	virtual int HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-			int nBufSize);
+	virtual int HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize);
+	virtual int HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize);
 
 	virtual int GetDefaultComDcb(ComDcb *pDcb);
 	virtual int GetSendComDcb(Command *pCMD, ComDcb *pDcb);
@@ -44,4 +42,4 @@ private:
 
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_GMET_INC_IEC1107PROTOCOL_H_ */
+#endif /* IEC1107PROTOCOL_H_ */

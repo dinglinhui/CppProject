@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_GMET_INC_GMTASK_H_
-#define INTERMEDIUM_GMET_INC_GMTASK_H_
+#ifndef GMTASK_H_
+#define GMTASK_H_
 
 #include "Command.h"
 
@@ -52,4 +52,4 @@ private:
 };
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_GMET_INC_GMTASK_H_ */
+#endif /* GMTASK_H_ */

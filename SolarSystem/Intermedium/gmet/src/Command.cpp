@@ -17,7 +17,9 @@ namespace pcols {
 ///////////////////////////////////////////////////////////////////////////////
 
 Command::Command(void) :
-		m_nAck(0), m_pNext(nullptr), m_pAck(nullptr) {
+		m_nAck(0),
+		m_pNext(nullptr),
+		m_pAck(nullptr) {
 	memset(m_body, 0, 32);
 }
 

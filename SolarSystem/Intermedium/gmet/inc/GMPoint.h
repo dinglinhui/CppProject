@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_GMET_INC_GMPOINT_H_
-#define INTERMEDIUM_GMET_INC_GMPOINT_H_
+#ifndef GMPOINT_H_
+#define GMPOINT_H_
 
 #include <OSComPort.h>
 #include "Command.h"
@@ -21,7 +21,8 @@ class CGMProtocol;
 class CGMScheduler;
 
 typedef enum tag_PointType {
-	Single_Point = 1, Mul_Point = 2
+	Single_Point = 1,
+	Mul_Point = 2
 } PointType;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -87,4 +88,4 @@ public:
 
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_GMET_INC_GMPOINT_H_ */
+#endif /* GMPOINT_H_ */

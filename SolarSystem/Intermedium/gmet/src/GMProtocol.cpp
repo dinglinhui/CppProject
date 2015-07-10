@@ -14,7 +14,9 @@ namespace pcols {
 ///////////////////////////////////////////////////////////////////////////////
 
 CGMProtocol::CGMProtocol(BYTE nType, BYTE nChannel) :
-		m_pNext( NULL), m_nType(nType), m_nChannel(nChannel) {
+		m_pNext( NULL),
+		m_nType(nType),
+		m_nChannel(nChannel) {
 }
 
 CGMProtocol::~CGMProtocol(void) {

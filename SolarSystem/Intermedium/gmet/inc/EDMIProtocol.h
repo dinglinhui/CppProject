@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_GMET_INC_EDMIPROTOCOL_H_
-#define INTERMEDIUM_GMET_INC_EDMIPROTOCOL_H_
+#ifndef EDMIPROTOCOL_H_
+#define EDMIPROTOCOL_H_
 
 #include <pcol_edmi.h>
 #include "GMProtocol.h"
@@ -24,10 +24,8 @@ public:
 	CEDMIProtocol(BYTE nMPT, PF_EDMI_SAVE pSave);
 	virtual ~CEDMIProtocol(void);
 
-	virtual int HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-			int nBufSize);
-	virtual int HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-			int nBufSize);
+	virtual int HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize);
+	virtual int HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize);
 
 	virtual int GetCommands(void *parms, Command *&pCMDs, PointType type);
 
@@ -39,4 +37,4 @@ private:
 
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_GMET_INC_EDMIPROTOCOL_H_ */
+#endif /* EDMIPROTOCOL_H_ */

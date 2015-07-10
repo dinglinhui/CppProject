@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_PCOLS_INC_PCOL_EDMI_H_
-#define INTERMEDIUM_PCOLS_INC_PCOL_EDMI_H_
+#ifndef PCOL_EDMI_H_
+#define PCOL_EDMI_H_
 
 #include "OSDefs.h"
 
@@ -45,4 +45,4 @@ int MKX_GetFrame(MKX_FRAME *frm, BYTE *lpBuf, int nSize);
 int MKX_Convert(BYTE *lpBuf, BYTE *lpSrc);
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_PCOLS_INC_PCOL_EDMI_H_ */
+#endif /* PCOL_EDMI_H_ */

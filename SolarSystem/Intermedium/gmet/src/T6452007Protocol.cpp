@@ -171,8 +171,7 @@ static const CMD_T645_2007 l_commands_2007[] = {
 		};
 
 //单相表
-static const CMD_T645_2007 l_commands_2007_1[] = { { 0x01, 0x01, 0x901F,
-		0x0001ff00 },   // (当前)正向有功总电能
+static const CMD_T645_2007 l_commands_2007_1[] = { { 0x01, 0x01, 0x901F, 0x0001ff00 },   // (当前)正向有功总电能
 
 		{ 0x01, 0x01, 0xC010, 0x04000101 },   // 日期及周日
 		{ 0x01, 0x01, 0xC011, 0x04000102 },   // 时间
@@ -212,7 +211,8 @@ static const CMD_T645_2007 l_commands_2007_1[] = { { 0x01, 0x01, 0x901F,
 ///////////////////////////////////////////////////////////////////////////////
 
 CT645_2007Protocol::CT645_2007Protocol(BYTE nMPT, PF_DL645_2007_SAVE pSave) :
-		CGMProtocol(nMPT), m_pfSave(pSave) {
+		CGMProtocol(nMPT),
+		m_pfSave(pSave) {
 	memset(m_iTimes, 0, sizeof(int));
 	memset(m_iMinutes, 0, sizeof(int));
 	for (BYTE i = 0; i < 4; i++) {
@@ -226,8 +226,7 @@ CT645_2007Protocol::~CT645_2007Protocol(void) {
 ////函数功能:645_2007组帧
 ////参数:pObj:测量点类指针,取电表地址;pCMD:命令类指针,gtt,cmd,id;lpBuf:存放645_2007帧数据;nBufSize:数据缓冲区大小
 ////返回值:>0 成功<0 失败
-int CT645_2007Protocol::HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-		int nBufSize) {
+int CT645_2007Protocol::HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize) {
 	assert(pObj != nullptr);
 	assert(pCMD != nullptr);
 
@@ -291,8 +290,7 @@ void CT645_2007Protocol::GetRecord(BYTE val[4][4]) {
 ////函数功能:处理收到的645_2007组帧
 ////参数:pObj:测量点类指针,取电表地址;pCMD:命令类指针;lpBuf:存放645_2007帧数据;nBufSize:数据缓冲区大小
 ////返回值:>0 成功<0 失败
-int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-		int nBufSize) {
+int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize) {
 	assert(pObj != nullptr);
 	assert(pCMD != nullptr);
 	assert(lpBuf != nullptr);
@@ -307,10 +305,8 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
 	if (DL645_GetFrame(&frm, lpBuf, nBufSize) > 0) {
 		if (frm.hdr.code.mask.DIR == 1) {
 			CMD_T645_2007 *ptr = (CMD_T645_2007*) pCMD->m_body;
-			if ((frm.hdr.code.mask.CMD == 0x11)
-					&& (frm.hdr.code.mask.ACD == 0)) {
-				DWORD ddi = MAKELONG(MAKEWORD(frm.data[0],frm.data[1]),
-						MAKEWORD(frm.data[2],frm.data[3]));
+			if ((frm.hdr.code.mask.CMD == 0x11) && (frm.hdr.code.mask.ACD == 0)) {
+				DWORD ddi = MAKELONG(MAKEWORD(frm.data[0],frm.data[1]), MAKEWORD(frm.data[2],frm.data[3]));
 				if (ddi == ptr->ddi) {
 					int value[128 / sizeof(int)] = { 0 };
 					switch (ptr->ddi) {
@@ -335,8 +331,7 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
 							if (HIBYTE(LOWORD(ptr->ddi)) != 0xFF)
 								break;
 						}
-						m_pfSave(pObj, (void*) ptr->gtt, ptr->di,
-								(void*) value);
+						m_pfSave(pObj, (void*) ptr->gtt, ptr->di, (void*) value);
 					}
 						break;
 
@@ -358,8 +353,7 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
 							if (HIBYTE(LOWORD(ptr->ddi)) != 0xFF)
 								break;
 						}
-						m_pfSave(pObj, (void*) ptr->gtt, ptr->di,
-								(void*) value);
+						m_pfSave(pObj, (void*) ptr->gtt, ptr->di, (void*) value);
 					}
 						break;
 						/*
@@ -472,8 +466,7 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
 //							}
 						}
 
-						m_pfSave(pObj, (void*) ptr->gtt, ptr->di,
-								(void*) value);
+						m_pfSave(pObj, (void*) ptr->gtt, ptr->di, (void*) value);
 					}
 						break;
 					}
@@ -506,10 +499,10 @@ int CT645_2007Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
 ////参数:parms ,pCMDs:Command 类指针 *& 可以改变指针指向;
 ////返回值:返回数组下标索引
 
-int CT645_2007Protocol::GetCommands(void *parms, Command *&pCMDs,
-		PointType type) {
+int CT645_2007Protocol::GetCommands(void *parms, Command *&pCMDs, PointType type) {
 	Command **ppCMD = &pCMDs;
-	BYTE gtt = (BYTE) *(int *)parms;;
+	BYTE gtt = (BYTE) *(int *) parms;
+	;
 	int nNums = 0;
 	int nSize = sizeof(l_commands_2007_1) / sizeof(CMD_T645_2007);
 	for (int i = 0; i < nSize; ++i) {
@@ -517,14 +510,10 @@ int CT645_2007Protocol::GetCommands(void *parms, Command *&pCMDs,
 			*ppCMD = new Command;
 			if (*ppCMD != nullptr) {
 				(*ppCMD)->m_nAck = 1;
-				((CMD_T645_2007*) ((*ppCMD)->m_body))->gtt =
-						l_commands_2007_1[i].gtt;
-				((CMD_T645_2007*) ((*ppCMD)->m_body))->cmd =
-						l_commands_2007_1[i].cmd;
-				((CMD_T645_2007*) ((*ppCMD)->m_body))->di =
-						l_commands_2007_1[i].di;
-				((CMD_T645_2007*) ((*ppCMD)->m_body))->ddi =
-						l_commands_2007_1[i].ddi;
+				((CMD_T645_2007*) ((*ppCMD)->m_body))->gtt = l_commands_2007_1[i].gtt;
+				((CMD_T645_2007*) ((*ppCMD)->m_body))->cmd = l_commands_2007_1[i].cmd;
+				((CMD_T645_2007*) ((*ppCMD)->m_body))->di = l_commands_2007_1[i].di;
+				((CMD_T645_2007*) ((*ppCMD)->m_body))->ddi = l_commands_2007_1[i].ddi;
 				(*ppCMD)->m_pNext = nullptr;
 				(*ppCMD)->m_pAck = nullptr;
 				ppCMD = &(*ppCMD)->m_pNext;
@@ -541,14 +530,10 @@ int CT645_2007Protocol::GetCommands(void *parms, Command *&pCMDs,
 				*ppCMD = new Command;
 				if (*ppCMD != nullptr) {
 					(*ppCMD)->m_nAck = 1;
-					((CMD_T645_2007*) ((*ppCMD)->m_body))->gtt =
-							l_commands_2007[i].gtt;
-					((CMD_T645_2007*) ((*ppCMD)->m_body))->cmd =
-							l_commands_2007[i].cmd;
-					((CMD_T645_2007*) ((*ppCMD)->m_body))->di =
-							l_commands_2007[i].di;
-					((CMD_T645_2007*) ((*ppCMD)->m_body))->ddi =
-							l_commands_2007[i].ddi; ///New Add 2009.2.1 11:22
+					((CMD_T645_2007*) ((*ppCMD)->m_body))->gtt = l_commands_2007[i].gtt;
+					((CMD_T645_2007*) ((*ppCMD)->m_body))->cmd = l_commands_2007[i].cmd;
+					((CMD_T645_2007*) ((*ppCMD)->m_body))->di = l_commands_2007[i].di;
+					((CMD_T645_2007*) ((*ppCMD)->m_body))->ddi = l_commands_2007[i].ddi; ///New Add 2009.2.1 11:22
 					(*ppCMD)->m_pNext = nullptr;
 					(*ppCMD)->m_pAck = nullptr;
 					ppCMD = &(*ppCMD)->m_pNext;

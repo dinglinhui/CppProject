@@ -35,16 +35,14 @@ static short gencrc_16(short i) {
 	return (crc);
 }
 
-static unsigned short CalculateCharacterCRC16(unsigned short crc,
-		unsigned char c) {
+static unsigned short CalculateCharacterCRC16(unsigned short crc, unsigned char c) {
 	return ((crc << 8) ^ gencrc_16((crc >> 8) ^ c));
 }
 
 static int Reverse(BYTE *lpBuf, BYTE *lpSrc, int nSize) {
 	int nIndx = 0;
 	for (int i = 0; i < nSize; ++i) {
-		if (lpSrc[i] == MKX_STX || lpSrc[i] == MKX_ETX || lpSrc[i] == MKX_XON
-				|| lpSrc[i] == MKX_XOFF || lpSrc[i] == MKX_DLE) {
+		if (lpSrc[i] == MKX_STX || lpSrc[i] == MKX_ETX || lpSrc[i] == MKX_XON || lpSrc[i] == MKX_XOFF || lpSrc[i] == MKX_DLE) {
 			lpBuf[nIndx++] = MKX_DLE;
 			lpBuf[nIndx++] = (lpSrc[i] + 0x40);
 		} else {
@@ -112,8 +110,7 @@ static int CheckBuffIsValid(BYTE *lpBuf, int nSize) {
 static int __Reverse(BYTE *lpBuf, BYTE *lpSrc, int nSize) {
 	int nIndx = 0;
 	for (int i = 0; i < nSize; ++i) {
-		if (lpSrc[i] == MKX_STX || lpSrc[i] == MKX_ETX || lpSrc[i] == MKX_XON
-				|| lpSrc[i] == MKX_XOFF || lpSrc[i] == MKX_DLE) {
+		if (lpSrc[i] == MKX_STX || lpSrc[i] == MKX_ETX || lpSrc[i] == MKX_XON || lpSrc[i] == MKX_XOFF || lpSrc[i] == MKX_DLE) {
 			i++;
 			lpBuf[nIndx++] = (lpSrc[i] - 0x40);
 		} else {
@@ -222,8 +219,7 @@ int MKX_GetFrame(MKX_FRAME *frm, BYTE *lpBuf, int nSize) {
 	if (nRet == 0) {
 		BYTE buff[128] = { 0 };
 		buff[0] = lpBuf[nStart];
-		BYTE length = __Reverse(&buff[1], &lpBuf[nStart + 1],
-				(nEnd - nStart - 1));
+		BYTE length = __Reverse(&buff[1], &lpBuf[nStart + 1], (nEnd - nStart - 1));
 		length++;
 
 		nRet = CheckBuffIsValid(buff, length);
@@ -368,7 +364,7 @@ static int MKX_ConvertToDateTime(BYTE *lpBuf, BYTE *lpSrc) {
 	return 4;
 }
 
-static MKX_MAP ls_mapMKX[] = { { 0xE000, 0xB611, MKX_Convertfloat2WORD },// A相电压
+static MKX_MAP ls_mapMKX[] = { { 0xE000, 0xB611, MKX_Convertfloat2WORD },	// A相电压
 		{ 0xE001, 0xB612, MKX_Convertfloat2WORD },	// B相电压
 		{ 0xE002, 0xB613, MKX_Convertfloat2WORD },	// C相电压
 

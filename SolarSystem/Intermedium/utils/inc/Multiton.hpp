@@ -26,6 +26,7 @@ public:
 	static std::shared_ptr<T> Instance(K&& key, Args&&... args) {
 		return GetInstance(key, std::forward<Args>(args)...);
 	}
+
 private:
 	template<typename Key, typename ... Args>
 	static std::shared_ptr<T> GetInstance(Key&& key, Args&&...args) {

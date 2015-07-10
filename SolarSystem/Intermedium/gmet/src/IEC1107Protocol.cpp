@@ -26,10 +26,8 @@ typedef struct tag_CMD_IEC1107 {
 // static helper data
 ///////////////////////////////////////////////////////////////////////////////
 
-static const CMD_IEC1107 l_commands[] = { { 0x01, IEC_START, 0 }, { 0x02,
-		IEC_START, 0 }, /////Add 2008.11.21
+static const CMD_IEC1107 l_commands[] = { { 0x01, IEC_START, 0 }, { 0x02, IEC_START, 0 }, /////Add 2008.11.21
 		{ 0x03, IEC_START, 0 } /////Add 2008.11.21
-
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -37,7 +35,8 @@ static const CMD_IEC1107 l_commands[] = { { 0x01, IEC_START, 0 }, { 0x02,
 ///////////////////////////////////////////////////////////////////////////////
 
 CIEC1107Protocol::CIEC1107Protocol(BYTE nMPT, PF_IEC_SAVE pSave) :
-		CGMProtocol(nMPT), m_pfSave(pSave) {
+		CGMProtocol(nMPT),
+		m_pfSave(pSave) {
 	m_1107type = nMPT;
 }
 
@@ -54,7 +53,7 @@ int CIEC1107Protocol::GetRecvTimeOut(Command*) {
 
 int CIEC1107Protocol::GetCommands(void *parms, Command *&pCMDs, PointType) {
 	Command **ppCMD = &pCMDs;
-	BYTE gtt = (BYTE) *(int *)parms;
+	BYTE gtt = (BYTE) *(int *) parms;
 	int nNums = 0;
 	int nSize = sizeof(l_commands) / sizeof(CMD_IEC1107);
 	for (int i = 0; i < nSize; ++i) {
@@ -101,8 +100,7 @@ int CIEC1107Protocol::GetSendComDcb(Command *pCMD, ComDcb *pDcb) {
 }
 
 int CIEC1107Protocol::GetRecvComDcb(Command *pCMD, ComDcb *pDcb) {
-	static const ComBaud baud[] = { CB_300, CB_600, CB_1200, CB_2400, CB_4800,
-			CB_9600 };
+	static const ComBaud baud[] = { CB_300, CB_600, CB_1200, CB_2400, CB_4800, CB_9600 };
 
 	CMD_IEC1107 *ptr = (CMD_IEC1107*) pCMD->m_body;
 	if (ptr->cmd == IEC_READDATA) {
@@ -116,8 +114,7 @@ int CIEC1107Protocol::GetRecvComDcb(Command *pCMD, ComDcb *pDcb) {
 	return -1;
 }
 
-int CIEC1107Protocol::HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-		int nBufSize) {
+int CIEC1107Protocol::HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize) {
 	assert(pObj != nullptr);
 	assert(pCMD != nullptr);
 
@@ -156,8 +153,7 @@ int CIEC1107Protocol::HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
 	return nSize;
 }
 
-int CIEC1107Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-		int nBufSize) {
+int CIEC1107Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize) {
 	assert(pObj != nullptr);
 	assert(pCMD != nullptr);
 	assert(lpBuf != nullptr);
@@ -224,15 +220,11 @@ int CIEC1107Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
 					memcpy(value, &buff[nPos], nDIS);
 					m_pfSave(pObj, (void*) ptr->gtt, di, (void*) value);
 					/*-Q+存到Q1，Q-存到Q4-*/
-					if (((di >= 0x9110) && (di <= 0x9114))
-							|| ((di >= 0x9510) && (di <= 0x9514))) {
-						m_pfSave(pObj, (void*) ptr->gtt, (di + 0x20),
-								(void*) value);
+					if (((di >= 0x9110) && (di <= 0x9114)) || ((di >= 0x9510) && (di <= 0x9514))) {
+						m_pfSave(pObj, (void*) ptr->gtt, (di + 0x20), (void*) value);
 					}
-					if (((di >= 0x9120) && (di <= 0x9124))
-							|| ((di >= 0x9520) && (di <= 0x9524))) {
-						m_pfSave(pObj, (void*) ptr->gtt, (di + 0x20),
-								(void*) value);
+					if (((di >= 0x9120) && (di <= 0x9124)) || ((di >= 0x9520) && (di <= 0x9524))) {
+						m_pfSave(pObj, (void*) ptr->gtt, (di + 0x20), (void*) value);
 					}
 
 					nPos += nDIS;

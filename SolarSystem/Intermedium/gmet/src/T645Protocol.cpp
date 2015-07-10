@@ -122,8 +122,7 @@ static const CMD_T645 l_commands[] = {
 		};
 
 //单相表
-static const CMD_T645 l_commands_1[] = { { 0x01, 1, 0x9010 },
-		{ 0x01, 1, 0x901F },   // (当前)正向有功总电能
+static const CMD_T645 l_commands_1[] = { { 0x01, 1, 0x9010 }, { 0x01, 1, 0x901F },   // (当前)正向有功总电能
 		{ 0x01, 1, 0x9010 },   //
 		{ 0x01, 1, 0x9011 },   //
 		{ 0x01, 1, 0x9012 },   //
@@ -288,16 +287,17 @@ void* FindDIChlLen(WORD di, void* value, int i) {
 ///////////////////////////////////////////////////////////////////////////////
 
 CT645Protocol::CT645Protocol(BYTE nMPT, PF_DL645_SAVE pSave) :
-		CGMProtocol(nMPT), m_pfSave(pSave) {
+		CGMProtocol(nMPT),
+		m_pfSave(pSave) {
 }
 
 CT645Protocol::~CT645Protocol(void) {
 }
+
 ////函数功能:645组帧
 ////参数:pObj:测量点类指针,取电表地址;pCMD:命令类指针,gtt,cmd,id;lpBuf:存放645帧数据;nBufSize:数据缓冲区大小
 ////返回值:>0 成功<0 失败
-int CT645Protocol::HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-		int nBufSize) {
+int CT645Protocol::HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize) {
 	assert(pObj != nullptr);
 	assert(pCMD != nullptr);
 
@@ -331,8 +331,7 @@ int CT645Protocol::HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
 ////函数功能:处理收到的645组帧
 ////参数:pObj:测量点类指针,取电表地址;pCMD:命令类指针;lpBuf:存放645帧数据;nBufSize:数据缓冲区大小
 ////返回值:>0 成功<0 失败
-int CT645Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-		int nBufSize) {
+int CT645Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize) {
 	assert(pObj != nullptr);
 	assert(pCMD != nullptr);
 	assert(lpBuf != nullptr);
@@ -348,8 +347,7 @@ int CT645Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
 		if (frm.hdr.code.mask.DIR == 1)  ///电表发送过来的标志
 				{
 //			CMD_T645 *ptr = (CMD_T645*)pCMD->m_body;
-			if ((frm.hdr.code.mask.CMD == ptr->cmd)
-					&& (frm.hdr.code.mask.ACD == 0)) //////与发出的命令帧进行比较 命令字相同且不是异常数据
+			if ((frm.hdr.code.mask.CMD == ptr->cmd) && (frm.hdr.code.mask.ACD == 0)) //////与发出的命令帧进行比较 命令字相同且不是异常数据
 					{
 				WORD di = MAKEWORD(frm.data[0], frm.data[1]);  ////标识符
 				if (di == ptr->di)  ////标识符相等
@@ -393,8 +391,7 @@ int CT645Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
 								//	continue;
 							}
 
-							m_pfSave(pObj, (void*) ptr->gtt, chlDI,
-									FindDIChlLen(di, (void*) value, i));
+							m_pfSave(pObj, (void*) ptr->gtt, chlDI, FindDIChlLen(di, (void*) value, i));
 						}
 					} else {
 						if (di == 0xC010) {
@@ -442,7 +439,8 @@ int CT645Protocol::HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
 
 int CT645Protocol::GetCommands(void *parms, Command *&pCMDs, PointType type) {
 	Command **ppCMD = &pCMDs;
-	BYTE gtt = (BYTE) *(int *)parms;;
+	BYTE gtt = (BYTE) *(int *) parms;
+	;
 	int nNums = 0;
 	int nSize = 0;
 

@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_PCOLS_INC_CIL_DL645_H_
-#define INTERMEDIUM_PCOLS_INC_CIL_DL645_H_
+#ifndef PCOL_DL645_H_
+#define PCOL_DL645_H_
 
 #include <time.h>
 #include <EM_protocol.h>
@@ -60,4 +60,4 @@ extern int DL645_Decode(WORD di, void *pAppl, BYTE *pTran);
 extern int DL645_07_Decode(DWORD di, void *pAppl, BYTE *pTran);
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_PCOLS_INC_CIL_DL645_H_ */
+#endif /* PCOL_DL645_H_ */

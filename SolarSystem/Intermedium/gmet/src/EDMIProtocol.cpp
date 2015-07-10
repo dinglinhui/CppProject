@@ -226,7 +226,8 @@ static const CMD_EDMI l_commands[] = {
 ///////////////////////////////////////////////////////////////////////////////
 
 CEDMIProtocol::CEDMIProtocol(BYTE nMPT, PF_EDMI_SAVE pSave) :
-		CGMProtocol(nMPT), m_pfSave(pSave) {
+		CGMProtocol(nMPT),
+		m_pfSave(pSave) {
 }
 
 CEDMIProtocol::~CEDMIProtocol(void) {
@@ -268,8 +269,7 @@ int CEDMIProtocol::GetCommandsEx(BYTE gtt, Command *&pCMDs) {
 	return nNums;
 }
 
-int CEDMIProtocol::HandleTx(CGMPoint *pMP, Command *pCMD, BYTE *lpBuf,
-		int nBufSize) {
+int CEDMIProtocol::HandleTx(CGMPoint *pMP, Command *pCMD, BYTE *lpBuf, int nBufSize) {
 	assert(pMP != nullptr);
 	assert(pCMD != nullptr);
 
@@ -311,8 +311,7 @@ int CEDMIProtocol::HandleTx(CGMPoint *pMP, Command *pCMD, BYTE *lpBuf,
 	return nSize;
 }
 
-int CEDMIProtocol::HandleRx(CGMPoint *pMP, Command *pCMD, BYTE *lpBuf,
-		int nBufSize) {
+int CEDMIProtocol::HandleRx(CGMPoint *pMP, Command *pCMD, BYTE *lpBuf, int nBufSize) {
 	assert(pMP != nullptr);
 	assert(pCMD != nullptr);
 	assert(lpBuf != nullptr);
@@ -372,8 +371,7 @@ int CEDMIProtocol::HandleRx(CGMPoint *pMP, Command *pCMD, BYTE *lpBuf,
 					WORD di = 0;
 					memcpy(&di, frm.data, sizeof(WORD));
 					int value[64 / sizeof(int)] = { 0 };
-					memcpy(value, &frm.data[sizeof(WORD)],
-							frm.hdr.length - sizeof(WORD));
+					memcpy(value, &frm.data[sizeof(WORD)], frm.hdr.length - sizeof(WORD));
 					m_pfSave(pMP, (void*) ptr->gtt, di, (void*) value);
 				}
 			}

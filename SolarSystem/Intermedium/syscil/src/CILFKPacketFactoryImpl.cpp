@@ -20,11 +20,11 @@ CILPacket* CILFKPacketFactoryImpl::Create(PCOL_TYPE type) {
 
 	switch (type) {
 	case PCOL_FK: {
-//		pk = (CILPacket *)new CILFKPacket();
+		pk = (CILPacket *)new CILFKPacket();
 		break;
 	}
 	case PCOL_DL645: {
-//		pk = (CILPacket *)new CIL645Packet();
+		pk = (CILPacket *)new CIL645Packet();
 		break;
 	}
 	default: {

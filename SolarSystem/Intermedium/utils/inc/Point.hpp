@@ -17,7 +17,6 @@
 #include <stdexcept>
 
 namespace utils {
-
 template<class Type, int Dim>
 class Point {
 private:
@@ -96,7 +95,7 @@ inline std::ostream& operator<<(std::ostream &os, const Point<Type, Dim> &pt) {
 	os << " )";
 	return os;
 }
-} //namespace Utils
+} //namespace utils
 
 namespace test {
 using namespace utils;

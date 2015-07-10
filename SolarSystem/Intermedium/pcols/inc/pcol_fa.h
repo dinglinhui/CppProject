@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_PCOLS_INC_PCOL_FA_H_
-#define INTERMEDIUM_PCOLS_INC_PCOL_FA_H_
+#ifndef PCOL_FA_H_
+#define PCOL_FA_H_
 
 #include "FA_protocol.h"
 
@@ -54,4 +54,4 @@ extern int FA_Output(EM_DATA *data, char *szOut);
 
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_PCOLS_INC_PCOL_FA_H_ */
+#endif /* PCOL_FA_H_ */

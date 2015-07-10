@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_PCOLS_INC_FA_PROTOCOL_H_
-#define INTERMEDIUM_PCOLS_INC_FA_PROTOCOL_H_
+#ifndef FA_PROTOCOL_H_
+#define FA_PROTOCOL_H_
 
 #include "OSDefs.h"
 
@@ -377,10 +377,8 @@ typedef struct tag_FA_UNIT {
 
 static const FA_UINT FA_UNIT_DEFINE[] = {
 		//nItem,	Nmae
-		{ 0, nullptr }, { 1, "V" }, { 2, "A" }, { 3, "kV" }, { 4, "kA" },
-		{ 5, "kW" }, { 6, "kvar" }, { 7, "kWh" }, { 8, "kvarh" }, { 9, "%" }, {
-				10, "分" }, { 11, "秒" }, { 12, "BIT/S" }, { 13, "kVA" }, { 14,
-				"度" }, { 15, "MDHM" }, };
+		{ 0, nullptr }, { 1, "V" }, { 2, "A" }, { 3, "kV" }, { 4, "kA" }, { 5, "kW" }, { 6, "kvar" }, { 7, "kWh" }, { 8, "kvarh" }, { 9, "%" }, { 10, "分" }, { 11, "秒" }, { 12, "BIT/S" },
+		{ 13, "kVA" }, { 14, "度" }, { 15, "MDHM" }, };
 
 typedef struct tag_FA_DATA_DEFINE {
 	WORD DI;							//标识编码
@@ -2001,7 +1999,9 @@ typedef struct tag_FA_DIC33F {
 } FA_DIC33F;
 
 typedef enum tag_FA_TASK_ENUM {
-	FA_COMMON = 0x01, FA_RELAY = 0x02, FA_ABNORMITY = 0x04
+	FA_COMMON = 0x01,
+	FA_RELAY = 0x02,
+	FA_ABNORMITY = 0x04
 } FA_TASK_ENUM;
 
 typedef enum tag_FA_TIMEINTERVAL_UNIT {
@@ -3920,4 +3920,4 @@ typedef struct tag_EM_DI04820000 {
 }
 #endif
 
-#endif /* INTERMEDIUM_PCOLS_INC_FA_PROTOCOL_H_ */
+#endif /* FA_PROTOCOL_H_ */

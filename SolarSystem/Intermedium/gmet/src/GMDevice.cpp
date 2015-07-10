@@ -11,8 +11,11 @@
 namespace pcols {
 
 CGMDevice::CGMDevice(void) :
-		m_dwSends(0), m_dwRecvs(0), m_wCacheSize(0), m_pCache(nullptr), m_pSerialport(
-				nullptr) {
+		m_dwSends(0),
+		m_dwRecvs(0),
+		m_wCacheSize(0),
+		m_pCache(nullptr),
+		m_pSerialport(nullptr) {
 }
 
 CGMDevice::~CGMDevice(void) {
@@ -200,7 +203,7 @@ int CGMDevice::WaitMeterData(CGMPoint *pObj, Command *pCMD) {
 	static const WORD BFS = 256;
 
 	BYTE lpTmp[BFS] = { 0 };
-	DWORD dwTime = 0;//OSTimeGet();
+	DWORD dwTime = 0;	//OSTimeGet();
 	DWORD dwExpire = 0;
 	WORD nLen = 0;
 	WORD nSize = 0;
@@ -225,7 +228,7 @@ int CGMDevice::WaitMeterData(CGMPoint *pObj, Command *pCMD) {
 			} while (nLen > 0);
 
 			nWaitTime = nRecvTime;
-			dwTime = 0;//OSTimeGet();
+			dwTime = 0;	//OSTimeGet();
 		} else if (event != COM_TIMEOUT) {
 			dwExpire = (DWORD) (/*OSTimeGet() - */dwTime);
 			if (dwExpire >= nTranTime) {

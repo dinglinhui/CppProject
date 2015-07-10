@@ -15,7 +15,6 @@
 #include "Restriction.hpp"
 
 namespace utils {
-
 template<typename Func>
 class Events: NonCopyable {
 public:
@@ -27,7 +26,7 @@ public:
 	}
 
 	int operator +=(Func&& f) {
-		return Connect(std::forward<Func>(f));
+		return Connect(std::forward < Func > (f));
 	}
 
 	int operator +=(Func& f) {
@@ -50,7 +49,7 @@ public:
 
 private:
 	int Connect(Func&& f) {
-		return Assgin(std::forward<Func>(f));
+		return Assgin(std::forward < Func > (f));
 	}
 
 	int Connect(Func& f) {
@@ -71,7 +70,7 @@ private:
 	template<typename F>
 	int Assgin(F&& f) {
 		int index = m_nextKey++;
-		Push(index, std::forward<Func>(f));
+		Push(index, std::forward < Func > (f));
 		return index;
 	}
 

@@ -9,10 +9,10 @@
 
 namespace osext {
 
-OSThreadEx::OSThreadEx(int nPrio, int nStackSize, int nQueueBuffSize,
-		INT16U nTskOpt) :
-		OSThread(nPrio, nStackSize, nTskOpt), OSMessageBase(nQueueBuffSize), m_pParent(
-				nullptr) {
+OSThreadEx::OSThreadEx(int nPrio, int nStackSize, int nQueueBuffSize, INT16U nTskOpt) :
+		OSThread(nPrio, nStackSize, nTskOpt),
+		OSMessageBase(nQueueBuffSize),
+		m_pParent(nullptr) {
 }
 
 OSThreadEx::~OSThreadEx() {
@@ -40,8 +40,7 @@ OSRet OSThreadEx::Run() {
 				if (msg != nullptr) {
 					int nRet = OnHandleMessage(msg);
 					if (msg->m_pACT != nullptr) {
-						PostMessage(msg->m_pSource, MSGType::MSG_ACT, nRet,
-								(DWORD) msg->m_pACT, nullptr);
+						PostMessage(msg->m_pSource, MSGType::MSG_ACT, nRet, (DWORD) msg->m_pACT, nullptr);
 					}
 					delete msg;
 				}

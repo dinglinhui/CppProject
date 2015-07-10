@@ -13,7 +13,12 @@ extern void *OSGetMessagePtr(void);
 extern void OSPutMessagePtr(void *p);
 
 OSMessage::OSMessage(void) :
-		m_pSource(nullptr), m_nCmd(MSGType::MSG_NULL), m_wParam(0), m_lParam(0), m_bAsyn(false), m_pACT(nullptr) {
+		m_pSource(nullptr),
+		m_nCmd(MSGType::MSG_NULL),
+		m_wParam(0),
+		m_lParam(0),
+		m_bAsyn(false),
+		m_pACT(nullptr) {
 }
 
 void* OSMessage::operator new(size_t nSize) {
@@ -33,7 +38,8 @@ void OSMessage::operator delete(void *p, size_t nSize) {
 }
 
 OSMessageBase::OSMessageBase(int nQueueSize) :
-		m_bOk(false), m_Queue(nQueueSize, sizeof(OSMessage)) {
+		m_bOk(false),
+		m_Queue(nQueueSize, sizeof(OSMessage)) {
 }
 
 OSMessageBase::~OSMessageBase(void) {
@@ -76,7 +82,7 @@ int OSMessageBase::SendMessage(OSMessageBase *pTarget, MSGType nCmd, DWORD wPara
 
 int OSMessageBase::Write(OSMessage *msg) {
 	int ret = 0;
-	std::unique_lock<std::mutex> ul { m_mutex };
+	std::unique_lock < std::mutex > ul { m_mutex };
 	ret = m_Queue.Write((void*) msg, 1);
 
 	return ret;

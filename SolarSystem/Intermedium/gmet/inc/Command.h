@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_GMET_INC_COMMAND_H_
-#define INTERMEDIUM_GMET_INC_COMMAND_H_
+#ifndef COMMAND_H_
+#define COMMAND_H_
 
 #include <cstdlib>
 #include "OSDefs.h"
@@ -32,4 +32,4 @@ public:
 
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_GMET_INC_COMMAND_H_ */
+#endif /* COMMAND_H_ */

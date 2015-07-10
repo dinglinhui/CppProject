@@ -19,8 +19,7 @@ private:
 	std::function<R()> m_f;
 
 public:
-	template<class F, class ... Args, class = typename std::enable_if<
-			!std::is_member_function_pointer<F>::value>::type>
+	template<class F, class ... Args, class = typename std::enable_if<!std::is_member_function_pointer<F>::value>::type>
 	void Wrap(F && f, Args && ... args) {
 		m_f = [&] {return f(args...);};
 	}

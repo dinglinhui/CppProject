@@ -5,8 +5,8 @@
  *      Author: dinglinhui
  */
 
-#ifndef INTERMEDIUM_GMET_INC_ABBPROTOCOL_H_
-#define INTERMEDIUM_GMET_INC_ABBPROTOCOL_H_
+#ifndef ABBPROTOCOL_H_
+#define ABBPROTOCOL_H_
 
 #include"GMProtocol.h"
 
@@ -18,14 +18,11 @@ class CABBProtocol: public CGMProtocol {
 public:
 	CABBProtocol(BYTE nMPT, PF_ABB_SAVE);
 	virtual ~CABBProtocol(void);
-	virtual int HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-			int nBufSize);
-	virtual int HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf,
-			int nBufSize);
+	virtual int HandleTx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize);
+	virtual int HandleRx(CGMPoint *pObj, Command *pCMD, BYTE *lpBuf, int nBufSize);
 	virtual int GetDefaultComDcb(ComDcb *pDcb);
 	virtual int GetCommands(void *parms, Command *&pCMDs, PointType);
-	void ParseClass11(BYTE frmIndex, CGMPoint* pObj, Command* pCMD, BYTE *lpBuf,
-			int nBufSize);
+	void ParseClass11(BYTE frmIndex, CGMPoint* pObj, Command* pCMD, BYTE *lpBuf, int nBufSize);
 	void ParseClass0(BYTE *lpBuf, int nBufSize);
 	void ParseClass1(CGMPoint* pObj, Command* pCMD, BYTE *lpBuf, int nBufSize);
 	// 2009-3-30
@@ -57,4 +54,4 @@ private:
 
 } /* namespace pcols */
 
-#endif /* INTERMEDIUM_GMET_INC_ABBPROTOCOL_H_ */
+#endif /* ABBPROTOCOL_H_ */

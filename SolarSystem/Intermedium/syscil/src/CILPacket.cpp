@@ -10,16 +10,31 @@
 
 namespace syscil {
 CILPacket::CILPacket(PCOL_TYPE type) :
-		m_nProtocol(type), m_lpBuf(nullptr), m_nBufSize(0), m_nDataLen(0), m_bDelete(false), m_pUserPtr(nullptr) {
+		m_nProtocol(type),
+		m_lpBuf(nullptr),
+		m_nBufSize(0),
+		m_nDataLen(0),
+		m_bDelete(false),
+		m_pUserPtr(nullptr) {
 }
 
 CILPacket::CILPacket(PCOL_TYPE type, int nSize) :
-		m_nProtocol(type), m_lpBuf(nullptr), m_nBufSize(nSize), m_nDataLen(0), m_bDelete(true), m_pUserPtr(nullptr) {
+		m_nProtocol(type),
+		m_lpBuf(nullptr),
+		m_nBufSize(nSize),
+		m_nDataLen(0),
+		m_bDelete(true),
+		m_pUserPtr(nullptr) {
 	AllocBuffer(nSize);
 }
 
 CILPacket::CILPacket(PCOL_TYPE type, BYTE *lpBuf, int nSize) :
-		m_nProtocol(type), m_lpBuf(lpBuf), m_nBufSize(nSize), m_nDataLen(0), m_bDelete(false), m_pUserPtr(nullptr) {
+		m_nProtocol(type),
+		m_lpBuf(lpBuf),
+		m_nBufSize(nSize),
+		m_nDataLen(0),
+		m_bDelete(false),
+		m_pUserPtr(nullptr) {
 }
 
 CILPacket::~CILPacket(void) {

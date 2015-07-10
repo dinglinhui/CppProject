@@ -34,32 +34,32 @@ public:
 	}
 	//默认输出毫秒
 	int64_t elapsed_milli() const {
-		return duration_cast<chrono::milliseconds>(high_resolution_clock::now() - m_begin).count();
+		return duration_cast < chrono::milliseconds > (high_resolution_clock::now() - m_begin).count();
 	}
 
 	//微秒
 	int64_t elapsed_micro() const {
-		return duration_cast<chrono::microseconds>(high_resolution_clock::now() - m_begin).count();
+		return duration_cast < chrono::microseconds > (high_resolution_clock::now() - m_begin).count();
 	}
 
 	//纳秒
 	int64_t elapsed_nano() const {
-		return duration_cast<chrono::nanoseconds>(high_resolution_clock::now() - m_begin).count();
+		return duration_cast < chrono::nanoseconds > (high_resolution_clock::now() - m_begin).count();
 	}
 
 	//秒
 	int64_t elapsed_seconds() const {
-		return duration_cast<chrono::seconds>(high_resolution_clock::now() - m_begin).count();
+		return duration_cast < chrono::seconds > (high_resolution_clock::now() - m_begin).count();
 	}
 
 	//分
 	int64_t elapsed_minutes() const {
-		return duration_cast<chrono::minutes>(high_resolution_clock::now() - m_begin).count();
+		return duration_cast < chrono::minutes > (high_resolution_clock::now() - m_begin).count();
 	}
 
 	//时
 	int64_t elapsed_hours() const {
-		return duration_cast<chrono::hours>(high_resolution_clock::now() - m_begin).count();
+		return duration_cast < chrono::hours > (high_resolution_clock::now() - m_begin).count();
 	}
 
 private:
@@ -102,10 +102,10 @@ void testTimer() {
 	std::cout << "Hello World\n";
 	system_clock::time_point now2 = system_clock::now();
 	std::cout << (now2 - now1).count() << " tick count" << std::endl;
-	std::cout << duration_cast<microseconds>(now2 - now1).count() << " microseconds " << std::endl;
+	std::cout << duration_cast < microseconds > (now2 - now1).count() << " microseconds " << std::endl;
 
 	typedef duration<int, std::ratio<60 * 60 * 24>> days_type;
-	time_point<system_clock, days_type> today = time_point_cast<days_type>(system_clock::now());
+	time_point<system_clock, days_type> today = time_point_cast < days_type > (system_clock::now());
 	std::cout << today.time_since_epoch().count() << " days since epoch" << std::endl;
 
 	chrono::milliseconds ms { 3 }; // 3 毫秒
@@ -113,14 +113,13 @@ void testTimer() {
 	chrono::microseconds us = 2 * ms; //6000微秒
 	// 30Hz clock using fractional ticks
 	chrono::duration<double, std::ratio<1, 30>> hz30(3.5);
-	std::cout << "3 ms duration has " << ms.count() << " ticks\n" << "6000 us duration has " << us.count()
-			<< " ticks\n";
+	std::cout << "3 ms duration has " << ms.count() << " ticks\n" << "6000 us duration has " << us.count() << " ticks\n";
 
 	chrono::minutes t1(10);
 	chrono::seconds t2(60);
 	chrono::seconds t3 = t1 - t2;
 	std::cout << t3.count() << " second" << std::endl;
-	std::cout << chrono::duration_cast<chrono::minutes>(t3).count() << " minutes" << std::endl;
+	std::cout << chrono::duration_cast < chrono::minutes > (t3).count() << " minutes" << std::endl;
 	std::cout << std::endl;
 }
 

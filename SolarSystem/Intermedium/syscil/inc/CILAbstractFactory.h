@@ -9,7 +9,6 @@
 #define CILABSTRACTFACTORY_H_
 
 namespace syscil {
-
 class CILAbstractFactory {
 public:
 	virtual ~CILAbstractFactory();

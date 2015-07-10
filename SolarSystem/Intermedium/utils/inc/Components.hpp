@@ -89,10 +89,9 @@ NewLetter::NewLetter(std::ifstream &fin) {
 }
 
 NewLetter::~NewLetter() {
-	std::for_each(std::begin(components), std::end(components),
-			[](NLComponent *component) {
-				delete component;
-			});
+	std::for_each(std::begin(components), std::end(components), [](NLComponent *component) {
+		delete component;
+	});
 //	for (std::list<NLComponent*>::const_iterator it = components.begin();
 //			it != components.end(); ++it) {
 //		delete (*it);
@@ -101,10 +100,9 @@ NewLetter::~NewLetter() {
 }
 
 void NewLetter::printAll() {
-	std::for_each(std::begin(components), std::end(components),
-			[](NLComponent *component) {
-				std::cout << *component;
-			});
+	std::for_each(std::begin(components), std::end(components), [](NLComponent *component) {
+		std::cout << *component;
+	});
 //	for (std::list<NLComponent*>::const_iterator it = components.begin();
 //			it != components.end(); ++it) {
 //		std::cout << **it;    //直接输出不同子类的信息，即虚拟化非成员函数
