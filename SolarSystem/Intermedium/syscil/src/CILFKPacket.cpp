@@ -22,7 +22,7 @@ CILFKPacket::~CILFKPacket(void) {
 
 bool CILFKPacket::GetUData(FK_UDATA &udt) {
 	BYTE *lpBuf = GetFrame();
-	if (lpBuf != NULL) {
+	if (lpBuf != nullptr) {
 		int nSize = GetLength();
 		if (nSize > 0) {
 			int nRet = FK_GetFrame(&udt, lpBuf, nSize);
@@ -100,7 +100,7 @@ int CILFKPacket::GetData(BYTE*& ptr) {
 CILPacket* CILFKPacket::Clone(void) {
 	int nSize = GetSize();
 	CILFKPacket *pkFK = new CILFKPacket(nSize);
-	if (pkFK != NULL) {
+	if (pkFK != nullptr) {
 		BYTE *ptr = GetFrame();
 		int nLen = GetLength();
 		pkFK->Append(ptr, nLen);
@@ -112,7 +112,7 @@ CILPacket* CILFKPacket::Duplicate(void) {
 	BYTE *ptr = GetFrame();
 	int nSize = GetSize();
 	CILFKPacket *pkFK = new CILFKPacket(ptr, nSize);
-	if (pkFK != NULL) {
+	if (pkFK != nullptr) {
 		int nLen = GetLength();
 		pkFK->Offset(nLen);
 	}

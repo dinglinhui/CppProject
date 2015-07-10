@@ -40,8 +40,8 @@ public:
 	int GetSendComDcb(Command *pCMD, ComDcb *pDcb);
 	int GetRecvComDcb(Command *pCMD, ComDcb *pDcb);
 
-	int GetTranTimeOut(Command *pCMD = NULL);
-	int GetRecvTimeOut(Command *pCMD = NULL);
+	int GetTranTimeOut(Command *pCMD = nullptr);
+	int GetRecvTimeOut(Command *pCMD = nullptr);
 
 	int MakeCommands(void *parm, Command *&pCMDs);
 

@@ -156,8 +156,8 @@ typedef struct tag_FK_FORMAT {
 //
 static const FK_FORMAT FK_FORMAT_DEFINE[] = {
 //nItem,	Nmae
-		{ 0, NULL }, { 1, NULL }, { 2, NULL }, { 3, NULL }, { 4, NULL }, { 5, NULL }, { 6, NULL }, { 7, NULL }, { 8, NULL }, { 9, NULL }, { 10, NULL }, { 11, NULL }, { 12, NULL }, { 13, NULL }, { 14,
-		NULL }, { 15, NULL }, { 16, NULL }, { 17, NULL }, { 18, NULL }, { 19, NULL }, { 20, NULL }, { 21, NULL }, { 22, NULL }, { 23, NULL }, };
+		{ 0, nullptr }, { 1, nullptr }, { 2, nullptr }, { 3, nullptr }, { 4, nullptr }, { 5, nullptr }, { 6, nullptr }, { 7, nullptr }, { 8, nullptr }, { 9, nullptr }, { 10, nullptr }, { 11, nullptr }, { 12, nullptr }, { 13, nullptr }, { 14,
+		nullptr }, { 15, nullptr }, { 16, nullptr }, { 17, nullptr }, { 18, nullptr }, { 19, nullptr }, { 20, nullptr }, { 21, nullptr }, { 22, nullptr }, { 23, nullptr }, };
 
 //数据格式01
 typedef struct tag_FK_DATAMASK01 {
@@ -455,7 +455,7 @@ typedef struct tag_FK_UNIT {
 
 static const FK_UINT FK_UNIT_DEFINE[] = {
 //nItem,	Nmae
-		{ 0, NULL }, { 1, "V" }, { 2, "A" }, { 3, "kV" }, { 4, "kA" }, { 5, "kW" }, { 6, "kvar" }, { 7, "kWh" }, { 8, "kvarh" }, { 9, "%" }, { 10, "分" }, { 11, "秒" }, { 12, "BIT/S" }, { 13, "KVA" }, {
+		{ 0, nullptr }, { 1, "V" }, { 2, "A" }, { 3, "kV" }, { 4, "kA" }, { 5, "kW" }, { 6, "kvar" }, { 7, "kWh" }, { 8, "kvarh" }, { 9, "%" }, { 10, "分" }, { 11, "秒" }, { 12, "BIT/S" }, { 13, "KVA" }, {
 				14, "度" }, { 15, "" } };
 
 typedef struct tag_FK_DATA_DEFINE {

@@ -22,7 +22,7 @@ CIL645Packet::~CIL645Packet(void) {
 
 bool CIL645Packet::GetHDR(DL645_HDR &hdr) {
 	BYTE *lpBuf = GetFrame();
-	if (lpBuf != NULL) {
+	if (lpBuf != nullptr) {
 		int nLen = GetLength();
 		if (nLen > 8) {
 			memcpy(hdr.rtua, &lpBuf[1], 6);
@@ -34,7 +34,7 @@ bool CIL645Packet::GetHDR(DL645_HDR &hdr) {
 }
 
 void CIL645Packet::Reversal(void) {
-	BYTE *pData = NULL;
+	BYTE *pData = nullptr;
 	int nSize = GetData(pData);
 
 	for (int i = 0; i < nSize; ++i) {
@@ -95,7 +95,7 @@ PCMD_TYPE CIL645Packet::GetPcmdType(void) {
 
 int CIL645Packet::IsValid(void) {
 	BYTE *lpBuf = GetFrame();
-	if (lpBuf != NULL) {
+	if (lpBuf != nullptr) {
 		int nLen = GetLength();
 		int nRet = DL645_IsValid(lpBuf, nLen);
 		if (nRet > 0) {
@@ -107,7 +107,7 @@ int CIL645Packet::IsValid(void) {
 
 int CIL645Packet::GetData(BYTE*& ptr) {
 	BYTE *lpBuf = GetFrame();
-	if (lpBuf != NULL) {
+	if (lpBuf != nullptr) {
 		int nSize = GetLength();
 		if (nSize > 10) {
 			int nLen = lpBuf[9];
@@ -121,7 +121,7 @@ int CIL645Packet::GetData(BYTE*& ptr) {
 CILPacket* CIL645Packet::Clone(void) {
 	int nSize = GetSize();
 	CIL645Packet *pk645 = new CIL645Packet(nSize);
-	if (pk645 != NULL) {
+	if (pk645 != nullptr) {
 		BYTE *ptr = GetFrame();
 		int nLen = GetLength();
 		pk645->Append(ptr, nLen);
@@ -133,7 +133,7 @@ CILPacket* CIL645Packet::Duplicate(void) {
 	BYTE *ptr = GetFrame();
 	int nSize = GetSize();
 	CIL645Packet *pk645 = new CIL645Packet(ptr, nSize);
-	if (pk645 != NULL) {
+	if (pk645 != nullptr) {
 		int nLen = GetLength();
 		pk645->Offset(nLen);
 	}

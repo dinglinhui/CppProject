@@ -6,6 +6,8 @@
  */
 
 #include "CILFKPacketFactoryImpl.h"
+#include "CILFKPacket.h"
+#include "CIL645Packet.h"
 
 namespace syscil {
 

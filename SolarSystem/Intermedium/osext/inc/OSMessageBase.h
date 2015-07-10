@@ -39,7 +39,7 @@ public:
 	}
 
 	int PostMessage(OSMessageBase *pTarget, OSMessage *msg);
-	int PostMessage(OSMessageBase *pTarget, MSGType nCmd, DWORD wParam, DWORD lParam, void* act = NULL);
+	int PostMessage(OSMessageBase *pTarget, MSGType nCmd, DWORD wParam, DWORD lParam, void* act = nullptr);
 
 	int SendMessage(OSMessageBase *pTarget, OSMessage *msg);
 	int SendMessage(OSMessageBase *pTarget, MSGType nCmd, DWORD wParam, DWORD lParam);

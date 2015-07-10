@@ -40,8 +40,8 @@ public:
 
 	virtual int GetCommands(void *parms, Command *&pCMDs, PointType type);
 
-	virtual int GetTranTimeOut(Command *pCMD = NULL);
-	virtual int GetRecvTimeOut(Command *pCMD = NULL);
+	virtual int GetTranTimeOut(Command *pCMD = nullptr);
+	virtual int GetRecvTimeOut(Command *pCMD = nullptr);
 
 	virtual int GetDefaultComDcb(ComDcb *pDcb);
 	virtual int GetSendComDcb(Command *pCMD, ComDcb *pDcb);

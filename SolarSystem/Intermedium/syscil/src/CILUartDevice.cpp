@@ -12,7 +12,7 @@ namespace syscil {
 
 CILUartDevice::CILUartDevice(BYTE nIdent, int nCacheSize, DWORD tmTran, DWORD tmRecv) :
 		CILDevice(nIdent, nCacheSize),
-		m_pPort( NULL),
+		m_pPort( nullptr),
 		m_tmTran(tmTran),
 		m_tmRecv(tmRecv) {
 }
@@ -21,7 +21,7 @@ CILUartDevice::~CILUartDevice(void) {
 }
 
 void CILUartDevice::Init(OSComPort *ptr) {
-	assert(ptr != NULL);
+	assert(ptr != nullptr);
 	m_pPort = ptr;
 }
 
@@ -34,11 +34,11 @@ DWORD CILUartDevice::GetRecvTimeout(void) const {
 }
 
 DWORD CILUartDevice::GetTimesOfSent(int nSize) {
-	if (m_pPort == NULL)
+	if (m_pPort == nullptr)
 		return 0;
 
 	ComDcb *pDcb = m_pPort->GetCommDCB();
-	assert(pDcb != NULL);
+	assert(pDcb != nullptr);
 
 	// 1 bit of start, 1 bit of parity
 	BYTE nBits = 2;
@@ -63,7 +63,7 @@ DWORD CILUartDevice::GetTimesOfSent(int nSize) {
 }
 
 int CILUartDevice::Write(BYTE* lpBuf, int nBufSize) {
-	if (m_pPort == NULL)
+	if (m_pPort == nullptr)
 		return -1;
 	if (!m_pPort->IsOpen())
 		return -1;
@@ -77,7 +77,7 @@ int CILUartDevice::Write(BYTE* lpBuf, int nBufSize) {
 }
 
 int CILUartDevice::Read(BYTE* lpBuf, int nSize, DWORD dwTimeout) {
-	if (m_pPort == NULL)
+	if (m_pPort == nullptr)
 		return -1;
 	if (!m_pPort->IsOpen())
 		return -1;

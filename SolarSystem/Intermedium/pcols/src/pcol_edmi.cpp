@@ -121,11 +121,11 @@ static int __Reverse(BYTE *lpBuf, BYTE *lpSrc, int nSize) {
 }
 
 int MKX_MakeFrame(MKX_FRAME *frm, BYTE *lpBuf, int /* nBufSize */) {
-	if (frm == NULL)
+	if (frm == nullptr)
 		return 0;
-	if (frm->data == NULL)
+	if (frm->data == nullptr)
 		return 0;
-	if (lpBuf == NULL)
+	if (lpBuf == nullptr)
 		return 0;
 
 	unsigned short crc = 0;

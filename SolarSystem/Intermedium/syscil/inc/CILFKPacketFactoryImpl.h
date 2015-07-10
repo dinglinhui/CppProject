@@ -11,7 +11,6 @@
 #include "CILPacketFactoryImpl.h"
 
 namespace syscil {
-
 class CILFKPacketFactoryImpl: public CILPacketFactoryImpl {
 public:
 	CILFKPacketFactoryImpl();

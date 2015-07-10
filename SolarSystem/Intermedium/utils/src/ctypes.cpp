@@ -201,7 +201,7 @@ int indexOf(const char *s, int n, char c) {
 int indexOf(const char* lpszString, const char* lpszSubstring) {
 	char* pdest = strstr((char*) lpszString, lpszSubstring);
 
-	if (pdest == NULL)
+	if (pdest == nullptr)
 		return -1;
 	else
 		return (pdest - lpszString);

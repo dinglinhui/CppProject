@@ -950,7 +950,7 @@ int DL645_Encode_C010( BYTE *buff, void* )
 {
 	int nPos = 0;
 	
-	time_t hTime = time(NULL);
+	time_t hTime = time(nullptr);
 	tm* tm_sys = localtime(&hTime);
 
 	hex2bcd(tm_sys->tm_wday, &buff[nPos++]);
@@ -976,7 +976,7 @@ int DL645_Encode_C010_HB( BYTE *buff, void* )
 {
 	int nPos = 0;
 	
-	time_t hTime = time(NULL);
+	time_t hTime = time(nullptr);
 	tm* tm_sys = localtime(&hTime);
 	buff[nPos++] = 0;	
 	hex2bcd(tm_sys->tm_mday, &buff[nPos++]);
@@ -1000,7 +1000,7 @@ int DL645_Decode_C010_HB( void *appl, BYTE *buff )
 int DL645_Encode_C011( BYTE *buff, void* )
 {
 	int nPos = 0;
-	time_t hTime = time(NULL);
+	time_t hTime = time(nullptr);
 	tm* tm_sys = localtime(&hTime);
 
 	hex2bcd(tm_sys->tm_sec,  &buff[nPos++]);
