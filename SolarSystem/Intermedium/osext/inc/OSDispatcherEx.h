@@ -8,11 +8,11 @@
 #ifndef OSDISPATCHEREX_H_
 #define OSDISPATCHEREX_H_
 
+#include <MemPool.h>
 #include <list>
 #include "OSDispatcher.h"
 #include "OSMessageBase.h"
 #include "OSThreadEx.h"
-#include "MemPool.hpp"
 #include "Events.hpp"
 
 namespace osext {

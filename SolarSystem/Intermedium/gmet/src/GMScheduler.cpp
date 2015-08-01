@@ -110,8 +110,7 @@ CGMPoint* CGMScheduler::FindFirstActive(void) {
 //	OSCriticalSection lock;
 	CGMPoint *pObj = m_plstGMP;
 	while (pObj != nullptr) {
-		if (/* (pObj->m_nPort == m_nPort) &&*/
-		(pObj->m_nActive == 1)) {
+		if ((pObj->m_nPort == m_nPort) && (pObj->m_nActive == 1)) {
 			return pObj;
 		}
 		pObj = pObj->m_pNext;
@@ -130,9 +129,7 @@ CGMPoint* CGMScheduler::FindNextActive(CGMPoint *pObj) {
 	CGMPoint *pNext = pObj;
 	do {
 		pNext = pNext->m_pNext;
-		if ((pNext != nullptr) &&
-		/*(pNext->m_nPort == m_nPort) &&*/
-		(pNext->m_nActive == 1)) {
+		if ((pNext != nullptr) && (pNext->m_nPort == m_nPort) && (pNext->m_nActive == 1)) {
 			return pNext;
 		}
 	} while (pNext != nullptr);
@@ -190,21 +187,17 @@ void CGMScheduler::DelGMPoint(CGMPoint *pMP) {
 
 void CGMScheduler::OnSuccess(CGMTask *pTask, WORD TN, GMRET ret) {
 	assert(pTask != nullptr);
-	if (nullptr != pTask) {
-		if (nullptr != (OSMessageBase*) pTask->m_pSrce) {
-			PostMessage((OSMessageBase*) pTask->m_pSrce, MSGType::GM_SUCCESS, MAKELONG(TN, ret), (DWORD) pTask->m_pBody);
-			return;
-		}
+	if (nullptr != (OSMessageBase*) pTask->m_pSrce) {
+		PostMessage((OSMessageBase*) pTask->m_pSrce, MSGType::GM_SUCCESS, MAKELONG(TN, ret), (DWORD) pTask->m_pBody);
+		return;
 	}
 }
 
 void CGMScheduler::OnFinish(CGMTask *pTask, WORD TN, GMRET ret) {
 	assert(pTask != nullptr);
-	if (nullptr != pTask) {
-		if (nullptr != (OSMessageBase*) pTask->m_pSrce) {
-			PostMessage((OSMessageBase*) pTask->m_pSrce, MSGType::GM_FINISH, MAKELONG(TN, ret), (DWORD) pTask->m_pBody);
-			return;
-		}
+	if (nullptr != (OSMessageBase*) pTask->m_pSrce) {
+		PostMessage((OSMessageBase*) pTask->m_pSrce, MSGType::GM_FINISH, MAKELONG(TN, ret), (DWORD) pTask->m_pBody);
+		return;
 	}
 }
 

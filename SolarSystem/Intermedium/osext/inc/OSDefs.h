@@ -10,28 +10,18 @@ static const auto OS_MONITOR_THREAD_PAUSE = OS_THREAD_PAUSE * 2;
 static const auto OS_MAX_TASK_COUNT = 100;
 static const auto OS_MAX_OBJECT_NUM = 10;
 static const auto OS_MAX_MESSAGE_NUM = 10;
+static const auto OS_MEMPOOL_SIZE = 100 * 1024 * 1024;
 
 enum dimension {
-	one_dimension = 1,
-	two_dimension,
-	three_dimension
+	one_dimension = 1, two_dimension, three_dimension
 };
 
 enum class OSRet {
-	OK,
-	ERROR,
-	NULLPTR,
-	THREAD_OK,
-	THREAD_ERROR
+	OK, ERROR, NULLPTR, THREAD_OK, THREAD_ERROR
 };
 
 enum class TStat {
-	NoStart,
-	Starting,
-	Started,
-	Running,
-	Stopping,
-	Stopped
+	NoStart, Starting, Started, Running, Stopping, Stopped
 };
 
 enum class MSGType {
@@ -75,10 +65,7 @@ typedef enum {
 
 // Command type
 typedef enum {
-	PCMD_REQUEST = 1,
-	PCMD_REQUESTANY = 2,
-	PCMD_RESPOND = 3,
-	PCMD_BROADCAST = 4
+	PCMD_REQUEST = 1, PCMD_REQUESTANY = 2, PCMD_RESPOND = 3, PCMD_BROADCAST = 4
 } PCMD_TYPE;
 
 typedef enum tagCOMEVENT {
@@ -125,10 +112,7 @@ typedef enum tagCOMBAUD {
 } ComBaud;
 
 typedef enum tagCOMDATABIT {
-	DB_5 = 0,
-	DB_6 = 1,
-	DB_7 = 2,
-	DB_8 = 3
+	DB_5 = 0, DB_6 = 1, DB_7 = 2, DB_8 = 3
 } ComDataBit;
 
 typedef enum tagCOMPARITY {

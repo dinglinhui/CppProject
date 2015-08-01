@@ -12,19 +12,22 @@
 #include "CILService.h"
 #include "CILSchedule.h"
 #include "CILDispatcher.h"
+#include "MemPool.h"
 
 namespace kding {
 using namespace osext;
 using namespace syscil;
+using namespace utils;
 
 class SysApp: public OSDispatcherEx {
 public:
 	virtual ~SysApp();
-	SysApp *GetAppInstance();
+	static SysApp *GetAppInstance();
 
 	CILService m_objCIL;
 	CILSchedule m_objSch;
 	CILDispatcher m_objDsp;
+	static MemPool<char> mempool;
 
 protected:
 	virtual OSRet OSInitHook(void) override final;
@@ -35,6 +38,7 @@ private:
 	int Initialize(int *ret = nullptr);
 
 	static SysApp *theApp;
+
 };
 
 } /* namespace KDING */

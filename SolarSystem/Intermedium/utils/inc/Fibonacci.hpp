@@ -72,7 +72,7 @@ int fibonacci5(int n) {        //迭代实现
 }
 
 double fibonacci6(int n) {
-	auto gh5 = std::sqrt(5);
+	auto gh5 = sqrt(5);
 	return (pow((1 + gh5), n) - pow((1 - gh5), n)) / (pow((double) 2, n) * gh5);
 }
 }

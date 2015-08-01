@@ -10,6 +10,7 @@
 namespace kding {
 
 SysApp *SysApp::theApp = new SysApp();
+MemPool<char> SysApp::mempool(OS_MEMPOOL_SIZE); //预先分配100M的内存空间
 
 SysApp *SysApp::GetAppInstance() {
 	return SysApp::theApp;

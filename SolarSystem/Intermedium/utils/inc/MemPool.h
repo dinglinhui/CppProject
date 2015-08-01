@@ -1,5 +1,5 @@
-#ifndef MEMPOOL_HPP_
-#define MEMPOOL_HPP_
+#ifndef MEMPOOL_H_
+#define MEMPOOL_H_
 
 #include <iostream>
 #include <stdexcept>
@@ -37,11 +37,28 @@ public:
 		headoffreelist = *(T**) headoffreelist;
 		return p;
 	}
+	//
+	T *alloc(size_t nSize) {
+		if (nullptr == headoffreelist) {
+			throw std::overflow_error("Out of memory");
+		}
+		T *p = headoffreelist;
+
+		headoffreelist = *((T**) headoffreelist + nSize * sizeof(T));
+		return p;
+	}
 
 	void dealloc(T* p) {
 		*(T **) p = headoffreelist;
 		headoffreelist = p;
 	}
+
+	//
+	void dealloc(T* p, size_t nSize) {
+		*((T **) p + nSize * sizeof(T)) = headoffreelist;
+		headoffreelist = p;
+	}
+
 private:
 	void *pstart;       //记住分配的首地址，用于内存释放
 	T *headoffreelist;  //未使用内存的首地址
@@ -88,4 +105,4 @@ namespace test {
 }
 #endif
 
-#endif /* MEMPOOL_HPP_ */
+#endif /* MEMPOOL_H_ */

@@ -1,12 +1,12 @@
 /*
- * Singleton.hpp
+ * Singleton.h
  *
  *  Created on: Apr 8, 2015
  *      Author: dinglinhui
  */
 
-#ifndef SINGLETON_HPP_
-#define SINGLETON_HPP_
+#ifndef SINGLETON_H_
+#define SINGLETON_H_
 
 namespace utils {
 
@@ -44,4 +44,4 @@ private:
 template<class T> T* Singleton<T>::m_pInstance = nullptr;
 
 } //namespace utils
-#endif /* SINGLETON_HPP_ */
+#endif /* SINGLETON_H_ */

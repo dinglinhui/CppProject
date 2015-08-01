@@ -10,6 +10,7 @@
 //#include <MemPool.h>
 //#include <OSCriticalSection.h>
 #include "GMScheduler.h"
+#include "SysApp.h"
 
 namespace pcols {
 
@@ -43,20 +44,21 @@ CGMTask::~CGMTask(void) {
 
 void* CGMTask::operator new(size_t nSize) {
 	if (nSize != sizeof(CGMTask)) {
-//		return nullptr;
 		throw std::logic_error("size error");
 	}
 
-//	void *ptr = mempool_alloc(nSize);
-//	return ptr;
-	return nullptr;
+	auto theApp = kding::SysApp::GetAppInstance();
+	void *ptr = theApp->mempool.alloc(nSize);
+	return ptr;
 }
 
 void CGMTask::operator delete(void *p, size_t nSize) {
 	if (nSize != sizeof(CGMTask)) {
 		return;
 	}
-//	mempool_free(p, nSize);
+
+	auto theApp = kding::SysApp::GetAppInstance();
+	theApp->mempool.dealloc((char *) p, nSize);
 }
 
 void CGMTask::Clear(void) {
