@@ -1,0 +1,16 @@
+Acceptor
+Filter
+Holder
+Reactor
+Handler
+Register
+Consumer
+Emitter
+Trigger
+Provider
+Publisher
+Connector
+Sender
+Receiver
+Messager
+Proxy
