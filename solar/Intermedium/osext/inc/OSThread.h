@@ -34,49 +34,50 @@ public:
 	void operator=(OSThread &&) = delete;
 	void operator=(const OSThread &) = delete;
 
-	virtual OSRet Start();
-	virtual OSRet Stop();
-	virtual OSRet Pause();
-	virtual OSRet Continue();
+	virtual OSRet start();
+	virtual OSRet stop();
+	virtual OSRet suspend();
+	virtual OSRet resume();
 	//
-	std::thread::id GetThreadID() {
+	std::thread::id getThreadID() {
 		return thread_->get_id();
 	}
 	//
-	std::string GetThreadName() {
+	std::string getThreadName() {
 		return name_;
 	}
 	//
-	TStat GetThreadStatus() {
+	TStat getThreadStatus() {
 		return status_;
 	}
-	void SetThreadStatus(TStat status) {
+	void setThreadStatus(TStat status) {
 		status_ = status;
 	}
 	//
-	int GetPrio() const {
+	int getPrio() const {
 		return prio_;
 	}
-	void SetPrio(int prio) {
+	void setPrio(int prio) {
 		prio_ = prio;
 	}
 	//
-	int GetOption() const {
+	int getOption() const {
 		return option_;
 	}
-	void SetOption(int opt) {
+	void setOption(int opt) {
 		option_ = opt;
 	}
 	//
-	OSHeartbeat& GetHeartbeat() {
+	OSHeartbeat& getHeartbeat() {
 		return heartbeat_;
 	}
 
 protected:
-	virtual OSRet Run() = 0;
+	virtual OSRet run() = 0;
+
 	virtual OSRet OSInitHook(void);
 
-	static OSRet ThreadFunction(void *param);
+	static OSRet staticThreadFunction(void *param);
 
 private:
 	std::thread *thread_;

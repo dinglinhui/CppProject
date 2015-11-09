@@ -18,7 +18,7 @@ OSDispatcher::~OSDispatcher() {
 
 int OSDispatcher::Create(int nTskOpt) {
 	//
-	SetOption(nTskOpt);
+	setOption(nTskOpt);
 	return 0;
 }
 

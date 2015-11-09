@@ -27,16 +27,16 @@ OSThread::OSThread(std::string name, int prio) :
 }
 
 OSThread::~OSThread() {
-	Stop();
+	stop();
 }
 
-OSRet OSThread::Start() {
-	thread_ = new std::thread { std::bind(&OSThread::ThreadFunction, this) };
+OSRet OSThread::start() {
+	thread_ = new std::thread { std::bind(&OSThread::staticThreadFunction, this) };
 	status_ = TStat::Starting;
 	return OSRet::OK;
 }
 
-OSRet OSThread::Stop() {
+OSRet OSThread::stop() {
 	status_ = TStat::Stopping;
 	if (thread_ != nullptr) {
 		if (thread_->joinable())
@@ -47,11 +47,11 @@ OSRet OSThread::Stop() {
 	return OSRet::OK;
 }
 
-OSRet OSThread::Pause(void) {
+OSRet OSThread::suspend(void) {
 	return OSRet::OK;
 }
 
-OSRet OSThread::Continue(void) {
+OSRet OSThread::resume(void) {
 	return OSRet::OK;
 }
 
@@ -59,7 +59,7 @@ OSRet OSThread::OSInitHook(void) {
 	return OSRet::OK;
 }
 
-OSRet OSThread::ThreadFunction(void *param) {
+OSRet OSThread::staticThreadFunction(void *param) {
 	OSThread *pThis = (OSThread *) param;
 	if (pThis == nullptr)
 		return OSRet::NULLPTR;
@@ -67,9 +67,9 @@ OSRet OSThread::ThreadFunction(void *param) {
 	pThis->status_ = TStat::Started;
 
 	if (pThis->OSInitHook() == OSRet::OK)
-		pThis->Run();
+		pThis->run();
 
-	pThis->Stop();
+	pThis->stop();
 
 	return OSRet::OK;
 }

@@ -23,7 +23,7 @@ SysApp::SysApp() :
 		m_objDsp(PRIO_CILDSP, 5120, 32) {
 	Initialize();
 	this->Create(0);
-	this->Start();
+	this->start();
 }
 
 SysApp::~SysApp() {

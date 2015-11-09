@@ -75,15 +75,15 @@ OSDispatcherEx::OSDispatcherEx(int nStackSize, int nQueueBuffSize, int nMaxMSGCo
 OSDispatcherEx::~OSDispatcherEx() {
 }
 
-OSRet OSDispatcherEx::Start(void) {
+OSRet OSDispatcherEx::start(void) {
 	if (!QueueInitialize())
 		return OSRet::ERROR;
 
 	OSDispatcherEx::m_pDispatcher = this;
-	return OSDispatcher::Start();
+	return OSDispatcher::start();
 }
 
-OSRet OSDispatcherEx::Stop(void) {
+OSRet OSDispatcherEx::stop(void) {
 	threads_.clear();
 	OSDispatcherEx::m_pDispatcher = nullptr;
 	return OSRet::OK;
@@ -95,7 +95,7 @@ int OSDispatcherEx::Register(OSThreadEx* pThreadEx) {
 }
 
 int OSDispatcherEx::UnRegister(OSThreadEx* pThreadEx) {
-	OSThreadEx * thread = Find(pThreadEx->GetThreadID());
+	OSThreadEx * thread = Find(pThreadEx->getThreadID());
 	threads_.remove(thread);
 	return 0;
 }
@@ -103,7 +103,7 @@ int OSDispatcherEx::UnRegister(OSThreadEx* pThreadEx) {
 OSThreadEx* OSDispatcherEx::Find(std::thread::id nID) const {
 	OSThreadEx * thread = nullptr;
 	std::for_each(std::begin(threads_), std::end(threads_), [nID, &thread](OSThreadEx *pThreadEx) {
-		if (nID == pThreadEx->GetThreadID()) thread = pThreadEx;
+		if (nID == pThreadEx->getThreadID()) thread = pThreadEx;
 	});
 
 	return thread;
@@ -145,13 +145,13 @@ void OSDispatcherEx::PutMessagePtr(void* p) {
 
 void OSDispatcherEx::ScanThreads(void) {
 	std::for_each(std::begin(threads_), std::end(threads_), [](OSThreadEx *pThreadEx) {
-		OSHeartbeat &heartbeat = pThreadEx->GetHeartbeat();
+		OSHeartbeat &heartbeat = pThreadEx->getHeartbeat();
 		if (heartbeat.isEqual()) throw std::logic_error("thread heartbeat error");
 		else heartbeat--;
 	});
 }
 
-OSRet OSDispatcherEx::Run(void) {
+OSRet OSDispatcherEx::run(void) {
 	//Notify all thread FM_CREATE message
 	PostMessage((OSMessageBase *) this, MSGType::MSG_CREATE, 0, 0);
 	//
@@ -177,7 +177,7 @@ OSRet OSDispatcherEx::Run(void) {
 
 OSRet OSDispatcherEx::OSInitHook(void) {
 	std::for_each(std::begin(threads_), std::end(threads_), [this](OSThreadEx *pThreadEx) {
-		if (pThreadEx->Start() != OSRet::OK) throw std::logic_error(pThreadEx->GetThreadName() + "start error");
+		if (pThreadEx->start() != OSRet::OK) throw std::logic_error(pThreadEx->getThreadName() + "start error");
 	});
 	return OSDispatcher::OSInitHook();
 }

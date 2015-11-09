@@ -15,13 +15,13 @@ CILSchedule::CILSchedule(int nPrio, int nStackSize, int nQueueSize) :
 CILSchedule::~CILSchedule() {
 }
 
-OSRet CILSchedule::Run() {
-	OSHeartbeat &heartbeat = this->GetHeartbeat();
+OSRet CILSchedule::run() {
+	OSHeartbeat &heartbeat = this->getHeartbeat();
 	while (true) {
 		try {
 			heartbeat++;
 			std::cout << "[CILSchedule]" << heartbeat << std::endl << std::flush;
-			this->SetThreadStatus(TStat::Running);
+			this->setThreadStatus(TStat::Running);
 
 			std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
 

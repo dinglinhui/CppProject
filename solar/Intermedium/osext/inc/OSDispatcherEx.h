@@ -26,8 +26,8 @@ public:
 			int nMaxMSGCount = 80);
 	virtual ~OSDispatcherEx();
 
-	virtual OSRet Start(void) override;
-	virtual OSRet Stop(void) override;
+	virtual OSRet start(void) override;
+	virtual OSRet stop(void) override;
 	//
 	int Register(OSThreadEx *pThreadEx);
 	int UnRegister(OSThreadEx *pThreadEx);
@@ -49,7 +49,7 @@ public:
 	void PutMessagePtr(void *p);
 
 protected:
-	virtual OSRet Run(void) override;
+	virtual OSRet run(void) override;
 	virtual OSRet OSInitHook(void) override;
 
 	virtual int OnHandleMessage(OSMessage *msg) override;

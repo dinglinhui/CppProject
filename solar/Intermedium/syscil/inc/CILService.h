@@ -33,7 +33,7 @@ public:
 	OSMessageBase* GetPackEntry(void) const;
 
 protected:
-	virtual OSRet Run() override final;
+	virtual OSRet run() override final;
 	virtual OSRet OSInitHook(void) override;
 	virtual int ReceiveMessage(OSMessage *msg) override;
 	virtual int OnHandleMessage(OSMessage *msg) override;

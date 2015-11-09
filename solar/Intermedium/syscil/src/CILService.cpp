@@ -73,13 +73,13 @@ int CILService::OnHandleMessage(OSMessage* msg) {
 	return -1;
 }
 
-OSRet CILService::Run() {
-	OSHeartbeat &heartbeat = this->GetHeartbeat();
+OSRet CILService::run() {
+	OSHeartbeat &heartbeat = this->getHeartbeat();
 	while (true) {
 		try {
 			heartbeat++;
 			std::cout << "[CILService]" << heartbeat << std::endl << std::flush;
-			this->SetThreadStatus(TStat::Running);
+			this->setThreadStatus(TStat::Running);
 
 			std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));
 

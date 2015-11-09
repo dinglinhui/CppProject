@@ -27,10 +27,10 @@ OSRet OSThreadEx::Start() {
 	if (!QueueInitialize())
 		return OSRet::ERROR;
 
-	return OSThread::Start();
+	return OSThread::start();
 }
 
-OSRet OSThreadEx::Run() {
+OSRet OSThreadEx::run() {
 	if (OSMessageBase::isOK()) {
 		//Notify all thread FM_CREATE message
 		PostMessage((OSMessageBase *) this, MSGType::MSG_CREATE, 0, 0);
