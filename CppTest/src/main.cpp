@@ -6,7 +6,7 @@
  */
 
 #include "Global.hpp"
-#include "Point.hpp"
+//#include "Point.hpp"
 #include "Events.hpp"
 #include "Timer.hpp"
 #include "Range.hpp"

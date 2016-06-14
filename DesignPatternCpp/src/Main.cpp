@@ -1,7 +1,7 @@
 #include <cassert>
 #include "TestCase.h"
 
-DesignPatternType type = DesignPatternType::SINGLETON;
+DesignPatternType type = DesignPatternType::OBSERVER;
 
 int main(int argc, const char *argv[]) {
 	switch (type) {
