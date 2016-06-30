@@ -148,7 +148,7 @@ Buffer<T> getBuffer(const std::string& name) {
 	return b;
 }
 
-#if 1
+#if 0
 int main() {
 
 	Buffer<int> instance("instance", 80);	//constructor

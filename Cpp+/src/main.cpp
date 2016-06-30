@@ -5,17 +5,15 @@
  *      Author: dlh
  */
 
-#include "ObjectManager.h"
-#include "StaticMemory.h"
-#include "Global.hpp"
-//#include "Point.hpp"
-#include "Events.hpp"
-#include "Timer.hpp"
-#include "Range.hpp"
-#include "Optional.hpp"
-#include "CommCommand.hpp"
-#include "ObjectPool.hpp"
-#include "ThreadPool.hpp"
+#include "Data Structure/ObjectManager.h"
+#include "Data Structure/StaticMemory.h"
+#include "Data Structure/Events.hpp"
+#include "Data Structure/Range.hpp"
+#include "Data Structure/Optional.hpp"
+#include "Data Structure/CommCommand.hpp"
+#include "Data Structure/ObjectPool.hpp"
+#include "Modern C++/Timer.hpp"
+#include "Modern C++/ThreadPool.hpp"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -33,8 +31,6 @@
 #include <iomanip>
 #include <regex>
 #include <type_traits>
-#include "square.h"
-#include "circle.h"
 
 typedef struct tag_Student {
 	int sId;
@@ -148,6 +144,22 @@ void merge_sort(int a[], int first, int last, int temp[]) {
 }
 
 int main() {
+
+	try {
+//		float coords[cplusplus::global::three_dimension] = { 1.2, 3.4, 5.6 };
+//		cplusplus::test::testPoint(coords);
+//		cplusplus::test::testEvents();
+//		cplusplus::test::testTimer();
+//		cplusplus::test::testOptional();
+//		cplusplus::test::testWrap();
+//		cplusplus::test::testObjectPool();
+		cplusplus::test::testThreadPool();
+
+	} catch (std::exception const& ex) {
+		std::cerr << "Exception: " << ex.what() << std::endl;
+		return -1;
+	}
+
 	//	print_list( { 100, 8, 15, 37, 26, 13, 27, 49, 55, 18 });
 	//	#1 C Style
 	int array[] = { 100, 8, 15, 37, 26, 13, 27, 49, 55, 18 };
@@ -183,15 +195,6 @@ int main() {
 				std::cout << element << " ";
 			});
 	std::cout << std::endl;
-
-	//	# dynamic_cast
-	//横向转型失败
-	Shape *pShape1 = new Square();
-	Rollable *pRollable1 = dynamic_cast<Rollable*>(pShape1);	//pRollable为NULL
-
-	//横向转型成功
-	Shape *pShape2 = new Circle();
-	Rollable *pRollable2 = dynamic_cast<Rollable*>(pShape2);//pRollable不为NULL
 
 	//	# 获取当前路径
 	char *buffer;
@@ -250,24 +253,10 @@ int main() {
 				<< " 结束时间: " << std::get<2>(t) << " 文本: " << std::get<3>(t)
 				<< std::endl;
 	}
-	try {
-//		float coords[cplusplus::global::three_dimension] = { 1.2, 3.4, 5.6 };
-//		cplusplus::test::testPoint(coords);
-//		cplusplus::test::testEvents();
-//		cplusplus::test::testTimer();
-//		cplusplus::test::testOptional();
-//		cplusplus::test::testWrap();
-//		cplusplus::test::testObjectPool();
-		cplusplus::test::testThreadPool();
 
-		StaticMemory *pMem = new StaticMemory();
-		std::cout << "object address:" << ObjectManager<Student>::Create(pMem)
-				<< " size:" << sizeof(Student) << std::endl;
-
-	} catch (std::exception const& ex) {
-		std::cerr << "Exception: " << ex.what() << std::endl;
-		return -1;
-	}
+	std::cout << "object address:"
+			<< ObjectManager<Student>::Create(new StaticMemory()) << " size:"
+			<< sizeof(Student) << std::endl;
 
 	return 0;
 }

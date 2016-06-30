@@ -24,7 +24,7 @@ public:
 	//默认创建多少个对象
 	template<typename T, typename ... Args>
 	void Create(int num) {
-		if (num <= 0 || num > global::MaxObjectNum)
+		if (num <= 0 || num > 10)
 			throw std::logic_error("object num errer");
 
 		auto constructName = typeid(Constructor<T, Args...> ).name();

@@ -70,14 +70,14 @@ void MidBrowse(Node* node) {
 		MidBrowse(node->right);
 }
 /*
-int main() {
-	BinaryTree bt;
-	char value[101];
-	memset(value, 0, sizeof(char) * 101);
-	while (cin.getline(value, 101)) {
-		InitBinaryTree(&bt, value[0]);
-		InsertTreeNode(&bt, value, strlen(value));
-		MidBrowse(bt.root);
-		cout << endl;
-	}
-}*/
+ int main() {
+ BinaryTree bt;
+ char value[101];
+ memset(value, 0, sizeof(char) * 101);
+ while (cin.getline(value, 101)) {
+ InitBinaryTree(&bt, value[0]);
+ InsertTreeNode(&bt, value, strlen(value));
+ MidBrowse(bt.root);
+ cout << endl;
+ }
+ }*/

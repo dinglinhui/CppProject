@@ -20,7 +20,7 @@ class ThreadPool {
 public:
 	using Task = std::function<void()>;
 	ThreadPool(int numThreads = std::thread::hardware_concurrency()) :
-			m_queue(global::MaxTaskCount) {
+			m_queue(10) {
 		Start(numThreads);
 	}
 
@@ -47,7 +47,9 @@ private:
 		m_running = true;
 		//创建线程组
 		for (int i = 0; i < numThreads; ++i) {
-			m_threadgroup.push_back(std::make_shared<std::thread>(&ThreadPool::RunInThread, this));
+			m_threadgroup.push_back(
+					std::make_shared<std::thread>(&ThreadPool::RunInThread,
+							this));
 		}
 	}
 
