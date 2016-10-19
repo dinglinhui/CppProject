@@ -7,26 +7,20 @@
 
 #include "Caretaker.h"
 
-namespace DesignPattern
-{
-namespace MementoPattern
-{
+namespace DesignPattern {
+namespace MementoPattern {
 
-Caretaker::Caretaker()
-{
+Caretaker::Caretaker() {
 }
 
-Caretaker::~Caretaker()
-{
+Caretaker::~Caretaker() {
 }
 
-Memento* Caretaker::GetMemento()
-{
+Memento* Caretaker::GetMemento() {
 	return this->_memento;
 }
 
-void Caretaker::SetMemento(Memento* pMemento)
-{
+void Caretaker::SetMemento(Memento* pMemento) {
 	this->_memento = pMemento;
 }
 

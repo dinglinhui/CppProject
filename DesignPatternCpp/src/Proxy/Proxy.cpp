@@ -2,34 +2,26 @@
 #include "ConcreteSubject.h"
 #include <iostream>
 
-namespace DesignPattern
-{
-namespace ProxyPattern
-{
+namespace DesignPattern {
+namespace ProxyPattern {
 
 Proxy::Proxy() :
-		_subject(nullptr)
-{
+		_subject(nullptr) {
 }
 
-Proxy::~Proxy()
-{
+Proxy::~Proxy() {
 }
 
-void Proxy::DoSomething1()
-{
+void Proxy::DoSomething1() {
 	std::cout << "Proxy::DoSomething1" << std::endl;
 }
 
-void Proxy::DoSomething2()
-{
+void Proxy::DoSomething2() {
 	std::cout << "Proxy::DoSomething2" << std::endl;
 }
 
-void Proxy::Request()
-{
-	if (nullptr == this->_subject)
-	{
+void Proxy::Request() {
+	if (nullptr == this->_subject) {
 		this->_subject = new ConcreteSubject();
 	}
 

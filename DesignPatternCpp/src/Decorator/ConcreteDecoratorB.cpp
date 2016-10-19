@@ -7,30 +7,24 @@
 
 #include "ConcreteDecoratorB.h"
 
-namespace DesignPattern
-{
-namespace DecoratorPattern
-{
+namespace DesignPattern {
+namespace DecoratorPattern {
 
 ConcreteDecoratorB::ConcreteDecoratorB(Component* com) :
-		Decorator(com)
-{
+		Decorator(com) {
 }
 
-ConcreteDecoratorB::~ConcreteDecoratorB()
-{
+ConcreteDecoratorB::~ConcreteDecoratorB() {
 	std::cout << "~ConcreteDecoratorB" << std::endl;
 }
 
-void ConcreteDecoratorB::Operation()
-{
+void ConcreteDecoratorB::Operation() {
 	this->_com->Operation();
 	//����ְ��B
 	this->AddBehavorB();
 }
 
-void ConcreteDecoratorB::AddBehavorB()
-{
+void ConcreteDecoratorB::AddBehavorB() {
 	std::cout << "ConcreteDecoratorB::AddBehavorB" << std::endl;
 }
 

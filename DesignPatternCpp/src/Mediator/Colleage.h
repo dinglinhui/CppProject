@@ -8,13 +8,11 @@
 
 #include <iostream>
 #include "Mediator.h"
-namespace DesignPattern
-{
-namespace MediatorPattern
-{
+
+namespace DesignPattern {
+namespace MediatorPattern {
 class Mediator;
-class Colleage
-{
+class Colleage {
 public:
 	virtual ~Colleage();
 	virtual void SetMediator(Mediator* pMediator);

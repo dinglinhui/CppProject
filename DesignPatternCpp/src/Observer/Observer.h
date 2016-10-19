@@ -1,16 +1,14 @@
 #pragma once
 
-namespace DesignPattern
-{
-namespace ObserverPattern
-{
+namespace DesignPattern {
+namespace ObserverPattern {
 
 class Subject;
-class Observer
-{
+class Observer {
 public:
 	virtual ~Observer();
 	virtual void Update(Subject*) = 0;
+
 protected:
 	Observer();
 };

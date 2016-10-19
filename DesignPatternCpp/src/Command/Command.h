@@ -1,11 +1,8 @@
 #pragma once
 
-namespace DesignPattern
-{
-namespace CommandPattern
-{
-class Command
-{
+namespace DesignPattern {
+namespace CommandPattern {
+class Command {
 public:
 	virtual ~Command();
 	virtual void Execute()=0;

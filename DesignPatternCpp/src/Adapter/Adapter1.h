@@ -3,17 +3,14 @@
 #include "Target.h"
 #include "Adaptee.h"
 
-namespace DesignPattern
-{
-namespace AdapterPattern
-{
+namespace DesignPattern {
+namespace AdapterPattern {
 
 class Adaptee;
-class Adapter1: public Target
-{
+class Adapter1: public Target {
 public:
-	Adapter1(Adaptee* adaptee);
 	Adapter1();
+	Adapter1(Adaptee* adaptee);
 	~Adapter1();
 	virtual void Request();
 private:

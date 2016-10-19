@@ -3,27 +3,20 @@
 #include "BlackHuman.h"
 #include <iostream>
 
-namespace DesignPattern
-{
-namespace FactoryPattern
-{
+namespace DesignPattern {
+namespace FactoryPattern {
 
-CBlackHuman::CBlackHuman(void)
-{
+CBlackHuman::CBlackHuman(void) {
 }
-CBlackHuman::~CBlackHuman(void)
-{
+CBlackHuman::~CBlackHuman(void) {
 }
-void CBlackHuman::Cry()
-{
-    std::cout << " CBlackHuman::Cry" << std::endl;
+void CBlackHuman::Cry() {
+	std::cout << " CBlackHuman::Cry" << std::endl;
 }
-void CBlackHuman::Laugh()
-{
+void CBlackHuman::Laugh() {
 	std::cout << "CBlackHuman::Laugh" << std::endl;
 }
-void CBlackHuman::Talk()
-{
+void CBlackHuman::Talk() {
 	std::cout << "CBlackHuman::Talk" << std::endl;
 }
 

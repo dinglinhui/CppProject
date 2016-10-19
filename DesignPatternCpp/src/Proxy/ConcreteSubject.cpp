@@ -7,21 +7,16 @@
 
 #include "ConcreteSubject.h"
 
-namespace DesignPattern
-{
-namespace ProxyPattern
-{
+namespace DesignPattern {
+namespace ProxyPattern {
 
-ConcreteSubject::ConcreteSubject()
-{
+ConcreteSubject::ConcreteSubject() {
 }
 
-ConcreteSubject::~ConcreteSubject()
-{
+ConcreteSubject::~ConcreteSubject() {
 }
 
-void ConcreteSubject::Request()
-{
+void ConcreteSubject::Request() {
 	std::cout << "ConcreteSubject::Request" << std::endl;
 }
 

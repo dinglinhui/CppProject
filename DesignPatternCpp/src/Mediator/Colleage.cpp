@@ -7,22 +7,17 @@
 
 #include "Colleage.h"
 
-namespace DesignPattern
-{
-namespace MediatorPattern
-{
+namespace DesignPattern {
+namespace MediatorPattern {
 
-Colleage::Colleage(Mediator* pMediator)
-{
+Colleage::Colleage(Mediator* pMediator) {
 	this->_mediator = pMediator;
 }
 
-Colleage::~Colleage()
-{
+Colleage::~Colleage() {
 }
 
-void Colleage::SetMediator(Mediator* pMediator)
-{
+void Colleage::SetMediator(Mediator* pMediator) {
 	this->_mediator = pMediator;
 }
 

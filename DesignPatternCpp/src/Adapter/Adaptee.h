@@ -3,13 +3,10 @@
 #include <iostream>
 using namespace std;
 
-namespace DesignPattern
-{
-namespace AdapterPattern
-{
+namespace DesignPattern {
+namespace AdapterPattern {
 
-class Adaptee
-{
+class Adaptee {
 public:
 	Adaptee();
 	virtual ~Adaptee();

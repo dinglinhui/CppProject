@@ -2,17 +2,13 @@
 #include <iostream>
 
 using namespace std;
-namespace DesignPattern
-{
-namespace BridgePattern
-{
+namespace DesignPattern {
+namespace BridgePattern {
 
-AbstractionImplement::AbstractionImplement()
-{
+AbstractionImplement::AbstractionImplement() {
 }
 
-AbstractionImplement::~AbstractionImplement()
-{
+AbstractionImplement::~AbstractionImplement() {
 }
 
 }

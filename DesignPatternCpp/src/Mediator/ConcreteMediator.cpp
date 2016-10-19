@@ -7,37 +7,27 @@
 
 #include "ConcreteMediator.h"
 
-namespace DesignPattern
-{
-namespace MediatorPattern
-{
+namespace DesignPattern {
+namespace MediatorPattern {
 
-ConcreteMediator::ConcreteMediator()
-{
+ConcreteMediator::ConcreteMediator() {
 }
 
-ConcreteMediator::~ConcreteMediator()
-{
+ConcreteMediator::~ConcreteMediator() {
 }
 
-void ConcreteMediator::SetColleageA(Colleage* p)
-{
+void ConcreteMediator::SetColleageA(Colleage* p) {
 	this->m_ColleageA = p;
 }
 
-void ConcreteMediator::SetColleageB(Colleage* p)
-{
+void ConcreteMediator::SetColleageB(Colleage* p) {
 	this->m_ColleageB = p;
 }
 
-void ConcreteMediator::SendMsg(std::string msg, Colleage* p)
-{
-	if (p == this->m_ColleageA)
-	{
+void ConcreteMediator::SendMsg(std::string msg, Colleage* p) {
+	if (p == this->m_ColleageA) {
 		this->m_ColleageB->GetMsg(msg);
-	}
-	else if (p == this->m_ColleageB)
-	{
+	} else if (p == this->m_ColleageB) {
 		this->m_ColleageA->GetMsg(msg);
 	}
 }

@@ -2,6 +2,7 @@
 #include <iostream>
 
 using namespace std;
+
 namespace DesignPattern {
 namespace SingletonPattern {
 

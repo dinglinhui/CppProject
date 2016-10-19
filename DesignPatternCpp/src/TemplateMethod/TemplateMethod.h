@@ -1,23 +1,19 @@
 #pragma once
 
-namespace DesignPattern
-{
-namespace TemplateMethodPattern
-{
+namespace DesignPattern {
+namespace TemplateMethodPattern {
 
-class AbstractClass
-{
+class AbstractClass {
 protected:
 	AbstractClass();
 public:
-	~AbstractClass();
+	virtual ~AbstractClass();
 	void TemplateMethod();
 	virtual void PrimitiveOperation1()=0;
 	virtual void PrimitiveOperation2()=0;
 };
 
-class ConcreteClassA: public AbstractClass
-{
+class ConcreteClassA: public AbstractClass {
 public:
 	ConcreteClassA();
 	~ConcreteClassA();
@@ -27,8 +23,7 @@ public:
 private:
 };
 
-class ConcreteClassB: public AbstractClass
-{
+class ConcreteClassB: public AbstractClass {
 public:
 	ConcreteClassB();
 	~ConcreteClassB();

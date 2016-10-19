@@ -4,17 +4,13 @@
 
 using namespace std;
 
-namespace DesignPattern
-{
-namespace MediatorPattern
-{
+namespace DesignPattern {
+namespace MediatorPattern {
 
-Mediator::Mediator()
-{
+Mediator::Mediator() {
 }
 
-Mediator::~Mediator()
-{
+Mediator::~Mediator() {
 }
 
 } /* namespace MediatorPattern */

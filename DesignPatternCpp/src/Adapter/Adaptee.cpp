@@ -1,20 +1,15 @@
 #include "Adaptee.h"
 
-namespace DesignPattern
-{
-namespace AdapterPattern
-{
+namespace DesignPattern {
+namespace AdapterPattern {
 
-Adaptee::Adaptee()
-{
+Adaptee::Adaptee() {
 }
 
-Adaptee::~Adaptee()
-{
+Adaptee::~Adaptee() {
 }
 
-void Adaptee::SpecificRequest()
-{
+void Adaptee::SpecificRequest() {
 	cout << "Adaptee::SpecificRequest()" << endl;
 }
 

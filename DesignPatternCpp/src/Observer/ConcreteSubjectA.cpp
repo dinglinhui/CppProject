@@ -1,16 +1,12 @@
 #include "ConcreteSubjectA.h"
 
-namespace DesignPattern
-{
-namespace ObserverPattern
-{
+namespace DesignPattern {
+namespace ObserverPattern {
 
-ConcreteSubjectA::ConcreteSubjectA()
-{
+ConcreteSubjectA::ConcreteSubjectA() {
 }
 
-ConcreteSubjectA::~ConcreteSubjectA()
-{
+ConcreteSubjectA::~ConcreteSubjectA() {
 }
 
 } /* namespace ObserverPattern */

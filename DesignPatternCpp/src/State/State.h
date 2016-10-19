@@ -1,60 +1,53 @@
 #pragma once
 
-namespace DesignPattern
-{
-namespace StatePattern
-{
+namespace DesignPattern {
+namespace StatePattern {
 
 class Context;
-class State
-{
+class State {
 protected:
-    State();
+	State();
 
 public:
-    virtual ~State();
+	virtual ~State();
 
-    virtual void Handle(Context* pContext)=0;
+	virtual void Handle(Context* pContext)=0;
 };
 
-class ConcreteStateA : public State
-{
+class ConcreteStateA: public State {
 public:
-    ConcreteStateA();
-    virtual ~ConcreteStateA();
+	ConcreteStateA();
+	virtual ~ConcreteStateA();
 
-    virtual void Handle(Context* pContext) override;
+	virtual void Handle(Context* pContext) override;
 };
 
-class ConcreteStateB : public State
-{
+class ConcreteStateB: public State {
 public:
-    ConcreteStateB();
-    virtual ~ConcreteStateB();
+	ConcreteStateB();
+	virtual ~ConcreteStateB();
 
-    virtual void Handle(Context* pContext) override;
+	virtual void Handle(Context* pContext) override;
 };
 
-class ConcreteStateC : public State
-{
+class ConcreteStateC: public State {
 public:
-    ConcreteStateC();
-    virtual ~ConcreteStateC();
+	ConcreteStateC();
+	virtual ~ConcreteStateC();
 
-    virtual void Handle(Context* pContext) override;
+	virtual void Handle(Context* pContext) override;
 };
 
-class Context
-{
+class Context {
 public:
-    Context(State* pState);
-    virtual ~Context();
+	Context(State* pState);
+	virtual ~Context();
 
-    void Request();
-    void ChangeState(State* pState);
+	void Request();
+	void ChangeState(State* pState);
 
 private:
-    State* _state = nullptr;
+	State* _state = nullptr;
 };
 
 } /* namespace StatePattern */

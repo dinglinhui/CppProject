@@ -7,17 +7,13 @@
 
 #include "Component.h"
 
-namespace DesignPattern
-{
-namespace DecoratorPattern
-{
+namespace DesignPattern {
+namespace DecoratorPattern {
 
-Component::Component()
-{
+Component::Component() {
 }
 
-Component::~Component()
-{
+Component::~Component() {
 	std::cout << "~Component" << std::endl;
 }
 

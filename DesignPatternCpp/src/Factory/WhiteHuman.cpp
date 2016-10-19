@@ -3,27 +3,24 @@
 #include "WhiteHuman.h"
 #include <iostream>
 
-namespace DesignPattern
-{
-namespace FactoryPattern
-{
+namespace DesignPattern {
+namespace FactoryPattern {
 
-CWhiteHuman::CWhiteHuman(void)
-{
+CWhiteHuman::CWhiteHuman(void) {
 }
-CWhiteHuman::~CWhiteHuman(void)
-{
+
+CWhiteHuman::~CWhiteHuman(void) {
 }
-void CWhiteHuman::Cry()
-{
+
+void CWhiteHuman::Cry() {
 	std::cout << "CWhiteHuman::Cry" << std::endl;
 }
-void CWhiteHuman::Laugh()
-{
+
+void CWhiteHuman::Laugh() {
 	std::cout << "CWhiteHuman::Laugh" << std::endl;
 }
-void CWhiteHuman::Talk()
-{
+
+void CWhiteHuman::Talk() {
 	std::cout << "CWhiteHuman::Talk" << std::endl;
 }
 

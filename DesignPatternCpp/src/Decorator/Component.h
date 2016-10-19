@@ -8,13 +8,10 @@
 #pragma once
 
 #include <iostream>
-namespace DesignPattern
-{
-namespace DecoratorPattern
-{
+namespace DesignPattern {
+namespace DecoratorPattern {
 
-class Component
-{
+class Component {
 public:
 	virtual ~Component();
 	virtual void Operation()=0;

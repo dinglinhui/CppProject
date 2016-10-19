@@ -8,13 +8,11 @@
 #pragma once
 
 #include "Subject.h"
-namespace DesignPattern
-{
-namespace ProxyPattern
-{
 
-class ConcreteSubject: public Subject
-{
+namespace DesignPattern {
+namespace ProxyPattern {
+
+class ConcreteSubject: public Subject {
 public:
 	ConcreteSubject();
 	~ConcreteSubject();

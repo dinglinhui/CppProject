@@ -8,26 +8,19 @@
 #include "FlyweightFactory.h"
 #include "ConcreteFlyweight.h"
 
-namespace DesignPattern
-{
-namespace FlyweightPattern
-{
+namespace DesignPattern {
+namespace FlyweightPattern {
 
-FlyweightFactory::FlyweightFactory()
-{
+FlyweightFactory::FlyweightFactory() {
 }
 
-FlyweightFactory::~FlyweightFactory()
-{
+FlyweightFactory::~FlyweightFactory() {
 }
 
-Flyweight* FlyweightFactory::GetFlyweight(std::string key)
-{
+Flyweight* FlyweightFactory::GetFlyweight(std::string key) {
 	std::vector<Flyweight*>::iterator iter = this->m_vecFly.begin();
-	for (; iter != this->m_vecFly.end(); iter++)
-	{
-		if ((*iter)->GetIntrinsicState() == key)
-		{
+	for (; iter != this->m_vecFly.end(); iter++) {
+		if ((*iter)->GetIntrinsicState() == key) {
 			return *iter;
 		}
 	}
@@ -36,8 +29,7 @@ Flyweight* FlyweightFactory::GetFlyweight(std::string key)
 	return fly;
 }
 
-void FlyweightFactory::GetFlyweightCount()
-{
+void FlyweightFactory::GetFlyweightCount() {
 	std::cout << this->m_vecFly.size() << std::endl;
 }
 

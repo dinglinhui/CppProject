@@ -1,13 +1,10 @@
 #pragma once
 
 #include <iostream>
-namespace DesignPattern
-{
-namespace BridgePattern
-{
+namespace DesignPattern {
+namespace BridgePattern {
 
-class Abstraction
-{
+class Abstraction {
 public:
 	virtual void Operation()=0;
 	virtual ~Abstraction();

@@ -7,21 +7,16 @@
 
 #include "ConcreteAbstractionImplementB.h"
 
-namespace DesignPattern
-{
-namespace BridgePattern
-{
+namespace DesignPattern {
+namespace BridgePattern {
 
-ConcreteAbstractionImplementB::ConcreteAbstractionImplementB()
-{
+ConcreteAbstractionImplementB::ConcreteAbstractionImplementB() {
 }
 
-ConcreteAbstractionImplementB::~ConcreteAbstractionImplementB()
-{
+ConcreteAbstractionImplementB::~ConcreteAbstractionImplementB() {
 }
 
-void ConcreteAbstractionImplementB::Operation()
-{
+void ConcreteAbstractionImplementB::Operation() {
 	std::cout << "ConcreteAbstractionImplementB Operation" << std::endl;
 }
 

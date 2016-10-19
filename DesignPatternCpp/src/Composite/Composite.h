@@ -3,24 +3,22 @@
 #include <vector>
 #include "Component.h"
 
-namespace DesignPattern
-{
-namespace CompositePattern
-{
+namespace DesignPattern {
+namespace CompositePattern {
 
 class Component;
-class Composite:public Component
-{
+class Composite: public Component {
 public:
-    Composite();
-    ~Composite();
+	Composite();
+	~Composite();
 
-    void Operation();
-    void Add(Component*);
-    void Remove(Component*);
-    Component* GetChild(int index);
+	void Operation();
+	void Add(Component*);
+	void Remove(Component*);
+	Component* GetChild(int index);
+
 private:
-    std::vector<Component*> m_ComVec;
+	std::vector<Component*> m_ComVec;
 };
 
 } /* namespace CompositePattern */

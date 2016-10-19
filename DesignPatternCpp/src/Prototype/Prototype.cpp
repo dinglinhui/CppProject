@@ -1,17 +1,13 @@
 #include "Prototype.h"
 
-namespace DesignPattern
-{
-namespace PrototypePattern
-{
+namespace DesignPattern {
+namespace PrototypePattern {
 
-Prototype::Prototype()
-{
+Prototype::Prototype() {
 	std::cout << "Prototype" << std::endl;
 }
 
-Prototype::~Prototype()
-{
+Prototype::~Prototype() {
 	std::cout << "~Prototype" << std::endl;
 }
 

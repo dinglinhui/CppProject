@@ -7,27 +7,21 @@
 
 #include "Component.h"
 
-namespace DesignPattern
-{
-namespace CompositePattern
-{
+namespace DesignPattern {
+namespace CompositePattern {
 
-void Component::Add(Component* com)
-{
+void Component::Add(Component* com) {
 	std::cout << "add" << std::endl;
 }
 
-void Component::Remove(Component* com)
-{
+void Component::Remove(Component* com) {
 }
 
-void Component::Operation()
-{
+void Component::Operation() {
 	std::cout << "Component::Operation" << std::endl;
 }
 
-Component* Component::GetChild(int index)
-{
+Component* Component::GetChild(int index) {
 	return nullptr;
 }
 

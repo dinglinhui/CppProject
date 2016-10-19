@@ -1,26 +1,20 @@
 #include "Memento.h"
 
-namespace DesignPattern
-{
-namespace MementoPattern
-{
+namespace DesignPattern {
+namespace MementoPattern {
 
-Memento::Memento(const std::string& state)
-{
+Memento::Memento(const std::string& state) {
 	this->_state = state;
 }
 
-Memento::~Memento()
-{
+Memento::~Memento() {
 }
 
-std::string Memento::GetState()
-{
+std::string Memento::GetState() {
 	return this->_state;
 }
 
-void Memento::SetState(const std::string& state)
-{
+void Memento::SetState(const std::string& state) {
 	this->_state = state;
 }
 

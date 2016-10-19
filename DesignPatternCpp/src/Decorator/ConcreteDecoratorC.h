@@ -9,14 +9,11 @@
 
 #include "Component.h"
 #include "Decorator.h"
-namespace DesignPattern
-{
-namespace DecoratorPattern
-{
+namespace DesignPattern {
+namespace DecoratorPattern {
 
 class Component;
-class ConcreteDecoratorC: public Decorator
-{
+class ConcreteDecoratorC: public Decorator {
 public:
 	ConcreteDecoratorC(Component* com);
 	~ConcreteDecoratorC();

@@ -7,22 +7,17 @@
 
 #include "ConcreteComponent.h"
 
-namespace DesignPattern
-{
-namespace DecoratorPattern
-{
+namespace DesignPattern {
+namespace DecoratorPattern {
 
-ConcreteComponent::ConcreteComponent()
-{
+ConcreteComponent::ConcreteComponent() {
 }
 
-ConcreteComponent::~ConcreteComponent()
-{
+ConcreteComponent::~ConcreteComponent() {
 	std::cout << "~ConcreteComponent" << std::endl;
 }
 
-void ConcreteComponent::Operation()
-{
+void ConcreteComponent::Operation() {
 	std::cout << "ConcreteComponent::Operation" << std::endl;
 }
 

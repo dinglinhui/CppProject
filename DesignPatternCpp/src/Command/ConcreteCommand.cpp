@@ -7,22 +7,17 @@
 
 #include "ConcreteCommand.h"
 
-namespace DesignPattern
-{
-namespace CommandPattern
-{
+namespace DesignPattern {
+namespace CommandPattern {
 
-ConcreteCommand::ConcreteCommand(Receiver* pReceiver)
-{
+ConcreteCommand::ConcreteCommand(Receiver* pReceiver) {
 	this->_recv = pReceiver;
 }
 
-ConcreteCommand::~ConcreteCommand()
-{
+ConcreteCommand::~ConcreteCommand() {
 }
 
-void ConcreteCommand::Execute()
-{
+void ConcreteCommand::Execute() {
 	this->_recv->Action();
 }
 

@@ -9,21 +9,19 @@
 
 #include "Memento.h"
 
-namespace DesignPattern
-{
-namespace MementoPattern
-{
+namespace DesignPattern {
+namespace MementoPattern {
 
 class Memento;
-class Caretaker
-{
+class Caretaker {
 public:
-    Caretaker();
-    ~Caretaker();
-    void SetMemento(Memento*);
-    Memento* GetMemento();
+	Caretaker();
+	~Caretaker();
+
+	void SetMemento(Memento*);
+	Memento* GetMemento();
 private:
-    Memento* _memento = nullptr;
+	Memento* _memento = nullptr;
 };
 
 } /* namespace MementoPattern */

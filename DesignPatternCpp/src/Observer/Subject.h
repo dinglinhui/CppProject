@@ -4,14 +4,11 @@
 #include <iostream>
 #include "Observer.h"
 
-namespace DesignPattern
-{
-namespace ObserverPattern
-{
+namespace DesignPattern {
+namespace ObserverPattern {
 
 class Observer;
-class Subject
-{
+class Subject {
 public:
 	virtual ~Subject();
 	virtual void Notify();

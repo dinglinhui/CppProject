@@ -7,31 +7,25 @@
 
 #include "DecoratorOnlyOne.h"
 
-namespace DesignPattern
-{
-namespace DecoratorPattern
-{
+namespace DesignPattern {
+namespace DecoratorPattern {
 
 DecoratorOnlyOne::DecoratorOnlyOne(Component* com) :
-		_com(com)
-{
+		_com(com) {
 }
 
-DecoratorOnlyOne::~DecoratorOnlyOne()
-{
+DecoratorOnlyOne::~DecoratorOnlyOne() {
 	std::cout << "~DecoratorOnlyOne" << std::endl;
 	delete this->_com;
 	this->_com = nullptr;
 }
 
-void DecoratorOnlyOne::Operation()
-{
+void DecoratorOnlyOne::Operation() {
 	this->_com->Operation();
 	this->AddBehavor();
 }
 
-void DecoratorOnlyOne::AddBehavor()
-{
+void DecoratorOnlyOne::AddBehavor() {
 	std::cout << "DecoratorOnlyOne::AddBehavor" << std::endl;
 }
 

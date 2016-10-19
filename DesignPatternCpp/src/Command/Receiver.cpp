@@ -7,20 +7,15 @@
 
 #include "Receiver.h"
 
-namespace DesignPattern
-{
-namespace CommandPattern
-{
-Receiver::Receiver()
-{
+namespace DesignPattern {
+namespace CommandPattern {
+Receiver::Receiver() {
 }
 
-Receiver::~Receiver()
-{
+Receiver::~Receiver() {
 }
 
-void Receiver::Action()
-{
+void Receiver::Action() {
 	std::cout << "Receiver::Action" << std::endl;
 }
 

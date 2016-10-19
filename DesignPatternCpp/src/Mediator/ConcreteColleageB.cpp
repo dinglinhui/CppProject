@@ -7,27 +7,21 @@
 
 #include "ConcreteColleageB.h"
 
-namespace DesignPattern
-{
-namespace MediatorPattern
-{
+namespace DesignPattern {
+namespace MediatorPattern {
 
 ConcreteColleageB::ConcreteColleageB(Mediator* pMediator) :
-		Colleage(pMediator)
-{
+		Colleage(pMediator) {
 }
 
-ConcreteColleageB::~ConcreteColleageB()
-{
+ConcreteColleageB::~ConcreteColleageB() {
 }
 
-void ConcreteColleageB::SendMsg(std::string msg)
-{
+void ConcreteColleageB::SendMsg(std::string msg) {
 	this->_mediator->SendMsg(msg, this);
 }
 
-void ConcreteColleageB::GetMsg(std::string msg)
-{
+void ConcreteColleageB::GetMsg(std::string msg) {
 	std::cout << "ConcreteColleageB Receive:" << msg << std::endl;
 }
 

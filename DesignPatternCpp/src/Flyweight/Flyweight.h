@@ -4,13 +4,10 @@
 #include <vector>
 #include <iostream>
 
-namespace DesignPattern
-{
-namespace FlyweightPattern
-{
+namespace DesignPattern {
+namespace FlyweightPattern {
 
-class Flyweight
-{
+class Flyweight {
 protected:
 	Flyweight(std::string intrinsicState);
 

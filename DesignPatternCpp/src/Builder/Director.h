@@ -8,21 +8,18 @@
 #pragma once
 
 #include "Builder.h"
-namespace DesignPattern
-{
-namespace BuilderPattern
-{
+namespace DesignPattern {
+namespace BuilderPattern {
 
-class Director
-{
+class Director {
 public:
-    Director(Builder* pBuilder);
-    ~Director();
+	Director(Builder* pBuilder);
+	~Director();
 
-    void Construct();
-    //void Construct(const std::string& buildPara);
+	void Construct();
+	//void Construct(const std::string& buildPara);
 private:
-    Builder* m_pBuilder = nullptr;
+	Builder* m_pBuilder = nullptr;
 };
 
 } /* namespace BuilderPattern */

@@ -1,12 +1,9 @@
 #pragma once
 
-namespace DesignPattern
-{
-namespace AdapterPattern
-{
+namespace DesignPattern {
+namespace AdapterPattern {
 
-class Target
-{
+class Target {
 public:
 	Target();
 	virtual ~Target();

@@ -7,17 +7,13 @@
 
 #include "Subject.h"
 
-namespace DesignPattern
-{
-namespace ProxyPattern
-{
+namespace DesignPattern {
+namespace ProxyPattern {
 
-Subject::Subject()
-{
+Subject::Subject() {
 }
 
-Subject::~Subject()
-{
+Subject::~Subject() {
 }
 
 } /* namespace ProxyPattern */

@@ -3,13 +3,10 @@
 #include "Target.h"
 #include "Adaptee.h"
 
-namespace DesignPattern
-{
-namespace AdapterPattern
-{
+namespace DesignPattern {
+namespace AdapterPattern {
 
-class Adapter: public Target, private Adaptee
-{
+class Adapter: public Target, private Adaptee {
 public:
 	Adapter();
 	virtual ~Adapter();

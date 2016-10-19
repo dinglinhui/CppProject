@@ -8,17 +8,15 @@
 #pragma once
 
 #include "AbstractionImplement.h"
-namespace DesignPattern
-{
-namespace BridgePattern
-{
 
-class ConcreteAbstractionImplementA:public AbstractionImplement
-{
+namespace DesignPattern {
+namespace BridgePattern {
+
+class ConcreteAbstractionImplementA: public AbstractionImplement {
 public:
-    ConcreteAbstractionImplementA();
-    ~ConcreteAbstractionImplementA();
-    void Operation();
+	ConcreteAbstractionImplementA();
+	~ConcreteAbstractionImplementA();
+	void Operation();
 };
 
 } /* namespace BridgePattern */

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AbstractProductB.h"
+
 namespace DesignPattern {
 namespace AbstractFactoryPattern {
 

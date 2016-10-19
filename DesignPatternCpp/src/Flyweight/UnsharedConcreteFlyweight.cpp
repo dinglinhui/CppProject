@@ -7,22 +7,17 @@
 
 #include "UnsharedConcreteFlyweight.h"
 
-namespace DesignPattern
-{
-namespace FlyweightPattern
-{
+namespace DesignPattern {
+namespace FlyweightPattern {
 
 UnsharedConcreteFlyweight::UnsharedConcreteFlyweight(std::string intrinsicState) :
-		Flyweight(intrinsicState)
-{
+		Flyweight(intrinsicState) {
 }
 
-UnsharedConcreteFlyweight::~UnsharedConcreteFlyweight()
-{
+UnsharedConcreteFlyweight::~UnsharedConcreteFlyweight() {
 }
 
-void UnsharedConcreteFlyweight::Operation(const std::string& extrinsicState)
-{
+void UnsharedConcreteFlyweight::Operation(const std::string& extrinsicState) {
 	std::cout << "extrinsicState" << std::endl;
 }
 

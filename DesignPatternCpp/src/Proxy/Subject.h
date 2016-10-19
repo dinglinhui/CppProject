@@ -8,13 +8,10 @@
 #pragma once
 
 #include <iostream>
-namespace DesignPattern
-{
-namespace ProxyPattern
-{
+namespace DesignPattern {
+namespace ProxyPattern {
 
-class Subject
-{
+class Subject {
 protected:
 	Subject();
 public:

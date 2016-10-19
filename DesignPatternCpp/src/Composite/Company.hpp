@@ -2,50 +2,38 @@
 #include <list>
 #include <iostream>
 
-namespace DesignPattern
-{
-namespace CompositePattern
-{
+namespace DesignPattern {
+namespace CompositePattern {
 
-class Company
-{
+class Company {
 public:
-	Company(std::string name)
-	{
+	Company(std::string name) {
 		m_name = name;
 	}
-	virtual ~Company()
-	{
+	virtual ~Company() {
 	}
-	virtual void Add(Company *pCom)
-	{
+	virtual void Add(Company *pCom) {
 	}
-	virtual void Show(int depth)
-	{
+	virtual void Show(int depth) {
 	}
 protected:
 	std::string m_name;
 };
 
-class ConcreteCompany: public Company
-{
+class ConcreteCompany: public Company {
 public:
 	ConcreteCompany(std::string name) :
-			Company(name)
-	{
+			Company(name) {
 	}
 
-	virtual ~ConcreteCompany()
-	{
+	virtual ~ConcreteCompany() {
 	}
 
-	void Add(Company *pCom)
-	{
+	void Add(Company *pCom) {
 		m_listCompany.push_back(pCom);
 	}
 
-	void Show(int depth)
-	{
+	void Show(int depth) {
 		for (int i = 0; i < depth; i++)
 			cout << "-";
 		cout << m_name << endl;
@@ -57,36 +45,28 @@ private:
 	std::list<Company *> m_listCompany;
 };
 
-class FinanceDepartment: public Company
-{
+class FinanceDepartment: public Company {
 public:
 	FinanceDepartment(std::string name) :
-			Company(name)
-	{
+			Company(name) {
 	}
-	virtual ~FinanceDepartment()
-	{
+	virtual ~FinanceDepartment() {
 	}
-	virtual void Show(int depth)
-	{
+	virtual void Show(int depth) {
 		for (int i = 0; i < depth; i++)
 			cout << "-";
 		cout << m_name << endl;
 	}
 };
 
-class HRDepartment: public Company
-{
+class HRDepartment: public Company {
 public:
 	HRDepartment(std::string name) :
-			Company(name)
-	{
+			Company(name) {
 	}
-	virtual ~HRDepartment()
-	{
+	virtual ~HRDepartment() {
 	}
-	virtual void Show(int depth)
-	{
+	virtual void Show(int depth) {
 		for (int i = 0; i < depth; i++)
 			cout << "-";
 		cout << m_name << endl;

@@ -9,13 +9,11 @@
 
 #include "Builder.h"
 #include "Product.h"
-namespace DesignPattern
-{
-namespace BuilderPattern
-{
+
+namespace DesignPattern {
+namespace BuilderPattern {
 class Product;
-class ConcreteBuilder2: public Builder
-{
+class ConcreteBuilder2: public Builder {
 public:
 	ConcreteBuilder2();
 	~ConcreteBuilder2();

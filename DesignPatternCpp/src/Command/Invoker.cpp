@@ -7,22 +7,17 @@
 
 #include "Invoker.h"
 
-namespace DesignPattern
-{
-namespace CommandPattern
-{
+namespace DesignPattern {
+namespace CommandPattern {
 
-Invoker::Invoker(Command* pCommand)
-{
+Invoker::Invoker(Command* pCommand) {
 	this->_cmd = pCommand;
 }
 
-Invoker::~Invoker()
-{
+Invoker::~Invoker() {
 }
 
-void Invoker::Invoke()
-{
+void Invoker::Invoke() {
 	this->_cmd->Execute();
 }
 

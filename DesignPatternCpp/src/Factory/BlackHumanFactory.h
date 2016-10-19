@@ -3,13 +3,10 @@
 #pragma once
 
 #include "ihumanfactory.h"
-namespace DesignPattern
-{
-namespace FactoryPattern
-{
+namespace DesignPattern {
+namespace FactoryPattern {
 
-class CBlackHumanFactory: public IHumanFactory
-{
+class CBlackHumanFactory: public IHumanFactory {
 public:
 	CBlackHumanFactory(void);
 	~CBlackHumanFactory(void);

@@ -7,34 +7,31 @@
 
 #include "CharacterA.h"
 
-namespace DesignPattern
-{
-namespace FlyweightPattern
-{
+namespace DesignPattern {
+namespace FlyweightPattern {
 
 CharacterA::CharacterA(char c) :
-		Character(c)
-{
+		Character(c) {
 }
 
-CharacterA::~CharacterA()
-{
+CharacterA::~CharacterA() {
 }
 
-char CharacterA::GetSymbol()
-{
+char CharacterA::GetSymbol() {
 	return this->symbol;
 }
 
-void CharacterA::Display(int width, int height, int ascent, int descent, int pointSize)
-{
+void CharacterA::Display(int width, int height, int ascent, int descent,
+		int pointSize) {
 	this->ascent = ascent;
 	this->descent = descent;
 	this->height = height;
 	this->pointSize = pointSize;
 	this->width = width;
 
-	std::cout << this->symbol << " " << this->ascent << " " << this->descent << " " << this->height << " " << this->pointSize << " " << this->width << std::endl;
+	std::cout << this->symbol << " " << this->ascent << " " << this->descent
+			<< " " << this->height << " " << this->pointSize << " "
+			<< this->width << std::endl;
 }
 
 } /* namespace FlyweightPattern */

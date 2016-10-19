@@ -1,7 +1,7 @@
 #include <cassert>
 #include "TestCase.h"
 
-DesignPatternType type = DesignPatternType::OBSERVER;
+DesignPatternType type = DesignPatternType::ADAPTER;
 
 int main(int argc, const char *argv[]) {
 	switch (type) {

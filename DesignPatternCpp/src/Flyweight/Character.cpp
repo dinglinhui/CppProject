@@ -7,18 +7,14 @@
 
 #include "Character.h"
 
-namespace DesignPattern
-{
-namespace FlyweightPattern
-{
+namespace DesignPattern {
+namespace FlyweightPattern {
 
-Character::Character(char c)
-{
+Character::Character(char c) {
 	this->symbol = c;
 }
 
-Character::~Character()
-{
+Character::~Character() {
 }
 
 } /* namespace FlyweightPattern */

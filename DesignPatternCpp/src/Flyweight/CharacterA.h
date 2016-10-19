@@ -8,19 +8,18 @@
 #pragma once
 
 #include "Character.h"
-namespace DesignPattern
-{
-namespace FlyweightPattern
-{
 
-class CharacterA:public Character
-{
+namespace DesignPattern {
+namespace FlyweightPattern {
+
+class CharacterA: public Character {
 public:
-    CharacterA(char c);
-    virtual ~CharacterA();
+	CharacterA(char c);
+	virtual ~CharacterA();
 
-    virtual void Display(int width,int height,int ascent,int descent,int pointSize);
-    virtual char GetSymbol();
+	virtual void Display(int width, int height, int ascent, int descent,
+			int pointSize);
+	virtual char GetSymbol();
 };
 
 } /* namespace FlyweightPattern */

@@ -9,13 +9,12 @@
 
 #include "Receiver.h"
 #include "Command.h"
-namespace DesignPattern
-{
-namespace CommandPattern
-{
+
+namespace DesignPattern {
+namespace CommandPattern {
+
 class Receiver;
-class ConcreteCommand: public Command
-{
+class ConcreteCommand: public Command {
 public:
 	ConcreteCommand(Receiver* pReceiver);
 	~ConcreteCommand();

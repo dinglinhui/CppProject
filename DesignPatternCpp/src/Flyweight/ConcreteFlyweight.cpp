@@ -7,22 +7,17 @@
 
 #include "ConcreteFlyweight.h"
 
-namespace DesignPattern
-{
-namespace FlyweightPattern
-{
+namespace DesignPattern {
+namespace FlyweightPattern {
 
 ConcreteFlyweight::ConcreteFlyweight(std::string intrinsicState) :
-		Flyweight(intrinsicState)
-{
+		Flyweight(intrinsicState) {
 }
 
-ConcreteFlyweight::~ConcreteFlyweight()
-{
+ConcreteFlyweight::~ConcreteFlyweight() {
 }
 
-void ConcreteFlyweight::Operation(const std::string& extrinsicState)
-{
+void ConcreteFlyweight::Operation(const std::string& extrinsicState) {
 	std::cout << this->GetIntrinsicState() << std::endl;
 	std::cout << extrinsicState << std::endl;
 }

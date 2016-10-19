@@ -1,30 +1,24 @@
 #include "Decorator.h"
 #include <iostream>
 
-namespace DesignPattern
-{
-namespace DecoratorPattern
-{
+namespace DesignPattern {
+namespace DecoratorPattern {
 
-Decorator::Decorator(Component* com)
-{
+Decorator::Decorator(Component* com) {
 	this->_com = com;
 }
 
-void Decorator::SetComponent(Component* com)
-{
+void Decorator::SetComponent(Component* com) {
 	this->_com = com;
 }
 
-Decorator::~Decorator()
-{
+Decorator::~Decorator() {
 	std::cout << "~Decorator" << std::endl;
 	delete this->_com;
 	this->_com = nullptr;
 }
 
-void Decorator::Operation()
-{
+void Decorator::Operation() {
 }
 
 } /* namespace DecoratorPattern */

@@ -8,14 +8,11 @@
 #pragma once
 
 #include "Component.h"
-namespace DesignPattern
-{
-namespace DecoratorPattern
-{
+namespace DesignPattern {
+namespace DecoratorPattern {
 
 class Component;
-class DecoratorOnlyOne: public Component
-{
+class DecoratorOnlyOne: public Component {
 public:
 	DecoratorOnlyOne(Component* com);
 	~DecoratorOnlyOne();

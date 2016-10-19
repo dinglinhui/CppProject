@@ -2,19 +2,14 @@
 
 #pragma once
 
-namespace DesignPattern
-{
-namespace FactoryPattern
-{
+namespace DesignPattern {
+namespace FactoryPattern {
 
-class IHuman
-{
+class IHuman {
 public:
-	IHuman(void)
-	{
+	IHuman(void) {
 	}
-	virtual ~IHuman(void)
-	{
+	virtual ~IHuman(void) {
 	}
 	virtual void Laugh() = 0;
 	virtual void Cry() = 0;

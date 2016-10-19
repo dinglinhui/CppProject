@@ -2,21 +2,20 @@
 
 #include <vector>
 #include "Character.h"
-namespace DesignPattern
-{
-namespace FlyweightPattern
-{
+
+namespace DesignPattern {
+namespace FlyweightPattern {
 
 class Character;
-class CharacterFactory
-{
+class CharacterFactory {
 public:
-    CharacterFactory();
-    ~CharacterFactory();
-    Character* GetCharacter(char);
-    std::vector<Character*>::size_type GetCount();
+	CharacterFactory();
+	~CharacterFactory();
+	Character* GetCharacter(char);
+	std::vector<Character*>::size_type GetCount();
+
 private:
-    std::vector<Character*> m_vecCharacter;
+	std::vector<Character*> m_vecCharacter;
 };
 
 } /* namespace FlyweightPattern */

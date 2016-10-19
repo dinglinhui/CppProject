@@ -4,13 +4,10 @@
 
 #include "ihumanfactory.h"
 
-namespace DesignPattern
-{
-namespace FactoryPattern
-{
+namespace DesignPattern {
+namespace FactoryPattern {
 
-class CYellowHumanFactory: public IHumanFactory
-{
+class CYellowHumanFactory: public IHumanFactory {
 public:
 	CYellowHumanFactory(void);
 	~CYellowHumanFactory(void);

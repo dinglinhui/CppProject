@@ -143,6 +143,8 @@ void merge_sort(int a[], int first, int last, int temp[]) {
 	}
 }
 
+#if 0
+
 int main() {
 
 	try {
@@ -260,3 +262,5 @@ int main() {
 
 	return 0;
 }
+#endif
+

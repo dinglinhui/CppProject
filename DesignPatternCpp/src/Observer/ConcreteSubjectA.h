@@ -1,13 +1,10 @@
 #pragma once
 #include "Subject.h"
 
-namespace DesignPattern
-{
-namespace ObserverPattern
-{
+namespace DesignPattern {
+namespace ObserverPattern {
 
-class ConcreteSubjectA: public Subject
-{
+class ConcreteSubjectA: public Subject {
 public:
 	ConcreteSubjectA();
 	~ConcreteSubjectA();

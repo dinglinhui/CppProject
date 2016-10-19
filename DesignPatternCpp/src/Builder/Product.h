@@ -10,25 +10,22 @@
 #include <string>
 //#include <vector>
 
-namespace DesignPattern
-{
-namespace BuilderPattern
-{
+namespace DesignPattern {
+namespace BuilderPattern {
 
-class Product
-{
+class Product {
 public:
-    Product();
-    ~Product();
+	Product();
+	~Product();
 
-    void setPartA(const std::string& s);
-    void setPartB(const std::string& s);
-    void setPartC(const std::string& s);
+	void setPartA(const std::string& s);
+	void setPartB(const std::string& s);
+	void setPartC(const std::string& s);
 
 private:
-    std::string m_partA;
-    std::string m_partB;
-    std::string m_partC;
+	std::string m_partA;
+	std::string m_partB;
+	std::string m_partC;
 };
 
 } /* namespace BuilderPattern */

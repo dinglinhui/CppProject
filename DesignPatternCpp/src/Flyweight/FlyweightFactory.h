@@ -8,14 +8,11 @@
 #pragma once
 
 #include "Flyweight.h"
-namespace DesignPattern
-{
-namespace FlyweightPattern
-{
+namespace DesignPattern {
+namespace FlyweightPattern {
 
 class Flyweight;
-class FlyweightFactory
-{
+class FlyweightFactory {
 public:
 	FlyweightFactory();
 	~FlyweightFactory();

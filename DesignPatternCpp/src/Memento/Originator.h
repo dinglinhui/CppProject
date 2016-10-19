@@ -8,18 +8,16 @@
 #pragma once
 
 #include "Memento.h"
-namespace DesignPattern
-{
-namespace MementoPattern
-{
+namespace DesignPattern {
+namespace MementoPattern {
 
 class Memento;
-class Originator
-{
+class Originator {
 public:
 	Originator();
 	Originator(const std::string& state);
 	~Originator();
+
 	void RestoreToMemento(Memento* pMemento);
 	Memento* CreateMemento();
 	void SetState(const std::string& state);

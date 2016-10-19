@@ -8,13 +8,12 @@
 #pragma once
 
 #include "Command.h"
-namespace DesignPattern
-{
-namespace CommandPattern
-{
+
+namespace DesignPattern {
+namespace CommandPattern {
+
 class Command;
-class Invoker
-{
+class Invoker {
 public:
 	Invoker(Command* pCommand);
 	~Invoker();

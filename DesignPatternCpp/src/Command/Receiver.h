@@ -6,14 +6,11 @@
  */
 
 #pragma once
-#include<iostream>
+#include <iostream>
 
-namespace DesignPattern
-{
-namespace CommandPattern
-{
-class Receiver
-{
+namespace DesignPattern {
+namespace CommandPattern {
+class Receiver {
 public:
 	Receiver();
 	~Receiver();

@@ -8,13 +8,12 @@
 
 #include "Mediator.h"
 #include "Colleage.h"
-namespace DesignPattern
-{
-namespace MediatorPattern
-{
+
+namespace DesignPattern {
+namespace MediatorPattern {
+
 class Mediator;
-class ConcreteColleageB: public Colleage
-{
+class ConcreteColleageB: public Colleage {
 public:
 	ConcreteColleageB(Mediator* pMediator);
 	~ConcreteColleageB();

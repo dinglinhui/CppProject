@@ -3,22 +3,17 @@
 #include "WhiteHumanFactory.h"
 #include "WhiteHuman.h"
 
-namespace DesignPattern
-{
-namespace FactoryPattern
-{
+namespace DesignPattern {
+namespace FactoryPattern {
 
-CWhiteHumanFactory::CWhiteHumanFactory(void)
-{
+CWhiteHumanFactory::CWhiteHumanFactory(void) {
 }
 
-CWhiteHumanFactory::~CWhiteHumanFactory(void)
-{
+CWhiteHumanFactory::~CWhiteHumanFactory(void) {
 }
 
-IHuman * CWhiteHumanFactory::CreateHuman( void )
-{
-    return new CWhiteHuman();
+IHuman * CWhiteHumanFactory::CreateHuman(void) {
+	return new CWhiteHuman();
 }
 
 } /* namespace FactoryPattern */

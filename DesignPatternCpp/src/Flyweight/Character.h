@@ -8,30 +8,28 @@
 #pragma once
 
 #include <iostream>
-namespace DesignPattern
-{
-namespace FlyweightPattern
-{
+namespace DesignPattern {
+namespace FlyweightPattern {
 
-class Character
-{
+class Character {
 protected:
-    Character(char c);
+	Character(char c);
 
 public:
-    virtual ~Character();
+	virtual ~Character();
 
-    virtual void Display(int width,int height,int ascent,int descent,int pointSize)=0;
-    virtual char GetSymbol()=0;
+	virtual void Display(int width, int height, int ascent, int descent,
+			int pointSize)=0;
+	virtual char GetSymbol()=0;
 
 protected:
-    char symbol;
+	char symbol;
 
-    int width = 0;
-    int height = 0;
-    int ascent = 0;
-    int descent = 0;
-    int pointSize = 0;
+	int width = 0;
+	int height = 0;
+	int ascent = 0;
+	int descent = 0;
+	int pointSize = 0;
 };
 
 } /* namespace FlyweightPattern */

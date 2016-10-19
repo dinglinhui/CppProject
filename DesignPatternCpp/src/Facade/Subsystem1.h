@@ -7,13 +7,10 @@
 
 #pragma once
 
-namespace DesignPattern
-{
-namespace FacadePattern
-{
+namespace DesignPattern {
+namespace FacadePattern {
 
-class Subsystem1
-{
+class Subsystem1 {
 public:
 	Subsystem1();
 	~Subsystem1();

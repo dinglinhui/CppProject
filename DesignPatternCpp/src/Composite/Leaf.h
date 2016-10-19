@@ -8,19 +8,15 @@
 #pragma once
 
 #include "Component.h"
-namespace DesignPattern
-{
-namespace CompositePattern
-{
+namespace DesignPattern {
+namespace CompositePattern {
 
-class Leaf:public Component
-{
+class Leaf: public Component {
 public:
-    virtual void Operation();
-    Leaf();
-    ~Leaf();
+	virtual void Operation();
+	Leaf();
+	~Leaf();
 };
-
 
 } /* namespace CompositePattern */
 } /* namespace DesignPattern */

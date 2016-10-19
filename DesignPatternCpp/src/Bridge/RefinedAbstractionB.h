@@ -9,14 +9,12 @@
 
 #include "Abstraction.h"
 #include "AbstractionImplement.h"
-namespace DesignPattern
-{
-namespace BridgePattern
-{
+
+namespace DesignPattern {
+namespace BridgePattern {
 
 class AbstractionImplement;
-class RefinedAbstractionB: public Abstraction
-{
+class RefinedAbstractionB: public Abstraction {
 public:
 	RefinedAbstractionB(AbstractionImplement* imp);
 	virtual void Operation();

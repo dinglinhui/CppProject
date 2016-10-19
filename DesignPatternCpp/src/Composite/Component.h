@@ -9,26 +9,21 @@
 
 #include <iostream>
 
-namespace DesignPattern
-{
-namespace CompositePattern
-{
+namespace DesignPattern {
+namespace CompositePattern {
 
-class Component
-{
+class Component {
 public:
 	virtual void Operation()=0;
 
 	virtual void Add(Component*);
 	virtual void Remove(Component*);
 	virtual Component* GetChild(int index);
-	virtual ~Component()
-	{
+	virtual ~Component() {
 	}
 
 protected:
-	Component()
-	{
+	Component() {
 	}
 };
 

@@ -8,14 +8,12 @@
 #pragma once
 
 #include "Prototype.h"
-namespace DesignPattern
-{
-namespace PrototypePattern
-{
+
+namespace DesignPattern {
+namespace PrototypePattern {
 
 class Prototype;
-class ConcretePrototype2: public Prototype
-{
+class ConcretePrototype2: public Prototype {
 public:
 	ConcretePrototype2();
 	~ConcretePrototype2();

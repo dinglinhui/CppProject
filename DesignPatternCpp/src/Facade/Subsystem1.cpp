@@ -8,21 +8,16 @@
 #include <iostream>
 #include "Subsystem1.h"
 
-namespace DesignPattern
-{
-namespace FacadePattern
-{
+namespace DesignPattern {
+namespace FacadePattern {
 
-Subsystem1::Subsystem1()
-{
+Subsystem1::Subsystem1() {
 }
 
-Subsystem1::~Subsystem1()
-{
+Subsystem1::~Subsystem1() {
 }
 
-void Subsystem1::Operation()
-{
+void Subsystem1::Operation() {
 	std::cout << "Subsystem1::Operation" << std::endl;
 }
 

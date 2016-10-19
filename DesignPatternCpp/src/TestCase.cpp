@@ -124,6 +124,11 @@ void TestCase::case_adapter() {
 	DesignPattern::AdapterPattern::Target* pTarget2 =
 			new DesignPattern::AdapterPattern::Adapter1 { };
 	pTarget2->Request();
+
+	delete pTarget, pTarget = nullptr;
+	delete pTarget1, pTarget1 = nullptr;
+	delete ade, ade = nullptr;
+	delete pTarget2, pTarget2 = nullptr;
 }
 
 void TestCase::case_bridge() {
@@ -429,12 +434,12 @@ void TestCase::case_prototype() {
 	DesignPattern::PrototypePattern::Prototype* p4 = p3->Clone();
 	std::cout << "------------------------" << std::endl;
 
-	delete p1;
-	delete p2;
+	delete p1, p1 = nullptr;
+	delete p2, p2 = nullptr;
 	std::cout << "------------------------" << std::endl;
 
-	delete p3;
-	delete p4;
+	delete p3, p3 = nullptr;
+	delete p4, p4 = nullptr;
 }
 
 void TestCase::case_proxy() {

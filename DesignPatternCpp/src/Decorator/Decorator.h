@@ -1,13 +1,12 @@
 #pragma once
 
 #include "Component.h"
-namespace DesignPattern
-{
-namespace DecoratorPattern
-{
+
+namespace DesignPattern {
+namespace DecoratorPattern {
+
 class Component;
-class Decorator: public Component
-{
+class Decorator: public Component {
 public:
 	Decorator(Component* com);
 	void SetComponent(Component* com);

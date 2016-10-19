@@ -1,13 +1,11 @@
 #pragma once
 
 #include <iostream>
-namespace DesignPattern
-{
-namespace PrototypePattern
-{
 
-class Prototype
-{
+namespace DesignPattern {
+namespace PrototypePattern {
+
+class Prototype {
 protected:
 	Prototype();
 public:

@@ -3,13 +3,11 @@
 #include "Observer.h"
 #include "Subject.h"
 
-namespace DesignPattern
-{
-namespace ObserverPattern
-{
+namespace DesignPattern {
+namespace ObserverPattern {
+
 class Subject;
-class ConcreteObserverA: public Observer
-{
+class ConcreteObserverA: public Observer {
 public:
 	ConcreteObserverA();
 	virtual ~ConcreteObserverA();

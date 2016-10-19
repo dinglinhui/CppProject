@@ -8,13 +8,10 @@
 #pragma once
 
 #include "Flyweight.h"
-namespace DesignPattern
-{
-namespace FlyweightPattern
-{
+namespace DesignPattern {
+namespace FlyweightPattern {
 
-class ConcreteFlyweight: public Flyweight
-{
+class ConcreteFlyweight: public Flyweight {
 public:
 	ConcreteFlyweight(std::string intrinsicState);
 	~ConcreteFlyweight();

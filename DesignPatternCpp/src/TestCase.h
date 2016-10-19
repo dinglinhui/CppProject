@@ -7,8 +7,7 @@
 
 #pragma once
 
-enum class DesignPatternType
-{
+enum class DesignPatternType {
 	ABSTRACT_FACTORY,
 	ADAPTER,
 	BRIDGE,
@@ -30,10 +29,9 @@ enum class DesignPatternType
 	TEMPLATEMETHOD
 };
 
-namespace DesignPattern
-{
-class TestCase
-{
+namespace DesignPattern {
+
+class TestCase {
 private:
 	TestCase();
 	virtual ~TestCase();

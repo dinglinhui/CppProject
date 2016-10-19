@@ -7,46 +7,36 @@
 
 #include "Originator.h"
 
-namespace DesignPattern
-{
-namespace MementoPattern
-{
+namespace DesignPattern {
+namespace MementoPattern {
 
-Originator::Originator()
-{
+Originator::Originator() {
 }
 
-Originator::Originator(const std::string& state)
-{
+Originator::Originator(const std::string& state) {
 	this->_state = state;
 }
 
-Originator::~Originator()
-{
+Originator::~Originator() {
 }
 
-std::string Originator::GetState()
-{
+std::string Originator::GetState() {
 	return this->_state;
 }
 
-void Originator::show()
-{
+void Originator::show() {
 	std::cout << this->_state << std::endl;
 }
 
-void Originator::SetState(const std::string& state)
-{
+void Originator::SetState(const std::string& state) {
 	this->_state = state;
 }
 
-Memento* Originator::CreateMemento()
-{
+Memento* Originator::CreateMemento() {
 	return new Memento(this->_state);
 }
 
-void Originator::RestoreToMemento(Memento* pMemento)
-{
+void Originator::RestoreToMemento(Memento* pMemento) {
 	this->_state = pMemento->GetState();
 }
 

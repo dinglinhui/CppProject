@@ -4,19 +4,14 @@
 
 #include "IHuman.h"
 
-namespace DesignPattern
-{
-namespace FactoryPattern
-{
+namespace DesignPattern {
+namespace FactoryPattern {
 
-class IHumanFactory
-{
+class IHumanFactory {
 public:
-	IHumanFactory(void)
-	{
+	IHumanFactory(void) {
 	}
-	virtual ~IHumanFactory(void)
-	{
+	virtual ~IHumanFactory(void) {
 	}
 	virtual IHuman * CreateHuman() = 0;
 };
