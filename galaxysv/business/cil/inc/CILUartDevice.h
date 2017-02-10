@@ -8,8 +8,8 @@
 #ifndef CILUARTDEVICE_H_
 #define CILUARTDEVICE_H_
 
+#include "../../cil/inc/CILDevice.h"
 #include "OSComPort.h"
-#include "CILDevice.h"
 
 namespace syscil {
 

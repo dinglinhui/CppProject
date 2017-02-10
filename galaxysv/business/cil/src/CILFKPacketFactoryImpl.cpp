@@ -5,9 +5,10 @@
  *      Author: dinglinhui
  */
 
-#include "CILFKPacketFactoryImpl.h"
-#include "CILFKPacket.h"
-#include "CIL645Packet.h"
+#include "../../cil/inc/CILFKPacketFactoryImpl.h"
+
+#include "../../cil/inc/CIL645Packet.h"
+#include "../../cil/inc/CILFKPacket.h"
 
 namespace syscil {
 

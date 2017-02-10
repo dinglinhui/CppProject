@@ -8,7 +8,7 @@
 #ifndef CILFKPACKETFACTORYIMPL_H_
 #define CILFKPACKETFACTORYIMPL_H_
 
-#include "CILPacketFactoryImpl.h"
+#include "../../cil/inc/CILPacketFactoryImpl.h"
 
 namespace syscil {
 class CILFKPacketFactoryImpl: public CILPacketFactoryImpl {

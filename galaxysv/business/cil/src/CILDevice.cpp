@@ -5,8 +5,9 @@
  *      Author: dinglinhui
  */
 
-#include "CILDevice.h"
-#include "CILPacketFactory.h"
+#include "../../cil/inc/CILDevice.h"
+
+#include "../../cil/inc/CILPacketFactory.h"
 
 namespace syscil {
 CILDevice::CILDevice(BYTE nIdent, int nCacheSize) :

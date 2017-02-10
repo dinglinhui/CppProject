@@ -5,8 +5,9 @@
 #include <cstdio>
 #include <cstring>
 #include <typeinfo>
-#include "CILAbstractFactory.h"
-#include "CILPacketFactoryImpl.h"
+
+#include "../../cil/inc/CILAbstractFactory.h"
+#include "../../cil/inc/CILPacketFactoryImpl.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CILPacketFactory

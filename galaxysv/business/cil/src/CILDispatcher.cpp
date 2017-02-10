@@ -1,26 +1,27 @@
 /*
- * CILSchedule.cpp
+ * CILDispatcher.cpp
  *
  *  Created on: Jun 13, 2015
  *      Author: dinglinhui
  */
 
-#include "CILSchedule.h"
+#include "../../cil/inc/CILDispatcher.h"
 
 namespace syscil {
-CILSchedule::CILSchedule(int nPrio, int nStackSize, int nQueueSize) :
+
+CILDispatcher::CILDispatcher(int nPrio, int nStackSize, int nQueueSize) :
 		OSThreadEx(nPrio, nStackSize, nQueueSize) {
 }
 
-CILSchedule::~CILSchedule() {
+CILDispatcher::~CILDispatcher() {
 }
 
-OSRet CILSchedule::run() {
+OSRet CILDispatcher::run() {
 	OSHeartbeat &heartbeat = this->getHeartbeat();
 	while (true) {
 		try {
 			heartbeat++;
-			std::cout << "[CILSchedule]" << heartbeat << std::endl << std::flush;
+			std::cout << "[CILDispatcher]" << heartbeat << std::endl << std::flush;
 			this->setThreadStatus(TStat::Running);
 
 			std::this_thread::sleep_for(std::chrono::milliseconds(OS_THREAD_PAUSE));

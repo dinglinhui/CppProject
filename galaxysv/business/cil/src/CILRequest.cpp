@@ -5,9 +5,10 @@
  *      Author: dinglinhui
  */
 
+#include "../../cil/inc/CILRequest.h"
+
 #include <cassert>
 #include "OSDefs.h"
-#include "CILRequest.h"
 
 namespace syscil {
 

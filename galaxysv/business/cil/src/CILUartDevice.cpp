@@ -5,8 +5,9 @@
  *      Author: dinglinhui
  */
 
+#include "../../cil/inc/CILUartDevice.h"
+
 #include <cassert>
-#include <CILUartDevice.h>
 
 namespace syscil {
 

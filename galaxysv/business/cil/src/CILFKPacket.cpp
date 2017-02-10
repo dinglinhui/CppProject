@@ -1,5 +1,6 @@
+#include "../../cil/inc/CILFKPacket.h"
+
 #include <string.h>
-#include "CILFKPacket.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CILFKPacket

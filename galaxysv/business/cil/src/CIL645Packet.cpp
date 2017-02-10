@@ -1,5 +1,6 @@
+#include "../../cil/inc/CIL645Packet.h"
+
 #include <string.h>
-#include "CIL645Packet.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CIL645Packet

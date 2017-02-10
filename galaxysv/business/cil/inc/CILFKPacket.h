@@ -1,8 +1,8 @@
 #ifndef CIL_FKPACKET_H__
 #define CIL_FKPACKET_H__
 
+#include "../../cil/inc/CILPacket.h"
 #include "pcol_fk.h"
-#include "CILPacket.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CILFKPacket

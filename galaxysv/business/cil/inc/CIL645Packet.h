@@ -1,8 +1,8 @@
 #ifndef CIL_645PACKET_H__
 #define CIL_645PACKET_H__
 
+#include "../../cil/inc/CILPacket.h"
 #include "pcol_dl645.h"
-#include "CILPacket.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CIL645Packet

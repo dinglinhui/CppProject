@@ -8,10 +8,10 @@
 #ifndef CILSERVICE_H_
 #define CILSERVICE_H_
 
+#include "../../cil/inc/CILDevice.h"
 #include "OSThreadEx.h"
 #include "OSThreadPool.h"
 #include "OSMessageBase.h"
-#include "CILDevice.h"
 
 namespace syscil {
 using namespace osext;

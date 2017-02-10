@@ -5,8 +5,9 @@
  *      Author: dinglinhui
  */
 
+#include "../../cil/inc/CILService.h"
+
 #include <cassert>
-#include "CILService.h"
 
 namespace syscil {
 CILService::CILService(int nPrio, int nStackSize, int nQueueSize) :

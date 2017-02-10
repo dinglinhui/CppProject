@@ -1,7 +1,7 @@
 #ifndef __CIL_PACKETFACTORYIMPL_H__
 #define __CIL_PACKETFACTORYIMPL_H__
 
-#include "CILPacket.h"
+#include "../../cil/inc/CILPacket.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CILPacketFactoryImpl

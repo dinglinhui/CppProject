@@ -8,10 +8,10 @@
 #ifndef CILREQUEST_H_
 #define CILREQUEST_H_
 
+#include "../../cil/inc/CILDevice.h"
+#include "../../cil/inc/CILPacket.h"
+#include "../../cil/inc/CILService.h"
 #include "OSDefs.h"
-#include "CILDevice.h"
-#include "CILPacket.h"
-#include "CILService.h"
 #include "OSMessageBase.h"
 
 namespace syscil {

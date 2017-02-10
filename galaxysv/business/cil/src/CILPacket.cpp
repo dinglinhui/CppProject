@@ -5,8 +5,9 @@
  *      Author: dinglinhui
  */
 
+#include "../../cil/inc/CILPacket.h"
+
 #include <cassert>
-#include "CILPacket.h"
 
 namespace syscil {
 CILPacket::CILPacket(PCOL_TYPE type) :

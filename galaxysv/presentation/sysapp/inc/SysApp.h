@@ -8,10 +8,10 @@
 #ifndef KDAPP_H_
 #define KDAPP_H_
 
+#include "../../../business/cil/inc/CILDispatcher.h"
+#include "../../../business/cil/inc/CILSchedule.h"
+#include "../../../business/cil/inc/CILService.h"
 #include "OSDispatcherEx.h"
-#include "CILService.h"
-#include "CILSchedule.h"
-#include "CILDispatcher.h"
 #include "MemPool.h"
 
 namespace galaxy {
