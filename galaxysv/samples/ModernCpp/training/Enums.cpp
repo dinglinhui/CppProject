@@ -1,11 +1,4 @@
-﻿/*
- * Enums.cpp
- *
- *  Created on: Oct 15, 2014
- *      Author: xdinlin
- */
-
-#include <iostream>
+﻿#include <iostream>
 
 //1,宏的弱点在于其定义的只是预处理阶段的名字，如果代码中有Male或者Female的字符串，无论在什么位置一律将被替换。
 //这在有的时候会干扰到正常的代码，因此很多时候为了避免这种情况，程序员会让宏全部以大写来命名，以区别于正常的代码。
@@ -38,32 +31,32 @@
  */
 
 enum class Type {
-	General, Light, Medium, Heavy
+    General, Light, Medium, Heavy
 };
 
 enum class Category {
-	General = 1, Pistol, MechineGun, Cannon
+    General = 1, Pistol, MechineGun, Cannon
 };
 
 #if 0
 int main()
 {
-	Type t = Type::Light;
-	//	t = General;
+    Type t = Type::Light;
+    //	t = General;
 
-	if (t == Category::General)
-	std::cout << "general weapon" << std::endl;
+    if (t == Category::General)
+    std::cout << "general weapon" << std::endl;
 
-	if (t > Type::General)
-	std::cout << "not general weapon" << std::endl;
+    if (t > Type::General)
+    std::cout << "not general weapon" << std::endl;
 
-	if (t > 0)
-	std::cout << "not general weapon" << std::endl;
+    if (t > 0)
+    std::cout << "not general weapon" << std::endl;
 
-	if ((int)t > 0)
-	std::cout << "not general weapon" << std::endl;
+    if ((int)t > 0)
+    std::cout << "not general weapon" << std::endl;
 
-	return 0;
+    return 0;
 }
 
 #endif

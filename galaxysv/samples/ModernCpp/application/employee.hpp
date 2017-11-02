@@ -9,7 +9,9 @@
 #include <map>
 
 namespace application {
-using ID = std::pair<std::string, std::string>; // EmployeeID and ID-Card Number
+
+using ID = std::pair<std::string, std::string>;
+// EmployeeID and ID-Card Number
 using Name = std::pair<std::string, std::string>;
 using DateOfBirth = std::tuple<size_t, size_t, size_t>;
 using Details = std::tuple<DateOfBirth, size_t, size_t, std::string>;

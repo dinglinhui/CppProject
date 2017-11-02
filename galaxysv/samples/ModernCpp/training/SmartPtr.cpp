@@ -1,10 +1,3 @@
-/*
-* SmartPtr.cpp
-*
-*  Created on: Oct 11, 2014
-*      Author: xdinlin
-*/
-
 #include <iostream>
 #include <memory>
 

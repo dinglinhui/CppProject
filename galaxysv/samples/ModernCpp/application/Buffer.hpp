@@ -1,4 +1,7 @@
 #if 1
+#ifndef SRC_BUFFER_H_
+#define SRC_BUFFER_H_
+
 #include <utility>
 #include <memory>
 #include <iostream>
@@ -38,7 +41,8 @@ public:
         swap(*this, temp);
     }
 
-    friend void swap(Buffer& first, Buffer& second) noexcept {
+    friend void swap(Buffer& first, Buffer& second) noexcept
+    {
         std::swap(first._name, second._name);
         std::swap(first._size, second._size);
         std::swap(first._buffer, second._buffer);
@@ -60,4 +64,5 @@ void test_buffer() {
 }
 
 } /* namespace application */
+#endif /*SRC_BUFFER_H_*/
 #endif

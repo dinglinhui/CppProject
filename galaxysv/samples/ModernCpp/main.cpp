@@ -13,11 +13,11 @@
 #include <future>
 #include <unordered_map>
 
-#include "application/EmployeeSystem.hpp"
-#include "application/Student.h"
-#include "application/SmartPointer.hpp"
+#include "application/employee.hpp"
+#include "application/smart_pointer.hpp"
+#include "application/student.hpp"
 #include "application/utils.hpp"
-#include "multithreading/ThreadPool.hpp"
+#include "application/threadpool.hpp"
 #include "multithreading/CppThread.hpp"
 #include "networking/server.hpp"
 
@@ -33,12 +33,11 @@ void fn(T&& x) {
 }
 
 int main(int argc, char *argv[]) {
-    application::test_smartpointer();
-
+    application::test_threadpool();
 #if 0
     application::test_employeesystem();
+    application::test_smartpointer();
 
-    multithreading::test_threadpool();
     multithreading::test_thread();
     multithreading::test_future();
     multithreading::test_promise();
