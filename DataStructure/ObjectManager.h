@@ -22,4 +22,27 @@ public:
 		pool->Free(pObj);
 	}
 };
+/*
+typedef struct tag_Student {
+	int sId;
+	int sex;
+	std::string name;
+	std::string classname;
+} Student;
+
+void test() {
+	//	# 获取当前路径
+	char *buffer;
+	if ((buffer = getcwd(NULL, 0)) == NULL) {
+		perror("getcwd error");
+	} else {
+		std::cout << buffer << std::endl;
+		free(buffer);
+	}
+
+	std::cout << "object address:"
+	<< ObjectManager<Student>::Create(new StaticMemory()) << " size:"
+	<< sizeof(Student) << std::endl;
+}*/
+
 #endif

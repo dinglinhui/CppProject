@@ -30,6 +30,43 @@ int main()
     std::function<int(int)> func2 = [](int i)
     {   return i+4;};
     std::cout << "func2: " << func2(6) << '\n';
+
+
+	//	#1 C Style
+	int array[] = {100, 8, 15, 37, 26, 13, 27, 49, 55, 18};
+	for (int i = 0; i < sizeof(array) / sizeof(int); i++)
+	std::cout << array[i] << " ";
+	std::cout << std::endl;
+
+	//	#2 C++ 11 for
+	quick_sort(array, 0, sizeof(array) / sizeof(int) - 1);
+	for (const int &x : array)
+	std::cout << x << " ";
+	std::cout << std::endl;
+
+	//	#3 C++ 11 shuffle and C++ 98/03 iterator
+	std::vector<int> vector_array(array, array + sizeof(array) / sizeof(int));
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	std::shuffle(std::begin(vector_array), std::end(vector_array),
+			std::default_random_engine(seed));
+	for (std::vector<int>::iterator it = vector_array.begin();
+			it != vector_array.end(); ++it) {
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
+
+	//	#4 C++ 11 Style
+	std::sort(std::begin(vector_array), std::end(vector_array),
+			[](const int a, const int b) {
+				return a < b;
+			});
+
+	std::for_each(std::begin(vector_array), std::end(vector_array),
+			[](const int element) {
+				std::cout << element << " ";
+			});
+	std::cout << std::endl;
+
 }
 
 #endif

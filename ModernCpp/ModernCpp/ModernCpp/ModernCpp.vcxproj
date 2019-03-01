@@ -20,15 +20,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="application\linked_list.cpp" />
+    <ClCompile Include="application\monitorsystem.cpp" />
     <ClCompile Include="basic\student.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application\crtp.hpp" />
+    <ClInclude Include="application\eventmanager.hpp" />
     <ClInclude Include="application\linked_list.hpp" />
+    <ClInclude Include="application\monitorsystem.hpp" />
     <ClInclude Include="application\optional.hpp" />
+    <ClInclude Include="application\regex.hpp" />
     <ClInclude Include="application\smart_pointer.hpp" />
     <ClInclude Include="application\system.hpp" />
+    <ClInclude Include="application\threadpool.hpp" />
     <ClInclude Include="basic\basic.hpp" />
     <ClInclude Include="basic\buffer.hpp" />
     <ClInclude Include="basic\const.hpp" />
@@ -38,7 +43,6 @@
     <ClInclude Include="basic\student.h" />
     <ClInclude Include="basic\template.hpp" />
     <ClInclude Include="multithreading\thread.hpp" />
-    <ClInclude Include="multithreading\threadpool.hpp" />
     <ClInclude Include="utils\log.hpp" />
     <ClInclude Include="utils\utils.hpp" />
   </ItemGroup>

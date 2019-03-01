@@ -1,2 +1,3 @@
-﻿  linked_list.cpp
-  ModernCpp.vcxproj -> D:\workspace\ModernCpp\ModernCpp\x64\Debug\ModernCpp.exe
+﻿  main.cpp
+d:\git\cppprojects\moderncpp\moderncpp\moderncpp\application\eventmanager.hpp(68): warning C4091: 'static ': ignored on left of 'application::<unnamed-enum-WM_SHOW>' when no variable is declared
+  ModernCpp.vcxproj -> D:\git\CppProjects\ModernCpp\ModernCpp\x64\Debug\ModernCpp.exe

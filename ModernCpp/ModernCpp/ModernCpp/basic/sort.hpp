@@ -52,6 +52,54 @@ void insertion_sort(int array[], int first, int last) {
     }
 }
 
+int partition(int ArrayInput[], int nLow, int nHigh) {
+	int nTemp = ArrayInput[nHigh];
+	int i = nLow, j = nLow - 1;
+	for (; i < nHigh; i++) {
+		if (ArrayInput[i] <= nTemp) {
+			j++;
+			if (i != j) {
+				swap(ArrayInput[i], ArrayInput[j]);
+			}
+		}
+	}
+	swap(ArrayInput[j + 1], ArrayInput[nHigh]);
+	return (j + 1);
+}
+
+void quick_sort(int ArrayInput[], int nLow, int nHigh) {
+	if (nLow < nHigh) {
+		int nIndex = partition(ArrayInput, nLow, nHigh);
+		quick_sort(ArrayInput, nLow, nIndex - 1);
+		quick_sort(ArrayInput, nIndex + 1, nHigh);
+	}
+}
+
+void merge_array(int a[], int first, int mid, int last, int c[]) {
+	int i = first, j = mid + 1, k = 0;
+	while (i <= mid && j <= last) {
+		if (a[i] > a[j])
+			c[k++] = a[j++];
+		else
+			c[k++] = a[i++];
+	}
+	while (i <= mid)
+		c[k++] = a[i++];
+	while (j <= last)
+		c[k++] = a[j++];
+	for (int x = 0; x < k; x++)
+		a[first + x] = c[x];
+}
+
+void merge_sort(int a[], int first, int last, int temp[]) {
+	if (first < last) {
+		int mid = (first + last) / 2;
+		merge_sort(a, first, mid, temp);
+		merge_sort(a, mid + 1, last, temp);
+		merge_array(a, first, mid, last, temp);
+	}
+}
+
 template<typename T>
 struct list_node {
     struct list_node<T> *next;
